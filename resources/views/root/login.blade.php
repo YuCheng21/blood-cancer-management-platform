@@ -9,7 +9,7 @@
     @parent
     <style>
         body {
-            background-image: url("/img/background.jpg");
+            background-image: url("{{ asset('img/background.jpg') }}");
             background-color: rgba(255, 255, 255, 0.2);
             background-blend-mode: overlay;
             background-size: cover;
@@ -19,7 +19,7 @@
         }
 
         main {
-            padding-top: 0px;
+            padding-top: 0;
         }
     </style>
 @endsection
@@ -30,7 +30,7 @@
             <div class="col-12 d-flex justify-content-center">
                 <div class="card bg-white shadow w-50 bg-opacity-50">
                     <div class="card-body d-flex align-items-center flex-column">
-                        <img src="/img/logo.png" class="w-50 mb-3">
+                        <img src="{{ asset('/img/logo.png') }}" class="w-50 mb-3" alt="web logo">
                         <h1 class="mb-3"><b>@php echo config('app.name') @endphp</b></h1>
                         <form action="#" id="loginForm" method="POST" enctype="multipart/form-data"
                               class="w-100 mb-3">
