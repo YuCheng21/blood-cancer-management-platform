@@ -17,6 +17,21 @@ theme.danger = style.getPropertyValue('--bs-danger');
 theme.light = style.getPropertyValue('--bs-light');
 theme.dark = style.getPropertyValue('--bs-dark');
 
+theme.blue = style.getPropertyValue('--bs-blue');
+theme.indigo = style.getPropertyValue('--bs-indigo');
+theme.purple = style.getPropertyValue('--bs-purple');
+theme.pink = style.getPropertyValue('--bs-pink');
+theme.red = style.getPropertyValue('--bs-red');
+theme.orange = style.getPropertyValue('--bs-orange');
+theme.yellow = style.getPropertyValue('--bs-yellow');
+theme.green = style.getPropertyValue('--bs-green');
+theme.teal = style.getPropertyValue('--bs-teal');
+theme.cyan = style.getPropertyValue('--bs-cyan');
+
+theme.white = style.getPropertyValue('--bs-white-rgb');
+theme.gray = style.getPropertyValue('--bs-gray');
+theme.black = style.getPropertyValue('--bs-black-rgb');
+
 /**
  * sweetAlert
  */

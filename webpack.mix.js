@@ -26,4 +26,8 @@ mix.sass('resources/scss/all.scss', 'public/css')
     .copyDirectory('node_modules/axios',
         'public/node_modules/axios')
     .copyDirectory('node_modules/bootstrap-table',
-        'public/node_modules/bootstrap-table');
+        'public/node_modules/bootstrap-table')
+    .copyDirectory('node_modules/chart.js',
+        'public/node_modules/chart.js')
+    .copyDirectory('node_modules/chartjs-adapter-date-fns',
+        'public/node_modules/chartjs-adapter-date-fns');

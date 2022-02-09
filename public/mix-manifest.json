@@ -3,7 +3,6 @@
     "/img/background.jpg": "/img/background.jpg",
     "/img/logo.png": "/img/logo.png",
     "/js/base.js": "/js/base.js",
-    "/js/index.js": "/js/index.js",
     "/node_modules/bootstrap/LICENSE": "/node_modules/bootstrap/LICENSE",
     "/node_modules/bootstrap/package.json": "/node_modules/bootstrap/package.json",
     "/node_modules/bootstrap/README.md": "/node_modules/bootstrap/README.md",
@@ -33,5 +32,11 @@
     "/node_modules/bootstrap-table/LICENSE": "/node_modules/bootstrap-table/LICENSE",
     "/node_modules/bootstrap-table/package.json": "/node_modules/bootstrap-table/package.json",
     "/node_modules/bootstrap-table/README.md": "/node_modules/bootstrap-table/README.md",
-    "/node_modules/bootstrap-table/rollup.config.js": "/node_modules/bootstrap-table/rollup.config.js"
+    "/node_modules/bootstrap-table/rollup.config.js": "/node_modules/bootstrap-table/rollup.config.js",
+    "/node_modules/chart.js/LICENSE.md": "/node_modules/chart.js/LICENSE.md",
+    "/node_modules/chart.js/package.json": "/node_modules/chart.js/package.json",
+    "/node_modules/chart.js/README.md": "/node_modules/chart.js/README.md",
+    "/node_modules/chartjs-adapter-date-fns/LICENSE.md": "/node_modules/chartjs-adapter-date-fns/LICENSE.md",
+    "/node_modules/chartjs-adapter-date-fns/package.json": "/node_modules/chartjs-adapter-date-fns/package.json",
+    "/node_modules/chartjs-adapter-date-fns/README.md": "/node_modules/chartjs-adapter-date-fns/README.md"
 }

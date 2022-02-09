@@ -2,6 +2,13 @@
 
 @section('title', $title)
 
+@section('head')
+    @parent
+    {{--  Chart.js  --}}
+    <script src="{{asset('node_modules\chart.js\dist\chart.min.js')}}"></script>
+    <script src="{{asset('node_modules\chartjs-adapter-date-fns\dist\chartjs-adapter-date-fns.bundle.min.js')}}"></script>
+@endsection
+
 @section('main')
     <div class="container-fluid py-4">
         <div class="card border hv-shadow mb-4">
@@ -73,6 +80,7 @@
                 </h2>
             </div>
             <div class="card-body px-5 py-4">
+                <canvas id="bloodChart"></canvas>
 
             </div>
         </div>
@@ -144,4 +152,7 @@
 
 @section('footer')
     @parent
+    {{--  Page Customize Javascript  --}}
+    <script src="{{asset('js/case/person.js')}}"></script>
+
 @endsection

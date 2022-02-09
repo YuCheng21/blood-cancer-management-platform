@@ -8,31 +8,31 @@
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         {{--  Favicon  --}}
-        <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
-        <link rel="manifest" href="/img/favicon/site.webmanifest">
-        <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#425d8a">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{asset('img/favicon/apple-touch-icon.png')}}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{asset('img/favicon/favicon-32x32.png')}}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{asset('img/favicon/favicon-16x16.png')}}">
+        <link rel="manifest" href="{{asset('img/favicon/site.webmanifest')}}">
+        <link rel="mask-icon" href="{{asset('img/favicon/safari-pinned-tab.svg')}}" color="#425d8a">
         <meta name="msapplication-TileColor" content="#425d8a">
         <meta name="theme-color" content="#425d8a">
         {{--  Title  --}}
         <title>@yield('title', 'Page') | @php echo config('app.name') @endphp</title>
         {{--  JQuery  --}}
-        <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="{{asset('node_modules/jquery/dist/jquery.min.js')}}"></script>
         {{--  Bootstrap  --}}
-        <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{asset('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
         {{--  Bootstrap-table  --}}
-        <link rel="stylesheet" href="node_modules/bootstrap-table/dist/bootstrap-table.min.css">
-        <script src="node_modules/bootstrap-table/dist/bootstrap-table.min.js"></script>
-        <script src="node_modules/bootstrap-table/dist/locale/bootstrap-table-zh-TW.min.js"></script>
+        <link rel="stylesheet" href="{{asset('node_modules/bootstrap-table/dist/bootstrap-table.min.css')}}">
+        <script src="{{asset('node_modules/bootstrap-table/dist/bootstrap-table.min.js')}}"></script>
+        <script src="{{asset('node_modules/bootstrap-table/dist/locale/bootstrap-table-zh-TW.min.js')}}"></script>
         {{--  sweetalert  --}}
-        <script src="node_modules/sweetalert2/dist/sweetalert2.all.js"></script>
+        <script src="{{asset('node_modules/sweetalert2/dist/sweetalert2.all.js')}}"></script>
         {{--  Axios  --}}
-        <script src="node_modules/axios/dist/axios.min.js"></script>
+        <script src="{{asset('node_modules/axios/dist/axios.min.js')}}"></script>
         {{--  iconify  --}}
-        <script src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script>
+        <script src="{{asset('https://code.iconify.design/2/2.0.4/iconify.min.js')}}"></script>
         {{--  Customize CSS  --}}
-        <link rel="stylesheet" href="/css/all.css">
+        <link rel="stylesheet" href="{{asset('css/all.css')}}">
     @show
 
     @section('style')
@@ -130,7 +130,7 @@
 </footer>
 @section('script')
     {{--  Customize Javascript  --}}
-    <script src="/js/base.js"></script>
+    <script src="{{asset('js/base.js')}}"></script>
     {{--  Active Current Page  --}}
     <script>
         $('#navbarToggler > ul a > span').each(function (index, value) {
