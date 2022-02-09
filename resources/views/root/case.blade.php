@@ -67,9 +67,15 @@
                                 <td>個案性別</td>
                                 <td>個案移植日期</td>
                                 <td>
-                                    <button class="btn btn-secondary text-white" data-bs-toggle="modal" data-bs-target="#updateCaseModal">編輯</button>
-                                    <button class="btn btn-primary" onclick="location.href='/case/person'">查看</button>
-                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">刪除</button>
+                                    <button class="btn btn-secondary text-white" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
+                                        <span class="iconify-inline" data-icon="fa-regular:edit"></span>
+                                    </button>
+                                    <button class="btn btn-primary" onclick="location.href='/case/person'">
+                                        <span class="iconify-inline" data-icon="whh:magnifier"></span>
+                                    </button>
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">
+                                        <span class="iconify-inline" data-icon="ion:trash"></span>
+                                    </button>
                                 </td>
                             </tr>
                         </table>
