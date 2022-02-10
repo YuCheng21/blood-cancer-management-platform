@@ -78,6 +78,66 @@
                                     </button>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>user</td>
+                                <td>password</td>
+                                <td>N0001</td>
+                                <td>王小明</td>
+                                <td>32</td>
+                                <td>男</td>
+                                <td>2022-02-10</td>
+                                <td>
+                                    <button class="btn btn-secondary text-white" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
+                                        <span class="iconify-inline" data-icon="fa-regular:edit"></span>
+                                    </button>
+                                    <button class="btn btn-primary" onclick="location.href='/case/person'">
+                                        <span class="iconify-inline" data-icon="whh:magnifier"></span>
+                                    </button>
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">
+                                        <span class="iconify-inline" data-icon="ion:trash"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>test</td>
+                                <td>test</td>
+                                <td>N0002</td>
+                                <td>王大明</td>
+                                <td>43</td>
+                                <td>男</td>
+                                <td>2022-02-10</td>
+                                <td>
+                                    <button class="btn btn-secondary text-white" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
+                                        <span class="iconify-inline" data-icon="fa-regular:edit"></span>
+                                    </button>
+                                    <button class="btn btn-primary" onclick="location.href='/case/person'">
+                                        <span class="iconify-inline" data-icon="whh:magnifier"></span>
+                                    </button>
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">
+                                        <span class="iconify-inline" data-icon="ion:trash"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>test3</td>
+                                <td>test3</td>
+                                <td>N0003</td>
+                                <td>王中明</td>
+                                <td>41</td>
+                                <td>男</td>
+                                <td>2022-02-10</td>
+                                <td>
+                                    <button class="btn btn-secondary text-white" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
+                                        <span class="iconify-inline" data-icon="fa-regular:edit"></span>
+                                    </button>
+                                    <button class="btn btn-primary" onclick="location.href='/case/person'">
+                                        <span class="iconify-inline" data-icon="whh:magnifier"></span>
+                                    </button>
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">
+                                        <span class="iconify-inline" data-icon="ion:trash"></span>
+                                    </button>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>

@@ -138,7 +138,7 @@
                                 <td class="text-start">
                                     <span>未設定任務</span>
                                 </td>
-                                <td class="text-success">已完成</td>
+                                <td class="text-success">-</td>
                             </tr>
                             <tr>
                                 <td>第 4 週</td>
@@ -146,7 +146,7 @@
                                 <td class="text-start">
                                     <span>未設定任務</span>
                                 </td>
-                                <td class="text-success">已完成</td>
+                                <td class="text-success">-</td>
                             </tr>
                         </table>
                     </div>
