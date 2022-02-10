@@ -32,11 +32,11 @@
                     <span>每週任務規劃</span>
                 </h2>
                 <div>
-                    <button class="btn btn-primary" onclick="location.href='/task/main'">
+                    <button class="btn btn-primary" onclick="location.href='{{route('tasks.main.edit')}}'">
                         <span class="iconify-inline" data-icon="fa-solid:tools"></span>
                         <span>編輯任務主模板</span>
                     </button>
-                    <button class="btn btn-primary" onclick="location.href='/task/create'">
+                    <button class="btn btn-primary" onclick="location.href='{{route('tasks.sub.add')}}'">
                         <span class="iconify-inline" data-icon="carbon:add-filled"></span>
                         <span>新增任務複模板</span>
                     </button>
@@ -58,7 +58,7 @@
                             <option value="8">副模板 8</option>
                         </select>
                     </div>
-                    <button class="btn btn-primary w-auto mx-1" onclick="location.href='/task/update'">
+                    <button class="btn btn-primary w-auto mx-1" onclick="location.href='{{route('tasks.sub.edit')}}'">
                         編輯
                     </button>
                     <button class="btn btn-danger w-auto mx-1" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">

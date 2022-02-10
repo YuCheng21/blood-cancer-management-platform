@@ -30,7 +30,7 @@
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">帳號</span>
                         <hr class="my-1">
-                        <span>個案帳號</span>
+                        <span>個案帳號 {{$account}}</span>
                     </div>
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">密碼</span>

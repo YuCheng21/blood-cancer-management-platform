@@ -1,7 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CaseController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TopicController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ExportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,68 +19,63 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', function () {
-    return view('root.login', [
-        'title'=>'登入'
-    ]);
-});
+Route::get(
+    '/login',
+    [UserController::class, 'show']
+)->name('user.index');
 
-Route::get('/', function () {
-    return view('root.case', [
-        'title'=>'個案管理'
-    ]);
-});
 
-Route::get('/case/person', function () {
-    return view('case.person', [
-        'title'=>'個人資料'
-    ]);
-});
 
-Route::get('/task', function () {
-    return view('root.task', [
-        'title'=>'任務管理'
-    ]);
-});
+Route::get(
+    '/',
+    [CaseController::class, 'index']
+)->name('cases.index');
 
-Route::get('/task/main', function () {
-    return view('task.main', [
-        'title'=>'修改任務主模板'
-    ]);
-});
+Route::get(
+    '/cases/{account}',
+    [CaseController::class, 'show']
+)->name('cases.show');
 
-Route::get('/task/create', function () {
-    return view('task.create', [
-        'title'=>'新增任務副模板'
-    ]);
-});
 
-Route::get('/task/update', function () {
-    return view('task.update', [
-        'title'=>'修改任務副模板'
-    ]);
-});
 
-Route::get('/topic', function () {
-    return view('root.topic', [
-        'title'=>'題庫管理'
-    ]);
-});
+Route::get(
+    '/tasks',
+    [TaskController::class, 'index']
+)->name('tasks.index');
 
-Route::get('/faq', function () {
-    return view('root.faq', [
-        'title'=>'QA 管理'
-    ]);
-});
+Route::get(
+    '/tasks/main/edit',
+    [TaskController::class, 'main']
+)->name('tasks.main.edit');
 
-Route::get('/message', function () {
-    return view('root.message', [
-        'title'=>'消息管理'
-    ]);
-});
+Route::get(
+    '/tasks/sub/add',
+    [TaskController::class, 'sub_create']
+)->name('tasks.sub.add');
 
-Route::get('/export', function () {
-    return view('root.export', [
-        'title'=>'匯出'
-    ]);
-});
+Route::get(
+    '/tasks/sub/edit',
+    [TaskController::class, 'sub_update']
+)->name('tasks.sub.edit');
+
+
+Route::get(
+    '/topics',
+    [TopicController::class, 'index']
+)->name('topics.index');
+
+
+Route::get(
+    '/faqs',
+    [FaqController::class, 'index']
+)->name('faqs.index');
+
+Route::get(
+    '/messages',
+    [MessageController::class, 'index']
+)->name('messages.index');
+
+Route::get(
+    '/exports',
+    [ExportController::class, 'index']
+)->name('exports.index');

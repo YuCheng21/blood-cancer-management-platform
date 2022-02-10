@@ -16,7 +16,7 @@
         <meta name="msapplication-TileColor" content="#425d8a">
         <meta name="theme-color" content="#425d8a">
         {{--  Title  --}}
-        <title>@yield('title', 'Page') | @php echo config('app.name') @endphp</title>
+        <title>@yield('title', 'Page') | {{config('app.name')}}</title>
         {{--  JQuery  --}}
         <script src="{{asset('node_modules/jquery/dist/jquery.min.js')}}"></script>
         {{--  Bootstrap  --}}
@@ -44,10 +44,10 @@
     @section('header')
         <nav class="navbar navbar-dark navbar-expand-xl bg-primary px-3 fixed-top shadow">
             <div class="container-fluid">
-                <a href="/"
+                <a href="{{route('cases.index')}}"
                    class="navbar-brand fs-1 fw-bold py-0 ds-100 hv-scale hv-color-text">
                     <span class="iconify-inline" data-icon="maki:blood-bank"></span>
-                    <span>@php echo config('app.name') @endphp</span>
+                    <span>{{config('app.name')}}</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler">
                     <span class="navbar-toggler-icon"></span>
@@ -56,32 +56,32 @@
                     @section('navbar_item')
                         <ul class="navbar-nav fs-4 fw-bold ds-100">
                             <li class="nav-item hv-scale">
-                                <a href="/" class="nav-link text-white hv-color-text">
+                                <a href="{{route('cases.index')}}" class="nav-link text-white hv-color-text">
                                     <span>個案管理</span>
                                 </a>
                             </li>
                             <li class="nav-item hv-scale">
-                                <a href="/task" class="nav-link text-white hv-color-text">
+                                <a href="{{route('tasks.index')}}" class="nav-link text-white hv-color-text">
                                     <span>任務管理</span>
                                 </a>
                             </li>
                             <li class="nav-item hv-scale">
-                                <a href="/topic" class="nav-link text-white hv-color-text">
+                                <a href="{{route('topics.index')}}" class="nav-link text-white hv-color-text">
                                     <span>題庫管理</span>
                                 </a>
                             </li>
                             <li class="nav-item hv-scale">
-                                <a href="/faq" class="nav-link text-white hv-color-text">
+                                <a href="{{route('faqs.index')}}" class="nav-link text-white hv-color-text">
                                     <span>QA 管理</span>
                                 </a>
                             </li>
                             <li class="nav-item hv-scale">
-                                <a href="/message" class="nav-link text-white hv-color-text">
+                                <a href="{{route('messages.index')}}" class="nav-link text-white hv-color-text">
                                     <span>消息管理</span>
                                 </a>
                             </li>
                             <li class="nav-item hv-scale">
-                                <a href="/export" class="nav-link text-white hv-color-text">
+                                <a href="{{route('exports.index')}}" class="nav-link text-white hv-color-text">
                                     <span>匯出</span>
                                 </a>
                             </li>

@@ -70,7 +70,7 @@
                                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
                                         <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                                     </button>
-                                    <button class="btn btn-secondary text-white" onclick="location.href='/case/person'">
+                                    <button class="btn btn-secondary text-white" onclick="location.href='{{route('cases.show', ['account' => 'testing'])}}'">
                                         <span class="iconify-inline" data-icon="whh:magnifier"></span>
                                     </button>
                                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">
@@ -90,7 +90,7 @@
                                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
                                         <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                                     </button>
-                                    <button class="btn btn-secondary text-white" onclick="location.href='/case/person'">
+                                    <button class="btn btn-secondary text-white" onclick="location.href='{{route('cases.show', ['account' => 'user'])}}'">
                                         <span class="iconify-inline" data-icon="whh:magnifier"></span>
                                     </button>
                                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">
@@ -110,7 +110,7 @@
                                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
                                         <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                                     </button>
-                                    <button class="btn btn-secondary text-white" onclick="location.href='/case/person'">
+                                    <button class="btn btn-secondary text-white" onclick="location.href='{{route('cases.show', ['account' => 'test'])}}'">
                                         <span class="iconify-inline" data-icon="whh:magnifier"></span>
                                     </button>
                                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">
@@ -130,7 +130,7 @@
                                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
                                         <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                                     </button>
-                                    <button class="btn btn-secondary  text-white" onclick="location.href='/case/person'">
+                                    <button class="btn btn-secondary  text-white" onclick="location.href='{{route('cases.show', ['account' => 'test3'])}}'">
                                         <span class="iconify-inline" data-icon="whh:magnifier"></span>
                                     </button>
                                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">

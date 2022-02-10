@@ -146,7 +146,7 @@
                         </button>
                     </div>
                     <div class="col-4">
-                        <button type="button" class="btn btn-danger w-100" onclick="location.href='/task'">
+                        <button type="button" class="btn btn-danger w-100" onclick="location.href='{{route('tasks.index')}}'">
                             <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                             <span>取消</span>
                         </button>
