@@ -20,7 +20,7 @@
                     <span class="iconify-inline" data-icon="clarity:info-standard-solid"></span>
                     <span>個人資料</span>
                 </h2>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
                     <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                     <span>編輯資料</span>
                 </button>
@@ -159,7 +159,7 @@
                     <span class="iconify-inline" data-icon="fontisto:drug-pack"></span>
                     <span>施打藥物紀錄及劑量</span>
                 </h2>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createMedicineRecordModal">
                     <span class="iconify-inline" data-icon="carbon:add-filled"></span>
                     <span>新增資料</span>
                 </button>
@@ -368,6 +368,8 @@
 
 @section('footer')
     @parent
+    @include('includes.modal.update_case')
+    @include('includes.modal.create_medicine_record')
     {{--  Fancybox  --}}
     <script src="{{asset('node_modules/@fancyapps/ui/dist/fancybox.umd.js')}}"></script>
     {{--  Page Customize Javascript  --}}
