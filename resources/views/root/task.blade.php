@@ -18,7 +18,7 @@
                             <div class="card-body fs-4">
                                 <h4 class="card-title">模板總數</h4>
                                 <hr>
-                                <p id="taskNumber" class="card-text">5 筆</p>
+                                <p id="taskNumber" class="card-text">8 筆</p>
                             </div>
                         </div>
                     </div>
@@ -32,11 +32,11 @@
                     <span>每週任務規劃</span>
                 </h2>
                 <div>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateTaskModal">
+                    <button class="btn btn-primary" onclick="location.href='/task/main'">
                         <span class="iconify-inline" data-icon="fa-solid:tools"></span>
                         <span>編輯任務主模板</span>
                     </button>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createTaskModal">
+                    <button class="btn btn-primary" onclick="location.href='/task/create'">
                         <span class="iconify-inline" data-icon="carbon:add-filled"></span>
                         <span>新增任務複模板</span>
                     </button>
@@ -58,7 +58,7 @@
                             <option value="8">副模板 8</option>
                         </select>
                     </div>
-                    <button class="btn btn-primary w-auto mx-1" data-bs-toggle="modal" data-bs-target="#">
+                    <button class="btn btn-primary w-auto mx-1" onclick="location.href='/task/update'">
                         編輯
                     </button>
                     <button class="btn btn-danger w-auto mx-1" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">

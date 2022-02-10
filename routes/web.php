@@ -37,6 +37,24 @@ Route::get('/task', function () {
     ]);
 });
 
+Route::get('/task/main', function () {
+    return view('task.main', [
+        'title'=>'修改任務主模板'
+    ]);
+});
+
+Route::get('/task/create', function () {
+    return view('task.create', [
+        'title'=>'新增任務副模板'
+    ]);
+});
+
+Route::get('/task/update', function () {
+    return view('task.update', [
+        'title'=>'修改任務副模板'
+    ]);
+});
+
 Route::get('/topic', function () {
     return view('root.topic', [
         'title'=>'題庫管理'
