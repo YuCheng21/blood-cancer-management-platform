@@ -11,46 +11,46 @@
             <div class="modal-body">
                 <div class="row gy-2">
                     <div class="col-12">
-                        <form action="#" id="createCaseForm" method="POST" enctype="multipart/form-data">
+                        <form action="#" id="updateCaseForm" method="POST" enctype="multipart/form-data">
                             <div class="input-group mb-2">
-                                <label for="caseAccount" class="input-group-text">帳號</label>
-                                <input name="caseAccount" type="text" id="caseAccount"
+                                <label for="updateCaseAccount" class="input-group-text">帳號</label>
+                                <input name="updateCaseAccount" type="text" id="updateCaseAccount"
                                        class="form-control" placeholder="請輸入個案帳號" disabled>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="casePassword" class="input-group-text">密碼</label>
-                                <input name="casePassword" type="password" id="casePassword"
+                                <label for="updateCasePassword" class="input-group-text">密碼</label>
+                                <input name="updateCasePassword" type="password" id="updateCasePassword"
                                        class="form-control" placeholder="請輸入個案密碼">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="caseTransplantNum" class="input-group-text">移植編號</label>
-                                <input name="caseTransplantNum" type="text" id="caseTransplantNum"
+                                <label for="updateCaseTransplantNum" class="input-group-text">移植編號</label>
+                                <input name="updateCaseTransplantNum" type="text" id="updateCaseTransplantNum"
                                        class="form-control" placeholder="請輸入個案移植編號">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="caseName" class="input-group-text">姓名</label>
-                                <input name="caseName" type="text" id="caseName"
+                                <label for="updateCaseName" class="input-group-text">姓名</label>
+                                <input name="updateCaseName" type="text" id="updateCaseName"
                                        class="form-control" placeholder="請輸入個案姓名">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="caseGender" class="input-group-text">性別</label>
-                                <select name="caseGender" id="caseGender" class="form-select">
+                                <label for="updateCaseGender" class="input-group-text">性別</label>
+                                <select name="updateCaseGender" id="updateCaseGender" class="form-select">
                                     <option value="0" selected>請選擇個案性別</option>
                                     <option value="1">男性</option>
                                     <option value="2">女性</option>
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="caseBirth" class="input-group-text">生日</label>
-                                <input name="caseBirth" id="caseBirth" type="date" class="form-control">
+                                <label for="updateCaseBirth" class="input-group-text">生日</label>
+                                <input name="updateCaseBirth" id="updateCaseBirth" type="date" class="form-control">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="caseAccount" class="input-group-text">移植日期</label>
-                                <input id="date" type="date" class="form-control" name="test">
+                                <label for="updateCaseDate" class="input-group-text">移植日期</label>
+                                <input name="updateCaseDate" id="updateCaseDate" type="date" class="form-control">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="caseTransplantType" class="input-group-text">移植種類</label>
-                                <select name="caseTransplantType" id="caseTransplantType"
+                                <label for="updateCaseTransplantType" class="input-group-text">移植種類</label>
+                                <select name="updateCaseTransplantType" id="updateCaseTransplantType"
                                         class="form-select">
                                     <option value="0" selected>請選擇移植種類</option>
                                     <option value="1">自體移植</option>
@@ -58,8 +58,8 @@
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="caseDiseaseType" class="input-group-text">疾病種類</label>
-                                <select name="caseDiseaseType" id="caseDiseaseType" class="form-select form-select">
+                                <label for="updateCaseDiseaseType" class="input-group-text">疾病種類</label>
+                                <select name="updateCaseDiseaseType" id="updateCaseDiseaseType" class="form-select form-select">
                                     <option value="0" selected>請選擇疾病種類</option>
                                     <option value="1">AML</option>
                                     <option value="2">ALL</option>
@@ -69,8 +69,8 @@
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="caseDiseaseState" class="input-group-text">疾病分期</label>
-                                <select name="caseDiseaseState" id="caseDiseaseState" class="form-select form-select">
+                                <label for="updateCaseDiseaseState" class="input-group-text">疾病分期</label>
+                                <select name="updateCaseDiseaseState" id="updateCaseDiseaseState" class="form-select form-select">
                                     <option value="0" selected>無</option>
                                     <option value="1">第一期</option>
                                     <option value="2">第二期</option>
@@ -79,8 +79,8 @@
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="caseDiseaseClass" class="input-group-text">疾病分類</label>
-                                <select name="caseDiseaseClass" id="caseDiseaseClass" class="form-select form-select">
+                                <label for="updateCaseDiseaseClass" class="input-group-text">疾病分類</label>
+                                <select name="updateCaseDiseaseClass" id="updateCaseDiseaseClass" class="form-select form-select">
                                     <option value="0" selected>無</option>
                                     <option value="1">B-cell</option>
                                     <option value="2">T-cell</option>
