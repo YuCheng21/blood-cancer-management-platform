@@ -1,5 +1,4 @@
 const mix = require('laravel-mix');
-const {copy} = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -30,4 +29,6 @@ mix.sass('resources/scss/all.scss', 'public/css')
     .copyDirectory('node_modules/chart.js',
         'public/node_modules/chart.js')
     .copyDirectory('node_modules/chartjs-adapter-date-fns',
-        'public/node_modules/chartjs-adapter-date-fns');
+        'public/node_modules/chartjs-adapter-date-fns')
+    .copyDirectory('node_modules/@fancyapps',
+        'public/node_modules/@fancyapps');
