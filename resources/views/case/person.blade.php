@@ -190,10 +190,10 @@
                                 <td>200 mg</td>
                                 <td>
                                     <button class="btn btn-secondary text-white" data-bs-toggle="modal"
-                                            data-bs-target="#">
+                                            data-bs-target="#updateMedicineRecordModal">
                                         <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                                     </button>
-                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#">
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteMedicineRecordModal">
                                         <span class="iconify-inline" data-icon="ion:trash"></span>
                                     </button>
                                 </td>
@@ -205,10 +205,10 @@
                                 <td>100 mg</td>
                                 <td>
                                     <button class="btn btn-secondary text-white" data-bs-toggle="modal"
-                                            data-bs-target="#">
+                                            data-bs-target="#updateMedicineRecordModal">
                                         <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                                     </button>
-                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#">
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteMedicineRecordModal">
                                         <span class="iconify-inline" data-icon="ion:trash"></span>
                                     </button>
                                 </td>
@@ -370,6 +370,8 @@
     @parent
     @include('includes.modal.update_case')
     @include('includes.modal.create_medicine_record')
+    @include('includes.modal.update_medicine_record')
+    @include('includes.modal.delete_medicine_record')
     {{--  Fancybox  --}}
     <script src="{{asset('node_modules/@fancyapps/ui/dist/fancybox.umd.js')}}"></script>
     {{--  Page Customize Javascript  --}}
