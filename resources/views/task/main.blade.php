@@ -27,7 +27,7 @@
                             <td>第 1 週</td>
                             <td>任務內容</td>
                             <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#">
+                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
                                     編輯
                                 </button>
                             </td>
@@ -155,4 +155,5 @@
 @section('footer')
     @parent
     @include('includes.modal.update.main_task')
+    @include('includes.modal.task_list')
 @endsection
