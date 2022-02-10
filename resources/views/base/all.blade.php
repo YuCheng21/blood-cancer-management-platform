@@ -94,7 +94,7 @@
                                 <ul class="dropdown-menu fade">
                                     <li>
                                         <a href="#" class="dropdown-item hv-color-bg" data-bs-toggle="modal"
-                                           data-bs-target="#changePasswordModal">
+                                           data-bs-target="#updatePasswordModal">
                                             <span class="iconify-inline" data-icon="fa-solid:tools"></span>
                                             <span>修改密碼</span>
                                         </a>
@@ -125,7 +125,7 @@
                 <span>Copyright © 2022, HPDS-Lab. All Rights Reserved.</span>
             </span>
         </div>
-        @include('includes.modal.change_password')
+        @include('includes.modal.update.password')
     @show
 </footer>
 @section('script')

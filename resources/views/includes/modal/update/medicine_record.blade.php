@@ -40,7 +40,7 @@
                     <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                     <span>關閉</span>
                 </button>
-                <button type="button" class="btn btn-primary" id="updateCaseSend">
+                <button type="button" class="btn btn-primary" id="updateMedicineRecordSend">
                     <span class="iconify-inline" data-icon="subway:tick"></span>
                     <span>確認</span>
                 </button>

@@ -18,7 +18,7 @@
                             <div class="card-body fs-4">
                                 <h4 class="card-title">個案總數</h4>
                                 <hr>
-                                <p id="caseNumber" class="card-text">XX 筆</p>
+                                <p id="caseNumber" class="card-text">4 筆</p>
                             </div>
                         </div>
                     </div>
@@ -67,10 +67,10 @@
                                 <td>個案性別</td>
                                 <td>個案移植日期</td>
                                 <td>
-                                    <button class="btn btn-secondary text-white" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
                                         <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                                     </button>
-                                    <button class="btn btn-primary" onclick="location.href='/case/person'">
+                                    <button class="btn btn-secondary text-white" onclick="location.href='/case/person'">
                                         <span class="iconify-inline" data-icon="whh:magnifier"></span>
                                     </button>
                                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">
@@ -87,10 +87,10 @@
                                 <td>男</td>
                                 <td>2022-02-10</td>
                                 <td>
-                                    <button class="btn btn-secondary text-white" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
                                         <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                                     </button>
-                                    <button class="btn btn-primary" onclick="location.href='/case/person'">
+                                    <button class="btn btn-secondary text-white" onclick="location.href='/case/person'">
                                         <span class="iconify-inline" data-icon="whh:magnifier"></span>
                                     </button>
                                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">
@@ -107,10 +107,10 @@
                                 <td>男</td>
                                 <td>2022-02-10</td>
                                 <td>
-                                    <button class="btn btn-secondary text-white" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
                                         <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                                     </button>
-                                    <button class="btn btn-primary" onclick="location.href='/case/person'">
+                                    <button class="btn btn-secondary text-white" onclick="location.href='/case/person'">
                                         <span class="iconify-inline" data-icon="whh:magnifier"></span>
                                     </button>
                                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">
@@ -127,10 +127,10 @@
                                 <td>男</td>
                                 <td>2022-02-10</td>
                                 <td>
-                                    <button class="btn btn-secondary text-white" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
                                         <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                                     </button>
-                                    <button class="btn btn-primary" onclick="location.href='/case/person'">
+                                    <button class="btn btn-secondary  text-white" onclick="location.href='/case/person'">
                                         <span class="iconify-inline" data-icon="whh:magnifier"></span>
                                     </button>
                                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">
@@ -148,7 +148,7 @@
 
 @section('footer')
     @parent
-    @include('includes.modal.create_case')
-    @include('includes.modal.update_case')
-    @include('includes.modal.delete_case')
+    @include('includes.modal.create.case')
+    @include('includes.modal.update.case')
+    @include('includes.modal.delete.case')
 @endsection

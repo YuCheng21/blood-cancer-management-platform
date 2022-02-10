@@ -108,14 +108,14 @@
                             <tr>
                                 <th data-sortable="true">週次</th>
                                 <th data-sortable="true">排定日期</th>
-                                <th>每週任務</th>
+                                <th data-halign="center" data-align="left">每週任務</th>
                                 <th data-sortable="true">進度</th>
                             </tr>
                             </thead>
                             <tr>
                                 <td>第 1 週</td>
                                 <td>2020-12-14 ~ 2020-12-20</td>
-                                <td class="text-start">
+                                <td class="">
                                     <span>1-1 造血幹細胞的認識</span><br>
                                 </td>
                                 <td class="text-success">已完成</td>
@@ -123,7 +123,7 @@
                             <tr>
                                 <td>第 2 週</td>
                                 <td>2020-12-20 ~ 2020-12-26</td>
-                                <td class="text-start">
+                                <td class="">
                                     <span>2-1 造血幹細胞移植前評估-治療說明會</span><br>
                                     <span>2-2 造血幹細胞移植前評估-費用準備</span><br>
                                     <span>2-3 造血幹細胞移植前評估-各項醫療照會</span><br>
@@ -135,7 +135,7 @@
                             <tr>
                                 <td>第 3 週</td>
                                 <td>2020-12-26 ~ 2021-1-1</td>
-                                <td class="text-start">
+                                <td class="">
                                     <span>未設定任務</span>
                                 </td>
                                 <td class="text-success">-</td>
@@ -143,7 +143,7 @@
                             <tr>
                                 <td>第 4 週</td>
                                 <td>2021-1-1 ~ 2021-1-7</td>
-                                <td class="text-start">
+                                <td class="">
                                     <span>未設定任務</span>
                                 </td>
                                 <td class="text-success">-</td>
@@ -238,12 +238,12 @@
                             <thead>
                             <tr>
                                 <th data-sortable="true">紀錄時間</th>
-                                <th data-sortable="true">副作用</th>
+                                <th data-sortable="true" data-halign="center" data-align="left">副作用</th>
                             </tr>
                             </thead>
                             <tr>
                                 <td>2021-12-14</td>
-                                <td class="text-start">
+                                <td class="">
                                     <ul class="mb-0">
                                         <li>口乾（困擾度：3、嚴重度：1）</li>
                                     </ul>
@@ -251,7 +251,7 @@
                             </tr>
                             <tr>
                                 <td>2021-01-25</td>
-                                <td class="text-start">
+                                <td class="">
                                     <ul class="mb-0">
                                         <li>掉髮（困擾度：4、嚴重度：0）</li>
                                         <li>熱潮紅（困擾度：2、嚴重度：2）</li>
@@ -368,10 +368,10 @@
 
 @section('footer')
     @parent
-    @include('includes.modal.update_case')
-    @include('includes.modal.create_medicine_record')
-    @include('includes.modal.update_medicine_record')
-    @include('includes.modal.delete_medicine_record')
+    @include('includes.modal.update.case')
+    @include('includes.modal.create.medicine_record')
+    @include('includes.modal.update.medicine_record')
+    @include('includes.modal.delete.medicine_record')
     {{--  Fancybox  --}}
     <script src="{{asset('node_modules/@fancyapps/ui/dist/fancybox.umd.js')}}"></script>
     {{--  Page Customize Javascript  --}}
