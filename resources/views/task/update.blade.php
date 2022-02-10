@@ -140,7 +140,7 @@
                 </div>
                 <div class="row py-4">
                     <div class="col-4">
-                        <button type="button" class="btn btn-secondary text-white w-100" data-bs-dismiss="modal">
+                        <button type="button" class="btn btn-secondary text-white w-100" data-bs-toggle="modal" data-bs-target="#createAsTaskModal">
                             <span class="iconify-inline" data-icon="akar-icons:plus"></span>
                             <span>另存新模板</span>
                         </button>
@@ -152,7 +152,7 @@
                         </button>
                     </div>
                     <div class="col-4">
-                        <button type="button" class="btn btn-primary w-100" id="updateTaskSend">
+                        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTaskModal">
                             <span class="iconify-inline" data-icon="subway:tick"></span>
                             <span>確認</span>
                         </button>
@@ -165,4 +165,6 @@
 
 @section('footer')
     @parent
+    @include('includes.modal.update.task')
+    @include('includes.modal.create.as_task')
 @endsection

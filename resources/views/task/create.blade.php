@@ -146,7 +146,7 @@
                         </button>
                     </div>
                     <div class="col-6">
-                        <button type="button" class="btn btn-primary w-100" id="createTaskSend">
+                        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#createTaskModal">
                             <span class="iconify-inline" data-icon="subway:tick"></span>
                             <span>確認</span>
                         </button>
@@ -159,4 +159,5 @@
 
 @section('footer')
     @parent
+    @include('includes.modal.create.task')
 @endsection

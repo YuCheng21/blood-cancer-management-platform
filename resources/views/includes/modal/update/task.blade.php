@@ -1,4 +1,4 @@
-<div class="modal fade" tabindex="-1" id="deleteTaskModal">
+<div class="modal fade" tabindex="-1" id="updateTaskModal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-opacity-50">
@@ -11,7 +11,7 @@
             <div class="modal-body">
                 <div class="row gy-2">
                     <div class="col-12">
-                        <span>確定要刪除該項目嗎？</span>
+                        <span>確定完成編輯任務副模板嗎？</span>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                     <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                     <span>關閉</span>
                 </button>
-                <button type="button" class="btn btn-primary" id="deleteTaskSend">
+                <button type="button" class="btn btn-primary" id="updateTaskSend">
                     <span class="iconify-inline" data-icon="subway:tick"></span>
                     <span>確認</span>
                 </button>
