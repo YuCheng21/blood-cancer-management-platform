@@ -13,7 +13,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $title = '個人資料';
+        $title = '任務管理';
         return view('root.task', [
             'title' => $title
         ]);

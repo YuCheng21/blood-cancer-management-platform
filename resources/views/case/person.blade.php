@@ -84,7 +84,11 @@
             </div>
             <div class="card-body px-5 py-4">
                 <canvas id="bloodChart"></canvas>
-
+{{--                <div class="row justify-content-center">--}}
+{{--                    <div class="col-12">--}}
+{{--                        --}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
         <div class="card border hv-shadow mb-4">
