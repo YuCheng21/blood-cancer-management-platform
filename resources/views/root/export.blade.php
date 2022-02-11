@@ -35,7 +35,7 @@
             <div class="card-body px-5 py-4">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive w-75">
-                        <table class="table table-striped text-center align-middle fs-6"
+                        <table class="table table-striped text-center align-middle fs-5"
                                data-toggle="table"
                                data-search="true"
                                data-click-to-select="true"
@@ -44,10 +44,10 @@
                             <thead>
                             <tr>
                                 <th data-width="10" data-width-unit="%" data-checkbox="true"></th>
-                                <th data-width="10" data-width-unit="%" data-sortable="true">帳號</th>
-                                <th data-width="10" data-width-unit="%" data-sortable="true">姓名</th>
-                                <th data-width="10" data-width-unit="%" data-sortable="true">基本資料</th>
-                                <th data-width="10" data-width-unit="%" data-sortable="true">課程規劃與進度</th>
+                                <th data-width="20" data-width-unit="%" data-sortable="true">帳號</th>
+                                <th data-width="20" data-width-unit="%" data-sortable="true">姓名</th>
+                                <th data-width="20" data-width-unit="%" data-sortable="true">基本資料</th>
+                                <th data-width="20" data-width-unit="%" data-sortable="true">課程規劃與進度</th>
                                 <th data-width="10" data-width-unit="%" data-sortable="true">個案匯出</th>
                             </tr>
                             </thead>
