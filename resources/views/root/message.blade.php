@@ -50,8 +50,8 @@
                             <thead>
                             <tr>
                                 <th data-width="5" data-width-unit="%" data-sortable="true">訊息編號</th>
-                                <th data-width="15" data-width-unit="%" data-sortable="true">標題</th>
-                                <th data-width="35" data-width-unit="%" data-sortable="true">內容</th>
+                                <th data-width="20" data-width-unit="%" data-sortable="true">標題</th>
+                                <th data-width="30" data-width-unit="%" data-sortable="true">內容</th>
                                 <th data-width="10" data-width-unit="%" data-sortable="true">發布者</th>
                                 <th data-width="10" data-width-unit="%" data-sortable="true">建立日期</th>
                                 <th data-width="15" data-width-unit="%">操作選項</th>

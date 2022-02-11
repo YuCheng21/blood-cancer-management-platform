@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <div class="row gy-2">
-                    <div class="col-12">
+                    <div class="col-12 overflow-auto" style="max-height: 70vh">
                         <form action="#" id="createMessageForm" method="POST" enctype="multipart/form-data">
                             <div class="input-group mb-2">
                                 <label for="createMessageTitle" class="input-group-text">標題</label>

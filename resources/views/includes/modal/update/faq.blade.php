@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <div class="row gy-2">
-                    <div class="col-12">
+                    <div class="col-12 overflow-auto" style="max-height: 70vh">
                         <form action="#" id="updateFaqForm" method="POST" enctype="multipart/form-data">
                             <div class="input-group mb-2">
                                 <label for="selectFaqType" class="input-group-text">類型</label>
@@ -28,8 +28,8 @@
                             </div>
                             <div class="input-group mb-2">
                                 <label for="updateFaqTitle" class="input-group-text">問題</label>
-                                <input name="updateFaqTitle" id="updateFaqTitle" type="text"
-                                       class="form-control" placeholder="請輸入問題內容">
+                                <textarea name="updateFaqTitle" id="updateFaqTitle"
+                                          class="form-control" placeholder="請輸入問題內容" rows="3"></textarea>
                             </div>
                             <div class="input-group mb-2">
                                 <label for="updateFaqContent" class="input-group-text">回答</label>

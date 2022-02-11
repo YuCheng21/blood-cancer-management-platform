@@ -245,6 +245,25 @@
                                     </div>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>QA 主題</td>
+                                <td>QA 問題</td>
+                                <td>QA 解答</td>
+                                <td>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateFaqModal">
+                                                編輯
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteFaqModal">
+                                                刪除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
