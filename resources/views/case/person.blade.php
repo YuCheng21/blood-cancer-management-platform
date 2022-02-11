@@ -93,7 +93,7 @@
                     <span class="iconify-inline" data-icon="fluent:bookmark-multiple-24-filled"></span>
                     <span>每週任務</span>
                 </h2>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#">
+                <button class="btn btn-primary" onclick="location.href='{{route('cases.task', ['account' => $account])}}'">
                     <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                     <span>編輯資料</span>
                 </button>

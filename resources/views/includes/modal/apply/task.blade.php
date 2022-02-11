@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <div class="row gy-2">
-                    <div class="col-12 overflow-auto" style="max-height: 500px">
+                    <div class="col-12 overflow-auto" style="max-height: 50vh">
                         <form action="#" id="applyTaskForm" method="POST" enctype="multipart/form-data">
                             <div class="row justify-content-center text-center">
                                 <div class="table-responsive">

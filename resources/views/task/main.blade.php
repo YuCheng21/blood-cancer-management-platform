@@ -36,7 +36,7 @@
                             <td>第 2 週</td>
                             <td>任務內容</td>
                             <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#">
+                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
                                     編輯
                                 </button>
                             </td>
@@ -45,7 +45,7 @@
                             <td>第 3 週</td>
                             <td>任務內容</td>
                             <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#">
+                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
                                     編輯
                                 </button>
                             </td>
@@ -54,7 +54,7 @@
                             <td>第 4 週</td>
                             <td>任務內容</td>
                             <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#">
+                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
                                     編輯
                                 </button>
                             </td>
@@ -63,7 +63,7 @@
                             <td>第 5 週</td>
                             <td>任務內容</td>
                             <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#">
+                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
                                     編輯
                                 </button>
                             </td>
@@ -72,7 +72,7 @@
                             <td>第 6 週</td>
                             <td>任務內容</td>
                             <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#">
+                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
                                     編輯
                                 </button>
                             </td>
@@ -81,7 +81,7 @@
                             <td>第 7 週</td>
                             <td>任務內容</td>
                             <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#">
+                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
                                     編輯
                                 </button>
                             </td>
@@ -90,7 +90,7 @@
                             <td>第 8 週</td>
                             <td>任務內容</td>
                             <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#">
+                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
                                     編輯
                                 </button>
                             </td>
@@ -99,7 +99,7 @@
                             <td>第 9 週</td>
                             <td>任務內容</td>
                             <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#">
+                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
                                     編輯
                                 </button>
                             </td>
@@ -108,7 +108,7 @@
                             <td>第 10 週</td>
                             <td>任務內容</td>
                             <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#">
+                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
                                     編輯
                                 </button>
                             </td>
@@ -117,7 +117,7 @@
                             <td>第 11 週</td>
                             <td>任務內容</td>
                             <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#">
+                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
                                     編輯
                                 </button>
                             </td>
@@ -126,7 +126,7 @@
                             <td>第 12 週</td>
                             <td>任務內容</td>
                             <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#">
+                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
                                     編輯
                                 </button>
                             </td>

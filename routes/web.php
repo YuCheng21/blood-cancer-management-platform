@@ -36,6 +36,11 @@ Route::get(
     [CaseController::class, 'show']
 )->name('cases.show');
 
+Route::get(
+    '/cases/{account}/task',
+    [CaseController::class, 'task']
+)->name('cases.task');
+
 
 
 Route::get(

@@ -55,6 +55,15 @@ class CaseController extends Controller
         ]);
     }
 
+    public function task($account)
+    {
+        $title = '修改個案任務';
+        return view('case.task',[
+            'title' => $title,
+            'account' => $account
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
