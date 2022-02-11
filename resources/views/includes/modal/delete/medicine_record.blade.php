@@ -11,7 +11,7 @@
             <div class="modal-body">
                 <div class="row gy-2">
                     <div class="col-12">
-                        <span>確定要刪除該項目嗎</span>
+                        <span>確定要刪除該項目嗎？</span>
                     </div>
                 </div>
             </div>

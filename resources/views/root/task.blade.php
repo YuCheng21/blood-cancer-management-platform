@@ -38,7 +38,7 @@
                     </button>
                     <button class="btn btn-primary" onclick="location.href='{{route('tasks.sub.add')}}'">
                         <span class="iconify-inline" data-icon="carbon:add-filled"></span>
-                        <span>新增任務複模板</span>
+                        <span>新增任務副模板</span>
                     </button>
                 </div>
             </div>

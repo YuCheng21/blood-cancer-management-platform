@@ -50,7 +50,7 @@
                     <span class="iconify-inline" data-icon="wpf:faq"></span>
                     <span>題庫</span>
                 </h2>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createTopicModal">
                     <span class="iconify-inline" data-icon="carbon:add-filled"></span>
                     <span>新增題目</span>
                 </button>
@@ -82,12 +82,312 @@
                                 <td>
                                     <div class="row g-1">
                                         <div class="col-6">
-                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#">
+                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
                                                 編輯
                                             </button>
                                         </div>
                                         <div class="col-6">
-                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#">
+                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
+                                                刪除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>題目課程</td>
+                                <td>題目內容</td>
+                                <td>題目類型</td>
+                                <td>題目選項</td>
+                                <td>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
+                                                編輯
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
+                                                刪除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>題目課程</td>
+                                <td>題目內容</td>
+                                <td>題目類型</td>
+                                <td>題目選項</td>
+                                <td>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
+                                                編輯
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
+                                                刪除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>題目課程</td>
+                                <td>題目內容</td>
+                                <td>題目類型</td>
+                                <td>題目選項</td>
+                                <td>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
+                                                編輯
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
+                                                刪除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>題目課程</td>
+                                <td>題目內容</td>
+                                <td>題目類型</td>
+                                <td>題目選項</td>
+                                <td>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
+                                                編輯
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
+                                                刪除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>題目課程</td>
+                                <td>題目內容</td>
+                                <td>題目類型</td>
+                                <td>題目選項</td>
+                                <td>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
+                                                編輯
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
+                                                刪除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>題目課程</td>
+                                <td>題目內容</td>
+                                <td>題目類型</td>
+                                <td>題目選項</td>
+                                <td>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
+                                                編輯
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
+                                                刪除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>題目課程</td>
+                                <td>題目內容</td>
+                                <td>題目類型</td>
+                                <td>題目選項</td>
+                                <td>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
+                                                編輯
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
+                                                刪除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>題目課程</td>
+                                <td>題目內容</td>
+                                <td>題目類型</td>
+                                <td>題目選項</td>
+                                <td>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
+                                                編輯
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
+                                                刪除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>題目課程</td>
+                                <td>題目內容</td>
+                                <td>題目類型</td>
+                                <td>題目選項</td>
+                                <td>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
+                                                編輯
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
+                                                刪除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>題目課程</td>
+                                <td>題目內容</td>
+                                <td>題目類型</td>
+                                <td>題目選項</td>
+                                <td>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
+                                                編輯
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
+                                                刪除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>題目課程</td>
+                                <td>題目內容</td>
+                                <td>題目類型</td>
+                                <td>題目選項</td>
+                                <td>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
+                                                編輯
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
+                                                刪除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>題目課程</td>
+                                <td>題目內容</td>
+                                <td>題目類型</td>
+                                <td>題目選項</td>
+                                <td>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
+                                                編輯
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
+                                                刪除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>題目課程</td>
+                                <td>題目內容</td>
+                                <td>題目類型</td>
+                                <td>題目選項</td>
+                                <td>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
+                                                編輯
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
+                                                刪除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>題目課程</td>
+                                <td>題目內容</td>
+                                <td>題目類型</td>
+                                <td>題目選項</td>
+                                <td>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
+                                                編輯
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
+                                                刪除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>題目課程</td>
+                                <td>題目內容</td>
+                                <td>題目類型</td>
+                                <td>題目選項</td>
+                                <td>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
+                                                編輯
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
                                                 刪除
                                             </button>
                                         </div>
@@ -104,4 +404,7 @@
 
 @section('footer')
     @parent
+    @include('includes.modal.delete.topic')
+    @include('includes.modal.create.topic')
+    @include('includes.modal.update.topic')
 @endsection

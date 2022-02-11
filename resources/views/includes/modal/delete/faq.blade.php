@@ -1,4 +1,4 @@
-<div class="modal fade" tabindex="-1" id="deleteCaseModal">
+<div class="modal fade" tabindex="-1" id="deleteFaqModal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-opacity-50">
@@ -20,7 +20,7 @@
                     <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                     <span>關閉</span>
                 </button>
-                <button type="button" class="btn btn-primary" id="deleteCaseSend">
+                <button type="button" class="btn btn-primary" id="deleteFaqSend">
                     <span class="iconify-inline" data-icon="subway:tick"></span>
                     <span>確認</span>
                 </button>
