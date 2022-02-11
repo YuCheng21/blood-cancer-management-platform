@@ -110,45 +110,70 @@
                                data-locale="zh-TW">
                             <thead>
                             <tr>
-                                <th data-sortable="true">週次</th>
-                                <th data-sortable="true">排定日期</th>
-                                <th data-halign="center" data-align="left">每週任務</th>
-                                <th data-sortable="true">進度</th>
+                                <th data-width="15" data-width-unit="%" data-sortable="true">週次</th>
+                                <th data-width="15" data-width-unit="%" data-sortable="true">排定日期</th>
+                                <th data-width="60" data-width-unit="%" data-halign="center" data-align="left">每週任務</th>
+                                <th data-width="10" data-width-unit="%" data-sortable="true">進度</th>
                             </tr>
                             </thead>
                             <tr>
                                 <td>第 1 週</td>
-                                <td>2020-12-14 ~ 2020-12-20</td>
-                                <td class="">
-                                    <span>1-1 造血幹細胞的認識</span><br>
+                                <td>
+                                    <span>2020-12-14</span><br>
+                                    <span>~</span><br>
+                                    <span>2020-12-20</span><br>
+                                </td>
+                                <td>
+                                    <ul class="mb-0">
+                                        <li>1-1 造血幹細胞的認識</li>
+                                    </ul>
                                 </td>
                                 <td class="text-success">已完成</td>
                             </tr>
                             <tr>
                                 <td>第 2 週</td>
-                                <td>2020-12-20 ~ 2020-12-26</td>
-                                <td class="">
-                                    <span>2-1 造血幹細胞移植前評估-治療說明會</span><br>
-                                    <span>2-2 造血幹細胞移植前評估-費用準備</span><br>
-                                    <span>2-3 造血幹細胞移植前評估-各項醫療照會</span><br>
-                                    <span>2-4 造血幹細胞移植前評估-各項檢查項目</span><br>
-                                    <span>2-5 造血幹細胞移植前評估-各項血液檢驗</span><br>
+                                <td>
+                                    <span>2020-12-20</span><br>
+                                    <span>~</span><br>
+                                    <span>2020-12-26</span><br>
+                                </td>
+                                <td>
+                                    <ul class="mb-0">
+                                        <li>2-1 造血幹細胞移植前評估-治療說明會</li>
+                                        <li>2-1 造血幹細胞移植前評估-治療說明會</li>
+                                        <li>2-2 造血幹細胞移植前評估-費用準備</li>
+                                        <li>2-3 造血幹細胞移植前評估-各項醫療照會</li>
+                                        <li>2-4 造血幹細胞移植前評估-各項檢查項目</li>
+                                        <li>2-5 造血幹細胞移植前評估-各項血液檢驗</li>
+                                    </ul>
                                 </td>
                                 <td class="text-success">已完成</td>
                             </tr>
                             <tr>
                                 <td>第 3 週</td>
-                                <td>2020-12-26 ~ 2021-1-1</td>
-                                <td class="">
-                                    <span>未設定任務</span>
+                                <td>
+                                    <span>2020-12-26</span><br>
+                                    <span>~</span><br>
+                                    <span>2021-1-1</span><br>
+                                </td>
+                                <td>
+                                    <ul class="mb-0">
+                                        <li>未設定任務</li>
+                                    </ul>
                                 </td>
                                 <td class="text-success">-</td>
                             </tr>
                             <tr>
                                 <td>第 4 週</td>
-                                <td>2021-1-1 ~ 2021-1-7</td>
-                                <td class="">
-                                    <span>未設定任務</span>
+                                <td>
+                                    <span>2021-1-1</span><br>
+                                    <span>~</span><br>
+                                    <span>2021-1-7</span><br>
+                                </td>
+                                <td>
+                                    <ul class="mb-0">
+                                        <li>未設定任務</li>
+                                    </ul>
                                 </td>
                                 <td class="text-success">-</td>
                             </tr>
@@ -247,7 +272,7 @@
                             </thead>
                             <tr>
                                 <td>2021-12-14</td>
-                                <td class="">
+                                <td>
                                     <ul class="mb-0">
                                         <li>口乾（困擾度：3、嚴重度：1）</li>
                                     </ul>
@@ -255,7 +280,7 @@
                             </tr>
                             <tr>
                                 <td>2021-01-25</td>
-                                <td class="">
+                                <td>
                                     <ul class="mb-0">
                                         <li>掉髮（困擾度：4、嚴重度：0）</li>
                                         <li>熱潮紅（困擾度：2、嚴重度：2）</li>

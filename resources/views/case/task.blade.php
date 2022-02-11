@@ -18,8 +18,8 @@
                            data-locale="zh-TW">
                         <thead>
                         <tr>
-                            <th data-width="10" data-width-unit="%">週次</th>
-                            <th data-width="10" data-width-unit="%">排定日期</th>
+                            <th data-width="15" data-width-unit="%">週次</th>
+                            <th data-width="15" data-width-unit="%">排定日期</th>
                             <th data-width="60" data-width-unit="%">任務</th>
                             <th data-width="10" data-width-unit="%">操作</th>
                         </tr>
