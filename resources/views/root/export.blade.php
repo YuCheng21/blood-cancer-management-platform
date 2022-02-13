@@ -6,12 +6,12 @@
 @section('main')
     <div class="container-fluid py-4">
         <div class="card border hv-shadow mb-4">
-            <div class="card-header justify-content-between d-inline-flex align-items-center ">
+            <div class="card-header justify-content-between d-xl-inline-flex align-items-center ">
                 <h2 class="my-2">
                     <span class="iconify-inline" data-icon="bx:bxs-file-export"></span>
                     <span>個案資料批次匯出</span>
                 </h2>
-                <div>
+                <div class="d-flex flex-column flex-xl-row">
                     <button class="btn btn-primary me-1 my-1">
                         <span>匯出總資料</span>
                     </button>

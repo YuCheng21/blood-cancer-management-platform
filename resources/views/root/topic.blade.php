@@ -13,7 +13,7 @@
                 </h2>
             </div>
             <div class="card-body px-5 py-4">
-                <div class="row justify-content-evenly text-center">
+                <div class="row justify-content-evenly text-center g-3">
                     <div class="col-md-6 col-lg-3" id="topicNumberCard">
                         <div class="card text-white bg-info">
                             <div class="card-body fs-4">

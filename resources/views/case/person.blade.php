@@ -205,11 +205,11 @@
                                data-locale="zh-TW">
                             <thead>
                             <tr>
-                                <th data-sortable="true">日期</th>
-                                <th data-sortable="true">療程</th>
-                                <th data-sortable="true">施打藥物種類</th>
-                                <th data-sortable="true">藥物劑量</th>
-                                <th>操作選項</th>
+                                <th data-width="20" data-width-unit="%" data-sortable="true">日期</th>
+                                <th data-width="15" data-width-unit="%" data-sortable="true">療程</th>
+                                <th data-width="40" data-width-unit="%" data-sortable="true">施打藥物種類</th>
+                                <th data-width="15" data-width-unit="%" data-sortable="true">藥物劑量</th>
+                                <th data-width="10" data-width-unit="%">操作選項</th>
                             </tr>
                             </thead>
                             <tr>
@@ -266,8 +266,8 @@
                                data-locale="zh-TW">
                             <thead>
                             <tr>
-                                <th data-sortable="true">紀錄時間</th>
-                                <th data-sortable="true" data-halign="center" data-align="left">副作用</th>
+                                <th data-width="20" data-width-unit="%" data-sortable="true">紀錄時間</th>
+                                <th data-width="80" data-width-unit="%" data-sortable="true" data-halign="center" data-align="left">副作用</th>
                             </tr>
                             </thead>
                             <tr>
@@ -311,10 +311,10 @@
                                data-locale="zh-TW">
                             <thead>
                             <tr>
-                                <th data-sortable="true">日期</th>
-                                <th data-sortable="true">體力狀況</th>
-                                <th data-sortable="true">症狀</th>
-                                <th data-sortable="true">固定回診醫院</th>
+                                <th data-width="20" data-width-unit="%" data-sortable="true">日期</th>
+                                <th data-width="20" data-width-unit="%" data-sortable="true">體力狀況</th>
+                                <th data-width="40" data-width-unit="%" data-sortable="true">症狀</th>
+                                <th data-width="20" data-width-unit="%" data-sortable="true">固定回診醫院</th>
                             </tr>
                             </thead>
                             <tr>

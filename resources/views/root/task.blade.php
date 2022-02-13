@@ -26,12 +26,12 @@
             </div>
         </div>
         <div class="card border hv-shadow mb-4">
-            <div class="card-header justify-content-between d-inline-flex align-items-center ">
+            <div class="card-header justify-content-between d-md-inline-flex align-items-center ">
                 <h2 class="my-2">
                     <span class="iconify-inline" data-icon="fluent:task-list-square-ltr-24-filled"></span>
                     <span>每週任務規劃</span>
                 </h2>
-                <div>
+                <div class="d-flex flex-column flex-md-row">
                     <button class="btn btn-primary me-1 my-1" onclick="location.href='{{route('tasks.main.edit')}}'">
                         <span class="iconify-inline" data-icon="fa-solid:tools"></span>
                         <span>編輯任務主模板</span>
