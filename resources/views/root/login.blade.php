@@ -64,5 +64,5 @@
         const url = '{{route('user.login')}}'
     </script>
     {{--  Page Customize Javascript  --}}
-    <script src="{{asset('js/root/login.js')}}"></script>
+    <script src="{{asset('js/pages/root/login.js')}}"></script>
 @endsection

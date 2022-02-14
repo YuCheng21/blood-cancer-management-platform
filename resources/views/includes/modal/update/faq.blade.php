@@ -13,8 +13,8 @@
                     <div class="col-12 overflow-auto" style="max-height: 70vh">
                         <form action="#" id="updateFaqForm" method="POST" enctype="multipart/form-data">
                             <div class="input-group mb-2">
-                                <label for="selectFaqType" class="input-group-text">類型</label>
-                                <select name="selectFaqType" id="selectFaqType" class="form-select">
+                                <label for="updateFaqType" class="input-group-text">類型</label>
+                                <select name="updateFaqType" id="updateFaqType" class="form-select">
                                     <option value="0" selected>請選擇問題類型</option>
                                     <option value="1">問題類型1</option>
                                     <option value="2">問題類型2</option>

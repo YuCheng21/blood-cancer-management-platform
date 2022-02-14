@@ -17,20 +17,10 @@
         <meta name="theme-color" content="#425d8a">
         {{--  Title  --}}
         <title>@yield('title', 'Page') | {{config('app.name')}}</title>
-        {{--  JQuery  --}}
-        <script src="{{asset('node_modules/jquery/dist/jquery.min.js')}}"></script>
-        {{--  Bootstrap  --}}
-        <script src="{{asset('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
-        {{--  Bootstrap-table  --}}
-        <link rel="stylesheet" href="{{asset('node_modules/bootstrap-table/dist/bootstrap-table.min.css')}}">
-        <script src="{{asset('node_modules/bootstrap-table/dist/bootstrap-table.min.js')}}"></script>
-        <script src="{{asset('node_modules/bootstrap-table/dist/locale/bootstrap-table-zh-TW.min.js')}}"></script>
-        {{--  sweetalert  --}}
-        <script src="{{asset('node_modules/sweetalert2/dist/sweetalert2.all.js')}}"></script>
-        {{--  Axios  --}}
-        <script src="{{asset('node_modules/axios/dist/axios.min.js')}}"></script>
         {{--  iconify  --}}
         <script src="{{asset('https://code.iconify.design/2/2.0.4/iconify.min.js')}}"></script>
+        {{--  Javascript Modules  --}}
+        <script src="{{asset('js/app.js')}}"></script>
         {{--  Customize CSS  --}}
         <link rel="stylesheet" href="{{asset('css/all.css')}}">
     @show
@@ -130,7 +120,7 @@
 </footer>
 @section('script')
     {{--  Customize Javascript  --}}
-    <script src="{{asset('js/base.js')}}"></script>
+    <script src="{{asset('js/pages/base.js')}}"></script>
     {{--  Alert  --}}
     <script>
         @if (session('category') && session('message'))

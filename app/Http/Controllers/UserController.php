@@ -29,9 +29,9 @@ class UserController extends Controller
 
 
 
-//        return redirect()->route('user.index')
-//            ->with('category', 'success-toast')
-//            ->with('message', 'testing message');
-//
+        return redirect()->route('user.index')
+            ->with('category', 'success-toast')
+            ->with('message', 'testing message');
+
     }
 }

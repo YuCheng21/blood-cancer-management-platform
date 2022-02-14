@@ -4,12 +4,8 @@
 
 @section('head')
     @parent
-    {{--  Chart.js  --}}
-    <script src="{{asset('node_modules\chart.js\dist\chart.min.js')}}"></script>
-    <script
-        src="{{asset('node_modules\chartjs-adapter-date-fns\dist\chartjs-adapter-date-fns.bundle.min.js')}}"></script>
-    {{--  Fancybox  --}}
-    <link rel="stylesheet" href="{{asset('node_modules/@fancyapps/ui/dist/fancybox.css')}}"/>
+    <script src="{{asset('node_modules\chartjs-adapter-date-fns\dist\chartjs-adapter-date-fns.bundle.min.js')}}">
+    </script>
 @endsection
 
 @section('main')
@@ -84,11 +80,11 @@
             </div>
             <div class="card-body px-5 py-4">
                 <canvas id="bloodChart"></canvas>
-{{--                <div class="row justify-content-center">--}}
-{{--                    <div class="col-12">--}}
-{{--                        --}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                {{--                <div class="row justify-content-center">--}}
+                {{--                    <div class="col-12">--}}
+                {{--                        --}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
             </div>
         </div>
         <div class="card border hv-shadow mb-4">
@@ -97,7 +93,8 @@
                     <span class="iconify-inline" data-icon="fluent:bookmark-multiple-24-filled"></span>
                     <span>每週任務</span>
                 </h2>
-                <button class="btn btn-primary" onclick="location.href='{{route('cases.task', ['account' => $account])}}'">
+                <button class="btn btn-primary"
+                        onclick="location.href='{{route('cases.task', ['account' => $account])}}'">
                     <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                     <span>編輯資料</span>
                 </button>
@@ -222,7 +219,8 @@
                                             data-bs-target="#updateMedicineRecordModal">
                                         <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                                     </button>
-                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteMedicineRecordModal">
+                                    <button class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deleteMedicineRecordModal">
                                         <span class="iconify-inline" data-icon="ion:trash"></span>
                                     </button>
                                 </td>
@@ -237,7 +235,8 @@
                                             data-bs-target="#updateMedicineRecordModal">
                                         <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                                     </button>
-                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteMedicineRecordModal">
+                                    <button class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deleteMedicineRecordModal">
                                         <span class="iconify-inline" data-icon="ion:trash"></span>
                                     </button>
                                 </td>
@@ -267,7 +266,9 @@
                             <thead>
                             <tr>
                                 <th data-width="20" data-width-unit="%" data-sortable="true">紀錄時間</th>
-                                <th data-width="80" data-width-unit="%" data-sortable="true" data-halign="center" data-align="left">副作用</th>
+                                <th data-width="80" data-width-unit="%" data-sortable="true" data-halign="center"
+                                    data-align="left">副作用
+                                </th>
                             </tr>
                             </thead>
                             <tr>
@@ -401,9 +402,7 @@
     @include('includes.modal.create.medicine_record')
     @include('includes.modal.update.medicine_record')
     @include('includes.modal.delete.medicine_record')
-    {{--  Fancybox  --}}
-    <script src="{{asset('node_modules/@fancyapps/ui/dist/fancybox.umd.js')}}"></script>
     {{--  Page Customize Javascript  --}}
-    <script src="{{asset('js/case/person.js')}}"></script>
+    <script src="{{asset('js/pages/case/person.js')}}"></script>
 
 @endsection
