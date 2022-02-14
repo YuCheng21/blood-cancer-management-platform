@@ -31,9 +31,10 @@
                 <div class="card bg-white shadow w-50 bg-opacity-50">
                     <div class="card-body d-flex align-items-center flex-column">
                         <img src="{{ asset('/img/logo.png') }}" class="w-50 mb-3" alt="web logo">
-                        <h1 class="mb-3"><b>@php echo config('app.name') @endphp</b></h1>
+                        <h1 class="mb-3"><b>{{config('app.name')}}</b></h1>
                         <form action="#" id="loginForm" method="POST" enctype="multipart/form-data"
                               class="w-100 mb-3">
+                            @csrf
                             <div class="input-group mb-3">
                                 <label for="account" class="input-group-text fs-5">帳號</label>
                                 <input name="account" type="text" id="account"
@@ -59,4 +60,9 @@
 @endsection
 
 @section('footer')
+    <script>
+        const url = '{{route('user.login')}}'
+    </script>
+    {{--  Page Customize Javascript  --}}
+    <script src="{{asset('js/root/login.js')}}"></script>
 @endsection

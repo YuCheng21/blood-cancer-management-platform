@@ -24,6 +24,10 @@ Route::get(
     [UserController::class, 'show']
 )->name('user.index');
 
+Route::post(
+    '/login',
+    [UserController::class, 'login']
+)->name('user.login');
 
 
 Route::get(

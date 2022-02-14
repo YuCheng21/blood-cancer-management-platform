@@ -131,6 +131,12 @@
 @section('script')
     {{--  Customize Javascript  --}}
     <script src="{{asset('js/base.js')}}"></script>
+    {{--  Alert  --}}
+    <script>
+        @if (session('category') && session('message'))
+        dialog('{{session('category')}}', '{{session('message')}}')
+        @endif
+    </script>
     {{--  Active Current Page  --}}
     <script>
         $('#navbarToggler > ul a > span').each(function (index, value) {
