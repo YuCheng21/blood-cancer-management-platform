@@ -19,8 +19,8 @@ class UserSeeder extends Seeder
             'account' => 'admin',
             'password' => '2u04ru vu4',
             'role' => 'admin',
-            "created_at" =>  date('Y-m-d H:i:s'), # new \Datetime()
-            "updated_at" => date('Y-m-d H:i:s'),  # new \Datetime()
+            "created_at" =>  Carbon::now(), # new \Datetime()
+            "updated_at" => Carbon::now(),  # new \Datetime()
         ]);
     }
 }

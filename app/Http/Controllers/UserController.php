@@ -19,13 +19,13 @@ class UserController extends Controller
 
     function login(Request $request)
     {
-        $account = $request['account'];
-        $password = $request['password'];
-        $role = $request['role'];
-
-        $users = DB::table('users')->get();
-
-        return response($users, 200);
+//        $account = $request['account'];
+//        $password = $request['password'];
+//        $role = $request['role'];
+//
+//        $users = DB::table('users')->get();
+//
+//        return response($users, 200);
 
 
 

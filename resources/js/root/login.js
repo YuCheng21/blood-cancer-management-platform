@@ -4,7 +4,7 @@ $(document).ready(function () {
 })
 
 $('#loginSend').click(function () {
-    $('body').prepend(loading);
+    // $('body').prepend(loading);
 
     // // const formData = new FormData(document.querySelector('#loginForm'))
     // const account = $('#account').val();
