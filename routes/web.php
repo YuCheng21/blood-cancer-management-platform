@@ -8,6 +8,7 @@ use App\Http\Controllers\TopicController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ExportController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,73 +19,47 @@ use App\Http\Controllers\ExportController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::name('user.')->controller(UserController::class)->group(function () {
+    Route::get('/login', 'show')->name('index');
+    Route::post('/login', 'login')->name('login');
+});
 
-Route::get(
-    '/login',
-    [UserController::class, 'show']
-)->name('user.index');
+Route::name('cases.')->controller(CaseController::class)->group(function () {
+    Route::get('/', 'index')->name('index')->middleware('auth');
+    Route::prefix('cases')->group(function () {
+        Route::get('/{account}', 'show')->name('show');
+        Route::get('/{account}/task', 'task')->name('task');
+    });
+});
 
-Route::post(
-    '/login',
-    [UserController::class, 'login']
-)->name('user.login');
+Route::prefix('tasks')->name('tasks.')->controller(TaskController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
 
+    Route::prefix('main')->name('main.')->group(function () {
+        Route::get('/edit', 'main')->name('edit');
+    });
 
-Route::get(
-    '/',
-    [CaseController::class, 'index']
-)->name('cases.index');
+    Route::prefix('sub')->name('sub.')->group(function () {
+        Route::get('/add', 'sub_create')->name('add');
 
-Route::get(
-    '/cases/{account}',
-    [CaseController::class, 'show']
-)->name('cases.show');
-
-Route::get(
-    '/cases/{account}/task',
-    [CaseController::class, 'task']
-)->name('cases.task');
-
-
-
-Route::get(
-    '/tasks',
-    [TaskController::class, 'index']
-)->name('tasks.index');
-
-Route::get(
-    '/tasks/main/edit',
-    [TaskController::class, 'main']
-)->name('tasks.main.edit');
-
-Route::get(
-    '/tasks/sub/add',
-    [TaskController::class, 'sub_create']
-)->name('tasks.sub.add');
-
-Route::get(
-    '/tasks/sub/edit',
-    [TaskController::class, 'sub_update']
-)->name('tasks.sub.edit');
+        Route::get('/edit', 'sub_update')->name('edit');
+    });
+});
 
 
-Route::get(
-    '/topics',
-    [TopicController::class, 'index']
-)->name('topics.index');
+Route::prefix('topics')->name('topics.')->controller(TopicController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+});
 
 
-Route::get(
-    '/faqs',
-    [FaqController::class, 'index']
-)->name('faqs.index');
+Route::prefix('faqs')->name('faqs.')->controller(FaqController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+});
 
-Route::get(
-    '/messages',
-    [MessageController::class, 'index']
-)->name('messages.index');
+Route::prefix('messages')->name('messages.')->controller(MessageController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+});
 
-Route::get(
-    '/exports',
-    [ExportController::class, 'index']
-)->name('exports.index');
+Route::prefix('exports')->name('exports.')->controller(ExportController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+});

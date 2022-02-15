@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -19,19 +20,48 @@ class UserController extends Controller
 
     function login(Request $request)
     {
-//        $account = $request['account'];
-//        $password = $request['password'];
-//        $role = $request['role'];
+        $account = $request['account'];
+        $password = $request['password'];
+
+//        $real = User::where('account', $account)->first();
+//        if(Hash::check($password, $real->password)){
+//            $result = 'true';
+//        }else{
+//            $result = 'false';
+//        }
+//        return response($result, 200);
+
+//        $attempt = Auth::attempt([
+//            'account' => $account,
+//            'password' => $password
+//        ]);
 //
-//        $users = DB::table('users')->get();
+//        if ($attempt) {
+//            $request->session()->regenerate();
 //
+//            return redirect()->intended('cases.index');
+//        }
+//
+//        return back()->withErrors([
+//        ]);
+
+//        $users = User::all();
+//        foreach ($users as $user) {
+//            echo $user->account;
+//        }
+
+//        $users = User::first()
+//            ->update([
+//                'account' => 'admin'
+//            ]);
+
 //        return response($users, 200);
 
 
 
-        return redirect()->route('user.index')
-            ->with('category', 'success-toast')
-            ->with('message', 'testing message');
+//        return redirect()->route('user.index')
+//            ->with('category', 'success-toast')
+//            ->with('message', 'testing message');
 
     }
 }

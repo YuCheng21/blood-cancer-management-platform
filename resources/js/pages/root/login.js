@@ -12,7 +12,6 @@ $('#loginSend').click(function () {
     // const formData = new FormData();
     // formData.append('account', account);
     // formData.append('password', password);
-    //
     // axios({
     //     url: url,
     //     method: 'POST',
@@ -22,7 +21,7 @@ $('#loginSend').click(function () {
     // }).catch(function (err) {
     //     console.log(err)
     // }).finally(function () {
-    //
+    //     console.log('finally')
     // })
 
     const loginForm = $('#loginForm');

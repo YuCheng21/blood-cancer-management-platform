@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -15,12 +16,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        $user = User::create([
             'account' => 'admin',
-            'password' => '2u04ru vu4',
-            'role' => 'admin',
-            "created_at" =>  Carbon::now(), # new \Datetime()
-            "updated_at" => Carbon::now(),  # new \Datetime()
+            'password' => Hash::make('test vu4')
         ]);
     }
 }
