@@ -20,9 +20,9 @@ class UserController extends Controller
 
     function login(Request $request)
     {
-        $account = $request['account'];
-        $password = $request['password'];
-
+//        $account = $request['account'];
+//        $password = $request['password'];
+//
 //        $real = User::where('account', $account)->first();
 //        if(Hash::check($password, $real->password)){
 //            $result = 'true';
@@ -31,35 +31,19 @@ class UserController extends Controller
 //        }
 //        return response($result, 200);
 
-//        $attempt = Auth::attempt([
-//            'account' => $account,
-//            'password' => $password
-//        ]);
-//
-//        if ($attempt) {
-//            $request->session()->regenerate();
-//
-//            return redirect()->intended('cases.index');
-//        }
-//
-//        return back()->withErrors([
-//        ]);
-
 //        $users = User::all();
 //        foreach ($users as $user) {
 //            echo $user->account;
 //        }
+//        return response($users, 200);
 
 //        $users = User::first()
 //            ->update([
 //                'account' => 'admin'
 //            ]);
-
 //        return response($users, 200);
 
-
-
-//        return redirect()->route('user.index')
+//        return redirect()->route('users.index')
 //            ->with('category', 'success-toast')
 //            ->with('message', 'testing message');
 

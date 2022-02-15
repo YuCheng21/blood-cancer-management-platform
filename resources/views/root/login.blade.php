@@ -61,7 +61,7 @@
 
 @section('footer')
     <script>
-        const url = '{{route('user.login')}}'
+        const url = '{{route('users.login')}}'
     </script>
     {{--  Page Customize Javascript  --}}
     <script src="{{asset('js/pages/root/login.js')}}"></script>

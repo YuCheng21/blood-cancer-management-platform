@@ -19,13 +19,13 @@ use App\Http\Controllers\ExportController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::name('user.')->controller(UserController::class)->group(function () {
+Route::name('users.')->controller(UserController::class)->group(function () {
     Route::get('/login', 'show')->name('index');
     Route::post('/login', 'login')->name('login');
 });
 
 Route::name('cases.')->controller(CaseController::class)->group(function () {
-    Route::get('/', 'index')->name('index')->middleware('auth');
+    Route::get('/', 'index')->name('index');
     Route::prefix('cases')->group(function () {
         Route::get('/{account}', 'show')->name('show');
         Route::get('/{account}/task', 'task')->name('task');
