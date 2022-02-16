@@ -2,10 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -16,9 +13,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
-            'account' => 'admin',
-            'password' => Hash::make('test')
-        ]);
+        //
     }
 }
