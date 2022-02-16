@@ -1,7 +1,8 @@
-$(document).ready(function () {
-    // console.log('ready')
-
-})
+window.onpageshow = function () {
+    if (loading){
+        loading.remove();
+    }
+}
 
 $('#loginSend').click(function () {
     $('body').prepend(loading);
@@ -23,7 +24,4 @@ $('#loginSend').click(function () {
     // }).finally(function () {
     //     console.log('finally')
     // })
-
-    const loginForm = $('#loginForm');
-    loginForm.attr('action', url).submit();
 })

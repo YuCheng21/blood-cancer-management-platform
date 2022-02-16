@@ -22,44 +22,49 @@ use App\Http\Controllers\ExportController;
 Route::name('users.')->controller(UserController::class)->group(function () {
     Route::get('/login', 'show')->name('index');
     Route::post('/login', 'login')->name('login');
+    Route::post('/logout', 'logout')->name('logout');
 });
 
-Route::name('cases.')->controller(CaseController::class)->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::prefix('cases')->group(function () {
-        Route::get('/{account}', 'show')->name('show');
-        Route::get('/{account}/task', 'task')->name('task');
-    });
-});
-
-Route::prefix('tasks')->name('tasks.')->controller(TaskController::class)->group(function () {
-    Route::get('/', 'index')->name('index');
-
-    Route::prefix('main')->name('main.')->group(function () {
-        Route::get('/edit', 'main')->name('edit');
+Route::middleware('auth')->group(function () {
+    Route::name('cases.')->controller(CaseController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::prefix('cases')->group(function () {
+            Route::get('/{account}', 'show')->name('show');
+            Route::get('/{account}/task', 'task')->name('task');
+        });
     });
 
-    Route::prefix('sub')->name('sub.')->group(function () {
-        Route::get('/add', 'sub_create')->name('add');
+    Route::prefix('tasks')->name('tasks.')->controller(TaskController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
 
-        Route::get('/edit', 'sub_update')->name('edit');
+        Route::prefix('main')->name('main.')->group(function () {
+            Route::get('/edit', 'main')->name('edit');
+        });
+
+        Route::prefix('sub')->name('sub.')->group(function () {
+            Route::get('/add', 'sub_create')->name('add');
+
+            Route::get('/edit', 'sub_update')->name('edit');
+        });
     });
+
+
+    Route::prefix('topics')->name('topics.')->controller(TopicController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
+
+
+    Route::prefix('faqs')->name('faqs.')->controller(FaqController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
+
+    Route::prefix('messages')->name('messages.')->controller(MessageController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
+
+    Route::prefix('exports')->name('exports.')->controller(ExportController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
+
 });
 
-
-Route::prefix('topics')->name('topics.')->controller(TopicController::class)->group(function () {
-    Route::get('/', 'index')->name('index');
-});
-
-
-Route::prefix('faqs')->name('faqs.')->controller(FaqController::class)->group(function () {
-    Route::get('/', 'index')->name('index');
-});
-
-Route::prefix('messages')->name('messages.')->controller(MessageController::class)->group(function () {
-    Route::get('/', 'index')->name('index');
-});
-
-Route::prefix('exports')->name('exports.')->controller(ExportController::class)->group(function () {
-    Route::get('/', 'index')->name('index');
-});

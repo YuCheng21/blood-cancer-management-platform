@@ -32,25 +32,37 @@
                     <div class="card-body d-flex align-items-center flex-column">
                         <img src="{{ asset('/img/logo.png') }}" class="w-50 mb-3" alt="web logo">
                         <h1 class="mb-3"><b>{{config('app.name')}}</b></h1>
-                        <form action="#" id="loginForm" method="POST" enctype="multipart/form-data"
+                        <form action="{{route('users.login')}}" id="loginForm" method="POST"
+                              enctype="multipart/form-data"
                               class="w-100 mb-3">
                             @csrf
                             <div class="input-group mb-3">
                                 <label for="account" class="input-group-text fs-5">帳號</label>
                                 <input name="account" type="text" id="account"
-                                       class="form-control form-control-lg"
-                                       placeholder="請輸入帳號">
+                                       class="form-control form-control-lg
+                                       {{ $errors->first('account') ? 'is-invalid' : '' }}"
+                                       placeholder="請輸入帳號" value="{{ old('account') }}">
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('account') }}
+                                </div>
                             </div>
                             <div class="input-group mb-3">
                                 <label for="password" class="input-group-text fs-5">密碼</label>
                                 <input name="password" type="password" id="password"
-                                       class="form-control form-control-lg"
+                                       class="form-control form-control-lg
+                                        {{ $errors->first('password') ? 'is-invalid' : '' }}"
                                        placeholder="請輸入密碼">
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('password') }}
+                                </div>
                             </div>
-                            <button type="button" class="btn btn-primary w-100" id="loginSend">
+                            <button type="submit" class="btn btn-primary w-100" id="loginSend">
                                 <span class="iconify-inline" data-icon="fe:login"></span>
                                 <span>登入</span>
                             </button>
+                            @if (!empty($errors->first('msg')))
+                                {{ $errors->first('msg') }}
+                            @endif
                         </form>
                     </div>
                 </div>

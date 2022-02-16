@@ -36,7 +36,7 @@
             <div class="container-fluid">
                 <a href="{{route('cases.index')}}"
                    class="navbar-brand fs-1 fw-bold py-0 ds-100 hv-scale hv-color-text">
-{{--                    <span class="iconify-inline" data-icon="maki:blood-bank"></span>--}}
+                    {{--                    <span class="iconify-inline" data-icon="maki:blood-bank"></span>--}}
                     <span>{{config('app.name')}}</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler">
@@ -90,10 +90,14 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="dropdown-item hv-color-bg">
-                                            <span class="iconify-inline" data-icon="ls:login"></span>
-                                            <span>登出</span>
-                                        </a>
+                                        <form method="POST" action="{{route('users.logout')}}">
+                                            @csrf
+                                            <a href="{{route('users.logout')}}" class="dropdown-item hv-color-bg"
+                                               onclick="event.preventDefault();this.closest('form').submit();">
+                                                <span class="iconify-inline" data-icon="ls:login"></span>
+                                                <span>登出</span>
+                                            </a>
+                                        </form>
                                     </li>
                                 </ul>
                             </li>

@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
     function show()
     {
-        $title = '登入';
+        if (Auth::check()) {
+            return redirect()
+                ->intended(route('cases.index'));
+        }
 
+        $title = '登入';
         return response(
             view('root.login', get_defined_vars()),
             200
@@ -20,32 +24,46 @@ class UserController extends Controller
 
     function login(Request $request)
     {
-//        $account = $request['account'];
-//        $password = $request['password'];
-//
-//        $real = User::where('account', $account)->first();
-//        if(Hash::check($password, $real->password)){
-//            $result = 'true';
-//        }else{
-//            $result = 'false';
-//        }
-//        return response($result, 200);
+        $input = [
+            'account' => ['required'],
+            'password' => ['required'],
+        ];
+        $rules = [
+            'required' => ':attribute 欄位為必填欄位。',
+        ];
+        $messages = [
+            'account' => '帳號',
+            'password' => '密碼',
+        ];
+        // validate input data
+        $validator = Validator::make($request->all(), $input, $rules, $messages)->validated();
 
-//        $users = User::all();
-//        foreach ($users as $user) {
-//            echo $user->account;
-//        }
-//        return response($users, 200);
+        // login successes
+        if (Auth::attempt($validator)) {
+            $request->session()->regenerate();
+            return redirect()
+                ->intended(route('cases.index'))
+                ->with('category', 'success')
+                ->with('message', '登入成功');
+        }
 
-//        $users = User::first()
-//            ->update([
-//                'account' => 'admin'
-//            ]);
-//        return response($users, 200);
+        // login failed
+        return back()
+            ->withInput()
+            ->with('category', 'error')
+            ->with('message', '帳號或密碼錯誤');
+    }
 
-//        return redirect()->route('users.index')
-//            ->with('category', 'success-toast')
-//            ->with('message', 'testing message');
+    function logout(Request $request)
+    {
+        Auth::logout();
 
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()
+            ->route('users.index')
+            ->with('category', 'success')
+            ->with('message', '登出成功');
     }
 }
