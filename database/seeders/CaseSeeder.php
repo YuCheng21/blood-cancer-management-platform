@@ -53,5 +53,44 @@ class CaseSeeder extends Seeder
             'diseaseState' => '3',
             'diseaseClass' => '4',
         ]);
+        CaseModel::create([
+            'account' => 'user4',
+            'password' => 'password4',
+            'transplantNum' => 'N0004',
+            'name' => '王小明4',
+            'gender' => '3',
+            'birthday' => '1999-06-23',
+            'date' => '2022-02-13',
+            'transplantType' => '2',
+            'diseaseType' => '3',
+            'diseaseState' => '3',
+            'diseaseClass' => '4',
+        ]);
+        CaseModel::create([
+            'account' => 'user5',
+            'password' => 'password5',
+            'transplantNum' => 'N0005',
+            'name' => '王小明5',
+            'gender' => '2',
+            'birthday' => '1999-06-23',
+            'date' => '2022-02-13',
+            'transplantType' => '2',
+            'diseaseType' => '3',
+            'diseaseState' => '3',
+            'diseaseClass' => '4',
+        ]);
+        CaseModel::create([
+            'account' => 'user6',
+            'password' => 'password6',
+            'transplantNum' => 'N0006',
+            'name' => '王小明6',
+            'gender' => '3',
+            'birthday' => '1999-06-23',
+            'date' => '2022-02-13',
+            'transplantType' => '2',
+            'diseaseType' => '3',
+            'diseaseState' => '3',
+            'diseaseClass' => '4',
+        ]);
     }
 }

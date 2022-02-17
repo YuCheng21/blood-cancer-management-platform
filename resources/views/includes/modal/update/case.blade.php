@@ -8,10 +8,12 @@
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="row gy-2">
-                    <div class="col-12">
-                        <form action="#" id="updateCaseForm" method="POST" enctype="multipart/form-data">
+            <form action="#" id="updateCaseForm" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('patch')
+                <div class="modal-body">
+                    <div class="row gy-2">
+                        <div class="col-12">
                             <div class="input-group mb-2">
                                 <label for="updateCaseAccount" class="input-group-text">帳號</label>
                                 <input name="updateCaseAccount" type="text" id="updateCaseAccount"
@@ -35,9 +37,9 @@
                             <div class="input-group mb-2">
                                 <label for="updateCaseGender" class="input-group-text">性別</label>
                                 <select name="updateCaseGender" id="updateCaseGender" class="form-select">
-                                    <option value="0" selected>請選擇個案性別</option>
-                                    <option value="1">男性</option>
-                                    <option value="2">女性</option>
+                                    <option value="-" selected>請選擇個案性別</option>
+                                    <option value="男性">男性</option>
+                                    <option value="女性">女性</option>
                                 </select>
                             </div>
                             <div class="input-group mb-2">
@@ -52,57 +54,61 @@
                                 <label for="updateCaseTransplantType" class="input-group-text">移植種類</label>
                                 <select name="updateCaseTransplantType" id="updateCaseTransplantType"
                                         class="form-select">
-                                    <option value="0" selected>請選擇移植種類</option>
-                                    <option value="1">自體移植</option>
-                                    <option value="2">異體移植</option>
+                                    <option value="-" selected>請選擇移植種類</option>
+                                    <option value="自體移植">自體移植</option>
+                                    <option value="異體移植">異體移植</option>
                                 </select>
                             </div>
                             <div class="input-group mb-2">
                                 <label for="updateCaseDiseaseType" class="input-group-text">疾病種類</label>
-                                <select name="updateCaseDiseaseType" id="updateCaseDiseaseType" class="form-select form-select">
-                                    <option value="0" selected>請選擇疾病種類</option>
-                                    <option value="1">AML</option>
-                                    <option value="2">ALL</option>
-                                    <option value="3">MM</option>
-                                    <option value="4">何杰金氏淋巴癌</option>
-                                    <option value="5">非何杰金氏淋巴癌</option>
+                                <select name="updateCaseDiseaseType" id="updateCaseDiseaseType"
+                                        class="form-select form-select">
+                                    <option value="-" selected>請選擇疾病種類</option>
+                                    <option value="AML">AML</option>
+                                    <option value="ALL">ALL</option>
+                                    <option value="MM">MM</option>
+                                    <option value="何杰金氏淋巴癌">何杰金氏淋巴癌</option>
+                                    <option value="非何杰金氏淋巴癌">非何杰金氏淋巴癌</option>
                                 </select>
                             </div>
                             <div class="input-group mb-2">
                                 <label for="updateCaseDiseaseState" class="input-group-text">疾病分期</label>
-                                <select name="updateCaseDiseaseState" id="updateCaseDiseaseState" class="form-select form-select">
-                                    <option value="0" selected>無</option>
-                                    <option value="1">第一期</option>
-                                    <option value="2">第二期</option>
-                                    <option value="3">第三期</option>
-                                    <option value="4">第四期</option>
+                                <select name="updateCaseDiseaseState" id="updateCaseDiseaseState"
+                                        class="form-select form-select">
+                                    <option value="-" selected>無</option>
+                                    <option value="第一期">第一期</option>
+                                    <option value="第二期">第二期</option>
+                                    <option value="第三期">第三期</option>
+                                    <option value="第四期">第四期</option>
                                 </select>
                             </div>
                             <div class="input-group mb-2">
                                 <label for="updateCaseDiseaseClass" class="input-group-text">疾病分類</label>
-                                <select name="updateCaseDiseaseClass" id="updateCaseDiseaseClass" class="form-select form-select">
-                                    <option value="0" selected>無</option>
-                                    <option value="1">B-cell</option>
-                                    <option value="2">T-cell</option>
-                                    <option value="3">Mantle-cell</option>
-                                    <option value="4">邊緣 B-cell</option>
-                                    <option value="5">其他型</option>
+                                <select name="updateCaseDiseaseClass" id="updateCaseDiseaseClass"
+                                        class="form-select form-select">
+                                    <option value="-" selected>無</option>
+                                    <option value="B-cell">B-cell</option>
+                                    <option value="T-cell">T-cell</option>
+                                    <option value="Mantle-cell">Mantle-cell</option>
+                                    <option value="邊緣 B-cell">邊緣 B-cell</option>
+                                    <option value="其他型">其他型</option>
                                 </select>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                    <span class="iconify-inline" data-icon="websymbol:cancel"></span>
-                    <span>關閉</span>
-                </button>
-                <button type="button" class="btn btn-primary" id="updateCaseSend">
-                    <span class="iconify-inline" data-icon="subway:tick"></span>
-                    <span>確認</span>
-                </button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span class="iconify-inline" data-icon="websymbol:cancel"></span>
+                        <span>關閉</span>
+                    </button>
+                    <a href="#" class="btn btn-primary" id="updateCaseSend"
+                       onclick="event.preventDefault();this.closest('form').submit();">
+                        <span class="iconify-inline" data-icon="subway:tick"></span>
+                        <span>確認</span>
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
 </div>

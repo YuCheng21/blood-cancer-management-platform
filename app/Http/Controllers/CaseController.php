@@ -27,18 +27,19 @@ class CaseController extends Controller
             'createCasePassword' => ['required'],
             'createCaseTransplantNum' => ['required'],
             'createCaseName' => ['required'],
-            'createCaseGender' => ['required', 'numeric', 'gt:1'],
+            'createCaseGender' => ['required', 'in:男性,女性'],
             'createCaseBirth' => ['required'],
             'createCaseDate' => ['required'],
-            'createCaseTransplantType' => ['required', 'numeric', 'gt:1'],
-            'createCaseDiseaseType' => ['required', 'numeric', 'gt:1'],
+            'createCaseTransplantType' => ['required', 'in:自體移植,異體移植'],
+            'createCaseDiseaseType' => ['required', 'in:AML,ALL,MM,何杰金氏淋巴癌,非何杰金氏淋巴癌'],
             'createCaseDiseaseState' => ['required'],
             'createCaseDiseaseClass' => ['required'],
         ];
         $validator = Validator::make($request->all(), $input);
 
         if ($validator->fails()) {
-            return redirect(route('cases.index'))
+            return redirect()
+                ->route('cases.index')
                 ->withInput()
                 ->with([
                     'type' => 'error',
@@ -60,7 +61,8 @@ class CaseController extends Controller
                 'diseaseClass' => $request->createCaseDiseaseClass,
             ]);
 
-            return redirect(route('cases.index'))
+            return redirect()
+                ->route('cases.index')
                 ->with([
                     'type' => 'success-toast',
                     'msg' => '新增個案成功。'
@@ -74,7 +76,8 @@ class CaseController extends Controller
                 $message = 'SQLState: ' . $errorInfo[0];
             }
 
-            return redirect(route('cases.index'))
+            return redirect()
+                ->route('cases.index')
                 ->withInput()
                 ->with([
                     'type' => 'error',
@@ -92,8 +95,51 @@ class CaseController extends Controller
         );
     }
 
-    public function update($account){
-        return 'ok';
+    public function update(Request $request, $account){
+        $case = CaseModel::where('account', $account)->first();
+        if (!is_null($case)){
+            $input = [
+                'updateCasePassword' => ['required'],
+                'updateCaseTransplantNum' => ['required'],
+                'updateCaseName' => ['required'],
+                'updateCaseGender' => ['required', 'in:男性,女性'],
+                'updateCaseBirth' => ['required'],
+                'updateCaseDate' => ['required'],
+                'updateCaseTransplantType' => ['required', 'in:自體移植,異體移植'],
+                'updateCaseDiseaseType' => ['required', 'in:AML,ALL,MM,何杰金氏淋巴癌,非何杰金氏淋巴癌'],
+                'updateCaseDiseaseState' => ['required'],
+                'updateCaseDiseaseClass' => ['required'],
+            ];
+            $validator = Validator::make($request->all(), $input);
+
+            if ($validator->fails()) {
+                return redirect()
+                    ->route('cases.index')
+                    ->with([
+                        'type' => 'error',
+                        'msg' => '表單填寫未完成'
+                    ]);
+            }
+
+            $case->update([
+                'password' => $request->updateCasePassword,
+                'transplantNum' => $request->updateCaseTransplantNum,
+                'name' => $request->updateCaseName,
+                'gender' => $request->updateCaseGender,
+                'birthday' => $request->updateCaseBirth,
+                'date' => $request->updateCaseDate,
+                'transplantType' => $request->updateCaseTransplantType,
+                'diseaseType' => $request->updateCaseDiseaseType,
+                'diseaseState' => $request->updateCaseDiseaseState,
+                'diseaseClass' => $request->updateCaseDiseaseClass,
+            ]);
+        }
+        return redirect()
+            ->route('cases.index')
+            ->with([
+                'type' => 'success-toast',
+                'msg' => '修改個案成功。'
+            ]);
     }
 
     public function destroy($account){
@@ -101,7 +147,12 @@ class CaseController extends Controller
         if (!is_null($case)){
             $case->delete();
         }
-        return redirect()->route('cases.index');
+        return redirect()
+            ->route('cases.index')
+            ->with([
+                'type' => 'success-toast',
+                'msg' => '刪除個案成功。'
+            ]);
     }
 
     public function task($account)

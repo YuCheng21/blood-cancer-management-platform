@@ -68,22 +68,19 @@
                                     <td>{{ $case->gender }}</td>
                                     <td>{{ $case->date }}</td>
                                     <td>
-                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
+                                        <button class="btn btn-primary updateCaseBtn" data-bs-toggle="modal"
+                                                data-bs-target="#updateCaseModal"
+                                                data-url="{{route('cases.update', ['account' => $case->account])}}"
+                                                data-account="{{ $case->account }}">
                                             <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                                         </button>
-                                        <a href="{{route('cases.show', ['account' => $case->account])}}" class="btn btn-secondary text-white">
+                                        <a href="{{route('cases.show', ['account' => $case->account])}}"
+                                           class="btn btn-secondary text-white">
                                             <span class="iconify-inline" data-icon="whh:magnifier"></span>
                                         </a>
-{{--                                        <form method="POST" action="{{route('cases.destroy', ['account' => $case->account])}}">--}}
-{{--                                            @csrf--}}
-{{--                                            @method('delete')--}}
-{{--                                            <a href="{{route('cases.destroy', ['account' => $case->account])}}" class="btn btn-danger"--}}
-{{--                                               onclick="event.preventDefault();this.closest('form').submit();">--}}
-{{--                                                <span class="iconify-inline" data-icon="ion:trash"></span>--}}
-{{--                                            </a>--}}
-{{--                                        </form>--}}
-                                        <button class="btn btn-danger deleteCaseBtn" data-bs-toggle="modal" data-bs-target="#deleteCaseModal"
-                                        data-url="{{route('cases.destroy', ['account' => $case->account])}}">
+                                        <button class="btn btn-danger deleteCaseBtn" data-bs-toggle="modal"
+                                                data-bs-target="#deleteCaseModal"
+                                                data-url="{{route('cases.destroy', ['account' => $case->account])}}">
                                             <span class="iconify-inline" data-icon="ion:trash"></span>
                                         </button>
                                     </td>
@@ -104,4 +101,7 @@
     @include('includes.modal.delete.case')
     {{--  Page Customize Javascript  --}}
     <script src="{{asset('js/pages/root/case.js')}}"></script>
+    <script>
+        const cases = @json($cases);
+    </script>
 @endsection
