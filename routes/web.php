@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::name('cases.')->controller(CaseController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::prefix('cases')->group(function () {
+            Route::post('/create', 'store')->name('create');
             Route::get('/{account}', 'show')->name('show');
             Route::get('/{account}/task', 'task')->name('task');
         });

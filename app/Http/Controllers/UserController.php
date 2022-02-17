@@ -43,15 +43,19 @@ class UserController extends Controller
             $request->session()->regenerate();
             return redirect()
                 ->intended(route('cases.index'))
-                ->with('category', 'success')
-                ->with('message', '登入成功');
+                ->with([
+                    'type' => 'success-toast',
+                    'msg' => '登入成功'
+                ]);
         }
 
         // login failed
         return back()
             ->withInput()
-            ->with('category', 'error')
-            ->with('message', '帳號或密碼錯誤');
+            ->with([
+                'type' => 'error',
+                'msg' => '帳號或密碼錯誤'
+            ]);
     }
 
     function logout(Request $request)
@@ -63,7 +67,9 @@ class UserController extends Controller
 
         return redirect()
             ->route('users.index')
-            ->with('category', 'success')
-            ->with('message', '登出成功');
+            ->with([
+                'type' => 'success-toast',
+                'msg' => '登出成功'
+            ]);
     }
 }

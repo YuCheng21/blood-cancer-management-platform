@@ -60,9 +60,6 @@
                                 <span class="iconify-inline" data-icon="fe:login"></span>
                                 <span>登入</span>
                             </button>
-                            @if (!empty($errors->first('msg')))
-                                {{ $errors->first('msg') }}
-                            @endif
                         </form>
                     </div>
                 </div>

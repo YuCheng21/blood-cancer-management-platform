@@ -127,8 +127,8 @@
     <script src="{{asset('js/pages/base.js')}}"></script>
     {{--  Alert  --}}
     <script>
-        @if (session('category') && session('message'))
-        dialog('{{session('category')}}', '{{session('message')}}')
+        @if (session('type') && session('msg'))
+        dialog('{{session('type')}}', '{{session('msg')}}')
         @endif
     </script>
     {{--  Active Current Page  --}}

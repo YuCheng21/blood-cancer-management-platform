@@ -18,7 +18,7 @@
                             <div class="card-body fs-4">
                                 <h4 class="card-title">個案總數</h4>
                                 <hr>
-                                <p id="caseNumber" class="card-text">4 筆</p>
+                                <p id="caseNumber" class="card-text">{{count($cases)}} 筆</p>
                             </div>
                         </div>
                     </div>
@@ -58,86 +58,28 @@
                                 <th>操作選項</th>
                             </tr>
                             </thead>
-                            <tr>
-                                <td>個案帳號</td>
-                                <td>個案密碼</td>
-                                <td>個案移植編號</td>
-                                <td>個案姓名</td>
-                                <td>個案年齡</td>
-                                <td>個案性別</td>
-                                <td>個案移植日期</td>
-                                <td>
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
-                                        <span class="iconify-inline" data-icon="fa-regular:edit"></span>
-                                    </button>
-                                    <button class="btn btn-secondary text-white" onclick="location.href='{{route('cases.show', ['account' => 'testing'])}}'">
-                                        <span class="iconify-inline" data-icon="whh:magnifier"></span>
-                                    </button>
-                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">
-                                        <span class="iconify-inline" data-icon="ion:trash"></span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>user</td>
-                                <td>password</td>
-                                <td>N0001</td>
-                                <td>王小明</td>
-                                <td>32</td>
-                                <td>男</td>
-                                <td>2022-02-10</td>
-                                <td>
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
-                                        <span class="iconify-inline" data-icon="fa-regular:edit"></span>
-                                    </button>
-                                    <button class="btn btn-secondary text-white" onclick="location.href='{{route('cases.show', ['account' => 'user'])}}'">
-                                        <span class="iconify-inline" data-icon="whh:magnifier"></span>
-                                    </button>
-                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">
-                                        <span class="iconify-inline" data-icon="ion:trash"></span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>test</td>
-                                <td>test</td>
-                                <td>N0002</td>
-                                <td>王大明</td>
-                                <td>43</td>
-                                <td>男</td>
-                                <td>2022-02-10</td>
-                                <td>
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
-                                        <span class="iconify-inline" data-icon="fa-regular:edit"></span>
-                                    </button>
-                                    <button class="btn btn-secondary text-white" onclick="location.href='{{route('cases.show', ['account' => 'test'])}}'">
-                                        <span class="iconify-inline" data-icon="whh:magnifier"></span>
-                                    </button>
-                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">
-                                        <span class="iconify-inline" data-icon="ion:trash"></span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>test3</td>
-                                <td>test3</td>
-                                <td>N0003</td>
-                                <td>王中明</td>
-                                <td>41</td>
-                                <td>男</td>
-                                <td>2022-02-10</td>
-                                <td>
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
-                                        <span class="iconify-inline" data-icon="fa-regular:edit"></span>
-                                    </button>
-                                    <button class="btn btn-secondary  text-white" onclick="location.href='{{route('cases.show', ['account' => 'test3'])}}'">
-                                        <span class="iconify-inline" data-icon="whh:magnifier"></span>
-                                    </button>
-                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">
-                                        <span class="iconify-inline" data-icon="ion:trash"></span>
-                                    </button>
-                                </td>
-                            </tr>
+                            @foreach ($cases as $case)
+                                <tr>
+                                    <td>{{ $case->account }}</td>
+                                    <td>{{ $case->password }}</td>
+                                    <td>{{ $case->transplantNum }}</td>
+                                    <td>{{ $case->name }}</td>
+                                    <td>{{ $today->diffInYears($case->birthday) }}</td>
+                                    <td>{{ $case->gender }}</td>
+                                    <td>{{ $case->date }}</td>
+                                    <td>
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
+                                            <span class="iconify-inline" data-icon="fa-regular:edit"></span>
+                                        </button>
+                                        <a href="{{route('cases.show', ['account' => $case->account])}}" class="btn btn-secondary text-white">
+                                            <span class="iconify-inline" data-icon="whh:magnifier"></span>
+                                        </a>
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">
+                                            <span class="iconify-inline" data-icon="ion:trash"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </table>
                     </div>
                 </div>
@@ -151,4 +93,6 @@
     @include('includes.modal.create.case')
     @include('includes.modal.update.case')
     @include('includes.modal.delete.case')
+    {{--  Page Customize Javascript  --}}
+    <script src="{{asset('js/pages/root/case.js')}}"></script>
 @endsection
