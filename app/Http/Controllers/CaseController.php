@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CaseController extends Controller
 {
-    public function index()
-    {
+    public function index(){
         $cases = CaseModel::all();
         $today = Carbon::now();
 
@@ -22,17 +21,7 @@ class CaseController extends Controller
         );
     }
 
-    public function show($account)
-    {
-        $title = '個人資料';
-        return response(
-            view('case.person', get_defined_vars()),
-            200
-        );
-    }
-
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $input = [
             'createCaseAccount' => ['required'],
             'createCasePassword' => ['required'],
@@ -95,6 +84,26 @@ class CaseController extends Controller
 
     }
 
+    public function show($account){
+        $title = '個人資料';
+        return response(
+            view('case.person', get_defined_vars()),
+            200
+        );
+    }
+
+    public function update($account){
+        return 'ok';
+    }
+
+    public function destroy($account){
+        $case = CaseModel::where('account', $account)->first();
+        if (!is_null($case)){
+            $case->delete();
+        }
+        return redirect()->route('cases.index');
+    }
+
     public function task($account)
     {
         $title = '修改個案任務';
@@ -103,6 +112,4 @@ class CaseController extends Controller
             200
         );
     }
-
-
 }

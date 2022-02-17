@@ -29,8 +29,11 @@ Route::middleware('auth')->group(function () {
     Route::name('cases.')->controller(CaseController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::prefix('cases')->group(function () {
-            Route::post('/create', 'store')->name('create');
+            Route::post('/', 'store')->name('store');
             Route::get('/{account}', 'show')->name('show');
+            Route::patch('/{account}', 'update')->name('update');
+            Route::delete('/{account}', 'destroy')->name('destroy');
+
             Route::get('/{account}/task', 'task')->name('task');
         });
     });

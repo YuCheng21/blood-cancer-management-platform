@@ -11,7 +11,7 @@
             <div class="modal-body">
                 <div class="row gy-2">
                     <div class="col-12">
-                        <form action="{{route('cases.create')}}" id="createCaseForm" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('cases.store')}}" id="createCaseForm" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="input-group mb-2">
                                 <label for="createCaseAccount" class="input-group-text">帳號</label>
@@ -99,11 +99,11 @@
                     <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                     <span>關閉</span>
                 </button>
-                <button type="button" class="btn btn-primary" id="createCaseSend"
-                        onclick="$('#createCaseForm').submit();">
+                <a href="{{route('cases.store')}}" class="btn btn-primary" id="createCaseSend"
+                        onclick="event.preventDefault();$('#createCaseForm').submit();">
                     <span class="iconify-inline" data-icon="subway:tick"></span>
                     <span>確認</span>
-                </button>
+                </a>
             </div>
         </div>
     </div>

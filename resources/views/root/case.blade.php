@@ -74,7 +74,16 @@
                                         <a href="{{route('cases.show', ['account' => $case->account])}}" class="btn btn-secondary text-white">
                                             <span class="iconify-inline" data-icon="whh:magnifier"></span>
                                         </a>
-                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCaseModal">
+{{--                                        <form method="POST" action="{{route('cases.destroy', ['account' => $case->account])}}">--}}
+{{--                                            @csrf--}}
+{{--                                            @method('delete')--}}
+{{--                                            <a href="{{route('cases.destroy', ['account' => $case->account])}}" class="btn btn-danger"--}}
+{{--                                               onclick="event.preventDefault();this.closest('form').submit();">--}}
+{{--                                                <span class="iconify-inline" data-icon="ion:trash"></span>--}}
+{{--                                            </a>--}}
+{{--                                        </form>--}}
+                                        <button class="btn btn-danger deleteCaseBtn" data-bs-toggle="modal" data-bs-target="#deleteCaseModal"
+                                        data-url="{{route('cases.destroy', ['account' => $case->account])}}">
                                             <span class="iconify-inline" data-icon="ion:trash"></span>
                                         </button>
                                     </td>
