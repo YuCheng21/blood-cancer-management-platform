@@ -15,10 +15,13 @@ class GenderSeeder extends Seeder
     public function run()
     {
         Gender::create([
-           'name' => '男性'
+            'name' => '-'
         ]);
         Gender::create([
-            'name' => '女姓'
+            'name' => '男性'
+        ]);
+        Gender::create([
+            'name' => '女性'
         ]);
     }
 }

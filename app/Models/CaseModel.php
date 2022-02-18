@@ -24,4 +24,24 @@ class CaseModel extends Model
         'disease_state_id',
         'disease_class_id',
     ];
+
+    public function gender(){
+        return $this->belongsTo(Gender::class);
+    }
+
+    public function transplant_type(){
+        return $this->belongsTo(TransplantType::class);
+    }
+
+    public function disease_type(){
+        return $this->belongsTo(DiseaseType::class);
+    }
+
+    public function disease_state(){
+        return $this->belongsTo(DiseaseState::class);
+    }
+
+    public function disease_class(){
+        return $this->belongsTo(DiseaseClass::class);
+    }
 }

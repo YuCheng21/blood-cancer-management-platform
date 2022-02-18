@@ -15,6 +15,9 @@ class DiseaseTypeSeeder extends Seeder
     public function run()
     {
         DiseaseType::create([
+            'name' => '-'
+        ]);
+        DiseaseType::create([
             'name' => 'AML'
         ]);
         DiseaseType::create([

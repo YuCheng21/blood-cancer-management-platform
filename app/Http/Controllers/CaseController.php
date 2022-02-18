@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\CaseModel;
+use App\Models\DiseaseClass;
+use App\Models\DiseaseState;
+use App\Models\DiseaseType;
+use App\Models\Gender;
+use App\Models\TransplantType;
 use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -46,20 +51,21 @@ class CaseController extends Controller
                     'msg' => '表單填寫未完成'
                 ]);
         }
+        $data = [
+            'account' => $request->createCaseAccount,
+            'password' => $request->createCasePassword,
+            'transplant_num' => $request->createCaseTransplantNum,
+            'name' => $request->createCaseName,
+            'gender_id' => Gender::where('name', $request->createCaseGender)->first()->id,
+            'birthday' => $request->createCaseBirth,
+            'date' => $request->createCaseDate,
+            'transplant_type_id' => TransplantType::where('name', $request->createCaseTransplantType)->first()->id,
+            'disease_type_id' => DiseaseType::where('name', $request->createCaseDiseaseType)->first()->id,
+            'disease_state_id' => DiseaseState::where('name', $request->createCaseDiseaseState)->first()->id,
+            'disease_class_id' => DiseaseClass::where('name', $request->createCaseDiseaseClass)->first()->id,
+        ];
         try {
-            CaseModel::create([
-                'account' => $request->createCaseAccount,
-                'password' => $request->createCasePassword,
-                'transplantNum' => $request->createCaseTransplantNum,
-                'name' => $request->createCaseName,
-                'gender' => $request->createCaseGender,
-                'birthday' => $request->createCaseBirth,
-                'date' => $request->createCaseDate,
-                'transplantType' => $request->createCaseTransplantType,
-                'diseaseType' => $request->createCaseDiseaseType,
-                'diseaseState' => $request->createCaseDiseaseState,
-                'diseaseClass' => $request->createCaseDiseaseClass,
-            ]);
+            CaseModel::create($data);
 
             return redirect()
                 ->route('cases.index')
@@ -84,7 +90,6 @@ class CaseController extends Controller
                     'msg' => $message
                 ]);
         }
-
     }
 
     public function show($account){
@@ -121,18 +126,19 @@ class CaseController extends Controller
                     ]);
             }
 
-            $case->update([
+            $data = [
                 'password' => $request->updateCasePassword,
-                'transplantNum' => $request->updateCaseTransplantNum,
+                'transplant_num' => $request->updateCaseTransplantNum,
                 'name' => $request->updateCaseName,
-                'gender' => $request->updateCaseGender,
+                'gender_id' => Gender::where('name', $request->updateCaseGender)->first()->id,
                 'birthday' => $request->updateCaseBirth,
                 'date' => $request->updateCaseDate,
-                'transplantType' => $request->updateCaseTransplantType,
-                'diseaseType' => $request->updateCaseDiseaseType,
-                'diseaseState' => $request->updateCaseDiseaseState,
-                'diseaseClass' => $request->updateCaseDiseaseClass,
-            ]);
+                'transplant_type_id' => TransplantType::where('name', $request->updateCaseTransplantType)->first()->id,
+                'disease_type_id' => DiseaseType::where('name', $request->updateCaseDiseaseType)->first()->id,
+                'disease_state_id' => DiseaseState::where('name', $request->updateCaseDiseaseState)->first()->id,
+                'disease_class_id' => DiseaseClass::where('name', $request->updateCaseDiseaseClass)->first()->id,
+            ];
+            $case->update($data);
         }
         return redirect()
             ->route('cases.index')

@@ -14,15 +14,15 @@ $(document).on('click', '.updateCaseBtn', function () {
         if (value.account === updateAccount) {
             $('#updateCaseAccount').val(value['account']);
             $('#updateCasePassword').val(value['password']);
-            $('#updateCaseTransplantNum').val(value['transplantNum']);
+            $('#updateCaseTransplantNum').val(value['transplant_num']);
             $('#updateCaseName').val(value['name']);
-            $('#updateCaseGender').val(value['gender']).change();
+            $('#updateCaseGender').val(value['gender']['name']).change();
             $('#updateCaseBirth').val(value['birthday']);
             $('#updateCaseDate').val(value['date']);
-            $('#updateCaseTransplantType').val(value['transplantType']).change();
-            $('#updateCaseDiseaseType').val(value['diseaseType']).change();
-            $('#updateCaseDiseaseState').val(value['diseaseState']).change();
-            $('#updateCaseDiseaseClass').val(value['diseaseClass']).change();
+            $('#updateCaseTransplantType').val(value['transplant_type']['name']).change();
+            $('#updateCaseDiseaseType').val(value['disease_type']['name']).change();
+            $('#updateCaseDiseaseState').val(value['disease_state']['name']).change();
+            $('#updateCaseDiseaseClass').val(value['disease_class']['name']).change();
         }
     })
 })

@@ -15,6 +15,9 @@ class TransplantTypeSeeder extends Seeder
     public function run()
     {
         TransplantType::create([
+            'name' => '-'
+        ]);
+        TransplantType::create([
             'name' => '自體移植'
         ]);
         TransplantType::create([

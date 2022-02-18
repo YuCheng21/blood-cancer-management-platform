@@ -62,10 +62,10 @@
                                 <tr>
                                     <td>{{ $case->account }}</td>
                                     <td>{{ $case->password }}</td>
-                                    <td>{{ $case->transplantNum }}</td>
+                                    <td>{{ $case->transplant_num }}</td>
                                     <td>{{ $case->name }}</td>
                                     <td>{{ $today->diffInYears($case->birthday) }}</td>
-                                    <td>{{ $case->gender }}</td>
+                                    <td>{{ $case->gender->name }}</td>
                                     <td>{{ $case->date }}</td>
                                     <td>
                                         <button class="btn btn-primary updateCaseBtn" data-bs-toggle="modal"
@@ -106,6 +106,10 @@
     {{--  Page Customize Javascript  --}}
     <script src="{{asset('js/pages/root/case.js')}}"></script>
     <script>
+        @foreach ($cases as $case)
+        var temp = '{{$case->gender}}{{$case->gender}}{{$case->transplant_type}}{{$case->disease_type}}{{$case->disease_state}}{{$case->disease_class}}'
+        @endforeach
+
         const cases = @json($cases);
     </script>
 @endsection

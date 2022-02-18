@@ -17,13 +17,13 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
 
 
-//            GenderSeeder::class,
-//            TransplantTypeSeeder::class,
-//            DiseaseTypeSeeder::class,
-//            DiseaseStateSeeder::class,
-//            DiseaseClassSeeder::class,
-//
-//            CaseSeeder::class,
+            GenderSeeder::class,
+            TransplantTypeSeeder::class,
+            DiseaseTypeSeeder::class,
+            DiseaseStateSeeder::class,
+            DiseaseClassSeeder::class,
+
+            CaseSeeder::class,
 
 
 //            BloodComponentsSeeder::class
