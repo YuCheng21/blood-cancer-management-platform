@@ -27,8 +27,8 @@
 @section('main')
     <div class="container">
         <div class="row justify-content-center align-items-center vh-100">
-            <div class="col-12 d-flex justify-content-center">
-                <div class="card bg-white shadow w-50 bg-opacity-50">
+            <div class="col-12 w-auto">
+                <div class="card bg-white shadow bg-opacity-50" style="max-width: 500px">
                     <div class="card-body d-flex align-items-center flex-column">
                         <img src="{{ asset('/img/logo.png') }}" class="w-50 mb-3" alt="web logo">
                         <h1 class="mb-3"><b>{{config('app.name')}}</b></h1>

@@ -42,7 +42,7 @@
                     </button>
                 </div>
             </div>
-            <div class="card-body px-5 py-4">
+            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
                 <div class="row justify-content-center g-2">
                     <div class="col-sm-12 col-lg-4">
                         <div class="input-group">

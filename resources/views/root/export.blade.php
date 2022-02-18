@@ -32,9 +32,9 @@
                     </button>
                 </div>
             </div>
-            <div class="card-body px-5 py-4">
+            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
                 <div class="row justify-content-center text-center">
-                    <div class="table-responsive w-75">
+                    <div class="table-responsive">
                         <table class="table table-striped text-center align-middle fs-5"
                                data-toggle="table"
                                data-search="true"
