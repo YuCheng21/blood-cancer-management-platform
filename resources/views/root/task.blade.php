@@ -85,7 +85,7 @@
 
                     <div class="col-12">
                         <div class="table-responsive">
-                            <table class="table table-striped text-center align-middle fs-5"
+                            <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
                                    data-toggle="table"
                                    data-locale="zh-TW">
                                 <thead>

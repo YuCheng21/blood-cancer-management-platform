@@ -1,5 +1,5 @@
-$(document).on('click', '.deleteCaseBtn', function () {
-    const deleteUrl = $(this).data('url');
+$(document).on('click', '.deleteCaseBtn', function (e) {
+    const deleteUrl = $(e.currentTarget).data('url');
     $('#deleteCaseForm').attr('action', deleteUrl)
     $('#deleteCaseSend').attr('href', deleteUrl)
 })
