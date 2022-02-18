@@ -123,22 +123,16 @@
     @show
 </footer>
 @section('script')
+    {{--  Active Current Page  --}}
+    <script>const pageTitle = '{{$title}}';</script>
     {{--  Customize Javascript  --}}
     <script src="{{asset('js/pages/base.js')}}"></script>
     {{--  Alert  --}}
-    <script>
-        @if (session('type') && session('msg'))
-        dialog('{{session('type')}}', '{{session('msg')}}')
-        @endif
-    </script>
-    {{--  Active Current Page  --}}
-    <script>
-        $('#navbarToggler > ul a > span').each(function (index, value) {
-            if (value.innerHTML == '{{$title}}') {
-                $(this).addClass('text-active')
-            }
-        })
-    </script>
+    @if (session('type') && session('msg'))
+        <script>
+            dialog('{{session('type')}}', '{{session('msg')}}')
+        </script>
+    @endif
 @show
 
 </body>

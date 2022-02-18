@@ -102,6 +102,7 @@
 @endsection
 
 @section('script')
+    @parent
     {{--  Page Customize Javascript  --}}
     <script src="{{asset('js/pages/root/case.js')}}"></script>
     <script>

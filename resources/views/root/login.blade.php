@@ -73,9 +73,10 @@
 @endsection
 
 @section('script')
-    <script>
-        const url = '{{route('users.login')}}'
-    </script>
+    @parent
+{{--    <script>--}}
+{{--        const url = '{{route('users.login')}}'--}}
+{{--    </script>--}}
     {{--  Page Customize Javascript  --}}
     <script src="{{asset('js/pages/root/login.js')}}"></script>
 @endsection

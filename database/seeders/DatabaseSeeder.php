@@ -13,11 +13,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
         $this->call([
             UserSeeder::class,
-            CaseSeeder::class,
-            BloodSeeder::class,
+
+
+//            GenderSeeder::class,
+//            TransplantTypeSeeder::class,
+//            DiseaseTypeSeeder::class,
+//            DiseaseStateSeeder::class,
+//            DiseaseClassSeeder::class,
+//
+//            CaseSeeder::class,
+
+
+//            BloodComponentsSeeder::class
         ]);
     }
 }

@@ -69,7 +69,7 @@ function dialog(category, message) {
 }
 
 /**
- * loading element
+ * Loading Element
  */
 const markup = `
 <div class="loading">
@@ -85,3 +85,12 @@ const markup = `
 </div>
 `;
 const loading = $(markup);
+
+/**
+ * Activate Current Page NavigationBar Text
+ */
+$('#navbarToggler > ul a > span').each(function (index, value) {
+    if (value.innerHTML === pageTitle) {
+        $(this).addClass('text-active')
+    }
+})

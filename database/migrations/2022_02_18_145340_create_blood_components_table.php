@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBloodInfoTable extends Migration
+class CreateBloodComponentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateBloodInfoTable extends Migration
      */
     public function up()
     {
-        Schema::create('blood_info', function (Blueprint $table) {
+        Schema::create('blood_components', function (Blueprint $table) {
             $table->id();
-            $table->string('account', 100)->comment('個案帳號');
+            $table->unsignedBigInteger('case_id')->comment('個案編號');
             $table->double('wbc', 8, 2)->comment('白血球(WBC)')->nullable();
             $table->double('hb', 8, 2)->comment('血紅素(HB)')->nullable();
             $table->double('plt', 8, 2)->comment('血小板(PLT)')->nullable();
@@ -35,6 +35,6 @@ class CreateBloodInfoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blood_info');
+        Schema::dropIfExists('blood_components');
     }
 }

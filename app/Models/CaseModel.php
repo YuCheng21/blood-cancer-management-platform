@@ -7,22 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class CaseModel extends Model
 {
-    use HasFactory;
-
-
     protected $table = 'cases';
+
+    use HasFactory;
 
     protected $fillable = [
         'account',
         'password',
-        'transplantNum',
+        'transplant_num',
         'name',
-        'gender',
+        'gender_id',
         'birthday',
         'date',
-        'transplantType',
-        'diseaseType',
-        'diseaseState',
-        'diseaseClass',
+        'transplant_type_id',
+        'disease_type_id',
+        'disease_state_id',
+        'disease_class_id',
     ];
 }
