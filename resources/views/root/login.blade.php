@@ -69,6 +69,10 @@
 @endsection
 
 @section('footer')
+
+@endsection
+
+@section('script')
     <script>
         const url = '{{route('users.login')}}'
     </script>

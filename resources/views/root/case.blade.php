@@ -99,6 +99,9 @@
     @include('includes.modal.create.case')
     @include('includes.modal.update.case')
     @include('includes.modal.delete.case')
+@endsection
+
+@section('script')
     {{--  Page Customize Javascript  --}}
     <script src="{{asset('js/pages/root/case.js')}}"></script>
     <script>
