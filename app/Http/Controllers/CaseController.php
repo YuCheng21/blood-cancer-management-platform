@@ -27,6 +27,7 @@ class CaseController extends Controller
     }
 
     public function store(Request $request){
+        // Validated input
         $input = [
             'createCaseAccount' => ['required'],
             'createCasePassword' => ['required'],
@@ -41,7 +42,6 @@ class CaseController extends Controller
             'createCaseDiseaseClass' => ['required'],
         ];
         $validator = Validator::make($request->all(), $input);
-
         if ($validator->fails()) {
             return redirect()
                 ->route('cases.index')
@@ -51,6 +51,7 @@ class CaseController extends Controller
                     'msg' => '表單填寫未完成'
                 ]);
         }
+        // Query database
         $data = [
             'account' => $request->createCaseAccount,
             'password' => $request->createCasePassword,
@@ -66,7 +67,6 @@ class CaseController extends Controller
         ];
         try {
             CaseModel::create($data);
-
             return redirect()
                 ->route('cases.index')
                 ->with([
@@ -75,13 +75,11 @@ class CaseController extends Controller
                 ]);
         } catch (QueryException $exception) {
             $errorInfo = $exception->errorInfo;
-
             if ($errorInfo[0] == 23000) {
                 $message = '帳號重複';
             } else {
                 $message = 'SQLState: ' . $errorInfo[0];
             }
-
             return redirect()
                 ->route('cases.index')
                 ->withInput()
