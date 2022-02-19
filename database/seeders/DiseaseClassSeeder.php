@@ -15,7 +15,7 @@ class DiseaseClassSeeder extends Seeder
     public function run()
     {
         DiseaseClass::create([
-            'name' => '-'
+            'name' => '未選擇'
         ]);
         DiseaseClass::create([
             'name' => 'B-cell'

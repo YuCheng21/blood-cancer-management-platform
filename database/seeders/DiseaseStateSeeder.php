@@ -15,7 +15,7 @@ class DiseaseStateSeeder extends Seeder
     public function run()
     {
         DiseaseState::create([
-            'name' => '-'
+            'name' => '未選擇'
         ]);
         DiseaseState::create([
             'name' => '第一期'

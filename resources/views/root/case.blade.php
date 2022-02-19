@@ -106,10 +106,6 @@
     {{--  Page Customize Javascript  --}}
     <script src="{{asset('js/pages/root/case.js')}}"></script>
     <script>
-        @foreach ($cases as $case)
-        var temp = '{{$case->gender}}{{$case->gender}}{{$case->transplant_type}}{{$case->disease_type}}{{$case->disease_state}}{{$case->disease_class}}'
-        @endforeach
-
         const cases = @json($cases);
     </script>
 @endsection

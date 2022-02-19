@@ -24,19 +24,16 @@ class UserController extends Controller
 
     function login(Request $request)
     {
-        $input = [
+        $rules = [
             'account' => ['required'],
             'password' => ['required'],
         ];
-        $rules = [
-            'required' => ':attribute 欄位為必填欄位。',
-        ];
-        $messages = [
+        $customAttributes = [
             'account' => '帳號',
             'password' => '密碼',
         ];
         // validate input data
-        $validator = Validator::make($request->all(), $input, $rules, $messages)->validated();
+        $validator = Validator::make($request->all(), $rules, [], $customAttributes)->validated();
 
         // login successes
         if (Auth::attempt($validator)) {

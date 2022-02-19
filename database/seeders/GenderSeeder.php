@@ -15,7 +15,7 @@ class GenderSeeder extends Seeder
     public function run()
     {
         Gender::create([
-            'name' => '-'
+            'name' => '未選擇'
         ]);
         Gender::create([
             'name' => '男性'

@@ -17,8 +17,13 @@ class CaseController extends Controller
 {
     public function index(){
         $cases = CaseModel::all();
-        $today = Carbon::now();
+        $genders = Gender::all();
+        $transplant_types = TransplantType::all();
+        $disease_types = DiseaseType::all();
+        $disease_states = DiseaseState::all();
+        $disease_classes = DiseaseClass::all();
 
+        $today = Carbon::now();
         $title = '個案管理';
         return response(
             view('root.case', get_defined_vars()),
@@ -28,20 +33,20 @@ class CaseController extends Controller
 
     public function store(Request $request){
         // Validated input
-        $input = [
+        $rules = [
             'createCaseAccount' => ['required'],
             'createCasePassword' => ['required'],
             'createCaseTransplantNum' => ['required'],
             'createCaseName' => ['required'],
-            'createCaseGender' => ['required', 'in:男性,女性'],
+            'createCaseGender' => ['required', 'numeric', 'gt:1'],
             'createCaseBirth' => ['required'],
             'createCaseDate' => ['required'],
-            'createCaseTransplantType' => ['required', 'in:自體移植,異體移植'],
-            'createCaseDiseaseType' => ['required', 'in:AML,ALL,MM,何杰金氏淋巴癌,非何杰金氏淋巴癌'],
+            'createCaseTransplantType' => ['required', 'numeric', 'gt:1'],
+            'createCaseDiseaseType' => ['required', 'numeric', 'gt:1'],
             'createCaseDiseaseState' => ['required'],
             'createCaseDiseaseClass' => ['required'],
         ];
-        $validator = Validator::make($request->all(), $input);
+        $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return redirect()
                 ->route('cases.index')
@@ -57,13 +62,13 @@ class CaseController extends Controller
             'password' => $request->createCasePassword,
             'transplant_num' => $request->createCaseTransplantNum,
             'name' => $request->createCaseName,
-            'gender_id' => Gender::where('name', $request->createCaseGender)->first()->id,
+            'gender_id' => $request->createCaseGender,
             'birthday' => $request->createCaseBirth,
             'date' => $request->createCaseDate,
-            'transplant_type_id' => TransplantType::where('name', $request->createCaseTransplantType)->first()->id,
-            'disease_type_id' => DiseaseType::where('name', $request->createCaseDiseaseType)->first()->id,
-            'disease_state_id' => DiseaseState::where('name', $request->createCaseDiseaseState)->first()->id,
-            'disease_class_id' => DiseaseClass::where('name', $request->createCaseDiseaseClass)->first()->id,
+            'transplant_type_id' => $request->createCaseTransplantType,
+            'disease_type_id' => $request->createCaseDiseaseType,
+            'disease_state_id' => $request->createCaseDiseaseState,
+            'disease_class_id' => $request->createCaseDiseaseClass,
         ];
         try {
             CaseModel::create($data);
@@ -100,19 +105,19 @@ class CaseController extends Controller
 
     public function update(Request $request, $account){
         // Validated input
-        $input = [
+        $rules = [
             'updateCasePassword' => ['required'],
             'updateCaseTransplantNum' => ['required'],
             'updateCaseName' => ['required'],
-            'updateCaseGender' => ['required', 'in:男性,女性'],
+            'updateCaseGender' => ['required', 'numeric', 'gt:1'],
             'updateCaseBirth' => ['required'],
             'updateCaseDate' => ['required'],
-            'updateCaseTransplantType' => ['required', 'in:自體移植,異體移植'],
-            'updateCaseDiseaseType' => ['required', 'in:AML,ALL,MM,何杰金氏淋巴癌,非何杰金氏淋巴癌'],
+            'updateCaseTransplantType' => ['required', 'numeric', 'gt:1'],
+            'updateCaseDiseaseType' => ['required', 'numeric', 'gt:1'],
             'updateCaseDiseaseState' => ['required'],
             'updateCaseDiseaseClass' => ['required'],
         ];
-        $validator = Validator::make($request->all(), $input);
+        $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return redirect()
                 ->route('cases.index')
@@ -135,13 +140,13 @@ class CaseController extends Controller
             'password' => $request->updateCasePassword,
             'transplant_num' => $request->updateCaseTransplantNum,
             'name' => $request->updateCaseName,
-            'gender_id' => Gender::where('name', $request->updateCaseGender)->first()->id,
+            'gender_id' => $request->updateCaseGender,
             'birthday' => $request->updateCaseBirth,
             'date' => $request->updateCaseDate,
-            'transplant_type_id' => TransplantType::where('name', $request->updateCaseTransplantType)->first()->id,
-            'disease_type_id' => DiseaseType::where('name', $request->updateCaseDiseaseType)->first()->id,
-            'disease_state_id' => DiseaseState::where('name', $request->updateCaseDiseaseState)->first()->id,
-            'disease_class_id' => DiseaseClass::where('name', $request->updateCaseDiseaseClass)->first()->id,
+            'transplant_type_id' => $request->updateCaseTransplantType,
+            'disease_type_id' => $request->updateCaseDiseaseType,
+            'disease_state_id' => $request->updateCaseDiseaseState,
+            'disease_class_id' => $request->updateCaseDiseaseClass,
         ];
         $case->update($data);
         return redirect()

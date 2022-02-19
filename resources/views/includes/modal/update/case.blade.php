@@ -37,9 +37,11 @@
                             <div class="input-group mb-2">
                                 <label for="updateCaseGender" class="input-group-text">性別</label>
                                 <select name="updateCaseGender" id="updateCaseGender" class="form-select">
-                                    <option value="-" selected>請選擇個案性別</option>
-                                    <option value="男性">男性</option>
-                                    <option value="女性">女性</option>
+                                    @foreach($genders as $gender)
+                                        <option value="{{$gender->id}}">
+                                            {{$gender->name}}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="input-group mb-2">
@@ -54,44 +56,44 @@
                                 <label for="updateCaseTransplantType" class="input-group-text">移植種類</label>
                                 <select name="updateCaseTransplantType" id="updateCaseTransplantType"
                                         class="form-select">
-                                    <option value="-" selected>請選擇移植種類</option>
-                                    <option value="自體移植">自體移植</option>
-                                    <option value="異體移植">異體移植</option>
+                                    @foreach($transplant_types as $transplant_type)
+                                        <option value="{{$transplant_type->id}}">
+                                            {{$transplant_type->name}}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="input-group mb-2">
                                 <label for="updateCaseDiseaseType" class="input-group-text">疾病種類</label>
                                 <select name="updateCaseDiseaseType" id="updateCaseDiseaseType"
                                         class="form-select form-select">
-                                    <option value="-" selected>請選擇疾病種類</option>
-                                    <option value="AML">AML</option>
-                                    <option value="ALL">ALL</option>
-                                    <option value="MM">MM</option>
-                                    <option value="何杰金氏淋巴癌">何杰金氏淋巴癌</option>
-                                    <option value="非何杰金氏淋巴癌">非何杰金氏淋巴癌</option>
+                                    @foreach($disease_types as $disease_type)
+                                        <option value="{{$disease_type->id}}">
+                                            {{$disease_type->name}}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="input-group mb-2">
                                 <label for="updateCaseDiseaseState" class="input-group-text">疾病分期</label>
                                 <select name="updateCaseDiseaseState" id="updateCaseDiseaseState"
                                         class="form-select form-select">
-                                    <option value="-" selected>無</option>
-                                    <option value="第一期">第一期</option>
-                                    <option value="第二期">第二期</option>
-                                    <option value="第三期">第三期</option>
-                                    <option value="第四期">第四期</option>
+                                    @foreach($disease_states as $disease_state)
+                                        <option value="{{$disease_state->id}}">
+                                            {{$disease_state->name}}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="input-group mb-2">
                                 <label for="updateCaseDiseaseClass" class="input-group-text">疾病分類</label>
                                 <select name="updateCaseDiseaseClass" id="updateCaseDiseaseClass"
                                         class="form-select form-select">
-                                    <option value="-" selected>無</option>
-                                    <option value="B-cell">B-cell</option>
-                                    <option value="T-cell">T-cell</option>
-                                    <option value="Mantle-cell">Mantle-cell</option>
-                                    <option value="邊緣 B-cell">邊緣 B-cell</option>
-                                    <option value="其他型">其他型</option>
+                                    @foreach($disease_classes as $disease_class)
+                                        <option value="{{$disease_class->id}}">
+                                            {{$disease_class->name}}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
