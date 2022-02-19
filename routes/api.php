@@ -20,30 +20,36 @@ use Illuminate\Support\Facades\Validator;
 //    return $request->user();
 //});
 
-Route::post('/login', function (Request $request){
-    $input = [
-        'account' => ['required'],
-        'password' => ['required'],
-    ];
-    $validator = Validator::make($request->all(), $input);
+Route::middleware('member.auth')->group(function () {
+    Route::get('/test', function (Request $request) {
+        $cases = CaseModel::where('account', $request->account)->first();
+        if (is_null($cases)) {
+            $result = [
+                'msg' => 'Account error',
+            ];
+            return response(json_encode($result, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE), 400)
+                ->header('Content-Type', 'application/json');
+        }
+        $result = [
+            'account' => $cases->account,
+            'name' => $cases->name,
+            'text' => $request->text . ' world.'
+        ];
+        return response(json_encode($result, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE), 200)
+            ->header('Content-Type', 'application/json');
+    });
 
-    if ($validator->fails()) {
-        return response(
-            json_encode([], JSON_FORCE_OBJECT),
-            401
-        );
-    }
+    Route::post('/demo', function (Request $request) {
+        $input = [
+            'account' => ['required'],
+            'data1' => ['required'],
+            'data2' => ['required'],
+        ];
+        $validator = Validator::make($request->all(), $input);
+        if ($validator->fails()) {
+            return response(json_encode([], JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE), 404);
+        }
 
-    $case = CaseModel::where('account', $request->account)->first();
-    if (is_null($case)){
-        return response(
-            json_encode([], JSON_FORCE_OBJECT),
-            401
-        );
-    }
-
-    return response(
-        json_encode($case, JSON_FORCE_OBJECT|JSON_UNESCAPED_UNICODE),
-        200
-    );
+        return response(json_encode($validator->validate(), JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE), 200);
+    });
 });
