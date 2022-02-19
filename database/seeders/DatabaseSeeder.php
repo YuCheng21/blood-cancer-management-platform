@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             CaseSeeder::class,
 
 
-//            BloodComponentsSeeder::class
+            BloodComponentsSeeder::class
         ]);
     }
 }

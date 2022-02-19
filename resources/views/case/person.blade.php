@@ -26,47 +26,51 @@
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">帳號</span>
                         <hr class="my-1">
-                        <span>個案帳號 {{$account}}</span>
+                        <span>{{$case->account}}</span>
                     </div>
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">密碼</span>
                         <hr class="my-1">
-                        <span>個案密碼</span>
+                        <span>{{$case->password}}</span>
                     </div>
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">移植編號</span>
                         <hr class="my-1">
-                        <span>個案移植編號</span>
+                        <span>{{$case->transplant_num}}</span>
                     </div>
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">姓名</span>
                         <hr class="my-1">
-                        <span>個案姓名</span>
+                        <span>{{$case->name}}</span>
                     </div>
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">性別</span>
                         <hr class="my-1">
-                        <span>個案性別</span>
+                        <span>{{$case->gender->name}}</span>
                     </div>
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">生日</span>
                         <hr class="my-1">
-                        <span>個案生日</span>
+                        <span>{{$case->birthday}}</span>
                     </div>
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">移植日期</span>
                         <hr class="my-1">
-                        <span>個案移植日期</span>
+                        <span>{{$case->date}}</span>
                     </div>
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">移植種類</span>
                         <hr class="my-1">
-                        <span>個案移植種類</span>
+                        <span>{{$case->transplant_type->name}}</span>
                     </div>
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">疾病種類</span>
                         <hr class="my-1">
-                        <span>個案疾病種類</span>
+                        <span>
+                            {{$case->disease_type->name}}
+                            {{$case->disease_state_id == 1 ? '' : '- '.$case->disease_state->name}}
+                            {{$case->disease_class_id == 1 ? '' : '- '.$case->disease_class->name}}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -406,5 +410,7 @@
     @include('includes.modal.delete.medicine_record')
     {{--  Page Customize Javascript  --}}
     <script src="{{asset('js/pages/case/person.js')}}"></script>
-
+    <script>
+        const blood_components = @json($blood_components);
+    </script>
 @endsection

@@ -44,4 +44,8 @@ class CaseModel extends Model
     public function disease_class(){
         return $this->belongsTo(DiseaseClass::class);
     }
+
+    public function blood_components(){
+        return $this->hasMany(BloodComponent::class, 'case_id', 'id');
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BloodComponent;
 use App\Models\CaseModel;
 use App\Models\DiseaseClass;
 use App\Models\DiseaseState;
@@ -96,6 +97,15 @@ class CaseController extends Controller
     }
 
     public function show($account){
+        $case = CaseModel::where('account', $account)->first();
+        $genders = Gender::all();
+        $transplant_types = TransplantType::all();
+        $disease_types = DiseaseType::all();
+        $disease_states = DiseaseState::all();
+        $disease_classes = DiseaseClass::all();
+
+        $blood_components = $case->blood_components;
+
         $title = '個人資料';
         return response(
             view('case.person', get_defined_vars()),

@@ -11,7 +11,6 @@ require('../../node_modules/chartjs-adapter-date-fns/dist/chartjs-adapter-date-f
 window.charts = require('../../node_modules/@fancyapps/ui/dist/fancybox.umd')
 window.zoomPlugin = require('../../node_modules/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.min')
 window.Hammer = require('../../node_modules/hammerjs/hammer.min')
-Chart.register(zoomPlugin);
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

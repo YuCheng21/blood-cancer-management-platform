@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\BloodComponent;
+use Illuminate\Support\Facades\DB;
 
 class BloodComponentsSeeder extends Seeder
 {
@@ -14,16 +15,89 @@ class BloodComponentsSeeder extends Seeder
      */
     public function run()
     {
-        BloodComponent::create([
+        DB::table('blood_components')->insert([
             'case_id' => '1',
-            'wbc' => 999,
-            'hb' => 999,
-            'plt' => 999,
-            'got' => 999,
-            'gpt' => 999,
-            'cea' => 999,
-            'ca153' => 999,
-            'bun' => 999,
+            'wbc' => rand(0, 999),
+            'hb' => rand(0, 999),
+            'plt' => rand(0, 999),
+            'got' => rand(0, 999),
+            'gpt' => rand(0, 999),
+            'cea' => rand(0, 999),
+            'ca153' => rand(0, 999),
+            'bun' => rand(0, 999),
+            'created_at' => '2022-02-1 00:00:00'
+        ]);
+        DB::table('blood_components')->insert([
+            'case_id' => '1',
+            'wbc' => rand(0, 999),
+            'hb' => rand(0, 999),
+            'plt' => rand(0, 999),
+            'got' => rand(0, 999),
+            'gpt' => rand(0, 999),
+            'cea' => rand(0, 999),
+            'ca153' => rand(0, 999),
+            'bun' => rand(0, 999),
+            'created_at' => '2022-02-2 00:00:00'
+        ]);
+        DB::table('blood_components')->insert([
+            'case_id' => '1',
+            'wbc' => rand(0, 999),
+            'hb' => rand(0, 999),
+            'plt' => rand(0, 999),
+            'got' => rand(0, 999),
+            'gpt' => rand(0, 999),
+            'cea' => rand(0, 999),
+            'ca153' => rand(0, 999),
+            'bun' => rand(0, 999),
+            'created_at' => '2022-02-3 00:00:00'
+        ]);
+        DB::table('blood_components')->insert([
+            'case_id' => '1',
+            'wbc' => rand(0, 999),
+            'hb' => rand(0, 999),
+            'plt' => rand(0, 999),
+            'got' => rand(0, 999),
+            'gpt' => rand(0, 999),
+            'cea' => rand(0, 999),
+            'ca153' => rand(0, 999),
+            'bun' => rand(0, 999),
+            'created_at' => '2022-02-4 00:00:00'
+        ]);
+        DB::table('blood_components')->insert([
+            'case_id' => '1',
+            'wbc' => rand(0, 999),
+            'hb' => rand(0, 999),
+            'plt' => rand(0, 999),
+            'got' => rand(0, 999),
+            'gpt' => rand(0, 999),
+            'cea' => rand(0, 999),
+            'ca153' => rand(0, 999),
+            'bun' => rand(0, 999),
+            'created_at' => '2022-02-5 00:00:00'
+        ]);
+        DB::table('blood_components')->insert([
+            'case_id' => '1',
+            'wbc' => rand(0, 999),
+            'hb' => rand(0, 999),
+            'plt' => rand(0, 999),
+            'got' => rand(0, 999),
+            'gpt' => rand(0, 999),
+            'cea' => rand(0, 999),
+            'ca153' => rand(0, 999),
+            'bun' => rand(0, 999),
+            'created_at' => '2022-02-6 00:00:00'
+        ]);
+        DB::table('blood_components')->insert([
+            'case_id' => '1',
+            'wbc' => rand(0, 999),
+            'hb' => rand(0, 999),
+            'plt' => rand(0, 999),
+            'got' => rand(0, 999),
+            'gpt' => rand(0, 999),
+            'cea' => rand(0, 999),
+            'ca153' => rand(0, 999),
+            'bun' => rand(0, 999),
+            'created_at' => '2022-02-7 00:00:00'
         ]);
     }
 }
