@@ -408,9 +408,15 @@
     @include('includes.modal.create.medicine_record')
     @include('includes.modal.update.medicine_record')
     @include('includes.modal.delete.medicine_record')
+@endsection
+
+@section('script')
+    @parent
     {{--  Page Customize Javascript  --}}
     <script src="{{asset('js/pages/case/person.js')}}"></script>
     <script>
+        const cases = @json($case);
+        const updateUrl = '{{route('cases.update', ['account' => $case->account])}}';
         const blood_components = @json($blood_components);
     </script>
 @endsection
