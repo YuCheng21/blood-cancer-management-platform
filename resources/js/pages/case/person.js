@@ -2,8 +2,11 @@ $(document).ready(function () {
     // console.log('ready')
 
     /**
-    Chart.js Tips
-    https://www.chartjs.org/docs/latest/axes/cartesian/
+     * Chart.js
+     * https://www.chartjs.org/docs/latest/axes/cartesian/
+     *
+     * Chartjs Plugin Zoom
+     * https://www.chartjs.org/chartjs-plugin-zoom/latest/guide/options.html
     */
     // 折線圖資料設定
     const lineData = {
@@ -195,6 +198,8 @@ $(document).ready(function () {
 
     // 折線圖屬性設定
     const lineOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
         elements: {
             line: {
                 borderWidth: 3
@@ -202,6 +207,42 @@ $(document).ready(function () {
         },
         // 額外項目
         plugins: {
+            zoom: {
+                zoom: {
+                    wheel: {
+                        // Options of the mouse wheel behavior
+                        enabled: true,
+                    },
+                    // drag: {
+                    //     enabled: true,
+                    //     backgroundColor: `${theme.primary}10`,
+                    //     borderColor: `${theme.primary}`,
+                    //     borderWidth: 1,
+                    //     modifierKey: 'ctrl',
+                    // },
+                    pinch: {
+                        // Options of the pinch behavior
+                        enabled: true
+                    },
+                    mode: 'xy',
+                    // overScaleMode: 'xy',
+                },
+                pan:{
+                    enabled: true,
+                    mode: 'xy',
+                    // overScaleMode: 'xy',
+                },
+                // limits: {
+                //     y: {
+                //         min: 0,
+                //         max: 100,
+                //     },
+                //     x: {
+                //         min: 0,
+                //         max: 100,
+                //     }
+                // }
+            },
             // 圖例
             legend: {
                 // 顯示標籤

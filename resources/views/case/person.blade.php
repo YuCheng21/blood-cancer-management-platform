@@ -21,7 +21,7 @@
                     <span>編輯資料</span>
                 </button>
             </div>
-            <div class="card-body px-5 py-4">
+            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
                 <div class="row justify-content-between text-center gy-4 fs-5">
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">帳號</span>
@@ -78,8 +78,8 @@
                     <span>抽血數據</span>
                 </h2>
             </div>
-            <div class="card-body px-5 py-4">
-                <canvas id="bloodChart"></canvas>
+            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
+                <canvas id="bloodChart" style="min-height: 500px;"></canvas>
                 {{--                <div class="row justify-content-center">--}}
                 {{--                    <div class="col-12">--}}
                 {{--                        --}}
@@ -99,7 +99,7 @@
                     <span>編輯資料</span>
                 </button>
             </div>
-            <div class="card-body px-5 py-4">
+            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
                         <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
@@ -190,7 +190,7 @@
                     <span>新增資料</span>
                 </button>
             </div>
-            <div class="card-body px-5 py-4">
+            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
                         <table class="table table-striped text-center align-middle fs-5"
@@ -253,7 +253,7 @@
                     <span>副作用紀錄</span>
                 </h2>
             </div>
-            <div class="card-body px-5 py-4">
+            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
                         <table class="table table-striped text-center align-middle fs-5"
@@ -300,7 +300,7 @@
                     <span>報告個管師紀錄</span>
                 </h2>
             </div>
-            <div class="card-body px-5 py-4">
+            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
                         <table class="table table-striped text-center align-middle fs-5"
@@ -348,7 +348,7 @@
                     <span>症狀影像紀錄</span>
                 </h2>
             </div>
-            <div class="card-body px-5 py-4">
+            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
                 <div class="d-flex flex-row flex-nowrap overflow-scroll">
                     <div class="d-flex flex-column align-items-center">
                         <a data-fancybox="gallery" class="text-center"

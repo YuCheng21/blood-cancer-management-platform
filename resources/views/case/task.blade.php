@@ -11,7 +11,7 @@
                     <span>修改個案任務</span>
                 </h2>
             </div>
-            <div class="card-body px-5 py-4">
+            <div class="card-body px-2 px-lg-4 p-xl-5 py-4">
                 <div class="table-responsive">
                     <table class="table table-striped text-center align-middle fs-5"
                            data-toggle="table"

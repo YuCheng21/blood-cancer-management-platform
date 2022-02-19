@@ -7,8 +7,11 @@ require('../../node_modules/bootstrap-table/dist/locale/bootstrap-table-zh-TW.mi
 window.Swal = require('../../node_modules/sweetalert2/dist/sweetalert2.all.min');
 window.axios  = require('../../node_modules/axios/dist/axios.min');
 window.Chart = require('../../node_modules/chart.js/dist/chart.min');
-// require('../../node_modules/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min');
+require('../../node_modules/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min');
 window.charts = require('../../node_modules/@fancyapps/ui/dist/fancybox.umd')
+window.zoomPlugin = require('../../node_modules/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.min')
+window.Hammer = require('../../node_modules/hammerjs/hammer.min')
+Chart.register(zoomPlugin);
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
