@@ -180,20 +180,22 @@
             </div>
         </div>
         <div class="card border hv-shadow mb-4">
-            <div class="card-header justify-content-between d-inline-flex align-items-center">
+            <div class="card-header justify-content-between d-sm-inline-flex align-items-center">
                 <h2 class="my-2">
                     <span class="iconify-inline" data-icon="fontisto:drug-pack"></span>
                     <span>施打藥物紀錄及劑量</span>
                 </h2>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createMedicineRecordModal">
-                    <span class="iconify-inline" data-icon="carbon:add-filled"></span>
-                    <span>新增資料</span>
-                </button>
+                <div class="d-flex flex-column flex-sm-row">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createMedicineRecordModal">
+                        <span class="iconify-inline" data-icon="carbon:add-filled"></span>
+                        <span>新增資料</span>
+                    </button>
+                </div>
             </div>
             <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
-                        <table class="table table-striped text-center align-middle fs-5"
+                        <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
                                data-toggle="table"
                                data-search="true"
                                data-pagination="true"
@@ -256,7 +258,7 @@
             <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
-                        <table class="table table-striped text-center align-middle fs-5"
+                        <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
                                data-toggle="table"
                                data-search="true"
                                data-pagination="true"
@@ -303,7 +305,7 @@
             <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
-                        <table class="table table-striped text-center align-middle fs-5"
+                        <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
                                data-toggle="table"
                                data-search="true"
                                data-pagination="true"
