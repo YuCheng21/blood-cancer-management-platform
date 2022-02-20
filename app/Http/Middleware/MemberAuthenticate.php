@@ -48,7 +48,7 @@ class MemberAuthenticate
                 ->header('Content-Type', 'application/json');
         }
 
-        $request->attributes->add(['account' => $account]);
+        $request->attributes->add(['$auth_account' => $account]);
         return $next($request);
     }
 }
