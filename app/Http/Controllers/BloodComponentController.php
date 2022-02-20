@@ -80,8 +80,14 @@ class BloodComponentController extends Controller
         if (is_null($blood_component)) {
             return;
         }
-        $blood_component->update($request);
-        return 'success';
+        try {
+            $data = $request->toArray();
+            unset($data['_method']);
+            $blood_component->update($data);
+            return 'success';
+        }catch (QueryException $queryException){
+            return;
+        }
     }
 
     /**
