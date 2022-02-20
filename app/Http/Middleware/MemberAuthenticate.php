@@ -47,6 +47,8 @@ class MemberAuthenticate
             return response(json_encode($result, JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE), 400)
                 ->header('Content-Type', 'application/json');
         }
+
+        $request->attributes->add(['account' => $account]);
         return $next($request);
     }
 }
