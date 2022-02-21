@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // FakerPHP => https://fakerphp.github.io/formatters/numbers-and-strings/
         $this->call([
             UserSeeder::class,
 
@@ -26,7 +27,9 @@ class DatabaseSeeder extends Seeder
             CaseSeeder::class,
 
 
-            BloodComponentsSeeder::class
+            BloodComponentsSeeder::class,
+
+            TaskSeeder::class,
         ]);
     }
 }
