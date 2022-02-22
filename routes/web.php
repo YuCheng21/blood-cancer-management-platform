@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\CaseController;
+use App\Http\Controllers\CaseModelController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\FaqController;
@@ -26,7 +26,7 @@ Route::name('users.')->controller(UserController::class)->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::name('cases.')->controller(CaseController::class)->group(function () {
+    Route::name('cases.')->controller(CaseModelController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::prefix('cases')->group(function () {
             Route::post('/', 'store')->name('store');

@@ -5,20 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
     function show()
     {
         if (Auth::check()) {
-            return redirect()
-                ->intended(route('cases.index'));
+            return redirect()->intended(route('cases.index'));
         }
 
         $title = '登入';
         return response(
             view('root.login', get_defined_vars()),
-            200
+            Response::HTTP_OK
         );
     }
 

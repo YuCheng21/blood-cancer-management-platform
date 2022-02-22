@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BloodComponent;
 use App\Models\CaseModel;
 use App\Models\DiseaseClass;
 use App\Models\DiseaseState;
@@ -13,8 +12,9 @@ use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
-class CaseController extends Controller
+class CaseModelController extends Controller
 {
     public function index(){
         $cases = CaseModel::all();
@@ -28,7 +28,7 @@ class CaseController extends Controller
         $title = '個案管理';
         return response(
             view('root.case', get_defined_vars()),
-            200
+            Response::HTTP_OK
         );
     }
 
@@ -109,7 +109,7 @@ class CaseController extends Controller
         $title = '個人資料';
         return response(
             view('case.person', get_defined_vars()),
-            200
+            Response::HTTP_OK
         );
     }
 
@@ -185,7 +185,7 @@ class CaseController extends Controller
         $title = '修改個案任務';
         return response(
             view('case.task', get_defined_vars()),
-            200
+            Response::HTTP_OK
         );
     }
 }

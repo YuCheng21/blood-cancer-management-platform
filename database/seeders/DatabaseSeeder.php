@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             DiseaseStateSeeder::class,
             DiseaseClassSeeder::class,
 
-            CaseSeeder::class,
+            CaseModelSeeder::class,
 
 
             BloodComponentsSeeder::class,

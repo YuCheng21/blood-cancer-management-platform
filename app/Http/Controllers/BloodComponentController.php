@@ -7,6 +7,7 @@ use App\Models\CaseModel;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class BloodComponentController extends Controller
 {
@@ -36,8 +37,9 @@ class BloodComponentController extends Controller
         $case_id = CaseModel::where('account', $auth_account)->first()->toArray()['id'];
         $result = ['case_id' => $case_id] + $validator->validate();
         try {
-            \App\Models\BloodComponent::create($result);
-            return 'success';
+            $blood_component = BloodComponent::create($result);
+            $blood_component = $blood_component->refresh();
+            return response(['data' => $blood_component], Response::HTTP_CREATED);
         } catch (QueryException $exception) {
             return;
         }
@@ -54,11 +56,7 @@ class BloodComponentController extends Controller
         $auth_account = $request->get('$auth_account');
         $case = CaseModel::where('account', $auth_account)->first();
         $blood_components = $case->blood_components;
-        return response(json_encode(
-            $blood_components,
-            JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE
-        ), 200)
-            ->header('Content-Type', 'application/json');
+        return response(['data' => $blood_components], Response::HTTP_OK);
     }
 
     /**
@@ -84,7 +82,7 @@ class BloodComponentController extends Controller
             $data = $request->toArray();
             unset($data['_method']);
             $blood_component->update($data);
-            return 'success';
+            return response(['data' => $blood_component], Response::HTTP_OK);
         }catch (QueryException $queryException){
             return;
         }
@@ -108,7 +106,7 @@ class BloodComponentController extends Controller
             return;
         }
         $blood_component->delete();
-        return 'success';
+        return response(['data' => null], Response::HTTP_NO_CONTENT);
 
     }
 }
