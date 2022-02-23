@@ -14,10 +14,6 @@ class CaseModelSeeder extends Seeder
      */
     public function run()
     {
-        CaseModel::factory()
-            ->count(5)
-            ->create();
-
         CaseModel::create([
             'account' => 'user1',
             'password' => 'password',
@@ -44,6 +40,8 @@ class CaseModelSeeder extends Seeder
             'disease_state_id' => 1,
             'disease_class_id' => 1,
         ]);
-
+        CaseModel::factory()
+            ->count(5)
+            ->create();
     }
 }

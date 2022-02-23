@@ -14,7 +14,7 @@ class AddForeignToBloodComponents extends Migration
     public function up()
     {
         Schema::table('blood_components', function (Blueprint $table) {
-            $table->foreign('case_id')->references('id')->on('cases');
+            $table->foreign('case_id')->references('id')->on('cases')->onDelete('cascade');
         });
     }
 
