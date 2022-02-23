@@ -25,9 +25,10 @@ use App\Http\Controllers\BloodComponentController;
 Route::middleware('member.auth')->group(function () {
     Route::prefix('blood-components')->controller(BloodComponentController::class)->group(function (){
         Route::post('/', 'store');
-        Route::get('/{bloodComponent}', 'show');
-        Route::patch('/{bloodComponent}', 'update');
-        Route::delete('/{bloodComponent}', 'destroy');
+//        Route::get('/{bloodComponent}', 'show');
+        Route::patch('/{blood_component_id}', 'update');
+        Route::delete('/{blood_component_id}', 'destroy');
+        Route::get('/account/{account}', 'account');
     });
 
 });

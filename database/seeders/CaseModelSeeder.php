@@ -20,7 +20,7 @@ class CaseModelSeeder extends Seeder
 
         CaseModel::create([
             'account' => 'user1',
-            'password' => 'password1',
+            'password' => 'password',
             'transplant_num' => 'N0001',
             'name' => '王小明1',
             'gender_id' => 2,
@@ -33,7 +33,7 @@ class CaseModelSeeder extends Seeder
         ]);
         CaseModel::create([
             'account' => 'user2',
-            'password' => 'password2',
+            'password' => 'password',
             'transplant_num' => 'N0002',
             'name' => '王小明2',
             'gender_id' => 2,

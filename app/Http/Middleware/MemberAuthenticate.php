@@ -21,7 +21,7 @@ class MemberAuthenticate
     {
         $basicAuth = $request->header('Authorization');
         if (is_null($basicAuth)) {
-            if (!Auth::check()){
+            if (Auth::check()){
                 return $next($request);
             }
             return response(['message' => 'Unauthenticated'], Response::HTTP_UNAUTHORIZED);
