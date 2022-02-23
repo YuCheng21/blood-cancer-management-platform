@@ -19,6 +19,7 @@ class BloodComponentController extends Controller
     public function store(Request $request)
     {
         $auth_account = $request->get('$auth_account');
+        $case_id = CaseModel::where('account', $auth_account)->first()->toArray()['id'];
         $rules = [
             'wbc' => ['required'],
             'hb' => ['required'],
@@ -30,7 +31,6 @@ class BloodComponentController extends Controller
             'bun' => ['required'],
         ];
         $validator = Validator::make($request->all(), $rules);
-        $case_id = CaseModel::where('account', $auth_account)->first()->toArray()['id'];
         $result = ['case_id' => $case_id] + $validator->validate();
         $blood_component = BloodComponent::create($result);
         $blood_component = $blood_component->refresh();
@@ -43,12 +43,14 @@ class BloodComponentController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $account)
+    public function show(Request $request, BloodComponent $bloodComponent)
     {
-        $auth_account = $request->get('$auth_account');
-        $case = CaseModel::where('account', $auth_account)->first();
-        $blood_components = $case->blood_components;
-        return response(['data' => $blood_components], Response::HTTP_OK);
+//        $auth_account = $request->get('$auth_account');
+//        $case = CaseModel::where('account', $auth_account)->first();
+//        $blood_components = $case->blood_components;
+//        return response(['data' => $blood_components], Response::HTTP_OK);
+
+        return response(['data' => $bloodComponent], Response::HTTP_OK);
     }
 
     /**
@@ -58,28 +60,31 @@ class BloodComponentController extends Controller
      * @param int $id
      * @return string
      */
-    public function update(Request $request, $blood_component_id)
+    public function update(Request $request, BloodComponent $bloodComponent)
     {
-        $auth_account = $request->get('$auth_account');
-        $case_id = CaseModel::where('account', $auth_account)->first()->toArray()['id'];
-        $blood_component = BloodComponent::where([
-            'id' => $blood_component_id,
-            'case_id' => $case_id
-        ])->first();
-        $rules = [
-            'wbc' => ['required'],
-            'hb' => ['required'],
-            'plt' => ['required'],
-            'got' => ['required'],
-            'gpt' => ['required'],
-            'cea' => ['required'],
-            'ca153' => ['required'],
-            'bun' => ['required'],
-        ];
-        $validator = Validator::make($request->all(), $rules);
-        $blood_component->update($validator->validate());
-        $blood_component = $blood_component->refresh();
-        return response(['data' => $blood_component], Response::HTTP_OK);
+//        $case_id = CaseModel::where('account', $request->get('$auth_account'))->first()->toArray()['id'];
+//        $blood_component = BloodComponent::where([
+//            'id' => $blood_component_id,
+//            'case_id' => $case_id
+//        ])->first();
+//        $rules = [
+//            'wbc' => ['required'],
+//            'hb' => ['required'],
+//            'plt' => ['required'],
+//            'got' => ['required'],
+//            'gpt' => ['required'],
+//            'cea' => ['required'],
+//            'ca153' => ['required'],
+//            'bun' => ['required'],
+//        ];
+//        $validator = Validator::make($request->all(), $rules);
+//        $blood_component->update($validator->validate());
+//        $blood_component = $blood_component->refresh();
+//        return response(['data' => $blood_component], Response::HTTP_OK);
+
+        $bloodComponent->update($request->all());
+        $bloodComponent->refresh();
+        return response(['data' => $bloodComponent], Response::HTTP_OK);
     }
 
     /**
@@ -88,15 +93,16 @@ class BloodComponentController extends Controller
      * @param int $id
      * @return string
      */
-    public function destroy(Request $request, $blood_component_id)
+    public function destroy(Request $request, BloodComponent $bloodComponent)
     {
-        $auth_account = $request->get('$auth_account');
-        $case_id = CaseModel::where('account', $auth_account)->first()->toArray()['id'];
-        $blood_component = BloodComponent::where([
-            'id' => $blood_component_id,
-            'case_id' => $case_id
-        ])->first();
-        $blood_component->delete();
+//        $auth_account = $request->get('$auth_account');
+//        $case_id = CaseModel::where('account', $auth_account)->first()->toArray()['id'];
+//        $blood_component = BloodComponent::where([
+//            'id' => $blood_component_id,
+//            'case_id' => $case_id
+//        ])->first();
+
+        $bloodComponent->delete();
         return response(null, Response::HTTP_NO_CONTENT);
     }
 }
