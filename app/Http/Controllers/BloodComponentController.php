@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\BloodComponent;
 use App\Models\CaseModel;
-use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,18 +30,11 @@ class BloodComponentController extends Controller
             'bun' => ['required'],
         ];
         $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            return;
-        }
         $case_id = CaseModel::where('account', $auth_account)->first()->toArray()['id'];
         $result = ['case_id' => $case_id] + $validator->validate();
-        try {
-            $blood_component = BloodComponent::create($result);
-            $blood_component = $blood_component->refresh();
-            return response(['data' => $blood_component], Response::HTTP_CREATED);
-        } catch (QueryException $exception) {
-            return;
-        }
+        $blood_component = BloodComponent::create($result);
+        $blood_component = $blood_component->refresh();
+        return response(['data' => $blood_component], Response::HTTP_CREATED);
     }
 
     /**
@@ -74,18 +66,20 @@ class BloodComponentController extends Controller
             'id' => $blood_component_id,
             'case_id' => $case_id
         ])->first();
-
-        if (is_null($blood_component)) {
-            return;
-        }
-        try {
-            $data = $request->toArray();
-            unset($data['_method']);
-            $blood_component->update($data);
-            return response(['data' => $blood_component], Response::HTTP_OK);
-        }catch (QueryException $queryException){
-            return;
-        }
+        $rules = [
+            'wbc' => ['required'],
+            'hb' => ['required'],
+            'plt' => ['required'],
+            'got' => ['required'],
+            'gpt' => ['required'],
+            'cea' => ['required'],
+            'ca153' => ['required'],
+            'bun' => ['required'],
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        $blood_component->update($validator->validate());
+        $blood_component = $blood_component->refresh();
+        return response(['data' => $blood_component], Response::HTTP_OK);
     }
 
     /**
@@ -102,11 +96,7 @@ class BloodComponentController extends Controller
             'id' => $blood_component_id,
             'case_id' => $case_id
         ])->first();
-        if (is_null($blood_component)) {
-            return;
-        }
         $blood_component->delete();
-        return response(['data' => null], Response::HTTP_NO_CONTENT);
-
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }
