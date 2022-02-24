@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\BloodComponentController;
+use App\Http\Controllers\Api\CaseModelController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BloodComponentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +19,19 @@ use App\Http\Controllers\BloodComponentController;
 //    return $request->user();
 //});
 
-Route::middleware('member.auth')->group(function () {
+Route::middleware('member.auth')->name('api.')->group(function () {
     Route::prefix('blood-components')->name('blood-components.')
         ->controller(BloodComponentController::class)->group(function () {
             Route::post('/', 'store')->name('store');
-//            Route::get('/{bloodComponent}', 'show');
             Route::patch('/{blood_component_id}', 'update')->name('update');
             Route::delete('/{blood_component_id}', 'destroy')->name('destroy');
             Route::get('/account/{account}', 'account')->name('account');
+        });
+    Route::prefix('cases')->name('cases.')
+        ->controller(CaseModelController::class)->group(function () {
+            Route::post('/', 'store')->name('store');
+            Route::get('/{account}', 'show')->name('show');
+            Route::patch('/{account}', 'update')->name('update');
+            Route::delete('/{account}', 'destroy')->name('destroy');
         });
 });

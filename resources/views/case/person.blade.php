@@ -415,8 +415,9 @@
     {{--  Page Customize Javascript  --}}
     <script src="{{asset('js/pages/case/person.js')}}"></script>
     <script>
-        const cases = @json($case);
-        const bloodComponentsUrl = '{{route('blood-components.account', ['account' => $case->account])}}'
+        const caseUrl = '{{route('api.cases.show', ['account' => $case->account])}}'
+        const bloodComponentUrl = '{{route('api.blood-components.account', ['account' => $case->account])}}'
+
         const updateUrl = '{{route('cases.update', ['account' => $case->account])}}';
     </script>
 @endsection

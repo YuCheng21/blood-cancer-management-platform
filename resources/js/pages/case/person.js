@@ -1,21 +1,4 @@
 $(document).ready(function () {
-    $('#updateCaseForm').attr('action', updateUrl)
-    $('#updateCaseSend').attr('href', updateUrl)
-
-    $('#updateCaseAccount').val(cases['account']);
-    $('#updateCasePassword').val(cases['password']);
-    $('#updateCaseTransplantNum').val(cases['transplant_num']);
-    $('#updateCaseName').val(cases['name']);
-    $('#updateCaseGender').val(cases['gender_id']).change();
-    $('#updateCaseBirth').val(cases['birthday']);
-    $('#updateCaseDate').val(cases['date']);
-    $('#updateCaseTransplantType').val(cases['transplant_type_id']).change();
-    $('#updateCaseDiseaseType').val(cases['disease_type_id']).change();
-    $('#updateCaseDiseaseState').val(cases['disease_state_id']).change();
-    $('#updateCaseDiseaseClass').val(cases['disease_class_id']).change();
-})
-
-$(document).ready(function () {
     // const formData = new FormData(document.querySelector('#loginForm'))
     // const account = $('#account').val();
     // const password = $('#password').val();
@@ -23,9 +6,35 @@ $(document).ready(function () {
     // formData.append('account', account);
     // formData.append('password', password);
     axios({
-        url: bloodComponentsUrl,
+        url: caseUrl,
         method: 'GET',
         // data: formData
+    }).then(function (res) {
+        const cases = res['data']['data'][0]
+        $('#updateCaseForm').attr('action', updateUrl)
+        $('#updateCaseSend').attr('href', updateUrl)
+
+        $('#updateCaseAccount').val(cases['account']);
+        $('#updateCasePassword').val(cases['password']);
+        $('#updateCaseTransplantNum').val(cases['transplant_num']);
+        $('#updateCaseName').val(cases['name']);
+        $('#updateCaseGender').val(cases['gender_id']).change();
+        $('#updateCaseBirth').val(cases['birthday']);
+        $('#updateCaseDate').val(cases['date']);
+        $('#updateCaseTransplantType').val(cases['transplant_type_id']).change();
+        $('#updateCaseDiseaseType').val(cases['disease_type_id']).change();
+        $('#updateCaseDiseaseState').val(cases['disease_state_id']).change();
+        $('#updateCaseDiseaseClass').val(cases['disease_class_id']).change();
+    }).catch(function (err) {
+        console.log(err)
+    }).finally(function () {
+    })
+})
+
+$(document).ready(function () {
+    axios({
+        url: bloodComponentUrl,
+        method: 'GET',
     }).then(function (res) {
 
         /**

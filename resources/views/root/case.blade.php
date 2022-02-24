@@ -70,7 +70,7 @@
                                     <td>
                                         <button class="btn btn-primary updateCaseBtn" data-bs-toggle="modal"
                                                 data-bs-target="#updateCaseModal"
-                                                data-url="{{route('cases.update', ['account' => $case->account])}}"
+                                                data-url="{{route('api.cases.show', ['account' => $case->account])}}"
                                                 data-account="{{ $case->account }}">
                                             <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                                         </button>
@@ -80,7 +80,7 @@
                                         </a>
                                         <button class="btn btn-danger deleteCaseBtn" data-bs-toggle="modal"
                                                 data-bs-target="#deleteCaseModal"
-                                                data-url="{{route('cases.destroy', ['account' => $case->account])}}">
+                                                data-url="{{route('api.cases.destroy', ['account' => $case->account])}}">
                                             <span class="iconify-inline" data-icon="ion:trash"></span>
                                         </button>
                                     </td>
@@ -105,7 +105,4 @@
     @parent
     {{--  Page Customize Javascript  --}}
     <script src="{{asset('js/pages/root/case.js')}}"></script>
-    <script>
-        const cases = @json($cases);
-    </script>
 @endsection
