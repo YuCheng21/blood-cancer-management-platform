@@ -133,4 +133,10 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
+    'attributes' => [
+        'name' => '名稱',
+        'account' => '帳號',
+        'password' => '密碼',
+        'password_confirm' => '密碼確認',
+    ],
 ];
