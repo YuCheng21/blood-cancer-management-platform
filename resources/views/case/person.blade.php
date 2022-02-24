@@ -416,7 +416,7 @@
     <script src="{{asset('js/pages/case/person.js')}}"></script>
     <script>
         const cases = @json($case);
+        const bloodComponentsUrl = '{{route('blood-components.account', ['account' => $case->account])}}'
         const updateUrl = '{{route('cases.update', ['account' => $case->account])}}';
-        const blood_components = @json($blood_components);
     </script>
 @endsection
