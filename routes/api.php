@@ -29,9 +29,6 @@ Route::middleware('member.auth')->name('api.')->group(function () {
         });
     Route::prefix('cases')->name('cases.')
         ->controller(CaseModelController::class)->group(function () {
-            Route::post('/', 'store')->name('store');
             Route::get('/{account}', 'show')->name('show');
-            Route::patch('/{account}', 'update')->name('update');
-            Route::delete('/{account}', 'destroy')->name('destroy');
         });
 });

@@ -5,10 +5,11 @@ $(document).on('click', '.deleteCaseBtn', function (e) {
 })
 
 $(document).on('click', '.updateCaseBtn', function () {
-    const updateUrl = $(this).data('url');
+    const showUrl = $(this).data('show-url');
+    const updateUrl = $(this).data('update-url');
 
     axios({
-        url: updateUrl,
+        url: showUrl,
         method: 'GET',
     }).then(function (res) {
         const cases = res['data']['data'][0]
