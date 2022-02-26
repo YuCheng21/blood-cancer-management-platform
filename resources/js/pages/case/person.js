@@ -1,14 +1,7 @@
 $(document).ready(function () {
-    // const formData = new FormData(document.querySelector('#loginForm'))
-    // const account = $('#account').val();
-    // const password = $('#password').val();
-    // const formData = new FormData();
-    // formData.append('account', account);
-    // formData.append('password', password);
     axios({
         url: caseUrl,
         method: 'GET',
-        // data: formData
     }).then(function (res) {
         const cases = res['data']['data'][0]
         $('#updateCaseForm').attr('action', updateUrl)

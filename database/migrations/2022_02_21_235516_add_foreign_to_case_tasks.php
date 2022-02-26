@@ -14,7 +14,7 @@ class AddForeignToCaseTasks extends Migration
     public function up()
     {
         Schema::table('case_tasks', function (Blueprint $table) {
-            $table->foreign('weekly_task_id')->references('id')->on('weekly_tasks');
+            $table->foreign('task_id')->references('id')->on('tasks');
         });
     }
 

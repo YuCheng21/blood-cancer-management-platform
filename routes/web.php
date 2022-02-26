@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('sub')->name('sub.')->group(function () {
             Route::get('/add', 'sub_create')->name('add');
+            Route::post('/add', 'sub_create_post')->name('add_post');
 
             Route::get('/edit', 'sub_update')->name('edit');
         });

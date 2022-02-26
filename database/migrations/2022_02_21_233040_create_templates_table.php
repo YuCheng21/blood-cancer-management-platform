@@ -16,9 +16,12 @@ class CreateTemplatesTable extends Migration
         Schema::create('templates', function (Blueprint $table) {
             $table->id();
             $table->string('name')->comment('模板名稱');
-            $table->unsignedBigInteger('weekly_task_id')->comment('每週任務編號');
+            $table->unsignedBigInteger('task_id')->comment('任務編號');
             $table->unsignedBigInteger('week')->comment('週數');
             $table->timestamps();
+        });
+        Schema::table('templates', function (Blueprint $table){
+            $table->unique(['name', 'task_id', 'week']);
         });
     }
 

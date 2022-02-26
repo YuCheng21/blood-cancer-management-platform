@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
+use App\Models\Template;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class TaskController extends Controller
 {
@@ -14,33 +17,74 @@ class TaskController extends Controller
     public function index()
     {
         $title = '任務管理';
-        return view('root.task', [
-            'title' => $title
-        ]);
+        return response(
+            view('root.task', get_defined_vars()),
+            Response::HTTP_OK
+        );
     }
 
     public function main()
     {
         $title = '修改任務主模板';
-        return view('task.main', [
-            'title' => $title
-        ]);
+        return response(
+            view('task.main', get_defined_vars()),
+            Response::HTTP_OK
+        );
     }
 
     public function sub_create()
     {
+        $tasks = Task::all();
+        $categories = array();
+        foreach ($tasks as $key=>$value){
+            if (!isset($categories[$value->category_1])){
+                $categories[$value->category_1] = array();
+            }
+            $categories[$value->category_1][$value->category_2] = $value;
+        }
+        $csrf_token = csrf_token();
         $title = '新增任務副模板';
-        return view('task.create', [
-            'title' => $title
-        ]);
+        return response(
+            view('task.create', get_defined_vars()),
+            Response::HTTP_OK
+        );
+    }
+
+    public function sub_create_post(Request $request)
+    {
+        $task_list = json_decode($request->taskList, true);
+        if (empty($task_list)){
+            return 1;
+        }
+        $name = $request->name;
+        $template = Template::where(['name' => $name])->first();
+        if (!is_null($template)){
+            return 2;
+        }
+        foreach ($task_list as $task){
+            $week = $task['week'];
+            $content = explode('-', $task['content']);
+            $category_1 = $content[0];
+            $category_2 = $content[1];
+            $task_id = Task::where([
+                'category_1' => $category_1,
+                'category_2' => $category_2,
+            ])->first();
+            $template = Template::create([
+                'name' => $name,
+                'task_id' => $task_id->id,
+                'week' => $week,
+            ]);
+        }
     }
 
     public function sub_update()
     {
         $title = '修改任務副模板';
-        return view('task.update', [
-            'title' => $title
-        ]);
+        return response(
+            view('task.update', get_defined_vars()),
+            Response::HTTP_OK
+        );
     }
 
     /**

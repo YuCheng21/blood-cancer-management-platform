@@ -18,135 +18,42 @@
                            class="form-control" placeholder="請輸入任務副模板名稱">
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped text-center align-middle fs-5"
+                    <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
                            data-toggle="table"
                            data-locale="zh-TW">
                         <thead>
                         <tr>
                             <th data-width="10" data-width-unit="%">週次</th>
-                            <th data-width="80" data-width-unit="%">任務</th>
+                            <th data-width="80" data-width-unit="%" data-halign="center" data-align="left">任務</th>
                             <th data-width="10" data-width-unit="%">操作</th>
                         </tr>
                         </thead>
-                        <tr>
-                            <td>第 1 週</td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 2 週</td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 3 週</td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 4 週</td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 5 週</td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 6 週</td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 7 週</td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 8 週</td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 9 週</td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 10 週</td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 11 週</td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 12 週</td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
+                        @for($i = 1; $i <= 12; $i++)
+                            <tr>
+                                <td>第 {{$i}} 週</td>
+                                <td></td>
+                                <td>
+                                    <button class="btn btn-primary w-100 updateTaskListBtn" data-bs-toggle="modal"
+                                            data-bs-target="#taskListModal">
+                                        編輯
+                                    </button>
+                                </td>
+                            </tr>
+                        @endfor
+
                     </table>
                 </div>
                 <div class="row py-4">
                     <div class="col-6">
-                        <button type="button" class="btn btn-danger w-100" onclick="location.href='{{route('tasks.index')}}'">
+                        <button type="button" class="btn btn-danger w-100"
+                                onclick="location.href='{{route('tasks.index')}}'">
                             <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                             <span>取消</span>
                         </button>
                     </div>
                     <div class="col-6">
-                        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#createTaskModal">
+                        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
+                                data-bs-target="#createTaskModal">
                             <span class="iconify-inline" data-icon="subway:tick"></span>
                             <span>確認</span>
                         </button>
@@ -161,4 +68,15 @@
     @parent
     @include('includes.modal.create.task')
     @include('includes.modal.task_list')
+@endsection
+
+@section('script')
+    @parent
+    {{--  Page Customize Javascript  --}}
+    <script src="{{asset('js/pages/task/create.js')}}"></script>
+
+    <script>
+        const sub_create_post = '{{ route('tasks.sub.add_post') }}'
+        const csrf_token = '{{ $csrf_token }}'
+    </script>
 @endsection
