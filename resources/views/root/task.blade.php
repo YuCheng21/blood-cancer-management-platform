@@ -93,54 +93,12 @@
                                     </th>
                                 </tr>
                                 </thead>
-                                <tr>
-                                    <td>第 1 週</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>第 2 週</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>第 3 週</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>第 4 週</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>第 5 週</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>第 6 週</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>第 7 週</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>第 8 週</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>第 9 週</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>第 10 週</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>第 11 週</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>第 12 週</td>
-                                    <td></td>
-                                </tr>
+                                @for($i = 1; $i <= 12; $i++)
+                                    <tr>
+                                        <td>第 {{$i}} 週</td>
+                                        <td></td>
+                                    </tr>
+                                @endfor
                             </table>
                         </div>
                     </div>

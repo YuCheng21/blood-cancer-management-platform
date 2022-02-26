@@ -11,7 +11,7 @@ $(document).on('change', '#selectSubTemplate', function (e) {
         return obj['week'];
     });
     weeks = weeks.filter(function(v,i) { return weeks.indexOf(v) === i; });
-    $('tbody>tr>td:nth-child(2)').html('')
+    $('tbody>tr>td:nth-child(2)').html(null)
     weeks.forEach(function (week) {
         let taskOfWeek = template.filter(element => element['week'] === week)
         let ul = document.createElement('ul');

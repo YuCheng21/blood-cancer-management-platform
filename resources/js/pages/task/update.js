@@ -1,7 +1,6 @@
 $(document).on('click', '.updateTaskListBtn', function (e) {
     const index = $(e.currentTarget).closest('tr').data('index');
     $('#taskListSend').attr('data-index', index).data('index', index)
-
     let tasks = $(`tbody > tr[data-index=${index}] > td:nth-child(2) > ul > li`).map(function () {
         return $(this).text()
     }).get()
@@ -37,7 +36,7 @@ $(document).on('click', '#taskListSend', function () {
     $('#taskListModal').modal('hide')
 })
 
-$('#createTaskSend').on('click', function () {
+$('#updateTaskSend').on('click', function () {
     const taskList = $('tr li').map(function () {
         week = $(this).closest('tr').data('index') + 1; // data-index start as 0
         return {
@@ -45,10 +44,11 @@ $('#createTaskSend').on('click', function () {
             'content': $(this).text()
         }
     }).get();
-    const name = $('#createSubTemplate').val();
+    console.log(taskList)
+    const name = $('#updateSubTemplate').val();
 
     var form = document.createElement('form');
-    form.setAttribute('action', sub_create_post);
+    form.setAttribute('action', sub_update_post);
     form.setAttribute('method', 'POST');
 
     var input0 = document.createElement('input');

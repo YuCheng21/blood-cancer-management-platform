@@ -40,7 +40,6 @@
                                 </td>
                             </tr>
                         @endfor
-
                     </table>
                 </div>
                 <div class="row py-4">
