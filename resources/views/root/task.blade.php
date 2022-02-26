@@ -18,7 +18,7 @@
                             <div class="card-body fs-4">
                                 <h4 class="card-title">模板總數</h4>
                                 <hr>
-                                <p id="taskNumber" class="card-text">8 筆</p>
+                                <p id="taskNumber" class="card-text">{{ count($names) }} 筆</p>
                             </div>
                         </div>
                     </div>
@@ -48,22 +48,20 @@
                         <div class="input-group">
                             <label for="selectSubTemplate" class="input-group-text">副模板</label>
                             <select name="selectSubTemplate" id="selectSubTemplate" class="form-select">
-                                <option value="0" selected>請選擇任務副模板</option>
-                                <option value="1">副模板 1</option>
-                                <option value="2">副模板 2</option>
-                                <option value="3">副模板 3</option>
-                                <option value="4">副模板 4</option>
-                                <option value="5">副模板 5</option>
-                                <option value="6">副模板 6</option>
-                                <option value="7">副模板 7</option>
-                                <option value="8">副模板 8</option>
+                                <option value="" selected>請選擇任務副模板</option>
+                                @foreach($names as $name)
+                                    <option value="{{$name->name}}"
+                                            data-name="{{$name->name}}"
+                                            data-update-url="{{ route('tasks.sub.update', ['name' => $name->name]) }}"
+                                            data-delete-url="{{ route('tasks.sub.destroy', ['name' => $name->name]) }}">
+                                        {{$name->name}}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="col-sm-3 col-lg-2">
-                        <button class="btn btn-primary w-100" onclick="location.href='{{route('tasks.sub.edit')}}'">
-                            編輯
-                        </button>
+                        <a href="#" class="btn btn-primary w-100" id="updateTaskBtn"> 編輯 </a>
                     </div>
                     <div class="col-sm-3 col-lg-2">
                         <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">
@@ -91,56 +89,57 @@
                                 <thead>
                                 <tr>
                                     <th data-width="20" data-width-unit="%">週次</th>
-                                    <th data-width="80" data-width-unit="%">任務</th>
+                                    <th data-width="80" data-width-unit="%" data-halign="center" data-align="left">任務
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tr>
                                     <td>第 1 週</td>
-                                    <td>任務內容</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>第 2 週</td>
-                                    <td>任務內容</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>第 3 週</td>
-                                    <td>任務內容</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>第 4 週</td>
-                                    <td>任務內容</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>第 5 週</td>
-                                    <td>任務內容</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>第 6 週</td>
-                                    <td>任務內容</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>第 7 週</td>
-                                    <td>任務內容</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>第 8 週</td>
-                                    <td>任務內容</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>第 9 週</td>
-                                    <td>任務內容</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>第 10 週</td>
-                                    <td>任務內容</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>第 11 週</td>
-                                    <td>任務內容</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>第 12 週</td>
-                                    <td>任務內容</td>
+                                    <td></td>
                                 </tr>
                             </table>
                         </div>
@@ -156,4 +155,14 @@
     @include('includes.modal.delete.task')
     @include('includes.modal.apply.all_task')
     @include('includes.modal.apply.task')
+@endsection
+
+@section('script')
+    @parent
+    {{--  Page Customize Javascript  --}}
+    <script src="{{asset('js/pages/root/task.js')}}"></script>
+
+    <script>
+        const templates = @json($templates);
+    </script>
 @endsection

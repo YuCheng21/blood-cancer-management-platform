@@ -43,13 +43,17 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('main')->name('main.')->group(function () {
             Route::get('/edit', 'main')->name('edit');
+            Route::post('/edit', 'main_post')->name('edit_post');
         });
 
         Route::prefix('sub')->name('sub.')->group(function () {
             Route::get('/add', 'sub_create')->name('add');
             Route::post('/add', 'sub_create_post')->name('add_post');
 
-            Route::get('/edit', 'sub_update')->name('edit');
+            Route::get('/edit/{name}', 'sub_update')->name('update');
+            Route::post('/edit/{name}', 'sub_update_post')->name('update_post');
+
+            Route::delete('/{name}', 'sub_destroy')->name('destroy');
         });
     });
 

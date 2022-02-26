@@ -14,4 +14,8 @@ class Template extends Model
         'task_id',
         'week',
     ];
+
+    public function task(){
+        return $this->hasOne(Task::class, 'id', 'task_id');
+    }
 }
