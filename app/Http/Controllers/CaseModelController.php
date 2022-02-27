@@ -7,6 +7,7 @@ use App\Models\DiseaseClass;
 use App\Models\DiseaseState;
 use App\Models\DiseaseType;
 use App\Models\Gender;
+use App\Models\Task;
 use App\Models\TransplantType;
 use Carbon\Carbon;
 use Illuminate\Database\QueryException;
@@ -182,6 +183,15 @@ class CaseModelController extends Controller
 
     public function task($account)
     {
+        $tasks = Task::all();
+        $categories = array();
+        foreach ($tasks as $key=>$value){
+            if (!isset($categories[$value->category_1])){
+                $categories[$value->category_1] = array();
+            }
+            $categories[$value->category_1][$value->category_2] = $value;
+        }
+
         $title = '修改個案任務';
         return response(
             view('case.task', get_defined_vars()),

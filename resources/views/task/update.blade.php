@@ -18,7 +18,7 @@
                            class="form-control" placeholder="請輸入任務副模板名稱" value="{{ $name }}">
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped text-center align-middle fs-5"
+                    <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
                            data-toggle="table"
                            data-locale="zh-TW">
                         <thead>

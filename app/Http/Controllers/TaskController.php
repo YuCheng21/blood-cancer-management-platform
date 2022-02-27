@@ -47,6 +47,15 @@ class TaskController extends Controller
 
     public function main()
     {
+        $tasks = Task::all();
+        $categories = array();
+        foreach ($tasks as $key=>$value){
+            if (!isset($categories[$value->category_1])){
+                $categories[$value->category_1] = array();
+            }
+            $categories[$value->category_1][$value->category_2] = $value;
+        }
+
         $title = '修改任務主模板';
         return response(
             view('task.main', get_defined_vars()),

@@ -20,178 +20,26 @@
                         <tr>
                             <th data-width="15" data-width-unit="%">週次</th>
                             <th data-width="15" data-width-unit="%">排定日期</th>
-                            <th data-width="60" data-width-unit="%">任務</th>
+                            <th data-width="60" data-width-unit="%" data-halign="center" data-align="left">任務</th>
                             <th data-width="10" data-width-unit="%">操作</th>
                         </tr>
                         </thead>
-                        <tr>
-                            <td>第 1 週</td>
-                            <td>
-                                <span>2022-12-21</span><br>
-                                <span>~</span><br>
-                                <span>2022-12-27</span><br>
-                            </td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 2 週</td>
-                            <td>
-                                <span>2022-12-21</span><br>
-                                <span>~</span><br>
-                                <span>2022-12-27</span><br>
-                            </td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 3 週</td>
-                            <td>
-                                <span>2022-12-21</span><br>
-                                <span>~</span><br>
-                                <span>2022-12-27</span><br>
-                            </td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 4 週</td>
-                            <td>
-                                <span>2022-12-21</span><br>
-                                <span>~</span><br>
-                                <span>2022-12-27</span><br>
-                            </td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 5 週</td>
-                            <td>
-                                <span>2022-12-21</span><br>
-                                <span>~</span><br>
-                                <span>2022-12-27</span><br>
-                            </td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 6 週</td>
-                            <td>
-                                <span>2022-12-21</span><br>
-                                <span>~</span><br>
-                                <span>2022-12-27</span><br>
-                            </td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 7 週</td>
-                            <td>
-                                <span>2022-12-21</span><br>
-                                <span>~</span><br>
-                                <span>2022-12-27</span><br>
-                            </td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 8 週</td>
-                            <td>
-                                <span>2022-12-21</span><br>
-                                <span>~</span><br>
-                                <span>2022-12-27</span><br>
-                            </td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 9 週</td>
-                            <td>
-                                <span>2022-12-21</span><br>
-                                <span>~</span><br>
-                                <span>2022-12-27</span><br>
-                            </td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 10 週</td>
-                            <td>
-                                <span>2022-12-21</span><br>
-                                <span>~</span><br>
-                                <span>2022-12-27</span><br>
-                            </td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 11 週</td>
-                            <td>
-                                <span>2022-12-21</span><br>
-                                <span>~</span><br>
-                                <span>2022-12-27</span><br>
-                            </td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>第 12 週</td>
-                            <td>
-                                <span>2022-12-21</span><br>
-                                <span>~</span><br>
-                                <span>2022-12-27</span><br>
-                            </td>
-                            <td>任務內容</td>
-                            <td>
-                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
-                                    編輯
-                                </button>
-                            </td>
-                        </tr>
+                        @for($i = 1; $i <= 12; $i++)
+                            <tr>
+                                <td>第 {{ $i }} 週</td>
+                                <td>
+                                    <span>2022-12-21</span><br>
+                                    <span>~</span><br>
+                                    <span>2022-12-27</span><br>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
+                                        編輯
+                                    </button>
+                                </td>
+                            </tr>
+                        @endfor
                     </table>
                 </div>
                 <div class="row py-4">
