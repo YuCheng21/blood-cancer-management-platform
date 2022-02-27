@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
 class TaskController extends Controller
@@ -79,7 +80,14 @@ class TaskController extends Controller
     {
         $task_list = json_decode($request->taskList, true);
         if (empty($task_list)) {
-            return 1;
+            // task is empty
+            return redirect()
+                ->route('tasks.main.index')
+                ->withInput()
+                ->with([
+                    'type' => 'error',
+                    'msg' => '模板沒有任務內容。'
+                ]);
         }
         $main_template = MainTemplate::all();
         $main_template->each->delete();
@@ -97,6 +105,14 @@ class TaskController extends Controller
                 'week' => $week,
             ]);
         }
+
+        return redirect()
+            ->route('tasks.index')
+            ->withInput()
+            ->with([
+                'type' => 'success-toast',
+                'msg' => '修改主模板成功。'
+            ]);
     }
 
     public function sub_create()
@@ -119,14 +135,42 @@ class TaskController extends Controller
 
     public function sub_create_post(Request $request)
     {
+        $rules = [
+            'taskList' => ['required'],
+            'name' => ['required'],
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()
+                ->route('tasks.sub.add')
+                ->withInput()
+                ->with([
+                    'type' => 'error',
+                    'msg' => '模板缺少內容'
+                ]);
+        }
         $task_list = json_decode($request->taskList, true);
         if (empty($task_list)) {
-            return 1;
+            // task is empty
+            return redirect()
+                ->route('tasks.sub.add')
+                ->withInput()
+                ->with([
+                    'type' => 'error',
+                    'msg' => '模板缺少內容。'
+                ]);
         }
         $name = $request->name;
         $template = Template::where(['name' => $name])->first();
         if (!is_null($template)) {
-            return 2;  // find duplicated
+            // find duplicated
+            return redirect()
+                ->route('tasks.sub.add')
+                ->withInput()
+                ->with([
+                    'type' => 'error',
+                    'msg' => '模板名稱重複。'
+                ]);
         }
         foreach ($task_list as $task) {
             $week = $task['week'];
@@ -143,6 +187,14 @@ class TaskController extends Controller
                 'week' => $week,
             ]);
         }
+
+        return redirect()
+            ->route('tasks.index')
+            ->withInput()
+            ->with([
+                'type' => 'success-toast',
+                'msg' => '新增模板成功。'
+            ]);
     }
 
     public function sub_update($name)
@@ -170,9 +222,30 @@ class TaskController extends Controller
 
     public function sub_update_post(Request $request, $name)
     {
+        $rules = [
+            'taskList' => ['required'],
+            'name' => ['required'],
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()
+                ->route('tasks.sub.update_post', ['name' => $name])
+                ->withInput()
+                ->with([
+                    'type' => 'error',
+                    'msg' => '模板缺少內容'
+                ]);
+        }
         $task_list = json_decode($request->taskList, true);
         if (empty($task_list)) {
-            return 1;
+            // task is empty
+            return redirect()
+                ->route('tasks.sub.update_post', ['name' => $name])
+                ->withInput()
+                ->with([
+                    'type' => 'error',
+                    'msg' => '模板沒有任務內容。'
+                ]);
         }
         $new_name = $request->name;
         $template = Template::where(['name' => $name]);
@@ -192,6 +265,14 @@ class TaskController extends Controller
                 'week' => $week,
             ]);
         }
+
+        return redirect()
+            ->route('tasks.index')
+            ->withInput()
+            ->with([
+                'type' => 'success-toast',
+                'msg' => '修改模板成功。'
+            ]);
     }
 
     public function apply_post(Request $request, $name)
@@ -214,9 +295,9 @@ class TaskController extends Controller
 
         $merge_tasks = array_merge($templates->toArray(), $main_templates->toArray());
         $today = Carbon::today()->toDateTimeString();
-        foreach ($apply_cases as $case) {
+        foreach ($apply_cases as $account) {
             $case_id = CaseModel::where([
-                'account' => $case
+                'account' => $account
             ])->first()->id;
             CaseTask::where([
                 'case_id' => $case_id,
@@ -235,7 +316,13 @@ class TaskController extends Controller
                 }
             }
         }
-        return 2;
+        return redirect()
+            ->route('tasks.index')
+            ->withInput()
+            ->with([
+                'type' => 'success-toast',
+                'msg' => '套用模板成功。'
+            ]);
     }
 
     public function sub_destroy($name)
@@ -245,6 +332,12 @@ class TaskController extends Controller
         ]);
 
         $template->delete();
-        return 0;
+
+        return redirect()
+            ->route('tasks.index')
+            ->with([
+                'type' => 'success-toast',
+                'msg' => '刪除模板成功。'
+            ]);
     }
 }

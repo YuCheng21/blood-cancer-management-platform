@@ -28,13 +28,22 @@
                             <tr>
                                 <td>第 {{ $i }} 週</td>
                                 <td>
-                                    <span>2022-12-21</span><br>
+                                    <span>{{ isset($start_at) ? $start_at->addDay(1)->toDateString() : '' }}</span><br>
                                     <span>~</span><br>
-                                    <span>2022-12-27</span><br>
+                                    <span>{{ isset($start_at) ? $start_at->addDay(6)->toDateString() : '' }}</span><br>
                                 </td>
-                                <td></td>
                                 <td>
-                                    <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#taskListModal">
+                                    <ul class="mb-0">
+                                        @foreach($case_tasks as $task)
+                                            @if($task->week == $i)
+                                                <li>{{ $task->task->category_1 }}-{{ $task->task->category_2 }}-{{ $task->task->name }}</li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary w-100 updateTaskListBtn" data-bs-toggle="modal"
+                                            data-bs-target="#taskListModal">
                                         編輯
                                     </button>
                                 </td>
@@ -44,13 +53,15 @@
                 </div>
                 <div class="row py-4">
                     <div class="col-6">
-                        <button type="button" class="btn btn-danger w-100" onclick="location.href='{{route('cases.show', ['account' => $account])}}'">
+                        <button type="button" class="btn btn-danger w-100"
+                                onclick="location.href='{{route('cases.show', ['account' => $account])}}'">
                             <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                             <span>取消</span>
                         </button>
                     </div>
                     <div class="col-6">
-                        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateCaseTaskModal">
+                        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
+                                data-bs-target="#updateCaseTaskModal">
                             <span class="iconify-inline" data-icon="subway:tick"></span>
                             <span>確認</span>
                         </button>
@@ -65,4 +76,15 @@
     @parent
     @include('includes.modal.update.case_task')
     @include('includes.modal.task_list')
+@endsection
+
+@section('script')
+    @parent
+    {{--  Page Customize Javascript  --}}
+    <script src="{{asset('js/pages/case/task.js')}}"></script>
+
+    <script>
+        const task_post = '{{ route('cases.task_post', ['account' => $account]) }}'
+        const csrf_token = '{{ $csrf_token }}'
+    </script>
 @endsection

@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{account}', 'destroy')->name('destroy');
 
             Route::get('/{account}/task', 'task')->name('task');
+            Route::post('/{account}/task', 'task_post')->name('task_post');
         });
     });
 

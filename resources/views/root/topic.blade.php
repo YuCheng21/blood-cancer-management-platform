@@ -82,12 +82,12 @@
                                     <td>題目選項</td>
                                     <td>
                                         <div class="row g-1">
-                                            <div class="col-6">
+                                            <div class="col-12 col-xxl-6">
                                                 <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
                                                     編輯
                                                 </button>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-12 col-xxl-6">
                                                 <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
                                                     刪除
                                                 </button>

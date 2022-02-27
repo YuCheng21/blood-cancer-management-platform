@@ -48,4 +48,8 @@ class CaseModel extends Model
     public function blood_components(){
         return $this->hasMany(BloodComponent::class, 'case_id', 'id');
     }
+
+    public function case_tasks(){
+        return $this->hasMany(CaseTask::class, 'case_id', 'id');
+    }
 }

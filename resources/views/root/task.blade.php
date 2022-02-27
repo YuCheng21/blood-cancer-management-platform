@@ -44,7 +44,7 @@
             </div>
             <div class="card-body py-4 px-2 px-lg-4 p-xl-5" id="subTemplate">
                 <div class="row justify-content-center g-2">
-                    <div class="col-sm-12 col-lg-4">
+                    <div class="col-sm-12 col-lg-6">
                         <div class="input-group">
                             <label for="selectSubTemplate" class="input-group-text">副模板</label>
                             <select name="selectSubTemplate" id="selectSubTemplate" class="form-select">
@@ -61,26 +61,26 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-3 col-lg-2">
+                    <div class="col-sm-4 col-lg-2">
                         <a href="#" class="btn btn-primary w-100" id="updateTaskBtn"> 編輯 </a>
                     </div>
-                    <div class="col-sm-3 col-lg-2">
+                    <div class="col-sm-4 col-lg-2">
                         <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">
                             刪除
                         </button>
                     </div>
-                    <div class="col-sm-3 col-lg-2">
+                    <div class="col-sm-4 col-lg-2">
                         <button class="btn btn-secondary w-100 text-white" data-bs-toggle="modal"
                                 data-bs-target="#applyTaskModal">
                             套用
                         </button>
                     </div>
-                    <div class="col-sm-3 col-lg-2">
-                        <button class="btn btn-secondary w-100 text-white" data-bs-toggle="modal"
-                                data-bs-target="#applyAllTaskModal">
-                            全體套用
-                        </button>
-                    </div>
+{{--                    <div class="col-sm-3 col-lg-2">--}}
+{{--                        <button class="btn btn-secondary w-100 text-white" data-bs-toggle="modal"--}}
+{{--                                data-bs-target="#applyAllTaskModal">--}}
+{{--                            全體套用--}}
+{{--                        </button>--}}
+{{--                    </div>--}}
 
                     <div class="col-12">
                         <div class="table-responsive">

@@ -16,4 +16,8 @@ class CaseTask extends Model
         'start_at',
         'state',
     ];
+
+    public function task(){
+        return $this->hasOne(Task::class, 'id', 'task_id');
+    }
 }

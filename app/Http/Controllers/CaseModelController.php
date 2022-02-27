@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CaseModel;
+use App\Models\CaseTask;
 use App\Models\DiseaseClass;
 use App\Models\DiseaseState;
 use App\Models\DiseaseType;
@@ -107,6 +108,13 @@ class CaseModelController extends Controller
 
         $blood_components = $case->blood_components;
 
+        $case_tasks = $case->case_tasks;
+
+        if (!empty($case_tasks->toArray())){
+            $start_at = Carbon::parse($case_tasks[0]->start_at)->subDays(1);
+        }
+
+
         $title = '個人資料';
         return response(
             view('case.person', get_defined_vars()),
@@ -192,10 +200,75 @@ class CaseModelController extends Controller
             $categories[$value->category_1][$value->category_2] = $value;
         }
 
+        $case = CaseModel::where([
+            'account' => $account,
+        ])->first();
+
+        $case_tasks = $case->case_tasks;
+
+        if (!empty($case_tasks->toArray())){
+            $start_at = Carbon::parse($case_tasks[0]->start_at)->subDays(1);
+        }
+
+        $csrf_token = csrf_token();
+
         $title = '修改個案任務';
         return response(
             view('case.task', get_defined_vars()),
             Response::HTTP_OK
         );
+    }
+
+    public function task_post(Request $request, $account){
+        $task_list = json_decode($request->taskList, true);
+        if (empty($task_list)) {
+            // task is empty
+            return redirect()
+                ->route('cases.task', ['account' => $account])
+                ->withInput()
+                ->with([
+                    'type' => 'error',
+                    'msg' => '模板沒有任務內容。'
+                ]);
+        }
+        $case_id = CaseModel::where([
+            'account' => $account
+        ])->first()->id;
+        $case_task = CaseTask::where([
+            'case_id' => $case_id,
+        ])->get();
+        if (empty($case_task->toArray())){
+            $start_at = Carbon::today()->toDateTimeString();
+        }else{
+            $start_at = $case_task->toArray()[0]['start_at'];
+            $case_task->each->delete();
+        }
+        foreach ($task_list as $task) {
+            $content = explode('-', $task['content']);
+            $category_1 = $content[0];
+            $category_2 = $content[1];
+            $task_id = Task::where([
+                'category_1' => $category_1,
+                'category_2' => $category_2,
+            ])->first()->id;
+            try {
+                CaseTask::create([
+                    'case_id' => $case_id,
+                    'task_id' => $task_id,
+                    'week' => $task['week'],
+                    'start_at' => $start_at,
+                    'state' => 'uncompleted',
+                ]);
+            } catch (QueryException $queryException) {
+
+            }
+        }
+        return redirect()
+            ->route('cases.show', ['account' => $account])
+            ->withInput()
+            ->with([
+                'type' => 'success-toast',
+                'msg' => '修改個案任務成功。'
+            ]);
     }
 }

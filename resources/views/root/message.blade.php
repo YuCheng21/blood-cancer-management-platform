@@ -66,28 +66,28 @@
                                     <td>2022-12-31</td>
                                     <td>
                                         <div class="row g-1">
-                                            <div class="col-12 col-xl-6">
+                                            <div class="col-12 col-xxl-4">
                                                 <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateMessageModal">
                                                     編輯
                                                 </button>
                                             </div>
-                                            <div class="col-12 col-xl-6">
+                                            <div class="col-12 col-xxl-4">
                                                 <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteMessageModal">
                                                     刪除
                                                 </button>
                                             </div>
-                                            <div class="col-12 col-xl-6">
+                                            <div class="col-12 col-xxl-4">
                                                 <button class="btn btn-secondary text-white w-100" data-bs-toggle="modal"
                                                         data-bs-target="#applyMessageModal">
                                                     發送
                                                 </button>
                                             </div>
-                                            <div class="col-12 col-xl-6">
-                                                <button class="btn btn-secondary text-white w-100" data-bs-toggle="modal"
-                                                        data-bs-target="#applyAllMessageModal">
-                                                    全體發送
-                                                </button>
-                                            </div>
+{{--                                            <div class="col-12 col-xl-6">--}}
+{{--                                                <button class="btn btn-secondary text-white w-100" data-bs-toggle="modal"--}}
+{{--                                                        data-bs-target="#applyAllMessageModal">--}}
+{{--                                                    全體發送--}}
+{{--                                                </button>--}}
+{{--                                            </div>--}}
                                         </div>
                                     </td>
                                 </tr>

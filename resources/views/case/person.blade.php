@@ -117,67 +117,44 @@
                                 <th data-width="10" data-width-unit="%" data-sortable="true">進度</th>
                             </tr>
                             </thead>
-                            <tr>
-                                <td>第 1 週</td>
-                                <td>
-                                    <span>2020-12-14</span><br>
-                                    <span>~</span><br>
-                                    <span>2020-12-20</span><br>
-                                </td>
-                                <td>
-                                    <ul class="mb-0">
-                                        <li>1-1 造血幹細胞的認識</li>
-                                    </ul>
-                                </td>
-                                <td class="text-success">已完成</td>
-                            </tr>
-                            <tr>
-                                <td>第 2 週</td>
-                                <td>
-                                    <span>2020-12-20</span><br>
-                                    <span>~</span><br>
-                                    <span>2020-12-26</span><br>
-                                </td>
-                                <td>
-                                    <ul class="mb-0">
-                                        <li>2-1 造血幹細胞移植前評估-治療說明會</li>
-                                        <li>2-1 造血幹細胞移植前評估-治療說明會</li>
-                                        <li>2-2 造血幹細胞移植前評估-費用準備</li>
-                                        <li>2-3 造血幹細胞移植前評估-各項醫療照會</li>
-                                        <li>2-4 造血幹細胞移植前評估-各項檢查項目</li>
-                                        <li>2-5 造血幹細胞移植前評估-各項血液檢驗</li>
-                                    </ul>
-                                </td>
-                                <td class="text-success">已完成</td>
-                            </tr>
-                            <tr>
-                                <td>第 3 週</td>
-                                <td>
-                                    <span>2020-12-26</span><br>
-                                    <span>~</span><br>
-                                    <span>2021-1-1</span><br>
-                                </td>
-                                <td>
-                                    <ul class="mb-0">
-                                        <li>未設定任務</li>
-                                    </ul>
-                                </td>
-                                <td class="text-success">-</td>
-                            </tr>
-                            <tr>
-                                <td>第 4 週</td>
-                                <td>
-                                    <span>2021-1-1</span><br>
-                                    <span>~</span><br>
-                                    <span>2021-1-7</span><br>
-                                </td>
-                                <td>
-                                    <ul class="mb-0">
-                                        <li>未設定任務</li>
-                                    </ul>
-                                </td>
-                                <td class="text-success">-</td>
-                            </tr>
+                            @php($counter1 = 1)
+                            @php($counter2 = 1)
+                            @for($i = 1; $i <= 12; $i++)
+                                <tr>
+                                    <td>第 {{ $i }} 週</td>
+                                    <td>
+                                        <span>{{ isset($start_at) ? $start_at->addDay(1)->toDateString() : '' }}</span><br>
+                                        <span>~</span><br>
+                                        <span>{{ isset($start_at) ? $start_at->addDay(6)->toDateString() : '' }}</span><br>
+                                    </td>
+                                    <td>
+                                        <ul class="mb-0">
+                                            @foreach($case_tasks as $task)
+                                                @if($task->week == $i)
+                                                    @if($counter1 % 2 == 0)
+                                                        <li class="bg-primary bg-opacity-10">{{ $task->task->category_1 }}-{{ $task->task->category_2 }}-{{ $task->task->name }}</li>
+                                                    @else
+                                                        <li class="bg-info bg-opacity-10">{{ $task->task->category_1 }}-{{ $task->task->category_2 }}-{{ $task->task->name }}</li>
+                                                    @endif
+                                                    @php($counter1++)
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        @foreach($case_tasks as $task)
+                                            @if($task->week == $i)
+                                                @if($task->state == 'completed')
+                                                    <span class="text-success">已完成</span><br>
+                                                @else
+                                                    <span class="text-primary">未完成</span><br>
+                                                @endif
+                                                @php($counter2++)
+                                            @endif
+                                        @endforeach
+                                    </td>
+                                </tr>
+                            @endfor
                         </table>
                     </div>
                 </div>
