@@ -42,7 +42,7 @@
                     </button>
                 </div>
             </div>
-            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
+            <div class="card-body py-4 px-2 px-lg-4 p-xl-5" id="subTemplate">
                 <div class="row justify-content-center g-2">
                     <div class="col-sm-12 col-lg-4">
                         <div class="input-group">
@@ -53,6 +53,7 @@
                                     <option value="{{$name->name}}"
                                             data-name="{{$name->name}}"
                                             data-update-url="{{ route('tasks.sub.update', ['name' => $name->name]) }}"
+                                            data-apply-url="{{ route('tasks.apply', ['name' => $name->name]) }}"
                                             data-delete-url="{{ route('tasks.sub.destroy', ['name' => $name->name]) }}">
                                         {{$name->name}}
                                     </option>
@@ -122,5 +123,7 @@
 
     <script>
         const templates = @json($templates);
+
+        const csrf_token = '{{ $csrf_token }}'
     </script>
 @endsection

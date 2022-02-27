@@ -44,7 +44,7 @@ $('#updateTaskSend').on('click', function () {
             'content': $(this).text()
         }
     }).get();
-    console.log(taskList)
+
     const name = $('#updateSubTemplate').val();
 
     var form = document.createElement('form');

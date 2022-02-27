@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('tasks')->name('tasks.')->controller(TaskController::class)->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::post('/apply/{name}', 'apply_post')->name('apply');
 
         Route::prefix('main')->name('main.')->group(function () {
             Route::get('/', 'main')->name('index');

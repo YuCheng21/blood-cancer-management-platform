@@ -15,12 +15,15 @@ class CreateCaseTasksTable extends Migration
     {
         Schema::create('case_tasks', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('case_id')->comment('個案編號');
             $table->unsignedBigInteger('task_id')->comment('任務編號');
             $table->unsignedBigInteger('week')->comment('週數');
-            $table->timestamp('start_at')->comment('開始日期')->nullable();
-            $table->timestamp('end_at')->comment('結束日期')->nullable();
+            $table->date('start_at')->comment('開始日期');
             $table->enum('state', ['completed', 'uncompleted'])->comment('完成狀態');
             $table->timestamps();
+        });
+        Schema::table('case_tasks', function (Blueprint $table){
+            $table->unique(['case_id' ,'task_id', 'week']);
         });
     }
 

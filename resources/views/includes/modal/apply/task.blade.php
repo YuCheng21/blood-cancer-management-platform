@@ -28,78 +28,18 @@
                                             <th data-sortable="true">狀態</th>
                                         </tr>
                                         </thead>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-success">已設定任務</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-success">已設定任務</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-success">已設定任務</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-dark">未設定任務</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-dark">未設定任務</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-success">已設定任務</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-success">已設定任務</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-success">已設定任務</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-dark">未設定任務</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-dark">未設定任務</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-dark">未設定任務</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-dark">未設定任務</td>
-                                        </tr>
+                                        @foreach($cases as $case)
+                                            <tr>
+                                                <td data-checkbox="true"></td>
+                                                <td>{{ $case->account }}</td>
+                                                <td>{{ $case->name }}</td>
+                                                @if(is_null($case->case_task_id))
+                                                    <td class="text-dark">未設定任務</td>
+                                                @else
+                                                    <td class="text-success">已設定任務</td>
+                                                @endif
+                                            </tr>
+                                        @endforeach
                                     </table>
                                 </div>
                             </div>
@@ -112,10 +52,10 @@
                     <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                     <span>關閉</span>
                 </button>
-                <button type="button" class="btn btn-primary" id="applyTaskSend">
+                <a href="#" class="btn btn-primary" id="applyTaskSend" onclick="event.preventDefault();">
                     <span class="iconify-inline" data-icon="subway:tick"></span>
                     <span>確認</span>
-                </button>
+                </a>
             </div>
         </div>
     </div>

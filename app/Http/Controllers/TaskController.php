@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CaseModel;
+use App\Models\CaseTask;
 use App\Models\MainTemplate;
 use App\Models\Task;
 use App\Models\Template;
+use Carbon\Carbon;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +25,7 @@ class TaskController extends Controller
         $names = DB::table('templates')->select('name')->distinct()->get();
 
         $templates = Template::all();
-        $templates = $templates->map(function ($template){
+        $templates = $templates->map(function ($template) {
             return [
                 'id' => $template->id,
                 'name' => $template->name,
@@ -39,6 +43,9 @@ class TaskController extends Controller
             ];
         });
 
+        $cases = CaseModel::all();
+
+        $csrf_token = csrf_token();
         $title = '任務管理';
         return response(
             view('root.task', get_defined_vars()),
@@ -50,8 +57,8 @@ class TaskController extends Controller
     {
         $tasks = Task::all();
         $categories = array();
-        foreach ($tasks as $key=>$value){
-            if (!isset($categories[$value->category_1])){
+        foreach ($tasks as $key => $value) {
+            if (!isset($categories[$value->category_1])) {
                 $categories[$value->category_1] = array();
             }
             $categories[$value->category_1][$value->category_2] = $value;
@@ -68,14 +75,15 @@ class TaskController extends Controller
         );
     }
 
-    public function main_post(Request $request){
+    public function main_post(Request $request)
+    {
         $task_list = json_decode($request->taskList, true);
-        if (empty($task_list)){
+        if (empty($task_list)) {
             return 1;
         }
         $main_template = MainTemplate::all();
         $main_template->each->delete();
-        foreach ($task_list as $task){
+        foreach ($task_list as $task) {
             $week = $task['week'];
             $content = explode('-', $task['content']);
             $category_1 = $content[0];
@@ -95,8 +103,8 @@ class TaskController extends Controller
     {
         $tasks = Task::all();
         $categories = array();
-        foreach ($tasks as $key=>$value){
-            if (!isset($categories[$value->category_1])){
+        foreach ($tasks as $key => $value) {
+            if (!isset($categories[$value->category_1])) {
                 $categories[$value->category_1] = array();
             }
             $categories[$value->category_1][$value->category_2] = $value;
@@ -112,15 +120,15 @@ class TaskController extends Controller
     public function sub_create_post(Request $request)
     {
         $task_list = json_decode($request->taskList, true);
-        if (empty($task_list)){
+        if (empty($task_list)) {
             return 1;
         }
         $name = $request->name;
         $template = Template::where(['name' => $name])->first();
-        if (!is_null($template)){
+        if (!is_null($template)) {
             return 2;  // find duplicated
         }
-        foreach ($task_list as $task){
+        foreach ($task_list as $task) {
             $week = $task['week'];
             $content = explode('-', $task['content']);
             $category_1 = $content[0];
@@ -141,8 +149,8 @@ class TaskController extends Controller
     {
         $tasks = Task::all();
         $categories = array();
-        foreach ($tasks as $key=>$value){
-            if (!isset($categories[$value->category_1])){
+        foreach ($tasks as $key => $value) {
+            if (!isset($categories[$value->category_1])) {
                 $categories[$value->category_1] = array();
             }
             $categories[$value->category_1][$value->category_2] = $value;
@@ -160,15 +168,16 @@ class TaskController extends Controller
         );
     }
 
-    public function sub_update_post(Request $request, $name){
+    public function sub_update_post(Request $request, $name)
+    {
         $task_list = json_decode($request->taskList, true);
-        if (empty($task_list)){
+        if (empty($task_list)) {
             return 1;
         }
-        $name = $request->name;
+        $new_name = $request->name;
         $template = Template::where(['name' => $name]);
         $template->delete();
-        foreach ($task_list as $task){
+        foreach ($task_list as $task) {
             $week = $task['week'];
             $content = explode('-', $task['content']);
             $category_1 = $content[0];
@@ -178,11 +187,55 @@ class TaskController extends Controller
                 'category_2' => $category_2,
             ])->first();
             $template = Template::create([
-                'name' => $name,
+                'name' => $new_name,
                 'task_id' => $task_id->id,
                 'week' => $week,
             ]);
         }
+    }
+
+    public function apply_post(Request $request, $name)
+    {
+        $apply_cases = json_decode($request->applyList);
+        $templates = Template::where([
+            'name' => $name
+        ])->get()->map(function ($template) {
+            return [
+                'task_id' => $template->task_id,
+                'week' => $template->week,
+            ];
+        });
+        $main_templates = MainTemplate::all()->map(function ($template) {
+            return [
+                'task_id' => $template->task_id,
+                'week' => $template->week,
+            ];
+        });
+
+        $merge_tasks = array_merge($templates->toArray(), $main_templates->toArray());
+        $today = Carbon::today()->toDateTimeString();
+        foreach ($apply_cases as $case) {
+            $case_id = CaseModel::where([
+                'account' => $case
+            ])->first()->id;
+            CaseTask::where([
+                'case_id' => $case_id,
+            ])->delete();
+            foreach ($merge_tasks as $task) {
+                try {
+                    CaseTask::create([
+                        'case_id' => $case_id,
+                        'task_id' => $task['task_id'],
+                        'week' => $task['week'],
+                        'start_at' => $today,
+                        'state' => 'uncompleted',
+                    ]);
+                } catch (QueryException $queryException) {
+
+                }
+            }
+        }
+        return 2;
     }
 
     public function sub_destroy($name)

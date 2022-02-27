@@ -15,6 +15,7 @@ class AddForeignToCaseTasks extends Migration
     {
         Schema::table('case_tasks', function (Blueprint $table) {
             $table->foreign('task_id')->references('id')->on('tasks');
+            $table->foreign('case_id')->references('id')->on('cases')->onDelete('cascade');
         });
     }
 

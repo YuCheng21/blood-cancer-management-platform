@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class CaseTask extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'case_id',
+        'task_id',
+        'week',
+        'start_at',
+        'state',
+    ];
 }

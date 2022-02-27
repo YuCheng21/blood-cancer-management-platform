@@ -26,7 +26,6 @@ class CreateCasesTable extends Migration
             $table->unsignedBigInteger('disease_type_id')->comment('個案疾病種類編號');
             $table->unsignedBigInteger('disease_state_id')->comment('個案疾病分期編號');
             $table->unsignedBigInteger('disease_class_id')->comment('個案疾病分類編號');
-            $table->unsignedBigInteger('case_task_id')->comment('個案任務編號')->nullable();
             $table->timestamps();
         });
     }
