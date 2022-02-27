@@ -51,8 +51,7 @@ class CaseModelController extends Controller
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
-            return redirect()
-                ->route('cases.index')
+            return back()
                 ->withInput()
                 ->with([
                     'type' => 'error',
@@ -75,8 +74,7 @@ class CaseModelController extends Controller
         ];
         try {
             CaseModel::create($data);
-            return redirect()
-                ->route('cases.index')
+            return back()
                 ->with([
                     'type' => 'success-toast',
                     'msg' => '新增個案成功。'
@@ -88,8 +86,7 @@ class CaseModelController extends Controller
             } else {
                 $message = 'SQLState: ' . $errorInfo[0];
             }
-            return redirect()
-                ->route('cases.index')
+            return back()
                 ->withInput()
                 ->with([
                     'type' => 'error',
@@ -138,8 +135,7 @@ class CaseModelController extends Controller
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
-            return redirect()
-                ->route('cases.index')
+            return back()
                 ->with([
                     'type' => 'error',
                     'msg' => '表單填寫未完成'
@@ -148,8 +144,7 @@ class CaseModelController extends Controller
         // Query database
         $case = CaseModel::where('account', $account)->first();
         if (is_null($case)){
-            return redirect()
-                ->route('cases.index')
+            return back()
                 ->with([
                     'type' => 'error',
                     'msg' => '內容錯誤'
@@ -168,8 +163,7 @@ class CaseModelController extends Controller
             'disease_class_id' => $request->updateCaseDiseaseClass,
         ];
         $case->update($data);
-        return redirect()
-            ->route('cases.index')
+        return back()
             ->with([
                 'type' => 'success-toast',
                 'msg' => '修改個案成功。'
@@ -223,8 +217,7 @@ class CaseModelController extends Controller
         $task_list = json_decode($request->taskList, true);
         if (empty($task_list)) {
             // task is empty
-            return redirect()
-                ->route('cases.task', ['account' => $account])
+            return back()
                 ->withInput()
                 ->with([
                     'type' => 'error',
@@ -264,7 +257,7 @@ class CaseModelController extends Controller
             }
         }
         return redirect()
-            ->route('cases.show', ['account' => $account])
+            ->route('cases.show', ['account' => $account, '#weeklyTask'])
             ->withInput()
             ->with([
                 'type' => 'success-toast',

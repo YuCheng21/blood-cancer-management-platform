@@ -33,10 +33,10 @@
                                                 <td data-checkbox="true"></td>
                                                 <td>{{ $case->account }}</td>
                                                 <td>{{ $case->name }}</td>
-                                                @if(is_null($case->case_task_id))
-                                                    <td class="text-dark">未設定任務</td>
-                                                @else
+                                                @if( in_array($case->id, $case_id) )
                                                     <td class="text-success">已設定任務</td>
+                                                @else
+                                                    <td class="text-dark">未設定任務</td>
                                                 @endif
                                             </tr>
                                         @endforeach

@@ -46,6 +46,11 @@ class TaskController extends Controller
 
         $cases = CaseModel::all();
 
+        $case_id = DB::table('case_tasks')->select('case_id')->distinct()->get();
+        $case_id = $case_id->map(function ($item){
+            return $item->case_id;
+        })->toArray();
+
         $csrf_token = csrf_token();
         $title = '任務管理';
         return response(
@@ -81,8 +86,7 @@ class TaskController extends Controller
         $task_list = json_decode($request->taskList, true);
         if (empty($task_list)) {
             // task is empty
-            return redirect()
-                ->route('tasks.main.index')
+            return back()
                 ->withInput()
                 ->with([
                     'type' => 'error',
@@ -141,8 +145,7 @@ class TaskController extends Controller
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
-            return redirect()
-                ->route('tasks.sub.add')
+            return back()
                 ->withInput()
                 ->with([
                     'type' => 'error',
@@ -152,8 +155,7 @@ class TaskController extends Controller
         $task_list = json_decode($request->taskList, true);
         if (empty($task_list)) {
             // task is empty
-            return redirect()
-                ->route('tasks.sub.add')
+            return back()
                 ->withInput()
                 ->with([
                     'type' => 'error',
@@ -164,12 +166,11 @@ class TaskController extends Controller
         $template = Template::where(['name' => $name])->first();
         if (!is_null($template)) {
             // find duplicated
-            return redirect()
-                ->route('tasks.sub.add')
+            return back()
                 ->withInput()
                 ->with([
                     'type' => 'error',
-                    'msg' => '模板名稱重複。'
+                    'msg' => '模板名稱重複'
                 ]);
         }
         foreach ($task_list as $task) {
@@ -228,8 +229,7 @@ class TaskController extends Controller
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
-            return redirect()
-                ->route('tasks.sub.update_post', ['name' => $name])
+            return back()
                 ->withInput()
                 ->with([
                     'type' => 'error',
@@ -239,8 +239,7 @@ class TaskController extends Controller
         $task_list = json_decode($request->taskList, true);
         if (empty($task_list)) {
             // task is empty
-            return redirect()
-                ->route('tasks.sub.update_post', ['name' => $name])
+            return back()
                 ->withInput()
                 ->with([
                     'type' => 'error',

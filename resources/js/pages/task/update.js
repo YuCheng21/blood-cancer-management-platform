@@ -36,7 +36,11 @@ $(document).on('click', '#taskListSend', function () {
     $('#taskListModal').modal('hide')
 })
 
-$('#updateTaskSend').on('click', function () {
+$('#createAsTaskSend').on('click', function () {
+
+})
+
+$('#updateTaskSend, #createAsTaskSend').on('click', function () {
     const taskList = $('tr li').map(function () {
         week = $(this).closest('tr').data('index') + 1; // data-index start as 0
         return {
@@ -44,11 +48,16 @@ $('#updateTaskSend').on('click', function () {
             'content': $(this).text()
         }
     }).get();
-
+    let url;
+    if ($(this).attr('id') === 'updateTaskSend'){
+        url = sub_update_post
+    }else if ($(this).attr('id') === 'createAsTaskSend'){
+        url = sub_create_post
+    }
     const name = $('#updateSubTemplate').val();
 
     var form = document.createElement('form');
-    form.setAttribute('action', sub_update_post);
+    form.setAttribute('action', url);
     form.setAttribute('method', 'POST');
 
     var input0 = document.createElement('input');

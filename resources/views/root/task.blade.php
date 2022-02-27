@@ -51,7 +51,6 @@
                                 <option value="" selected>請選擇任務副模板</option>
                                 @foreach($names as $name)
                                     <option value="{{$name->name}}"
-                                            data-name="{{$name->name}}"
                                             data-update-url="{{ route('tasks.sub.update', ['name' => $name->name]) }}"
                                             data-apply-url="{{ route('tasks.apply', ['name' => $name->name]) }}"
                                             data-delete-url="{{ route('tasks.sub.destroy', ['name' => $name->name]) }}">
@@ -62,15 +61,16 @@
                         </div>
                     </div>
                     <div class="col-sm-4 col-lg-2">
-                        <a href="#" class="btn btn-primary w-100" id="updateTaskBtn"> 編輯 </a>
+                        <a href="#" class="btn btn-primary w-100 disabled" id="updateTaskBtn"> 編輯 </a>
                     </div>
                     <div class="col-sm-4 col-lg-2">
-                        <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTaskModal">
+                        <button class="btn btn-danger w-100 disabled" data-bs-toggle="modal"
+                                data-bs-target="#deleteTaskModal">
                             刪除
                         </button>
                     </div>
                     <div class="col-sm-4 col-lg-2">
-                        <button class="btn btn-secondary w-100 text-white" data-bs-toggle="modal"
+                        <button class="btn btn-secondary w-100 text-white disabled" data-bs-toggle="modal"
                                 data-bs-target="#applyTaskModal">
                             套用
                         </button>

@@ -91,6 +91,7 @@
     <script src="{{asset('js/pages/task/update.js')}}"></script>
 
     <script>
+        const sub_create_post = '{{ route('tasks.sub.add_post') }}'
         const sub_update_post = '{{ route('tasks.sub.update_post', ['name' => $name]) }}'
         const csrf_token = '{{ $csrf_token }}'
     </script>
