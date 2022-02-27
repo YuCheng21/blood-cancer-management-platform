@@ -42,8 +42,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/', 'index')->name('index');
 
         Route::prefix('main')->name('main.')->group(function () {
-            Route::get('/edit', 'main')->name('edit');
-            Route::post('/edit', 'main_post')->name('edit_post');
+            Route::get('/', 'main')->name('index');
+            Route::post('/', 'main_post')->name('index_post');
         });
 
         Route::prefix('sub')->name('sub.')->group(function () {

@@ -32,7 +32,7 @@
                     <span>每週任務規劃</span>
                 </h2>
                 <div class="d-flex flex-column flex-md-row">
-                    <button class="btn btn-primary me-1 my-1" onclick="location.href='{{route('tasks.main.edit')}}'">
+                    <button class="btn btn-primary me-1 my-1" onclick="location.href='{{route('tasks.main.index')}}'">
                         <span class="iconify-inline" data-icon="fa-solid:tools"></span>
                         <span>編輯任務主模板</span>
                     </button>

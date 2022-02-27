@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MainTemplate;
 use App\Models\Task;
 use App\Models\Template;
 use Illuminate\Http\Request;
@@ -56,11 +57,38 @@ class TaskController extends Controller
             $categories[$value->category_1][$value->category_2] = $value;
         }
 
+        $main_templates = MainTemplate::all();
+
+
+        $csrf_token = csrf_token();
         $title = '修改任務主模板';
         return response(
             view('task.main', get_defined_vars()),
             Response::HTTP_OK
         );
+    }
+
+    public function main_post(Request $request){
+        $task_list = json_decode($request->taskList, true);
+        if (empty($task_list)){
+            return 1;
+        }
+        $main_template = MainTemplate::all();
+        $main_template->each->delete();
+        foreach ($task_list as $task){
+            $week = $task['week'];
+            $content = explode('-', $task['content']);
+            $category_1 = $content[0];
+            $category_2 = $content[1];
+            $task_id = Task::where([
+                'category_1' => $category_1,
+                'category_2' => $category_2,
+            ])->first();
+            $main_template = MainTemplate::create([
+                'task_id' => $task_id->id,
+                'week' => $week,
+            ]);
+        }
     }
 
     public function sub_create()

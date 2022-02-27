@@ -26,7 +26,15 @@
                         @for($i = 1; $i <= 12; $i++)
                             <tr>
                                 <td>第 {{$i}} 週</td>
-                                <td></td>
+                                <td>
+                                    <ul class="mb-0">
+                                        @foreach($main_templates as $template)
+                                            @if($template->week == $i)
+                                                <li>{{$template->task->category_1}}-{{$template->task->category_2}}-{{$template->task->name}}</li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </td>
                                 <td>
                                     <button class="btn btn-primary w-100 updateTaskListBtn" data-bs-toggle="modal"
                                             data-bs-target="#taskListModal">
@@ -60,4 +68,15 @@
     @parent
     @include('includes.modal.update.main_task')
     @include('includes.modal.task_list')
+@endsection
+
+@section('script')
+    @parent
+    {{--  Page Customize Javascript  --}}
+    <script src="{{asset('js/pages/task/main.js')}}"></script>
+
+    <script>
+        const main_post = '{{ route('tasks.main.index_post') }}'
+        const csrf_token = '{{ $csrf_token }}'
+    </script>
 @endsection
