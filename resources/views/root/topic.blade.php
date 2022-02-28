@@ -68,7 +68,8 @@
                             <thead>
                             <tr>
                                 <th data-width="20" data-width-unit="%" data-sortable="true">課程</th>
-                                <th data-width="35" data-width-unit="%" data-sortable="true">題目</th>
+                                <th data-width="35" data-width-unit="%" data-sortable="true" data-halign="center"
+                                    data-align="left">題目</th>
                                 <th data-width="10" data-width-unit="%" data-sortable="true">題型</th>
                                 <th data-width="25" data-width-unit="%" data-sortable="true" data-halign="center"
                                     data-align="left">選項
@@ -79,7 +80,7 @@
                             @foreach($topics as $topic)
                                 <tr>
                                     <td>{{ $topic->type }}</td>
-                                    <td>{{ $topic->question }}</td>
+                                    <td class="ws-normal">{{ $topic->question }}</td>
                                     <td>{{ $topic->question_type == 'MC' ? '選擇題' : ($topic->question_type == 'TF' ? '是非題' : '')}}</td>
                                     <td>
                                         @if($topic->question_type == 'MC')

@@ -16,7 +16,7 @@ class TopicFactory extends Factory
     {
         return [
             'type' => $this->faker->text(5),
-            'question' => $this->faker->text(30),
+            'question' => $this->faker->text(50),
             'question_type' => $this->faker->randomElement(['TF', 'MC']),
             'answer' => $this->faker->numberBetween(1,6),
             'option_a' => $this->faker->text(10),
