@@ -79,7 +79,9 @@
                                 <a href="#" class="nav-link text-white hv-color-text dropdown-toggle"
                                    data-bs-toggle="dropdown">
                                     <span class="iconify-inline" data-icon="healthicons:ui-user-profile"></span>
-                                    <span>{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
+                                    @if(\Illuminate\Support\Facades\Auth::check())
+                                        <span>{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
+                                    @endif
                                 </a>
                                 <ul class="dropdown-menu fade">
                                     <li>

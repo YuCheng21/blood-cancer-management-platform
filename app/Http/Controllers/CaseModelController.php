@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\AppHelper;
 use App\Models\CaseModel;
 use App\Models\CaseTask;
 use App\Models\DiseaseClass;
@@ -186,13 +187,7 @@ class CaseModelController extends Controller
     public function task($account)
     {
         $tasks = Task::all();
-        $categories = array();
-        foreach ($tasks as $key=>$value){
-            if (!isset($categories[$value->category_1])){
-                $categories[$value->category_1] = array();
-            }
-            $categories[$value->category_1][$value->category_2] = $value;
-        }
+        $categories = AppHelper::reformat_task($tasks);
 
         $case = CaseModel::where([
             'account' => $account,
@@ -237,7 +232,7 @@ class CaseModelController extends Controller
             $case_task->each->delete();
         }
         foreach ($task_list as $task) {
-            $task_information = \App\Helpers\AppHelper::split_task($task['content']);
+            $task_information = AppHelper::split_task($task['content']);
             $task_id = Task::where([
                 'category_1' => $task_information['category_1'],
                 'category_2' => $task_information['category_2'],

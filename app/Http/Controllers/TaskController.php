@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\AppHelper;
 use App\Models\CaseModel;
 use App\Models\CaseTask;
 use App\Models\MainTemplate;
@@ -62,14 +63,7 @@ class TaskController extends Controller
     public function main()
     {
         $tasks = Task::all();
-        $categories = array();
-        foreach ($tasks as $key => $value) {
-            $category_name = $value->category_information->name;
-            if (!isset($categories[$category_name])) {
-                $categories[$category_name] = array();
-            }
-            $categories[$category_name][$value->category_2] = $value;
-        }
+        $categories = AppHelper::reformat_task($tasks);
 
         $main_templates = MainTemplate::all();
 
@@ -99,7 +93,7 @@ class TaskController extends Controller
 
         foreach ($task_list as $task) {
             $week = $task['week'];
-            $task_information = \App\Helpers\AppHelper::split_task($task['content']);
+            $task_information = AppHelper::split_task($task['content']);
             $task_id = Task::where([
                 'category_1' => $task_information['category_1'],
                 'category_2' => $task_information['category_2'],
@@ -122,13 +116,7 @@ class TaskController extends Controller
     public function sub_create()
     {
         $tasks = Task::all();
-        $categories = array();
-        foreach ($tasks as $key => $value) {
-            if (!isset($categories[$value->category_1])) {
-                $categories[$value->category_1] = array();
-            }
-            $categories[$value->category_1][$value->category_2] = $value;
-        }
+        $categories = AppHelper::reformat_task($tasks);
         $csrf_token = csrf_token();
         $title = '新增任務副模板';
         return response(
@@ -175,7 +163,7 @@ class TaskController extends Controller
         }
         foreach ($task_list as $task) {
             $week = $task['week'];
-            $task_information = \App\Helpers\AppHelper::split_task($task['content']);
+            $task_information = AppHelper::split_task($task['content']);
             $task_id = Task::where([
                 'category_1' => $task_information['category_1'],
                 'category_2' => $task_information['category_2'],
@@ -199,13 +187,7 @@ class TaskController extends Controller
     public function sub_update($name)
     {
         $tasks = Task::all();
-        $categories = array();
-        foreach ($tasks as $key => $value) {
-            if (!isset($categories[$value->category_1])) {
-                $categories[$value->category_1] = array();
-            }
-            $categories[$value->category_1][$value->category_2] = $value;
-        }
+        $categories = AppHelper::reformat_task($tasks);
 
         $templates = Template::where([
             'name' => $name
@@ -249,7 +231,7 @@ class TaskController extends Controller
         $template->delete();
         foreach ($task_list as $task) {
             $week = $task['week'];
-            $task_information = \App\Helpers\AppHelper::split_task($task['content']);
+            $task_information = AppHelper::split_task($task['content']);
             $task_id = Task::where([
                 'category_1' => $task_information['category_1'],
                 'category_2' => $task_information['category_2'],

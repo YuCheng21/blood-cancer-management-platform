@@ -21,4 +21,16 @@ class AppHelper
             'name' => $name,
         ];
     }
+
+    public static function reformat_task($tasks){
+        $categories = array();
+        foreach ($tasks as $key => $value) {
+            $category_name = $value->category_information->name;
+            if (!isset($categories[$category_name])) {
+                $categories[$category_name] = array();
+            }
+            $categories[$category_name][$value->category_2] = $value;
+        }
+        return $categories;
+    }
 }
