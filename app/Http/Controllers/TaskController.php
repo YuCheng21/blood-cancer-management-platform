@@ -96,14 +96,13 @@ class TaskController extends Controller
         }
         $main_template = MainTemplate::all();
         $main_template->each->delete();
+
         foreach ($task_list as $task) {
             $week = $task['week'];
-            $content = explode('-', $task['content']);
-            $category_1 = $content[0];
-            $category_2 = $content[1];
+            $task_information = \App\Helpers\AppHelper::split_task($task['content']);
             $task_id = Task::where([
-                'category_1' => $category_1,
-                'category_2' => $category_2,
+                'category_1' => $task_information['category_1'],
+                'category_2' => $task_information['category_2'],
             ])->first();
             $main_template = MainTemplate::create([
                 'task_id' => $task_id->id,
@@ -176,12 +175,10 @@ class TaskController extends Controller
         }
         foreach ($task_list as $task) {
             $week = $task['week'];
-            $content = explode('-', $task['content']);
-            $category_1 = $content[0];
-            $category_2 = $content[1];
+            $task_information = \App\Helpers\AppHelper::split_task($task['content']);
             $task_id = Task::where([
-                'category_1' => $category_1,
-                'category_2' => $category_2,
+                'category_1' => $task_information['category_1'],
+                'category_2' => $task_information['category_2'],
             ])->first();
             $template = Template::create([
                 'name' => $name,
@@ -252,12 +249,10 @@ class TaskController extends Controller
         $template->delete();
         foreach ($task_list as $task) {
             $week = $task['week'];
-            $content = explode('-', $task['content']);
-            $category_1 = $content[0];
-            $category_2 = $content[1];
+            $task_information = \App\Helpers\AppHelper::split_task($task['content']);
             $task_id = Task::where([
-                'category_1' => $category_1,
-                'category_2' => $category_2,
+                'category_1' => $task_information['category_1'],
+                'category_2' => $task_information['category_2'],
             ])->first();
             $template = Template::create([
                 'name' => $new_name,

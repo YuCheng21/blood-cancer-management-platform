@@ -35,7 +35,7 @@
                                     <ul class="mb-0">
                                         @foreach($templates as $template)
                                             @if($template->week == $i)
-                                                <li>{{$template->task->category_1}}-{{$template->task->category_2}}-{{$template->task->name}}</li>
+                                                <li>{{$template->task->category_1}}-{{$template->task->category_2}}. {{$template->task->name}}</li>
                                             @endif
                                         @endforeach
                                     </ul>

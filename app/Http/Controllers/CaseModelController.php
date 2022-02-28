@@ -237,12 +237,10 @@ class CaseModelController extends Controller
             $case_task->each->delete();
         }
         foreach ($task_list as $task) {
-            $content = explode('-', $task['content']);
-            $category_1 = $content[0];
-            $category_2 = $content[1];
+            $task_information = \App\Helpers\AppHelper::split_task($task['content']);
             $task_id = Task::where([
-                'category_1' => $category_1,
-                'category_2' => $category_2,
+                'category_1' => $task_information['category_1'],
+                'category_2' => $task_information['category_2'],
             ])->first()->id;
             try {
                 CaseTask::create([
