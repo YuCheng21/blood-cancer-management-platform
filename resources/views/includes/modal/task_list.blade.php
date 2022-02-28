@@ -16,17 +16,18 @@
                                 @foreach ($categories as $key_category => $value_category)
                                     <h2 class="accordion-header">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#group{{$key_category}}">
-                                            類別 {{$key_category}}
+                                                data-bs-target="#accordion{{ $loop->index }}">
+                                            <span class="iconify-inline me-2" data-icon="codicon:symbol-class"></span>
+                                            <span>{{$key_category}}</span>
                                         </button>
                                     </h2>
-                                    <div id="group{{$key_category}}" class="accordion-collapse collapse show">
+                                    <div id="accordion{{ $loop->index }}" class="accordion-collapse collapse show">
                                         <div class="accordion-body">
                                             @foreach ($value_category as $key_task => $value_task)
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="taskList"
-                                                           id="group{{$key_category}}{{$key_task}}00">
-                                                    <label class="form-check-label" for="group{{$key_category}}{{$key_task}}00">{{$key_category}}-{{$key_task}}-{{$value_task->name}}</label>
+                                                           id="group{{$value_task->category_1}}{{$value_task->category_2}}">
+                                                    <label class="form-check-label" for="group{{$value_task->category_1}}{{$value_task->category_2}}">{{$value_task->category_1}}-{{$value_task->category_2}}-{{$value_task->name}}</label>
                                                 </div>
                                             @endforeach
                                         </div>

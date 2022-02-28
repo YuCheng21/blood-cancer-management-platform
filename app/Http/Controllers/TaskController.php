@@ -64,10 +64,11 @@ class TaskController extends Controller
         $tasks = Task::all();
         $categories = array();
         foreach ($tasks as $key => $value) {
-            if (!isset($categories[$value->category_1])) {
-                $categories[$value->category_1] = array();
+            $category_name = $value->category_information->name;
+            if (!isset($categories[$category_name])) {
+                $categories[$category_name] = array();
             }
-            $categories[$value->category_1][$value->category_2] = $value;
+            $categories[$category_name][$value->category_2] = $value;
         }
 
         $main_templates = MainTemplate::all();
