@@ -32,6 +32,8 @@ class DatabaseSeeder extends Seeder
             TaskSeeder::class,
 
             MessageSeeder::class,
+
+            FaqSeeder::class,
         ]);
     }
 }

@@ -19,7 +19,7 @@
                             <div class="card-body fs-4">
                                 <h4 class="card-title">Q&A 總數</h4>
                                 <hr>
-                                <p id="faqNumber" class="card-text">5 筆</p>
+                                <p id="faqNumber" class="card-text">{{ count($faqs) }} 筆</p>
                             </div>
                         </div>
                     </div>
@@ -55,19 +55,19 @@
                                 <th data-width="10" data-width-unit="%">操作選項</th>
                             </tr>
                             </thead>
-                            @for($i = 1; $i <= 12; $i++)
+                            @foreach($faqs as $faq)
                                 <tr>
-                                    <td>QA 主題</td>
-                                    <td>QA 問題</td>
-                                    <td>QA 解答</td>
+                                    <td>{{ $faq->type }}</td>
+                                    <td>{{ $faq->title }}</td>
+                                    <td>{{ $faq->content }}</td>
                                     <td>
                                         <div class="row g-1">
-                                            <div class="col-6">
+                                            <div class="col-12 col-xxl-6">
                                                 <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateFaqModal">
                                                     編輯
                                                 </button>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-12 col-xxl-6">
                                                 <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteFaqModal">
                                                     刪除
                                                 </button>
@@ -75,7 +75,8 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @endfor
+                            @endforeach
+
                         </table>
                     </div>
                 </div>

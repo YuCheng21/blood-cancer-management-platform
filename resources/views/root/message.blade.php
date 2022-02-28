@@ -92,41 +92,6 @@
                                     </td>
                                 </tr>
                             @endforeach
-{{--                            @for($i = 1; $i <= 12; $i++)--}}
-{{--                                <tr>--}}
-{{--                                    <td>訊息編號</td>--}}
-{{--                                    <td>訊息標題</td>--}}
-{{--                                    <td>訊息內容</td>--}}
-{{--                                    <td>訊息發布者</td>--}}
-{{--                                    <td>2022-12-31</td>--}}
-{{--                                    <td>--}}
-{{--                                        <div class="row g-1">--}}
-{{--                                            <div class="col-12 col-xxl-4">--}}
-{{--                                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateMessageModal">--}}
-{{--                                                    編輯--}}
-{{--                                                </button>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="col-12 col-xxl-4">--}}
-{{--                                                <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteMessageModal">--}}
-{{--                                                    刪除--}}
-{{--                                                </button>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="col-12 col-xxl-4">--}}
-{{--                                                <button class="btn btn-secondary text-white w-100" data-bs-toggle="modal"--}}
-{{--                                                        data-bs-target="#applyMessageModal">--}}
-{{--                                                    發送--}}
-{{--                                                </button>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="col-12 col-xl-6">--}}
-{{--                                                <button class="btn btn-secondary text-white w-100" data-bs-toggle="modal"--}}
-{{--                                                        data-bs-target="#applyAllMessageModal">--}}
-{{--                                                    全體發送--}}
-{{--                                                </button>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </td>--}}
-{{--                                </tr>--}}
-{{--                            @endfor--}}
                         </table>
                     </div>
                 </div>
