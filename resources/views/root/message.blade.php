@@ -19,7 +19,7 @@
                             <div class="card-body fs-4">
                                 <h4 class="card-title">消息總數</h4>
                                 <hr>
-                                <p id="messageNumber" class="card-text">5 筆</p>
+                                <p id="messageNumber" class="card-text">{{ count($messages) }} 筆</p>
                             </div>
                         </div>
                     </div>
@@ -57,13 +57,13 @@
                                 <th data-width="15" data-width-unit="%">操作選項</th>
                             </tr>
                             </thead>
-                            @for($i = 1; $i <= 12; $i++)
+                            @foreach($messages as $message)
                                 <tr>
-                                    <td>訊息編號</td>
-                                    <td>訊息標題</td>
-                                    <td>訊息內容</td>
-                                    <td>訊息發布者</td>
-                                    <td>2022-12-31</td>
+                                    <td>{{ $message->id }}</td>
+                                    <td>{{ $message->title }}</td>
+                                    <td>{{ $message->content }}</td>
+                                    <td>{{ $message->user->name }}</td>
+                                    <td>{{ $message->date }}</td>
                                     <td>
                                         <div class="row g-1">
                                             <div class="col-12 col-xxl-4">
@@ -82,16 +82,51 @@
                                                     發送
                                                 </button>
                                             </div>
+                                            {{--                                            <div class="col-12 col-xl-6">--}}
+                                            {{--                                                <button class="btn btn-secondary text-white w-100" data-bs-toggle="modal"--}}
+                                            {{--                                                        data-bs-target="#applyAllMessageModal">--}}
+                                            {{--                                                    全體發送--}}
+                                            {{--                                                </button>--}}
+                                            {{--                                            </div>--}}
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+{{--                            @for($i = 1; $i <= 12; $i++)--}}
+{{--                                <tr>--}}
+{{--                                    <td>訊息編號</td>--}}
+{{--                                    <td>訊息標題</td>--}}
+{{--                                    <td>訊息內容</td>--}}
+{{--                                    <td>訊息發布者</td>--}}
+{{--                                    <td>2022-12-31</td>--}}
+{{--                                    <td>--}}
+{{--                                        <div class="row g-1">--}}
+{{--                                            <div class="col-12 col-xxl-4">--}}
+{{--                                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateMessageModal">--}}
+{{--                                                    編輯--}}
+{{--                                                </button>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-12 col-xxl-4">--}}
+{{--                                                <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteMessageModal">--}}
+{{--                                                    刪除--}}
+{{--                                                </button>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-12 col-xxl-4">--}}
+{{--                                                <button class="btn btn-secondary text-white w-100" data-bs-toggle="modal"--}}
+{{--                                                        data-bs-target="#applyMessageModal">--}}
+{{--                                                    發送--}}
+{{--                                                </button>--}}
+{{--                                            </div>--}}
 {{--                                            <div class="col-12 col-xl-6">--}}
 {{--                                                <button class="btn btn-secondary text-white w-100" data-bs-toggle="modal"--}}
 {{--                                                        data-bs-target="#applyAllMessageModal">--}}
 {{--                                                    全體發送--}}
 {{--                                                </button>--}}
 {{--                                            </div>--}}
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endfor
+{{--                                        </div>--}}
+{{--                                    </td>--}}
+{{--                                </tr>--}}
+{{--                            @endfor--}}
                         </table>
                     </div>
                 </div>

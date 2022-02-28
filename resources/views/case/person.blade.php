@@ -160,7 +160,7 @@
                 </div>
             </div>
         </div>
-        <div class="card border hv-shadow mb-4">
+        <div class="card border hv-shadow mb-4" id="medicineRecord">
             <div class="card-header justify-content-between d-sm-inline-flex align-items-center">
                 <h2 class="my-2">
                     <span class="iconify-inline" data-icon="fontisto:drug-pack"></span>

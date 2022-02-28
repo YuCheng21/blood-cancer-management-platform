@@ -79,7 +79,7 @@
                                 <a href="#" class="nav-link text-white hv-color-text dropdown-toggle"
                                    data-bs-toggle="dropdown">
                                     <span class="iconify-inline" data-icon="healthicons:ui-user-profile"></span>
-                                    <span>管理員</span>
+                                    <span>{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
                                 </a>
                                 <ul class="dropdown-menu fade">
                                     <li>

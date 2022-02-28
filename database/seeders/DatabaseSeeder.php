@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
             BloodComponentsSeeder::class,
 
             TaskSeeder::class,
+
+            MessageSeeder::class,
         ]);
     }
 }
