@@ -51,13 +51,13 @@
                                 <th data-width="10" data-width-unit="%" data-sortable="true">個案匯出</th>
                             </tr>
                             </thead>
-                            @for($i = 1; $i <= 12; $i++)
+                            @foreach($cases as $case)
                                 <tr>
                                     <td data-checkbox="true"></td>
-                                    <td>個案帳號</td>
-                                    <td>個案姓名</td>
-                                    <td><span class="iconify-inline" data-icon="akar-icons:check"></span></td>
-                                    <td><span class="iconify-inline" data-icon="akar-icons:check"></span></td>
+                                    <td>{{ $case->account }}</td>
+                                    <td>{{ $case->name }}</td>
+                                    <td><span class="iconify-inline text-success" data-icon="akar-icons:check"></span></td>
+                                    <td><span class="iconify-inline text-danger" data-icon="akar-icons:cross"></span></span></td>
                                     <td class="text-success">
                                         <div class="row g-1">
                                             <div class="col-12">
@@ -68,7 +68,25 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @endfor
+                            @endforeach
+{{--                            @for($i = 1; $i <= 12; $i++)--}}
+{{--                                <tr>--}}
+{{--                                    <td data-checkbox="true"></td>--}}
+{{--                                    <td>個案帳號</td>--}}
+{{--                                    <td>個案姓名</td>--}}
+{{--                                    <td><span class="iconify-inline" data-icon="akar-icons:check"></span></td>--}}
+{{--                                    <td><span class="iconify-inline" data-icon="akar-icons:check"></span></td>--}}
+{{--                                    <td class="text-success">--}}
+{{--                                        <div class="row g-1">--}}
+{{--                                            <div class="col-12">--}}
+{{--                                                <button class="btn btn-primary w-100">--}}
+{{--                                                    匯出--}}
+{{--                                                </button>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </td>--}}
+{{--                                </tr>--}}
+{{--                            @endfor--}}
                         </table>
                     </div>
                 </div>
