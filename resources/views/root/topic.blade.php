@@ -14,7 +14,7 @@
             </div>
             <div class="card-body px-2 px-lg-4 p-xl-5 py-4">
                 <div class="row justify-content-evenly text-center g-3">
-                    <div class="col-md-6 col-lg-3" id="topicNumberCard">
+                    <div class="col-md-12 col-lg-3" id="topicNumberCard">
                         <div class="card text-white bg-info">
                             <div class="card-body fs-4">
                                 <h4 class="card-title">題目總數</h4>
