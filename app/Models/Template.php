@@ -16,6 +16,6 @@ class Template extends Model
     ];
 
     public function task(){
-        return $this->hasOne(Task::class, 'id', 'task_id');
+        return $this->belongsTo(Task::class, 'task_id', 'id');
     }
 }

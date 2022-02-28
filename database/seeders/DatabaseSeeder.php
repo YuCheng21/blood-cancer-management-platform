@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
 
             BloodComponentsSeeder::class,
 
+
+            CategoryInfoSeeder::class,
             TaskSeeder::class,
 
             MessageSeeder::class,

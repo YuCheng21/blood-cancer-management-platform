@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
