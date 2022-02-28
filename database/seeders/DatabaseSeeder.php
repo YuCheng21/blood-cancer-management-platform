@@ -34,6 +34,8 @@ class DatabaseSeeder extends Seeder
             MessageSeeder::class,
 
             FaqSeeder::class,
+
+            TopicSeeder::class,
         ]);
     }
 }

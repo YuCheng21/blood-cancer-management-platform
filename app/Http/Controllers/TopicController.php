@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Topic;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class TopicController extends Controller
 {
@@ -13,75 +15,18 @@ class TopicController extends Controller
      */
     public function index()
     {
+        $topics = Topic::all();
+        $tf_number = Topic::where([
+            'question_type' => 'TF'
+        ])->count();
+        $mc_number = Topic::where([
+            'question_type' => 'MC'
+        ])->count();
+
         $title = '題庫管理';
-        return view('root.topic', [
-            'title' => $title
-        ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return response(
+            view('root.topic', get_defined_vars()),
+            Response::HTTP_OK
+        );
     }
 }

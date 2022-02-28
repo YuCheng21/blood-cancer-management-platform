@@ -19,7 +19,7 @@
                             <div class="card-body fs-4">
                                 <h4 class="card-title">題目總數</h4>
                                 <hr>
-                                <p id="topicNumber" class="card-text">5 筆</p>
+                                <p id="topicNumber" class="card-text">{{ count($topics) }} 筆</p>
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                             <div class="card-body fs-4">
                                 <h4 class="card-title">選擇題數</h4>
                                 <hr>
-                                <p id="mcqNumber" class="card-text">6 筆</p>
+                                <p id="mcqNumber" class="card-text">{{ $mc_number }} 筆</p>
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                             <div class="card-body fs-4">
                                 <h4 class="card-title">是非題數</h4>
                                 <hr>
-                                <p id="tfqNumber" class="card-text">7 筆</p>
+                                <p id="tfqNumber" class="card-text">{{ $tf_number }} 筆</p>
                             </div>
                         </div>
                     </div>
@@ -70,32 +70,45 @@
                                 <th data-width="20" data-width-unit="%" data-sortable="true">課程</th>
                                 <th data-width="35" data-width-unit="%" data-sortable="true">題目</th>
                                 <th data-width="10" data-width-unit="%" data-sortable="true">題型</th>
-                                <th data-width="25" data-width-unit="%" data-sortable="true">選項</th>
+                                <th data-width="25" data-width-unit="%" data-sortable="true" data-halign="center"
+                                    data-align="left">選項
+                                </th>
                                 <th data-width="10" data-width-unit="%">操作選項</th>
                             </tr>
                             </thead>
-                            @for($i = 1; $i <= 12; $i++)
+                            @foreach($topics as $topic)
                                 <tr>
-                                    <td>題目課程</td>
-                                    <td>題目內容</td>
-                                    <td>題目類型</td>
-                                    <td>題目選項</td>
+                                    <td>{{ $topic->type }}</td>
+                                    <td>{{ $topic->question }}</td>
+                                    <td>{{ $topic->question_type == 'MC' ? '選擇題' : ($topic->question_type == 'TF' ? '是非題' : '')}}</td>
+                                    <td>
+                                        @if($topic->question_type == 'MC')
+                                            <ol style="list-style-type: upper-alpha">
+                                                <li>{{ $topic->option_a }}</li>
+                                                <li>{{ $topic->option_b }}</li>
+                                                <li>{{ $topic->option_c }}</li>
+                                                <li>{{ $topic->option_d }}</li>
+                                            </ol>
+                                        @endif
+                                    </td>
                                     <td>
                                         <div class="row g-1">
                                             <div class="col-12 col-xxl-6">
-                                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateTopicModal">
+                                                <button class="btn btn-primary w-100" data-bs-toggle="modal"
+                                                        data-bs-target="#updateTopicModal">
                                                     編輯
                                                 </button>
                                             </div>
                                             <div class="col-12 col-xxl-6">
-                                                <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteTopicModal">
+                                                <button class="btn btn-danger w-100" data-bs-toggle="modal"
+                                                        data-bs-target="#deleteTopicModal">
                                                     刪除
                                                 </button>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
-                            @endfor
+                            @endforeach
                         </table>
                     </div>
                 </div>
