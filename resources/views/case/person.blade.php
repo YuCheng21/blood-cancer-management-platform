@@ -132,9 +132,9 @@
                                             @foreach($case_tasks as $task)
                                                 @if($task->week == $i)
                                                     @if($counter1 % 2 == 0)
-                                                        <li class="bg-primary bg-opacity-10">{{ $task->task->category_1 }}-{{ $task->task->category_2 }}. {{ $task->task->name }}</li>
+                                                        <li class="bg-primary bg-opacity-10">{{ $task->category_1 }}-{{ $task->category_2 }}. {{ $task->name }}</li>
                                                     @else
-                                                        <li class="bg-info bg-opacity-10">{{ $task->task->category_1 }}-{{ $task->task->category_2 }}. {{ $task->task->name }}</li>
+                                                        <li class="bg-info bg-opacity-10">{{ $task->category_1 }}-{{ $task->category_2 }}. {{ $task->name }}</li>
                                                     @endif
                                                     @php($counter1++)
                                                 @endif

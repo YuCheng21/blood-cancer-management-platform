@@ -106,7 +106,14 @@ class CaseModelController extends Controller
 
         $blood_components = $case->blood_components;
 
-        $case_tasks = $case->case_tasks;
+        $case_tasks = $case
+            ->case_tasks()
+            ->join('tasks', 'task_id', '=', 'tasks.id')
+            ->orderBy('week', 'ASC')
+            ->orderBy('category_1', 'ASC')
+            ->orderBy('category_2', 'ASC')
+            ->select('case_tasks.*', 'tasks.category_1', 'tasks.category_2', 'tasks.name')
+            ->get();
 
         if (!empty($case_tasks->toArray())){
             $start_at = Carbon::parse($case_tasks[0]->start_at)->subDays(1);
