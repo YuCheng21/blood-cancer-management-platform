@@ -239,10 +239,9 @@ class CaseModelController extends Controller
             $case_task->each->delete();
         }
         foreach ($task_list as $task) {
-            $task_information = AppHelper::split_task($task['content']);
             $task_id = Task::where([
-                'category_1' => $task_information['category_1'],
-                'category_2' => $task_information['category_2'],
+                'category_1' => $task['category_1'],
+                'category_2' => $task['category_2'],
             ])->first()->id;
             try {
                 CaseTask::create([

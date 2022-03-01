@@ -93,10 +93,9 @@ class TaskController extends Controller
 
         foreach ($task_list as $task) {
             $week = $task['week'];
-            $task_information = AppHelper::split_task($task['content']);
             $task_id = Task::where([
-                'category_1' => $task_information['category_1'],
-                'category_2' => $task_information['category_2'],
+                'category_1' => $task['category_1'],
+                'category_2' => $task['category_2'],
             ])->first();
             $main_template = MainTemplate::create([
                 'task_id' => $task_id->id,
@@ -163,10 +162,9 @@ class TaskController extends Controller
         }
         foreach ($task_list as $task) {
             $week = $task['week'];
-            $task_information = AppHelper::split_task($task['content']);
             $task_id = Task::where([
-                'category_1' => $task_information['category_1'],
-                'category_2' => $task_information['category_2'],
+                'category_1' => $task['category_1'],
+                'category_2' => $task['category_2'],
             ])->first();
             $template = Template::create([
                 'name' => $name,
@@ -231,10 +229,9 @@ class TaskController extends Controller
         $template->delete();
         foreach ($task_list as $task) {
             $week = $task['week'];
-            $task_information = AppHelper::split_task($task['content']);
             $task_id = Task::where([
-                'category_1' => $task_information['category_1'],
-                'category_2' => $task_information['category_2'],
+                'category_1' => $task['category_1'],
+                'category_2' => $task['category_2'],
             ])->first();
             $template = Template::create([
                 'name' => $new_name,

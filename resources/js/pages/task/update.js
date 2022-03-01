@@ -1,59 +1,82 @@
 $(document).on('click', '.updateTaskListBtn', function (e) {
+    // getting the target week that was click.
     const index = $(e.currentTarget).closest('tr').data('index');
+    // store week in modal element.
     $('#taskListSend').attr('data-index', index).data('index', index)
+    // getting selected items from table.
     let tasks = $(`tbody > tr[data-index=${index}] > td:nth-child(2) > ul > li`).map(function () {
-        return $(this).text()
+        return {
+            'category_1': $(this).data('category-1'),
+            'category_2': $(this).data('category-2'),
+        }
     }).get()
+    // initialize checkbox.
     $('input:checkbox[name=taskList]').prop('checked', false);
-    $('#taskListForm label').map(function (){
+    // setting checkbox.
+    $('#taskListForm input').map(function () {
         let list = $(this);
         tasks.forEach((item) => {
-            if (list.text() === item){
-                list.prevAll('input').prop('checked', true)
+            let item_id = 'group' + item['category_1'] + '-' + item['category_2']
+            if (list.attr('id') === item_id) {
+                list.prop('checked', true)
             }
         })
     })
 })
 
 $(document).on('click', '#taskListSend', function () {
+    // getting selected items from modal.
     let checkItem = [];
     $("input:checkbox[name=taskList]:checked").each(function () {
-        checkItem.push($(this).nextAll('label').text());
+        let number = $(this).attr('id').split('group')[1].split('-');
+        let category_1 = number[0];
+        let category_2 = number.slice(1);
+        let text = $(this).nextAll('label').text();
+        checkItem.push({
+            'category_1': category_1,
+            'category_2': category_2,
+            'text': text,
+        });
     });
-    const index = $('#taskListSend').data('index')
+    // getting the target week that was click.
+    let index = $('#taskListSend').data('index')
+    // rendering items to table.
     if (checkItem.length) {
         let ul = document.createElement('ul');
         checkItem.forEach((item) => {
             let li = document.createElement("li");
-            li.innerText = item;
+            li.innerText = item['text'];
+            li.setAttribute('data-category-1', item['category_1'])
+            li.setAttribute('data-category-2', item['category_2'])
             ul.appendChild(li);
         })
         ul.classList.add('mb-0')
         $(`tr[data-index=${index}] > td:nth-child(2)`).html(ul)
-    }else{
+    } else {
         $(`tr[data-index=${index}] > td:nth-child(2)`).html(null)
     }
+    // hide the modal.
     $('#taskListModal').modal('hide')
-})
-
-$('#createAsTaskSend').on('click', function () {
-
 })
 
 $('#updateTaskSend, #createAsTaskSend').on('click', function () {
     const taskList = $('tr li').map(function () {
-        week = $(this).closest('tr').data('index') + 1; // data-index start as 0
+        let week = $(this).closest('tr').data('index') + 1; // data-index start as 0
         return {
             'week': week,
+            'category_1': $(this).data('category-1'),
+            'category_2': $(this).data('category-2'),
             'content': $(this).text()
         }
     }).get();
+
     let url;
     if ($(this).attr('id') === 'updateTaskSend'){
         url = sub_update_post
     }else if ($(this).attr('id') === 'createAsTaskSend'){
         url = sub_create_post
     }
+
     const name = $('#updateSubTemplate').val();
 
     var form = document.createElement('form');

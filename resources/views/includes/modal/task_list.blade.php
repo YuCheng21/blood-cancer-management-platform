@@ -26,8 +26,9 @@
                                             @foreach ($value_category as $key_task => $value_task)
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="taskList"
-                                                           id="group{{$value_task->category_1}}{{$value_task->category_2}}">
-                                                    <label class="form-check-label" for="group{{$value_task->category_1}}{{$value_task->category_2}}">{{$value_task->category_1}}-{{$value_task->category_2}}. {{$value_task->name}}</label>
+                                                           id="group{{$value_task->category_1}}-{{$value_task->category_2}}">
+                                                    <label class="form-check-label"
+                                                           for="group{{$value_task->category_1}}-{{$value_task->category_2}}">{{$value_task->category_1}}-{{$value_task->category_2}}. {{$value_task->name}}</label>
                                                 </div>
                                             @endforeach
                                         </div>
