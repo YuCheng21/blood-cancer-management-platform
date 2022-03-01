@@ -92,9 +92,9 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <form method="POST" action="{{route('users.logout')}}">
+                                        <form method="POST" action="{{ route('users.logout') }}">
                                             @csrf
-                                            <a href="{{route('users.logout')}}" class="dropdown-item hv-color-bg"
+                                            <a href="{{ route('users.logout') }}" class="dropdown-item hv-color-bg"
                                                onclick="event.preventDefault();this.closest('form').submit();">
                                                 <span class="iconify-inline" data-icon="ls:login"></span>
                                                 <span>登出</span>

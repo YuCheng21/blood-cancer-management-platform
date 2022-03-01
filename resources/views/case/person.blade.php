@@ -97,11 +97,10 @@
                     <span class="iconify-inline" data-icon="fluent:bookmark-multiple-24-filled"></span>
                     <span>每週任務</span>
                 </h2>
-                <button class="btn btn-primary"
-                        onclick="location.href='{{route('cases.task', ['account' => $account])}}'">
+                <a class="btn btn-primary" href="{{ route('cases.task', ['account' => $account]) }}">
                     <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                     <span>編輯資料</span>
-                </button>
+                </a>
             </div>
             <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
                 <div class="row justify-content-center text-center">
