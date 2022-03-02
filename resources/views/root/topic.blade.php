@@ -81,9 +81,9 @@
                                 <tr>
                                     <td>{{ $topic->type }}</td>
                                     <td class="ws-normal">{{ $topic->question }}</td>
-                                    <td>{{ $topic->question_type == 'MC' ? '選擇題' : ($topic->question_type == 'TF' ? '是非題' : '')}}</td>
+                                    <td>{{ $topic->question_type == 'multiple-choice' ? '選擇題' : ($topic->question_type == 'true-false' ? '是非題' : '')}}</td>
                                     <td>
-                                        @if($topic->question_type == 'MC')
+                                        @if($topic->question_type == 'multiple-choice')
                                             <ol style="list-style-type: upper-alpha">
                                                 <li>{{ $topic->option_a }}</li>
                                                 <li>{{ $topic->option_b }}</li>
