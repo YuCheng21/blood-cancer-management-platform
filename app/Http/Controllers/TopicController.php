@@ -18,10 +18,10 @@ class TopicController extends Controller
     {
         $topics = Topic::all();
         $tf_number = Topic::where([
-            'question_type' => 'TF'
+            'question_type' => 'true-false'
         ])->count();
         $mc_number = Topic::where([
-            'question_type' => 'MC'
+            'question_type' => 'multiple-choice'
         ])->count();
 
         $title = '題庫管理';
