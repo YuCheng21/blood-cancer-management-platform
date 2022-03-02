@@ -20,6 +20,9 @@ class CreateSideEffectRecordsTable extends Migration
             $table->string('symptom')->comment('症狀');
             $table->string('difficulty')->comment('困擾度');
             $table->string('severity')->comment('嚴重度');
+            $table->boolean('has_image')->comment('有照片');
+            $table->string('path')->comment('路徑')->nullable();
+            $table->string('caption')->comment('說明')->nullable();
             $table->timestamps();
         });
         Schema::table('side_effect_records', function (Blueprint $table) {

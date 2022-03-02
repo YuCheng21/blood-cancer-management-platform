@@ -309,14 +309,16 @@
                 @if(count($image_records))
                     <div class="d-flex flex-row flex-nowrap overflow-scroll">
                         @foreach($image_records as $image_record)
-                            <div class="d-flex flex-column align-items-center">
-                                <a data-fancybox="gallery" class="text-center"
-                                   data-caption="{{ $image_record->caption }}"
-                                   href="{{ $image_record->path }}">
-                                    <img src="{{ $image_record->path }}" class="m-1" alt=""/>
-                                </a>
-                                <span class="fs-4">{{ $image_record->date }}</span>
-                            </div>
+                            @if(!is_null($image_record->path))
+                                <div class="d-flex flex-column align-items-center">
+                                    <a data-fancybox="gallery" class="text-center"
+                                       data-caption="{{ $image_record->caption }}"
+                                       href="{{ $image_record->path }}">
+                                        <img src="{{ $image_record->path }}" class="m-1" alt=""/>
+                                    </a>
+                                    <span class="fs-4">{{ $image_record->date }}</span>
+                                </div>
+                            @endif
                         @endforeach
                     </div>
                 @else
