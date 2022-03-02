@@ -11,7 +11,7 @@
                     <span>總覽</span>
                 </h2>
             </div>
-            <div class="card-body px-2 px-lg-4 p-xl-5 py-4">
+            <div class="card-body px-2 px-lg-4 px-xl-5 py-4">
                 <div class="row justify-content-evenly text-center">
                     <div class="col-md-6 col-lg-3" id="caseNumberCard">
                         <div class="card text-white bg-info">
@@ -36,7 +36,7 @@
                     <span>新增個案</span>
                 </button>
             </div>
-            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
+            <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
                         <table class="table table-striped text-center align-middle fs-5 ws-nowrap"

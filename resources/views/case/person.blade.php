@@ -21,7 +21,7 @@
                     <span>編輯資料</span>
                 </button>
             </div>
-            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
+            <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
                 <div class="row justify-content-between text-center gy-4 fs-5">
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">帳號</span>
@@ -82,7 +82,7 @@
                     <span>抽血數據</span>
                 </h2>
             </div>
-            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
+            <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
                 <canvas id="bloodChart" style="min-height: 500px;"></canvas>
                 {{--                <div class="row justify-content-center">--}}
                 {{--                    <div class="col-12">--}}
@@ -102,7 +102,7 @@
                     <span>編輯資料</span>
                 </a>
             </div>
-            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
+            <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
                         <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
@@ -116,43 +116,45 @@
                                 <th data-width="10" data-width-unit="%" data-sortable="true">進度</th>
                             </tr>
                             </thead>
-                            @php($counter = 1)
-                            @for($i = 1; $i <= 12; $i++)
-                                <tr>
-                                    <td>第 {{ $i }} 週</td>
-                                    <td>
-                                        <span>{{ isset($start_at) ? $start_at->addDay(1)->toDateString() : '' }}</span><br>
-                                        <span>~</span><br>
-                                        <span>{{ isset($start_at) ? $start_at->addDay(6)->toDateString() : '' }}</span><br>
-                                    </td>
-                                    <td>
-                                        <ul class="mb-0">
+                            @if(count($case_tasks))
+                                @php($counter = 1)
+                                @for($i = 1; $i <= 12; $i++)
+                                    <tr>
+                                        <td>第 {{ $i }} 週</td>
+                                        <td>
+                                            <span>{{ $start_at->addDay(1)->toDateString() }}</span><br>
+                                            <span>~</span><br>
+                                            <span>{{ $start_at->addDay(6)->toDateString() }}</span><br>
+                                        </td>
+                                        <td>
+                                            <ul class="mb-0">
+                                                @foreach($case_tasks as $task)
+                                                    @if($task->week == $i)
+                                                        @php(/* @var $item */ $item =  $task->category_1 . '-' . $task->category_2 . '. ' . $task->name )
+                                                        @if($counter % 2 == 0)
+                                                            <li class="bg-primary bg-opacity-10">{{ $item }}</li>
+                                                        @else
+                                                            <li class="bg-info bg-opacity-10">{{ $item }}</li>
+                                                        @endif
+                                                        @php(/* @var $counter */ $counter++)
+                                                    @endif
+                                                @endforeach
+                                            </ul>
+                                        </td>
+                                        <td>
                                             @foreach($case_tasks as $task)
                                                 @if($task->week == $i)
-                                                    @php(/* @var $item */ $item =  $task->category_1 . '-' . $task->category_2 . '. ' . $task->name )
-                                                    @if($counter % 2 == 0)
-                                                        <li class="bg-primary bg-opacity-10">{{ $item }}</li>
+                                                    @if($task->state == 'completed')
+                                                        <span class="text-success">已完成</span><br>
                                                     @else
-                                                        <li class="bg-info bg-opacity-10">{{ $item }}</li>
+                                                        <span class="text-primary">未完成</span><br>
                                                     @endif
-                                                    @php(/* @var $counter */ $counter++)
                                                 @endif
                                             @endforeach
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        @foreach($case_tasks as $task)
-                                            @if($task->week == $i)
-                                                @if($task->state == 'completed')
-                                                    <span class="text-success">已完成</span><br>
-                                                @else
-                                                    <span class="text-primary">未完成</span><br>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    </td>
-                                </tr>
-                            @endfor
+                                        </td>
+                                    </tr>
+                                @endfor
+                            @endif
                         </table>
                     </div>
                 </div>
@@ -171,7 +173,7 @@
                     </button>
                 </div>
             </div>
-            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
+            <div class="card-body py-2 px-2 px-lg-4 px-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
                         <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
@@ -190,38 +192,25 @@
                                 <th data-width="10" data-width-unit="%">操作選項</th>
                             </tr>
                             </thead>
-                            <tr>
-                                <td>2021-12-14</td>
-                                <td>Cycle1</td>
-                                <td>藥物 A</td>
-                                <td>200 mg</td>
-                                <td>
-                                    <button class="btn btn-secondary text-white" data-bs-toggle="modal"
-                                            data-bs-target="#updateMedicineRecordModal">
-                                        <span class="iconify-inline" data-icon="fa-regular:edit"></span>
-                                    </button>
-                                    <button class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#deleteMedicineRecordModal">
-                                        <span class="iconify-inline" data-icon="ion:trash"></span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2021-01-17</td>
-                                <td>Cycle2</td>
-                                <td>藥物 B</td>
-                                <td>100 mg</td>
-                                <td>
-                                    <button class="btn btn-secondary text-white" data-bs-toggle="modal"
-                                            data-bs-target="#updateMedicineRecordModal">
-                                        <span class="iconify-inline" data-icon="fa-regular:edit"></span>
-                                    </button>
-                                    <button class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#deleteMedicineRecordModal">
-                                        <span class="iconify-inline" data-icon="ion:trash"></span>
-                                    </button>
-                                </td>
-                            </tr>
+
+                            @foreach($medicine_records as $medicine_record)
+                                <tr>
+                                    <td>{{ $medicine_record->date }}</td>
+                                    <td>{{ $medicine_record->course }}</td>
+                                    <td>{{ $medicine_record->type }}</td>
+                                    <td>{{ $medicine_record->dose }}</td>
+                                    <td>
+                                        <button class="btn btn-secondary text-white" data-bs-toggle="modal"
+                                                data-bs-target="#updateMedicineRecordModal">
+                                            <span class="iconify-inline" data-icon="fa-regular:edit"></span>
+                                        </button>
+                                        <button class="btn btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#deleteMedicineRecordModal">
+                                            <span class="iconify-inline" data-icon="ion:trash"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </table>
                     </div>
                 </div>
@@ -234,7 +223,7 @@
                     <span>副作用紀錄</span>
                 </h2>
             </div>
-            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
+            <div class="card-body py-2 px-2 px-lg-4 px-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
                         <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
@@ -247,28 +236,24 @@
                             <thead>
                             <tr>
                                 <th data-width="20" data-width-unit="%" data-sortable="true">紀錄時間</th>
-                                <th data-width="80" data-width-unit="%" data-sortable="true" data-halign="center"
-                                    data-align="left">副作用
+                                <th data-width="80" data-width-unit="%" data-sortable="true"
+                                    data-halign="center" data-align="left">
+                                    副作用
                                 </th>
                             </tr>
                             </thead>
-                            <tr>
-                                <td>2021-12-14</td>
-                                <td>
-                                    <ul class="mb-0">
-                                        <li>口乾（困擾度：3、嚴重度：1）</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2021-01-25</td>
-                                <td>
-                                    <ul class="mb-0">
-                                        <li>掉髮（困擾度：4、嚴重度：0）</li>
-                                        <li>熱潮紅（困擾度：2、嚴重度：2）</li>
-                                    </ul>
-                                </td>
-                            </tr>
+                            @foreach(\App\Helpers\AppHelper::reformat_side_effect_record($side_effect_records) as $key => $value)
+                                <tr>
+                                    <td>{{ $key }}</td>
+                                    <td>
+                                        <ul class="mb-0">
+                                            @foreach($value as $side_effect_record)
+                                                <li>{{ $side_effect_record->symptom }}（困擾度：{{ $side_effect_record->difficulty }}、嚴重度：{{ $side_effect_record->severity }}）</li>
+                                            @endforeach
+                                        </ul>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </table>
                     </div>
                 </div>
@@ -281,7 +266,7 @@
                     <span>報告個管師紀錄</span>
                 </h2>
             </div>
-            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
+            <div class="card-body py-2 px-2 px-lg-4 px-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
                         <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
@@ -299,24 +284,14 @@
                                 <th data-width="20" data-width-unit="%" data-sortable="true">固定回診醫院</th>
                             </tr>
                             </thead>
-                            <tr>
-                                <td>2021-12-14</td>
-                                <td>很好</td>
-                                <td>噁心嘔吐</td>
-                                <td>高醫</td>
-                            </tr>
-                            <tr>
-                                <td>2022-01-17</td>
-                                <td>普通</td>
-                                <td>皮疹</td>
-                                <td>榮總</td>
-                            </tr>
-                            <tr>
-                                <td>2022-01-18</td>
-                                <td>普通</td>
-                                <td>無</td>
-                                <td>高醫</td>
-                            </tr>
+                            @foreach($report_records as $report_record)
+                                <tr>
+                                    <td>{{ $report_record->date }}</td>
+                                    <td>{{ $report_record->physical_strength }}</td>
+                                    <td>{{ $report_record->symptom }}</td>
+                                    <td>{{ $report_record->hospital }}</td>
+                                </tr>
+                            @endforeach
                         </table>
                     </div>
                 </div>
@@ -329,49 +304,25 @@
                     <span>症狀影像紀錄</span>
                 </h2>
             </div>
-            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
-                <div class="d-flex flex-row flex-nowrap overflow-scroll">
-                    <div class="d-flex flex-column align-items-center">
-                        <a data-fancybox="gallery" class="text-center"
-                           data-caption="Caption #1"
-                           href="https://lipsum.app/id/1/800x800/">
-                            <img src="https://lipsum.app/id/1/400x400/" class="m-1" alt=""/>
-                        </a>
-                        <span class="fs-4">2022-01-17 23:59:59</span>
+            <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
+                @if(count($image_records))
+                    <div class="d-flex flex-row flex-nowrap overflow-scroll">
+                        @foreach($image_records as $image_record)
+                            <div class="d-flex flex-column align-items-center">
+                                <a data-fancybox="gallery" class="text-center"
+                                   data-caption="{{ $image_record->caption }}"
+                                   href="{{ $image_record->path }}">
+                                    <img src="{{ $image_record->path }}" class="m-1" alt=""/>
+                                </a>
+                                <span class="fs-4">{{ $image_record->date }}</span>
+                            </div>
+                        @endforeach
                     </div>
-                    <div class="d-flex flex-column align-items-center">
-                        <a data-fancybox="gallery" class="text-center"
-                           data-caption="Caption #2"
-                           href="https://lipsum.app/id/2/800x800/">
-                            <img src="https://lipsum.app/id/2/400x400/" class="m-1" alt=""/>
-                        </a>
-                        <span class="fs-4">2022-01-17 23:59:59</span>
+                @else
+                    <div class="d-flex justify-content-center align-items-center" style="min-height: 150px;">
+                        <p class="fs-1 text-primary">查無資料</p>
                     </div>
-                    <div class="d-flex flex-column align-items-center">
-                        <a data-fancybox="gallery" class="text-center"
-                           data-caption="Caption #3"
-                           href="https://lipsum.app/id/3/800x800/">
-                            <img src="https://lipsum.app/id/3/400x400/" class="m-1" alt=""/>
-                        </a>
-                        <span class="fs-4">2022-01-17 23:59:59</span>
-                    </div>
-                    <div class="d-flex flex-column align-items-center">
-                        <a data-fancybox="gallery" class="text-center"
-                           data-caption="Caption #4"
-                           href="https://lipsum.app/id/4/800x800/">
-                            <img src="https://lipsum.app/id/4/400x400/" class="m-1" alt=""/>
-                        </a>
-                        <span class="fs-4">2022-01-17 23:59:59</span>
-                    </div>
-                    <div class="d-flex flex-column align-items-center">
-                        <a data-fancybox="gallery" class="text-center"
-                           data-caption="Caption #5"
-                           href="https://lipsum.app/id/5/800x800/">
-                            <img src="https://lipsum.app/id/5/400x400/" class="m-1" alt=""/>
-                        </a>
-                        <span class="fs-4">2022-01-17 23:59:59</span>
-                    </div>
-                </div>
+                @endif
             </div>
         </div>
     </div>

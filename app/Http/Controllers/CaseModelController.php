@@ -9,6 +9,7 @@ use App\Models\DiseaseClass;
 use App\Models\DiseaseState;
 use App\Models\DiseaseType;
 use App\Models\Gender;
+use App\Models\MedicineRecord;
 use App\Models\Task;
 use App\Models\TransplantType;
 use Carbon\Carbon;
@@ -119,6 +120,10 @@ class CaseModelController extends Controller
             $start_at = Carbon::parse($case_tasks[0]->start_at)->subDays(1);
         }
 
+        $medicine_records = $case->medicine_records;
+        $side_effect_records = $case->side_effect_records;
+        $report_records = $case->report_records;
+        $image_records = $case->image_records;
 
         $title = '個人資料';
         return response(

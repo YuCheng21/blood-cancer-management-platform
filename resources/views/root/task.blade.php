@@ -11,7 +11,7 @@
                     <span>總覽</span>
                 </h2>
             </div>
-            <div class="card-body px-2 px-lg-4 p-xl-5 py-4">
+            <div class="card-body px-2 px-lg-4 px-xl-5 py-4">
                 <div class="row justify-content-evenly text-center">
                     <div class="col-md-6 col-lg-3" id="taskNumberCard">
                         <div class="card text-white bg-info">
@@ -42,7 +42,7 @@
                     </a>
                 </div>
             </div>
-            <div class="card-body py-4 px-2 px-lg-4 p-xl-5" id="subTemplate">
+            <div class="card-body py-4 px-2 px-lg-4 px-xl-5" id="subTemplate">
                 <div class="row justify-content-center g-2">
                     <div class="col-sm-12 col-lg-6">
                         <div class="input-group">

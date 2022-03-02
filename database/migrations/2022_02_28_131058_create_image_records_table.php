@@ -18,6 +18,7 @@ class CreateImageRecordsTable extends Migration
             $table->unsignedBigInteger('case_id')->comment('個案編號');
             $table->date('date')->comment('日期');
             $table->string('path')->comment('路徑');
+            $table->string('caption')->comment('說明');
             $table->timestamps();
         });
         Schema::table('image_records', function (Blueprint $table) {

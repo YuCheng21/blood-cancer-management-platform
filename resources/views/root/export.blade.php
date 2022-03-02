@@ -32,7 +32,7 @@
                     </button>
                 </div>
             </div>
-            <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
+            <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
                         <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
@@ -57,7 +57,7 @@
                                     <td>{{ $case->account }}</td>
                                     <td>{{ $case->name }}</td>
                                     <td><span class="iconify-inline text-success" data-icon="akar-icons:check"></span></td>
-                                    <td><span class="iconify-inline text-danger" data-icon="akar-icons:cross"></span></span></td>
+                                    <td><span class="iconify-inline text-danger" data-icon="akar-icons:cross"></span></td>
                                     <td class="text-success">
                                         <div class="row g-1">
                                             <div class="col-12">

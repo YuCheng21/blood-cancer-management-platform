@@ -4,6 +4,9 @@ namespace App\Helpers;
 
 class AppHelper
 {
+    /*
+     * array_column, array_unique, array_filter
+     */
     public static function split_task($task): array
     {
 //        $task = "1-2-3-4-5. [Ab cum-numquam susci-pit. . dd-]";
@@ -22,7 +25,8 @@ class AppHelper
         ];
     }
 
-    public static function reformat_task($tasks){
+    public static function reformat_task($tasks): array
+    {
         $categories = array();
         foreach ($tasks as $key => $value) {
             $category_name = $value->category_information->name;
@@ -32,5 +36,14 @@ class AppHelper
             $categories[$category_name][$value->category_2] = $value;
         }
         return $categories;
+    }
+
+    public static function reformat_side_effect_record($side_effect_record): array
+    {
+        $date = array();
+        foreach ($side_effect_record as $key => $value) {
+            $date[$value->date][] = $value;
+        }
+        return $date;
     }
 }

@@ -32,6 +32,10 @@ class DatabaseSeeder extends Seeder
 
             CategoryInfoSeeder::class,
             TaskSeeder::class,
+            MedicineRecordSeeder::class,
+            SideEffectRecordSeeder::class,
+            ReportRecordSeeder::class,
+            ImageRecordSeeder::class,
 
             MessageSeeder::class,
 
