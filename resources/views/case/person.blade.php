@@ -83,12 +83,13 @@
                 </h2>
             </div>
             <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
-                <canvas id="bloodChart" style="min-height: 500px;"></canvas>
-                {{--                <div class="row justify-content-center">--}}
-                {{--                    <div class="col-12">--}}
-                {{--                        --}}
-                {{--                    </div>--}}
-                {{--                </div>--}}
+                @if(count($blood_components))
+                    <canvas id="bloodChart" style="min-height: 500px;"></canvas>
+                @else
+                    <div class="d-flex justify-content-center align-items-center" style="min-height: 100px;">
+                        <p class="fs-1 text-primary">查無資料</p>
+                    </div>
+                @endif
             </div>
         </div>
         <div class="card border hv-shadow mb-4" id="weeklyTask">
@@ -319,7 +320,7 @@
                         @endforeach
                     </div>
                 @else
-                    <div class="d-flex justify-content-center align-items-center" style="min-height: 150px;">
+                    <div class="d-flex justify-content-center align-items-center" style="min-height: 100px;">
                         <p class="fs-1 text-primary">查無資料</p>
                     </div>
                 @endif
@@ -341,8 +342,7 @@
     {{--  Page Customize Javascript  --}}
     <script src="{{asset('js/pages/case/person.js')}}"></script>
     <script>
-        const caseUrl = '{{route('api.cases.show', ['account' => $case->account])}}'
-        const bloodComponentUrl = '{{route('api.blood-components.account', ['account' => $case->account])}}'
+        const cases = @json($case)
 
         const updateUrl = '{{route('cases.update', ['account' => $case->account])}}';
     </script>
