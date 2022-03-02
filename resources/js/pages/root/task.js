@@ -71,3 +71,7 @@ $('#applyTaskSend').on('click', function () {
     document.body.appendChild(form).submit();
     $('body').prepend(loading);
 })
+
+$('#confirm').on('change', function () {
+    $('#applyTaskSend').toggleClass('disabled', !$(this).prop('checked'))
+})
