@@ -1,3 +1,15 @@
+function fancybox_show(url){
+    /**
+     * https://fancyapps.com/docs/ui/fancybox/api
+     */
+    Fancybox.show([
+        {
+            src: url,
+            type: "image",
+        },
+    ]);
+}
+
 $(document).ready(function () {
     $('#updateCaseForm').attr('action', updateUrl)
     $('#updateCaseSend').attr('href', updateUrl)

@@ -17,4 +17,6 @@ mix.copyDirectory('resources/js/pages', 'public/js/pages');
 mix.copyDirectory('resources/img', 'public/img');
 
 mix.copyDirectory('node_modules/chartjs-adapter-date-fns',
-    'public/node_modules/chartjs-adapter-date-fns')
+    'public/node_modules/chartjs-adapter-date-fns');
+mix.copyDirectory('node_modules/@fancyapps',
+    'public/node_modules/@fancyapps')

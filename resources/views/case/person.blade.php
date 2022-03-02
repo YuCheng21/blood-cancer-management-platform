@@ -4,7 +4,9 @@
 
 @section('head')
     @parent
-    <script src="{{asset('node_modules\chartjs-adapter-date-fns\dist\chartjs-adapter-date-fns.bundle.min.js')}}">
+    <script src="{{ asset('node_modules\chartjs-adapter-date-fns\dist\chartjs-adapter-date-fns.bundle.min.js' )}}">
+    </script>
+    <script src="{{ asset('node_modules/@fancyapps/ui/dist/fancybox.umd.js' )}}">
     </script>
 @endsection
 
@@ -249,7 +251,13 @@
                                     <td>
                                         <ul class="mb-0">
                                             @foreach($value as $side_effect_record)
+                                                @if($side_effect_record->has_image)
+                                                <li onclick="fancybox_show('{{ $side_effect_record->path }}')">
+                                                    <a href="{{ $side_effect_record->path }}" onclick="event.preventDefault();">{{ $side_effect_record->symptom }}</a><span>（嚴重度：{{ $side_effect_record->severity }}）</span>
+                                                </li>
+                                                @else
                                                 <li>{{ $side_effect_record->symptom }}（困擾度：{{ $side_effect_record->difficulty }}、嚴重度：{{ $side_effect_record->severity }}）</li>
+                                                @endif
                                             @endforeach
                                         </ul>
                                     </td>
