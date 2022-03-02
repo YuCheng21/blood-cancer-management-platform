@@ -36,7 +36,9 @@
                                     <ul class="mb-0">
                                         @foreach($case_tasks as $task)
                                             @if($task->week == $i)
-                                                <li>{{ $task->task->category_1 }}-{{ $task->task->category_2 }}. {{ $task->task->name }}</li>
+                                                @php(/* @var $item */ $item =  $task->task->category_1 . '-' . $task->task->category_2 . '. ' . $task->task->name )
+                                                <li data-category-1="{{ $task->task->category_1 }}"
+                                                    data-category-2="{{ $task->task->category_2 }}">{{ $item }}</li>
                                             @endif
                                         @endforeach
                                     </ul>

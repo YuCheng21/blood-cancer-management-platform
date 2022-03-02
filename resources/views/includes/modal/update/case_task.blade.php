@@ -10,8 +10,9 @@
             </div>
             <div class="modal-body">
                 <div class="row gy-2">
-                    <div class="col-12">
-                        <span>確定要修改個案任務嗎？</span>
+                    <div class="col-12 text-center">
+                        <span>確定要修改個案任務嗎？</span><br>
+                        <span>此操作將重製原先的任務進度！</span>
                     </div>
                 </div>
             </div>

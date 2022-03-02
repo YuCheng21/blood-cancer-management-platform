@@ -32,14 +32,14 @@
                     <span>每週任務規劃</span>
                 </h2>
                 <div class="d-flex flex-column flex-md-row">
-                    <button class="btn btn-primary me-1 my-1" onclick="location.href='{{route('tasks.main.index')}}'">
+                    <a class="btn btn-primary me-1 my-1" href="{{ route('tasks.main.index') }}">
                         <span class="iconify-inline" data-icon="fa-solid:tools"></span>
                         <span>編輯任務主模板</span>
-                    </button>
-                    <button class="btn btn-primary me-1 my-1" onclick="location.href='{{route('tasks.sub.add')}}'">
+                    </a>
+                    <a class="btn btn-primary me-1 my-1" href="{{ route('tasks.sub.add') }}">
                         <span class="iconify-inline" data-icon="carbon:add-filled"></span>
                         <span>新增任務副模板</span>
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="card-body py-4 px-2 px-lg-4 p-xl-5" id="subTemplate">

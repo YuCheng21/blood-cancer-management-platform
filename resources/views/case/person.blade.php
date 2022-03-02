@@ -97,11 +97,10 @@
                     <span class="iconify-inline" data-icon="fluent:bookmark-multiple-24-filled"></span>
                     <span>每週任務</span>
                 </h2>
-                <button class="btn btn-primary"
-                        onclick="location.href='{{route('cases.task', ['account' => $account])}}'">
+                <a class="btn btn-primary" href="{{ route('cases.task', ['account' => $account]) }}">
                     <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                     <span>編輯資料</span>
-                </button>
+                </a>
             </div>
             <div class="card-body py-4 px-2 px-lg-4 p-xl-5">
                 <div class="row justify-content-center text-center">
@@ -117,8 +116,7 @@
                                 <th data-width="10" data-width-unit="%" data-sortable="true">進度</th>
                             </tr>
                             </thead>
-                            @php($counter1 = 1)
-                            @php($counter2 = 1)
+                            @php($counter = 1)
                             @for($i = 1; $i <= 12; $i++)
                                 <tr>
                                     <td>第 {{ $i }} 週</td>
@@ -131,12 +129,13 @@
                                         <ul class="mb-0">
                                             @foreach($case_tasks as $task)
                                                 @if($task->week == $i)
-                                                    @if($counter1 % 2 == 0)
-                                                        <li class="bg-primary bg-opacity-10">{{ $task->category_1 }}-{{ $task->category_2 }}. {{ $task->name }}</li>
+                                                    @php(/* @var $item */ $item =  $task->category_1 . '-' . $task->category_2 . '. ' . $task->name )
+                                                    @if($counter % 2 == 0)
+                                                        <li class="bg-primary bg-opacity-10">{{ $item }}</li>
                                                     @else
-                                                        <li class="bg-info bg-opacity-10">{{ $task->category_1 }}-{{ $task->category_2 }}. {{ $task->name }}</li>
+                                                        <li class="bg-info bg-opacity-10">{{ $item }}</li>
                                                     @endif
-                                                    @php($counter1++)
+                                                    @php(/* @var $counter */ $counter++)
                                                 @endif
                                             @endforeach
                                         </ul>
@@ -149,7 +148,6 @@
                                                 @else
                                                     <span class="text-primary">未完成</span><br>
                                                 @endif
-                                                @php($counter2++)
                                             @endif
                                         @endforeach
                                     </td>
