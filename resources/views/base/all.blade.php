@@ -59,11 +59,11 @@
                                     <span>模板管理</span>
                                 </a>
                             </li>
-{{--                            <li class="nav-item hv-scale">--}}
-{{--                                <a href="{{route('topics.index')}}" class="nav-link text-white hv-color-text">--}}
-{{--                                    <span>題目管理</span>--}}
-{{--                                </a>--}}
-{{--                            </li>--}}
+                            <li class="nav-item hv-scale">
+                                <a href="{{route('topics.index')}}" class="nav-link text-white hv-color-text">
+                                    <span>題目管理</span>
+                                </a>
+                            </li>
                             <li class="nav-item hv-scale">
                                 <a href="{{route('faqs.index')}}" class="nav-link text-white hv-color-text">
                                     <span>QA 管理</span>
