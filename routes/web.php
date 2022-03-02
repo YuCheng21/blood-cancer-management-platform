@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MedicineRecordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CaseModelController;
@@ -36,7 +37,13 @@ Route::middleware('auth')->group(function () {
 
             Route::get('/{account}/task', 'task')->name('task');
             Route::post('/{account}/task', 'task_post')->name('task_post');
+
         });
+    });
+    Route::name('medicine.')->controller(MedicineRecordController::class)->group(function (){
+        Route::post('/{account}/medicine', 'store')->name('store');
+        Route::patch('/{account}/{id}', 'update')->name('update');
+        Route::delete('/{account}/{id}', 'destroy')->name('destroy');
     });
 
     Route::prefix('tasks')->name('tasks.')->controller(TaskController::class)->group(function () {

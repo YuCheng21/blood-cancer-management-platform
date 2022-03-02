@@ -11,25 +11,28 @@
             <div class="modal-body">
                 <div class="row gy-2">
                     <div class="col-12">
-                        <form action="#" id="createMedicineRecordForm" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('medicine.store', ['account' => $account])}}" id="createMedicineRecordForm" method="POST"
+                              enctype="multipart/form-data">
+                            @csrf
                             <div class="input-group mb-2">
                                 <label for="createMedicineRecordDate" class="input-group-text">日期</label>
-                                <input name="createMedicineRecordDate" id="createMedicineRecordDate" type="date" class="form-control">
+                                <input name="createMedicineRecordDate" id="createMedicineRecordDate" type="date"
+                                       class="form-control" value="{{old('createMedicineRecordDate')}}">
                             </div>
                             <div class="input-group mb-2">
                                 <label for="createMedicineRecordCourse" class="input-group-text">療程</label>
                                 <input name="createMedicineRecordCourse" type="text" id="createMedicineRecordCourse"
-                                       class="form-control" placeholder="請輸入內容">
+                                       class="form-control" placeholder="請輸入內容" value="{{old('createMedicineRecordCourse')}}">
                             </div>
                             <div class="input-group mb-2">
                                 <label for="createMedicineRecordType" class="input-group-text">施打藥物種類</label>
                                 <input name="createMedicineRecordType" type="text" id="createMedicineRecordType"
-                                       class="form-control" placeholder="請輸入內容">
+                                       class="form-control" placeholder="請輸入內容" value="{{old('createMedicineRecordType')}}">
                             </div>
                             <div class="input-group mb-2">
                                 <label for="createMedicineRecordDose" class="input-group-text">藥物劑量</label>
                                 <input name="createMedicineRecordDose" type="text" id="createMedicineRecordDose"
-                                       class="form-control" placeholder="請輸入內容">
+                                       class="form-control" placeholder="請輸入內容" value="{{old('createMedicineRecordDose')}}">
                             </div>
                         </form>
                     </div>
@@ -40,10 +43,11 @@
                     <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                     <span>關閉</span>
                 </button>
-                <button type="button" class="btn btn-primary" id="createMedicineRecordSend">
+                <a href="{{route('medicine.store', ['account' => $account])}}" class="btn btn-primary" id="createMedicineRecordSend"
+                   onclick="event.preventDefault();$('#createMedicineRecordForm').submit();">
                     <span class="iconify-inline" data-icon="subway:tick"></span>
                     <span>確認</span>
-                </button>
+                </a>
             </div>
         </div>
     </div>

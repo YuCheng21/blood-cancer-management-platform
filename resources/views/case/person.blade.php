@@ -205,12 +205,15 @@
                                     <td>{{ $medicine_record->type }}</td>
                                     <td>{{ $medicine_record->dose }}</td>
                                     <td>
-                                        <button class="btn btn-secondary text-white" data-bs-toggle="modal"
-                                                data-bs-target="#updateMedicineRecordModal">
+                                        <button class="btn btn-secondary text-white updateMedicineRecordBtn" data-bs-toggle="modal"
+                                                data-bs-target="#updateMedicineRecordModal"
+                                                data-update-url="{{route('medicine.update', ['account' => $account, 'id' => $medicine_record->id])}}"
+                                                data-id="{{ $medicine_record->id }}">
                                             <span class="iconify-inline" data-icon="fa-regular:edit"></span>
                                         </button>
-                                        <button class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#deleteMedicineRecordModal">
+                                        <button class="btn btn-danger deleteMedicineRecordBtn" data-bs-toggle="modal"
+                                                data-bs-target="#deleteMedicineRecordModal"
+                                                data-url="{{route('medicine.destroy', ['account' => $account, 'id' => $medicine_record->id])}}">
                                             <span class="iconify-inline" data-icon="ion:trash"></span>
                                         </button>
                                     </td>

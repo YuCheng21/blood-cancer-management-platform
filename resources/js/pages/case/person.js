@@ -10,6 +10,32 @@ function fancybox_show(url){
     ]);
 }
 
+$(document).on('click', '.deleteMedicineRecordBtn', function (e) {
+    const deleteUrl = $(this).data('url');
+    $('#deleteMedicineRecordForm').attr('action', deleteUrl)
+    $('#deleteMedicineRecordSend').attr('href', deleteUrl)
+})
+
+$(document).on('click', '.updateMedicineRecordBtn', function (e) {
+    const updateUrl = $(this).data('update-url');
+    $('#updateMedicineRecordForm').attr('action', updateUrl)
+    $('#updateMedicineRecordSend').attr('href', updateUrl)
+
+
+    const updateId = $(this).data('id');
+    let selectedMedicine = [];
+    cases['medicine_records'].forEach(function (item) {
+        if (item['id'] === updateId){
+            selectedMedicine.push(item)
+        }
+    })
+
+    $('#updateMedicineRecordDate').val(selectedMedicine[0]['date']);
+    $('#updateMedicineRecordCourse').val(selectedMedicine[0]['course']);
+    $('#updateMedicineRecordType').val(selectedMedicine[0]['type']);
+    $('#updateMedicineRecordDose').val(selectedMedicine[0]['dose']);
+})
+
 $(document).ready(function () {
     $('#updateCaseForm').attr('action', updateUrl)
     $('#updateCaseSend').attr('href', updateUrl)

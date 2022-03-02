@@ -12,6 +12,8 @@
                 <div class="row gy-2">
                     <div class="col-12">
                         <form action="#" id="updateMedicineRecordForm" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('patch')
                             <div class="input-group mb-2">
                                 <label for="updateMedicineRecordDate" class="input-group-text">日期</label>
                                 <input name="updateMedicineRecordDate" id="updateMedicineRecordDate" type="date" class="form-control">
@@ -40,10 +42,11 @@
                     <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                     <span>關閉</span>
                 </button>
-                <button type="button" class="btn btn-primary" id="updateMedicineRecordSend">
+                <a href="#" class="btn btn-primary" id="updateMedicineRecordSend"
+                   onclick="event.preventDefault();$('#updateMedicineRecordForm').submit();">
                     <span class="iconify-inline" data-icon="subway:tick"></span>
                     <span>確認</span>
-                </button>
+                </a>
             </div>
         </div>
     </div>

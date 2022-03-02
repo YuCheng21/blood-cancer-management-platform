@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class MedicineRecord extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'case_id',
+        'date',
+        'course',
+        'type',
+        'dose',
+    ];
 }
