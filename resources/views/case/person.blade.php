@@ -256,7 +256,7 @@
                                                     <a href="{{ $side_effect_record->path }}" onclick="event.preventDefault();">{{ $side_effect_record->symptom }}</a><span>（嚴重度：{{ $side_effect_record->severity }}）</span>
                                                 </li>
                                                 @else
-                                                <li>{{ $side_effect_record->symptom }}（困擾度：{{ $side_effect_record->difficulty }}、嚴重度：{{ $side_effect_record->severity }}）</li>
+                                                <li>{{ $side_effect_record->symptom }}（嚴重度：{{ $side_effect_record->severity }}）</li>
                                                 @endif
                                             @endforeach
                                         </ul>
