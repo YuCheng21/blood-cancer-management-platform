@@ -15,9 +15,9 @@ class CategoryInformationFactory extends Factory
     public function definition()
     {
         return [
-            'category_1' => self::$category_1++,
-            'name' => $this->faker->words(2, true),
-            'short' => $this->faker->words(1, true),
+            'category_1' => self::$category_1,
+            'name' => '類別 - ' . self::$category_1++,
+            'short' => self::$category_1,
         ];
     }
 }

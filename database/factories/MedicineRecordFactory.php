@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class MedicineRecordFactory extends Factory
 {
-    private static $counter = 1;
-
     /**
      * Define the model's default state.
      *
@@ -18,9 +16,9 @@ class MedicineRecordFactory extends Factory
         return [
             'case_id' => '1',
             'date' => $this->faker->date('Y_m_d'),
-            'course' => 'Cycle' . self::$counter++,
+            'course' => 'Cycle' . $this->faker->numberBetween(1,6),
             'type' => '藥物' . '-' . strtoupper($this->faker->randomLetter()),
-            'dose' => $this->faker->numberBetween(1, 999) . ' mg',
+            'dose' => $this->faker->numerify('### mg'),
         ];
     }
 }

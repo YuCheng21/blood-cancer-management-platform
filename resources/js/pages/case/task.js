@@ -93,4 +93,5 @@ $('#updateCaseTaskSend').on('click', function () {
     form.appendChild(submit);
 
     document.body.appendChild(form).submit();
+    $('body').prepend(loading);
 })

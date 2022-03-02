@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             BloodComponentsSeeder::class,
 
 
-            CategoryInfoSeeder::class,
+            CategoryInformationSeeder::class,
             TaskSeeder::class,
             MedicineRecordSeeder::class,
             SideEffectRecordSeeder::class,

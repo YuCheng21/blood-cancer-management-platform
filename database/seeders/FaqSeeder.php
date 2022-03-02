@@ -15,7 +15,7 @@ class FaqSeeder extends Seeder
     public function run()
     {
         Faq::factory()
-            ->count(15)
+            ->count(50)
             ->create();
     }
 }

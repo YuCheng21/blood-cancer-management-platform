@@ -62,7 +62,8 @@ class TaskController extends Controller
 
     public function main()
     {
-        $tasks = Task::all();
+        $tasks = Task::orderBy('category_1', 'ASC')
+            ->orderBy('category_2', 'ASC')->get();
         $categories = AppHelper::reformat_task($tasks);
 
         $main_templates = MainTemplate::all();
@@ -114,7 +115,8 @@ class TaskController extends Controller
 
     public function sub_create()
     {
-        $tasks = Task::all();
+        $tasks = Task::orderBy('category_1', 'ASC')
+            ->orderBy('category_2', 'ASC')->get();
         $categories = AppHelper::reformat_task($tasks);
         $csrf_token = csrf_token();
         $title = '新增任務副模板';
@@ -184,7 +186,8 @@ class TaskController extends Controller
 
     public function sub_update($name)
     {
-        $tasks = Task::all();
+        $tasks = Task::orderBy('category_1', 'ASC')
+            ->orderBy('category_2', 'ASC')->get();
         $categories = AppHelper::reformat_task($tasks);
 
         $templates = Template::where([

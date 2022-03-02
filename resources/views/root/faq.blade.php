@@ -57,7 +57,7 @@
                             </thead>
                             @foreach($faqs as $faq)
                                 <tr>
-                                    <td>{{ $faq->type }}</td>
+                                    <td>{{ $faq->category_information->name }}</td>
                                     <td>{{ $faq->title }}</td>
                                     <td>{{ $faq->content }}</td>
                                     <td>

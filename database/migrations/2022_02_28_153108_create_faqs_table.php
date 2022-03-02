@@ -15,7 +15,7 @@ class CreateFaqsTable extends Migration
     {
         Schema::create('faqs', function (Blueprint $table) {
             $table->id();
-            $table->string('type')->comment('主題');
+            $table->unsignedBigInteger('category_1')->comment('主題');
             $table->string('title')->comment('問題');
             $table->string('content')->comment('解答');
             $table->timestamps();
