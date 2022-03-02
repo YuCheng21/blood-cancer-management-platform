@@ -89,7 +89,7 @@
                     <canvas id="bloodChart" style="min-height: 500px;"></canvas>
                 @else
                     <div class="d-flex justify-content-center align-items-center" style="min-height: 100px;">
-                        <p class="fs-1 text-primary">查無資料</p>
+                        <p class="fs-1 text-primary text-opacity-50">查無資料</p>
                     </div>
                 @endif
             </div>
@@ -182,13 +182,15 @@
                         <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
                                data-toggle="table"
                                data-search="true"
+                               data-sort-name="date"
+                               data-sort-order="desc"
                                data-pagination="true"
                                data-page-size="5"
                                data-page-list="[ 5, 10, 15, 20, All]"
                                data-locale="zh-TW">
                             <thead>
                             <tr>
-                                <th data-width="20" data-width-unit="%" data-sortable="true">日期</th>
+                                <th data-width="20" data-width-unit="%" data-sortable="true" data-field="date">日期</th>
                                 <th data-width="15" data-width-unit="%" data-sortable="true">療程</th>
                                 <th data-width="40" data-width-unit="%" data-sortable="true">施打藥物種類</th>
                                 <th data-width="15" data-width-unit="%" data-sortable="true">藥物劑量</th>
@@ -232,13 +234,15 @@
                         <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
                                data-toggle="table"
                                data-search="true"
+                               data-sort-name="date"
+                               data-sort-order="desc"
                                data-pagination="true"
                                data-page-size="5"
                                data-page-list="[ 5, 10, 15, 20, All]"
                                data-locale="zh-TW">
                             <thead>
                             <tr>
-                                <th data-width="20" data-width-unit="%" data-sortable="true">紀錄時間</th>
+                                <th data-width="20" data-width-unit="%" data-sortable="true"  data-field="date">紀錄時間</th>
                                 <th data-width="80" data-width-unit="%" data-sortable="true"
                                     data-halign="center" data-align="left">
                                     副作用
@@ -281,13 +285,15 @@
                         <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
                                data-toggle="table"
                                data-search="true"
+                               data-sort-name="date"
+                               data-sort-order="desc"
                                data-pagination="true"
                                data-page-size="5"
                                data-page-list="[ 5, 10, 15, 20, All]"
                                data-locale="zh-TW">
                             <thead>
                             <tr>
-                                <th data-width="20" data-width-unit="%" data-sortable="true">日期</th>
+                                <th data-width="20" data-width-unit="%" data-sortable="true" data-field="date">日期</th>
                                 <th data-width="20" data-width-unit="%" data-sortable="true">體力狀況</th>
                                 <th data-width="40" data-width-unit="%" data-sortable="true">症狀</th>
                                 <th data-width="20" data-width-unit="%" data-sortable="true">固定回診醫院</th>
@@ -331,7 +337,7 @@
                     </div>
                 @else
                     <div class="d-flex justify-content-center align-items-center" style="min-height: 100px;">
-                        <p class="fs-1 text-primary">查無資料</p>
+                        <p class="fs-1 text-primary text-opacity-50">查無資料</p>
                     </div>
                 @endif
             </div>
