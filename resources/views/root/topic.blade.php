@@ -79,16 +79,21 @@
                             </thead>
                             @foreach($topics as $topic)
                                 <tr>
-                                    <td>{{ $topic->type }}</td>
+                                    <td>{{ $topic->task->name }}</td>
                                     <td class="ws-normal">{{ $topic->question }}</td>
                                     <td>{{ $topic->question_type == 'multiple-choice' ? '選擇題' : ($topic->question_type == 'true-false' ? '是非題' : '')}}</td>
                                     <td>
-                                        @if($topic->question_type == 'multiple-choice')
-                                            <ol style="list-style-type: upper-alpha">
-                                                <li>{{ $topic->option_a }}</li>
-                                                <li>{{ $topic->option_b }}</li>
-                                                <li>{{ $topic->option_c }}</li>
-                                                <li>{{ $topic->option_d }}</li>
+                                        @if($topic->question_type == 'true-false')
+                                            <ul class="mb-0">
+                                                <li class="{{ $topic->answer == 1 ? 'text-success' : '' }}">是</li>
+                                                <li class="{{ $topic->answer == 2 ? 'text-success' : '' }}">否</li>
+                                            </ul>
+                                        @elseif($topic->question_type == 'multiple-choice')
+                                            <ol class="mb-0" style="list-style-type: upper-alpha">
+                                                <li class="{{ $topic->answer == 3 ? 'text-success' : '' }}">{{ $topic->option_a }}</li>
+                                                <li class="{{ $topic->answer == 4 ? 'text-success' : '' }}">{{ $topic->option_b }}</li>
+                                                <li class="{{ $topic->answer == 5 ? 'text-success' : '' }}">{{ $topic->option_c }}</li>
+                                                <li class="{{ $topic->answer == 6 ? 'text-success' : '' }}">{{ $topic->option_d }}</li>
                                             </ol>
                                         @endif
                                     </td>

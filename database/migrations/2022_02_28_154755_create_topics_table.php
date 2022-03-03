@@ -15,7 +15,7 @@ class CreateTopicsTable extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->id();
-            $table->string('type')->comment('課程');
+            $table->unsignedBigInteger('task_id')->comment('課程');
             $table->string('question')->comment('題目');
             $table->enum('question_type', ['true-false', 'multiple-choice'])->comment('題型');
             $table->unsignedBigInteger('answer')->comment('解答');
@@ -24,6 +24,9 @@ class CreateTopicsTable extends Migration
             $table->string('option_c')->nullable()->comment('選項3')->nullable();
             $table->string('option_d')->nullable()->comment('選項4')->nullable();
             $table->timestamps();
+        });
+        Schema::table('topics', function (Blueprint $table){
+            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
         });
     }
 

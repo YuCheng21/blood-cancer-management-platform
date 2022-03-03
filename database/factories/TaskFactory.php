@@ -28,7 +28,7 @@ class TaskFactory extends Factory
         return [
             'category_1' => $category_1,
             'category_2' => self::$category_2[$category_1]++,
-            'name' => $this->faker->text(30)
+            'name' => $this->faker->regexify('[A-Z]{7}'),
         ];
     }
 }

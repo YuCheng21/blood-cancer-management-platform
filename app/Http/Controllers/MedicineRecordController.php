@@ -25,7 +25,7 @@ class MedicineRecordController extends Controller
                 ->withInput()
                 ->with([
                     'type' => 'error',
-                    'msg' => '表單填寫未完成'
+                    'msg' => '表單填寫未完成。'
                 ]);
         }
         $case = CaseModel::where([
@@ -44,7 +44,7 @@ class MedicineRecordController extends Controller
                 ->route('cases.show', ['account' => $account, '#medicineRecord'])
                 ->with([
                     'type' => 'success-toast',
-                    'msg' => '新增施打藥物紀錄成功。。'
+                    'msg' => '新增施打藥物紀錄成功。'
                 ]);
         }catch (QueryException $queryException){
             return back()
@@ -91,7 +91,7 @@ class MedicineRecordController extends Controller
                 ->route('cases.show', ['account' => $account, '#medicineRecord'])
                 ->with([
                     'type' => 'success-toast',
-                    'msg' => '修改個案成功。'
+                    'msg' => '修改施打藥物紀錄成功。'
                 ]);
         }catch (QueryException $queryException){
             return redirect()
@@ -115,5 +115,11 @@ class MedicineRecordController extends Controller
         if (!is_null($medicine_record)) {
             $medicine_record->delete();
         }
+        return redirect()
+            ->route('cases.show', ['account' => $account, '#medicineRecord'])
+            ->with([
+                'type' => 'success-toast',
+                'msg' => '刪除施打藥物紀錄成功。'
+            ]);
     }
 }

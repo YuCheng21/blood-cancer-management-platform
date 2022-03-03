@@ -14,7 +14,7 @@ class AddForeignToMainTemplates extends Migration
     public function up()
     {
         Schema::table('main_templates', function (Blueprint $table) {
-            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');;
+            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
         });
     }
 
