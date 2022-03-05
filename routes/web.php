@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
 
         });
     });
-    Route::name('medicine.')->controller(MedicineRecordController::class)->group(function (){
+    Route::prefix('medicine')->name('medicine.')->controller(MedicineRecordController::class)->group(function (){
         Route::post('/{account}/medicine', 'store')->name('store');
         Route::patch('/{account}/{id}', 'update')->name('update');
         Route::delete('/{account}/{id}', 'destroy')->name('destroy');
@@ -69,6 +69,9 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('topics')->name('topics.')->controller(TopicController::class)->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+        Route::patch('/{id}', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
     });
 
 

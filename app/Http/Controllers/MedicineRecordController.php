@@ -58,7 +58,6 @@ class MedicineRecordController extends Controller
 
     public function update($account, $id, Request $request)
     {
-
         $rules = [
             'updateMedicineRecordDate' => ['required'],
             'updateMedicineRecordCourse' => ['required'],

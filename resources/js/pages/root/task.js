@@ -69,7 +69,6 @@ $('#applyTaskSend').on('click', function () {
     form.appendChild(submit);
 
     document.body.appendChild(form).submit();
-    $('body').prepend(loading);
 })
 
 $('#confirm').on('change', function () {

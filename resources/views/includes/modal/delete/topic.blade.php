@@ -20,10 +20,15 @@
                     <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                     <span>關閉</span>
                 </button>
-                <button type="button" class="btn btn-primary" id="deleteTopicSend">
-                    <span class="iconify-inline" data-icon="subway:tick"></span>
-                    <span>確認</span>
-                </button>
+                <form method="POST" id="deleteTopicForm" action="#">
+                    @csrf
+                    @method('delete')
+                    <a href="#" class="btn btn-primary" id="deleteTopicSend"
+                       onclick="event.preventDefault();this.closest('form').submit();">
+                        <span class="iconify-inline" data-icon="subway:tick"></span>
+                        <span>確認</span>
+                    </a>
+                </form>
             </div>
         </div>
     </div>

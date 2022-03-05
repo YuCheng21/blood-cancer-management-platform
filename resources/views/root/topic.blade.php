@@ -78,8 +78,10 @@
                             </tr>
                             </thead>
                             @foreach($topics as $topic)
-                                <tr>
-                                    <td>{{ $topic->task->name }}</td>
+                                <tr data-delete-url="{{ route('topics.destroy', ['id' => $topic->id]) }}"
+                                    data-update-url="{{ route('topics.update', ['id' => $topic->id]) }}"
+                                    data-id="{{ $topic->id }}">
+                                    <td>[{{ $topic->task->category_1 }}-{{ $topic->task->category_2 }}] {{ $topic->task->name }}</td>
                                     <td class="ws-normal">{{ $topic->question }}</td>
                                     <td>{{ $topic->question_type == 'multiple-choice' ? '選擇題' : ($topic->question_type == 'true-false' ? '是非題' : '')}}</td>
                                     <td>
@@ -100,13 +102,13 @@
                                     <td>
                                         <div class="row g-1">
                                             <div class="col-12 col-xxl-6">
-                                                <button class="btn btn-primary w-100" data-bs-toggle="modal"
+                                                <button class="btn btn-primary w-100 updateTopicBtn" data-bs-toggle="modal"
                                                         data-bs-target="#updateTopicModal">
                                                     編輯
                                                 </button>
                                             </div>
                                             <div class="col-12 col-xxl-6">
-                                                <button class="btn btn-danger w-100" data-bs-toggle="modal"
+                                                <button class="btn btn-danger w-100 deleteTopicBtn" data-bs-toggle="modal"
                                                         data-bs-target="#deleteTopicModal">
                                                     刪除
                                                 </button>
@@ -128,4 +130,14 @@
     @include('includes.modal.delete.topic')
     @include('includes.modal.create.topic')
     @include('includes.modal.update.topic')
+@endsection
+
+@section('script')
+    @parent
+    {{--  Page Customize Javascript  --}}
+    <script src="{{ asset('js/pages/root/topic.js') }}"></script>
+
+    <script>
+        const topics = @json($topics);
+    </script>
 @endsection
