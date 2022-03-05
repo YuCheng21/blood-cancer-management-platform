@@ -58,7 +58,7 @@
                                     <td>{{ $case->name }}</td>
 {{--                                    <td><span class="iconify-inline text-success" data-icon="akar-icons:check"></span></td>--}}
                                     @if(!empty($case->case_tasks->toArray()))
-                                        <td><span class="iconify-inline text-success" data-icon="akar-icons:check"></span></td>--}}
+                                        <td><span class="iconify-inline text-success" data-icon="akar-icons:check"></span></td>
                                     @else
                                         <td><span class="iconify-inline text-danger" data-icon="akar-icons:cross"></span></td>
                                     @endif
