@@ -15,7 +15,7 @@ class FaqController extends Controller
      */
     public function index()
     {
-        $faqs = Faq::all();
+        $faqs = Faq::orderBy('updated_at', 'desc')->get();
 
         $title = 'QA 管理';
         return response(

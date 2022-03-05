@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CaseModelController extends Controller
 {
     public function index(){
-        $cases = CaseModel::all();
+        $cases = CaseModel::orderBy('updated_at', 'desc')->get();
         $genders = Gender::all();
         $transplant_types = TransplantType::all();
         $disease_types = DiseaseType::all();

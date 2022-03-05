@@ -15,7 +15,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::all();
+        $messages = Message::orderBy('updated_at', 'desc')->get();
 
         $title = '消息管理';
         return response(
