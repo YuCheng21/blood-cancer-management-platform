@@ -11,7 +11,10 @@
             <div class="modal-body">
                 <div class="row gy-2">
                     <div class="col-12">
-                        <form action="#" id="updatePasswordForm" method="POST" enctype="multipart/form-data">
+                        <form action="{{ \Illuminate\Support\Facades\Auth::check() == true ? route('users.update', ['id' => \Illuminate\Support\Facades\Auth::id()]) : '#' }}"
+                              id="updatePasswordForm" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('patch')
                             <div class="input-group mb-2">
                                 <label for="oldPassword" class="input-group-text fs-5">舊密碼</label>
                                 <input name="oldPassword" type="password" id="oldPassword"
@@ -39,10 +42,12 @@
                     <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                     <span>關閉</span>
                 </button>
-                <button type="button" class="btn btn-primary" id="updatePasswordSend">
+                <a href="{{ \Illuminate\Support\Facades\Auth::check() == true ? route('users.update', ['id' => \Illuminate\Support\Facades\Auth::id()]) : '#' }}"
+                   class="btn btn-primary" id="updatePasswordSend"
+                   onclick="event.preventDefault();$('#updatePasswordForm').submit()">
                     <span class="iconify-inline" data-icon="subway:tick"></span>
                     <span>確認</span>
-                </button>
+                </a>
             </div>
         </div>
     </div>

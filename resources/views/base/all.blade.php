@@ -77,20 +77,20 @@
                                 </a>
                             </li>
                             <li class="nav-item hv-scale dropdown">
-                                <a href="#" class="nav-link text-white hv-color-text dropdown-toggle"
+                                <button type="button" class="bg-transparent border-0 fw-bold nav-link text-white hv-color-text dropdown-toggle"
                                    data-bs-toggle="dropdown">
                                     <span class="iconify-inline" data-icon="healthicons:ui-user-profile"></span>
                                     @if(\Illuminate\Support\Facades\Auth::check())
                                         <span>{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
                                     @endif
-                                </a>
+                                </button>
                                 <ul class="dropdown-menu fade">
                                     <li>
-                                        <a href="#" class="dropdown-item hv-color-bg" data-bs-toggle="modal"
+                                        <button type="button" class="dropdown-item hv-color-bg" data-bs-toggle="modal"
                                            data-bs-target="#updatePasswordModal">
                                             <span class="iconify-inline" data-icon="fa-solid:tools"></span>
                                             <span>修改密碼</span>
-                                        </a>
+                                        </button>
                                     </li>
                                     <li>
                                         <form method="POST" action="{{ route('users.logout') }}">

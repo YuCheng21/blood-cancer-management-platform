@@ -24,6 +24,7 @@ Route::name('users.')->controller(UserController::class)->group(function () {
     Route::get('/login', 'show')->name('index');
     Route::post('/login', 'login')->name('login');
     Route::post('/logout', 'logout')->name('logout');
+    Route::patch('/users/{id}', 'update')->name('update');
 });
 
 Route::middleware('auth')->group(function () {

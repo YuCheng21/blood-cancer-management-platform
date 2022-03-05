@@ -38,7 +38,7 @@ $(document).on('click', '.applyMessageBtn', function () {
         let case_id = message.map(function (element) {
             return element['case_id'];
         })
-        if (case_id.includes(currentRow.data('case-id'))){
+        if (case_id.indexOf(currentRow.data('case-id')) >= 0){
             $(currentRow).find('td:nth-child(4)')
                 .text('已發送消息')
                 .attr('class', 'text-success')
