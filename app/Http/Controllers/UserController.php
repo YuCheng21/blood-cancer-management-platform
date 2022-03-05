@@ -73,7 +73,7 @@ class UserController extends Controller
             ]);
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request){
         $rules = [
             'oldPassword' => ['required'],
             'password' => ['required'],

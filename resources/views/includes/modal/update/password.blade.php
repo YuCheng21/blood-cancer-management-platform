@@ -11,7 +11,7 @@
             <div class="modal-body">
                 <div class="row gy-2">
                     <div class="col-12">
-                        <form action="{{ \Illuminate\Support\Facades\Auth::check() == true ? route('users.update', ['id' => \Illuminate\Support\Facades\Auth::id()]) : '#' }}"
+                        <form action="{{ route('users.update') }}"
                               id="updatePasswordForm" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('patch')
@@ -42,7 +42,7 @@
                     <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                     <span>關閉</span>
                 </button>
-                <a href="{{ \Illuminate\Support\Facades\Auth::check() == true ? route('users.update', ['id' => \Illuminate\Support\Facades\Auth::id()]) : '#' }}"
+                <a href="{{ route('users.update') }}"
                    class="btn btn-primary" id="updatePasswordSend"
                    onclick="event.preventDefault();$('#updatePasswordForm').submit()">
                     <span class="iconify-inline" data-icon="subway:tick"></span>
