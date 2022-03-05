@@ -95,6 +95,8 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('exports')->name('exports.')->controller(ExportController::class)->group(function () {
         Route::get('/', 'index')->name('index');
+
+        Route::get('/test', 'test')->name('test');
     });
 
 });
