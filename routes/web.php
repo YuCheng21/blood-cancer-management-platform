@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/{account}/task', 'task')->name('task');
             Route::post('/{account}/task', 'task_post')->name('task_post');
 
+            Route::get('/{account}/topic/{case_task_id}', 'topic')->name('topic');
+
         });
     });
     Route::prefix('medicine')->name('medicine.')->controller(MedicineRecordController::class)->group(function (){

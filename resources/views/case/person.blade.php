@@ -148,9 +148,13 @@
                                             @foreach($case_tasks as $task)
                                                 @if($task->week == $i)
                                                     @if($task->state == 'completed')
-                                                        <span class="text-success">已完成</span><br>
+                                                        <a href="{{ route('cases.topic', ['account' => $account, 'case_task_id' => $task->id]) }}">
+                                                            <span class="text-success">已完成</span><br>
+                                                        </a>
                                                     @else
-                                                        <span class="text-primary">未完成</span><br>
+                                                        <a href="{{ route('cases.topic', ['account' => $account, 'case_task_id' => $task->id]) }}">
+                                                            <span class="text-primary">未完成</span><br>
+                                                        </a>
                                                     @endif
                                                 @endif
                                             @endforeach

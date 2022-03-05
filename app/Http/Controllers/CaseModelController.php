@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\AppHelper;
 use App\Models\CaseModel;
 use App\Models\CaseTask;
+use App\Models\CaseTopic;
 use App\Models\DiseaseClass;
 use App\Models\DiseaseState;
 use App\Models\DiseaseType;
@@ -278,5 +279,17 @@ class CaseModelController extends Controller
                 'type' => 'success-toast',
                 'msg' => '修改個案任務成功。'
             ]);
+    }
+
+    public function topic(Request $request, $account, $case_task_id){
+        $case_topics = CaseTopic::where([
+            'case_task_id' => $case_task_id,
+        ])->get();
+
+        $title = '作答結果';
+        return response(
+            view('case.topic', get_defined_vars()),
+            Response::HTTP_OK
+        );
     }
 }
