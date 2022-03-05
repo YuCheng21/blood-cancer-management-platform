@@ -17,6 +17,8 @@ class ExportController extends Controller
     {
         $cases = CaseModel::all();
 
+//        dd($cases[1]->case_tasks->toArray());
+
         $title = '匯出';
         return response(
             view('root.export', get_defined_vars()),
