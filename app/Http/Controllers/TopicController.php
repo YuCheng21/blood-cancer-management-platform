@@ -103,8 +103,8 @@ class TopicController extends Controller
             'questionType' => ['required'],
             'answer' => ['required'],
         ];
-        $validator = Validator::make($request->all(), $rules);
         $flag = false;
+        $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             $flag = true;
         }
@@ -165,6 +165,5 @@ class TopicController extends Controller
                 'type' => 'success-toast',
                 'msg' => '刪除題庫成功。'
             ]);
-
     }
 }

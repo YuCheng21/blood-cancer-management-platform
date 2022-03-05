@@ -12,18 +12,17 @@
                 <div class="row gy-2">
                     <div class="col-12 overflow-auto" style="max-height: 70vh">
                         <form action="#" id="updateFaqForm" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('patch')
                             <div class="input-group mb-2">
                                 <label for="updateFaqType" class="input-group-text">類型</label>
                                 <select name="updateFaqType" id="updateFaqType" class="form-select">
                                     <option value="0" selected>請選擇問題類型</option>
-                                    <option value="1">問題類型1</option>
-                                    <option value="2">問題類型2</option>
-                                    <option value="3">問題類型3</option>
-                                    <option value="4">問題類型4</option>
-                                    <option value="5">問題類型5</option>
-                                    <option value="6">問題類型6</option>
-                                    <option value="7">問題類型7</option>
-                                    <option value="8">問題類型8</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->category_1}}">
+                                            {{$category->name}}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="input-group mb-2">
@@ -45,10 +44,11 @@
                     <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                     <span>關閉</span>
                 </button>
-                <button type="button" class="btn btn-primary" id="updateFaqSend">
+                <a href="#" class="btn btn-primary" id="updateFaqSend"
+                   onclick="event.preventDefault();$('#updateFaqForm').submit();">
                     <span class="iconify-inline" data-icon="subway:tick"></span>
                     <span>確認</span>
-                </button>
+                </a>
             </div>
         </div>
     </div>

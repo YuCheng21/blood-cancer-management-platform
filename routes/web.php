@@ -77,6 +77,9 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('faqs')->name('faqs.')->controller(FaqController::class)->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+        Route::patch('/{id}', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
     });
 
     Route::prefix('messages')->name('messages.')->controller(MessageController::class)->group(function () {

@@ -24,4 +24,19 @@ class MessageController extends Controller
         );
     }
 
+
+    public function store(Request $request)
+    {
+        dd([$request->toArray()]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        dd([$request->toArray(), $id]);
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        dd([$request->toArray(), $id]);
+    }
 }

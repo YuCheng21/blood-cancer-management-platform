@@ -56,19 +56,21 @@
                             </tr>
                             </thead>
                             @foreach($faqs as $faq)
-                                <tr>
+                                <tr data-delete-url="{{ route('faqs.destroy', ['id' => $faq->id]) }}"
+                                    data-update-url="{{ route('faqs.update', ['id' => $faq->id]) }}"
+                                    data-id="{{ $faq->id }}">
                                     <td>{{ $faq->category_information->name }}</td>
                                     <td>{{ $faq->title }}</td>
                                     <td>{{ $faq->content }}</td>
                                     <td>
                                         <div class="row g-1">
                                             <div class="col-12 col-xxl-6">
-                                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateFaqModal">
+                                                <button class="btn btn-primary w-100 updateFaqBtn" data-bs-toggle="modal" data-bs-target="#updateFaqModal">
                                                     編輯
                                                 </button>
                                             </div>
                                             <div class="col-12 col-xxl-6">
-                                                <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteFaqModal">
+                                                <button class="btn btn-danger w-100 deleteFaqBtn" data-bs-toggle="modal" data-bs-target="#deleteFaqModal">
                                                     刪除
                                                 </button>
                                             </div>
@@ -76,7 +78,6 @@
                                     </td>
                                 </tr>
                             @endforeach
-
                         </table>
                     </div>
                 </div>
@@ -90,4 +91,14 @@
     @include('includes.modal.create.faq')
     @include('includes.modal.delete.faq')
     @include('includes.modal.update.faq')
+@endsection
+
+@section('script')
+    @parent
+    {{--  Page Customize Javascript  --}}
+    <script src="{{ asset('js/pages/root/faq.js') }}"></script>
+
+    <script>
+        const faqs = @json($faqs);
+    </script>
 @endsection
