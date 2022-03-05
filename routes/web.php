@@ -87,6 +87,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/', 'store')->name('store');
         Route::patch('/{id}', 'update')->name('update');
         Route::delete('/{id}', 'destroy')->name('destroy');
+        Route::post('/apply/{id}', 'apply')->name('apply');
     });
 
     Route::prefix('exports')->name('exports.')->controller(ExportController::class)->group(function () {

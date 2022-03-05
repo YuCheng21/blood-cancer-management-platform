@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class CaseMessage extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'case_id',
+        'message_id',
+        'state',
+    ];
 }

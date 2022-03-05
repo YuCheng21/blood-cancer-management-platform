@@ -25,7 +25,7 @@ class CreateCaseMessagesTable extends Migration
         });
         Schema::table('case_messages', function (Blueprint $table) {
             $table->foreign('case_id')->references('id')->on('cases')->onDelete('cascade');
-            $table->foreign('message_id')->references('id')->on('messages');
+            $table->foreign('message_id')->references('id')->on('messages')->onDelete('cascade');;
         });
     }
 

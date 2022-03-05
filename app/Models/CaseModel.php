@@ -60,6 +60,11 @@ class CaseModel extends Model
         return $this->hasMany(CaseTask::class, 'case_id', 'id');
     }
 
+    public function case_messages(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(CaseMessage::class, 'case_id', 'id');
+    }
+
     public function medicine_records(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(MedicineRecord::class, 'case_id', 'id');

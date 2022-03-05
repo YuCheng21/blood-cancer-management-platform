@@ -60,6 +60,7 @@
                             @foreach($messages as $message)
                                 <tr data-delete-url="{{ route('messages.destroy', ['id' => $message->id]) }}"
                                     data-update-url="{{ route('messages.update', ['id' => $message->id]) }}"
+                                    data-apply-url="{{ route('messages.apply', ['id' => $message->id]) }}"
                                     data-id="{{ $message->id }}">
                                     <td>{{ $message->id }}</td>
                                     <td>{{ $message->title }}</td>
@@ -79,7 +80,7 @@
                                                 </button>
                                             </div>
                                             <div class="col-12 col-xxl-4">
-                                                <button class="btn btn-secondary text-white w-100" data-bs-toggle="modal"
+                                                <button class="btn btn-secondary text-white w-100 applyMessageBtn" data-bs-toggle="modal"
                                                         data-bs-target="#applyMessageModal">
                                                     發送
                                                 </button>
@@ -118,5 +119,7 @@
 
     <script>
         const messages = @json($messages);
+        const cases = @json($cases);
+        const case_messages = @json($case_messages);
     </script>
 @endsection

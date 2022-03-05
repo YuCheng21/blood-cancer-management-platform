@@ -12,6 +12,7 @@
                 <div class="row gy-2">
                     <div class="col-12 overflow-auto" style="max-height: 50vh">
                         <form action="#" id="applyMessageForm" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="row justify-content-center text-center">
                                 <div class="table-responsive">
                                     <table class="table table-striped text-center align-middle fs-6"
@@ -28,102 +29,14 @@
                                             <th data-sortable="true">狀態</th>
                                         </tr>
                                         </thead>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-success">已發送</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-success">已發送</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-success">已發送</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-success">已發送</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-success">已發送</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-success">已發送</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-success">已發送</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-danger">未發送</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-danger">未發送</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-danger">未發送</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-danger">未發送</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-success">已發送</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-success">已發送</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-danger">未發送</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-danger">未發送</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-checkbox="true"></td>
-                                            <td>個案帳號</td>
-                                            <td>個案姓名</td>
-                                            <td class="text-danger">未發送</td>
-                                        </tr>
+                                        @foreach($cases as $case)
+                                            <tr data-case-id="{{ $case->id }}">
+                                                <td data-checkbox="true"></td>
+                                                <td>{{ $case->account }}</td>
+                                                <td>{{ $case->name }}</td>
+                                                <td></td>
+                                            </tr>
+                                        @endforeach
                                     </table>
                                 </div>
                             </div>
@@ -136,10 +49,11 @@
                     <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                     <span>關閉</span>
                 </button>
-                <button type="button" class="btn btn-primary" id="applyMessageSend">
+                <a href="#" class="btn btn-primary" id="applyMessageSend"
+                   onclick="event.preventDefault();">
                     <span class="iconify-inline" data-icon="subway:tick"></span>
                     <span>確認</span>
-                </button>
+                </a>
             </div>
         </div>
     </div>
