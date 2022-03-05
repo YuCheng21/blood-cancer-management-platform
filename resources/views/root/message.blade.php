@@ -58,7 +58,9 @@
                             </tr>
                             </thead>
                             @foreach($messages as $message)
-                                <tr>
+                                <tr data-delete-url="{{ route('messages.destroy', ['id' => $message->id]) }}"
+                                    data-update-url="{{ route('messages.update', ['id' => $message->id]) }}"
+                                    data-id="{{ $message->id }}">
                                     <td>{{ $message->id }}</td>
                                     <td>{{ $message->title }}</td>
                                     <td>{{ $message->content }}</td>
@@ -67,12 +69,12 @@
                                     <td>
                                         <div class="row g-1">
                                             <div class="col-12 col-xxl-4">
-                                                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateMessageModal">
+                                                <button class="btn btn-primary w-100 updateMessageBtn" data-bs-toggle="modal" data-bs-target="#updateMessageModal">
                                                     編輯
                                                 </button>
                                             </div>
                                             <div class="col-12 col-xxl-4">
-                                                <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteMessageModal">
+                                                <button class="btn btn-danger w-100 deleteMessageBtn" data-bs-toggle="modal" data-bs-target="#deleteMessageModal">
                                                     刪除
                                                 </button>
                                             </div>
@@ -107,4 +109,14 @@
     @include('includes.modal.delete.message')
     @include('includes.modal.apply.message')
     @include('includes.modal.apply.all_message')
+@endsection
+
+@section('script')
+    @parent
+    {{--  Page Customize Javascript  --}}
+    <script src="{{ asset('js/pages/root/message.js') }}"></script>
+
+    <script>
+        const messages = @json($messages);
+    </script>
 @endsection

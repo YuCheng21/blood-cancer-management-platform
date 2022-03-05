@@ -36,7 +36,8 @@
             <div class="container-fluid">
                 <a href="{{route('cases.index')}}"
                    class="navbar-brand fs-1 fw-bold py-0 ds-100 hv-scale hv-color-text">
-                    {{--                    <span class="iconify-inline" data-icon="maki:blood-bank"></span>--}}
+{{--                    <span class="iconify-inline" data-icon="mdi:virus-outline"></span>--}}
+{{--                    <span class="iconify-inline" data-icon="ph:syringe-duotone" data-rotate="270deg"></span>--}}
                     <span>{{config('app.name')}}</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler">

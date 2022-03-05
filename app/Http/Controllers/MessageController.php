@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use Carbon\Carbon;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
 class MessageController extends Controller
@@ -27,16 +31,94 @@ class MessageController extends Controller
 
     public function store(Request $request)
     {
-        dd([$request->toArray()]);
+        $rules = [
+            'createMessageTitle' => ['required'],
+            'createMessageContent' => ['required'],
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return back()
+                ->withInput()
+                ->with([
+                    'type' => 'error',
+                    'msg' => '表單填寫未完成'
+                ]);
+        }
+        $data = [
+            'title' => $request->createMessageTitle,
+            'content' => $request->createMessageContent,
+            'user_id' => Auth::id(),
+            'date' => Carbon::today()->toDateTimeString(),
+        ];
+        try {
+            Message::create($data);
+            return back()
+                ->with([
+                    'type' => 'success-toast',
+                    'msg' => '新增消息成功。'
+                ]);
+        } catch (QueryException $queryException) {
+            return back()
+                ->withInput()
+                ->with([
+                    'type' => 'error',
+                    'msg' => 'SQLState: ' . $queryException->errorInfo[0]
+                ]);
+        }
     }
 
     public function update(Request $request, $id)
     {
-        dd([$request->toArray(), $id]);
+        $rules = [
+            'updateMessageTitle' => ['required'],
+            'updateMessageContent' => ['required'],
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return back()
+                ->withInput()
+                ->with([
+                    'type' => 'error',
+                    'msg' => '表單填寫未完成'
+                ]);
+        }
+        $data = [
+            'title' => $request->updateMessageTitle,
+            'content' => $request->updateMessageContent,
+            'user_id' => Auth::id(),
+        ];
+        $message = Message::where([
+            'id' => $id,
+        ])->first();
+        try {
+            $message->update($data);
+            return back()
+                ->with([
+                    'type' => 'success-toast',
+                    'msg' => '新增消息成功。'
+                ]);
+        } catch (QueryException $queryException) {
+            return back()
+                ->withInput()
+                ->with([
+                    'type' => 'error',
+                    'msg' => 'SQLState: ' . $queryException->errorInfo[0]
+                ]);
+        }
     }
 
     public function destroy(Request $request, $id)
     {
-        dd([$request->toArray(), $id]);
+        $message = Message::where([
+            'id' => $id,
+        ])->first();
+        if (!is_null($message)) {
+            $message->delete();
+        }
+        return back()
+            ->with([
+                'type' => 'success-toast',
+                'msg' => '刪除消息成功。'
+            ]);
     }
 }

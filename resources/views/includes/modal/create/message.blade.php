@@ -11,7 +11,8 @@
             <div class="modal-body">
                 <div class="row gy-2">
                     <div class="col-12 overflow-auto" style="max-height: 70vh">
-                        <form action="#" id="createMessageForm" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('messages.store') }}" id="createMessageForm" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="input-group mb-2">
                                 <label for="createMessageTitle" class="input-group-text">標題</label>
                                 <input name="createMessageTitle" id="createMessageTitle" type="text"
@@ -31,7 +32,8 @@
                     <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                     <span>關閉</span>
                 </button>
-                <button type="button" class="btn btn-primary" id="createMessageSend">
+                <button type="button" class="btn btn-primary" id="createMessageSend"
+                        onclick="$('#createMessageForm').submit()">
                     <span class="iconify-inline" data-icon="subway:tick"></span>
                     <span>確認</span>
                 </button>
