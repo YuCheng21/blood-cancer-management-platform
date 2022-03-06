@@ -34,7 +34,7 @@ class MemberAuthenticate
         if (is_null($cases)){
             return response(['message' => 'Unauthenticated'], Response::HTTP_UNAUTHORIZED);
         }
-        $request->attributes->add(['$auth_account' => $auth['account']]);
+        $request->attributes->add(['auth_account' => $auth['account']]);
         return $next($request);
     }
 

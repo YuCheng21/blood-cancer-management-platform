@@ -78,7 +78,7 @@ class BloodComponentController extends Controller
         $validator = Validator::make($request->all(), $rules);
         $blood_component = BloodComponent::where('id', $blood_component_id)->get();
         if (!Auth::check()) {
-            $case_id = CaseModel::where('account', $request->get('$auth_account'))->first()->toArray()['id'];
+            $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
             $blood_component = $blood_component->where('case_id', $case_id)->first();
         }
         $blood_component->update($validator->validate());
@@ -96,7 +96,7 @@ class BloodComponentController extends Controller
     {
         $blood_component = BloodComponent::where('id', $blood_component_id)->get();
         if (!Auth::check()) {
-            $case_id = CaseModel::where('account', $request->get('$auth_account'))->first()->toArray()['id'];
+            $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
             $blood_component = $blood_component->where('case_id', $case_id)->first();
         }
         $blood_component->delete();
@@ -108,7 +108,7 @@ class BloodComponentController extends Controller
         $case = CaseModel::where('account', $account)->first();
         $blood_component = $case->blood_components;
         if (!Auth::check()) {
-            $case_id = CaseModel::where('account', $request->get('$auth_account'))->first()->toArray()['id'];
+            $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
             $blood_component = $blood_component->where('case_id', $case_id);
         }
         return response(['data' => $blood_component], Response::HTTP_OK);

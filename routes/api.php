@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\MedicineRecordController;
 use App\Http\Controllers\Api\BloodComponentController;
 use App\Http\Controllers\Api\CaseModelController;
 use Illuminate\Support\Facades\Route;
@@ -31,4 +32,8 @@ Route::middleware('member.auth')->name('api.')->group(function () {
         ->controller(CaseModelController::class)->group(function () {
             Route::get('/{account}', 'show')->name('show');
         });
+    Route::prefix('medicine')->name('medicine.')
+        ->controller(MedicineRecordController::class)->group(function (){
+        Route::get('/account/{account}', 'account')->name('account');
+    });
 });
