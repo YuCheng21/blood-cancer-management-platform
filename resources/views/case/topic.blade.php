@@ -40,7 +40,13 @@
                             @foreach($case_topics as $case_topic)
                                 <tr>
                                     <td>{{ $case_topic->topic->question }}</td>
-                                    <td>{{ $case_topic->state }}</td>
+                                    @if($case_topic->state == 'correct')
+                                        <td>正確</td>
+                                    @elseif($case_topic->state == 'wrong')
+                                        <td>錯誤</td>
+                                    @else
+                                        <td>{{ $case_topic->state }}</td>
+                                    @endif
                                 </tr>
                             @endforeach
                     </table>

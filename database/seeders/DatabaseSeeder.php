@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CaseTask;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,13 +26,13 @@ class DatabaseSeeder extends Seeder
             DiseaseClassSeeder::class,
 
             CaseModelSeeder::class,
-
-
             BloodComponentsSeeder::class,
-
 
             CategoryInformationSeeder::class,
             TaskSeeder::class,
+            TemplateSeeder::class,
+            CaseTaskSeeder::class,
+
             MedicineRecordSeeder::class,
             SideEffectRecordSeeder::class,
             ReportRecordSeeder::class,

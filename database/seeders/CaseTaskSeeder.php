@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CaseTask;
 use Illuminate\Database\Seeder;
 
 class CaseTaskSeeder extends Seeder
@@ -13,6 +14,8 @@ class CaseTaskSeeder extends Seeder
      */
     public function run()
     {
-        //
+        CaseTask::factory()
+            ->count(10)
+            ->create();
     }
 }
