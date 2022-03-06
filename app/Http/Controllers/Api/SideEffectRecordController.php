@@ -66,18 +66,8 @@ class SideEffectRecordController extends Controller
             'caption' => $request['caption'],
             'path' => $path,
         ];
-
         $side_effect_record = SideEffectRecord::create($data);
         $side_effect_record = $side_effect_record->refresh();
         return response(['data' => $side_effect_record], Response::HTTP_CREATED);
-    }
-
-    public function test(Request $request){
-        $file = $request->file('form-image');
-        $path = $file->storeAs(
-            'effect',
-            $file->hashName(),
-            'public'
-        );
     }
 }

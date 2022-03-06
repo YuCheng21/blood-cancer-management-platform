@@ -37,7 +37,6 @@ Route::middleware('member.auth')->name('api.')->group(function () {
         ->controller(SideEffectRecordController::class)->group(function (){
             Route::get('/account/{account}', 'account')->name('account');
             Route::post('/', 'store')->name('store');
-            Route::post('/test', 'test')->name('test');
         });
 
     Route::prefix('medicine')->name('medicine.')
