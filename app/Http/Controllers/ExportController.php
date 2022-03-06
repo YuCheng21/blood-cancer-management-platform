@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\CaseExport;
+use App\Exports\CaseInformationExport;
 use App\Models\CaseModel;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -26,7 +27,7 @@ class ExportController extends Controller
         );
     }
 
-    public function test(){
-        return Excel::download(new CaseExport, 'test.xlsx');
+    public function account($account){
+        return Excel::download(new CaseExport($account), $account . '.xlsx');
     }
 }

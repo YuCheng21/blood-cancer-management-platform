@@ -65,9 +65,9 @@
                                     <td class="text-success">
                                         <div class="row g-1">
                                             <div class="col-12">
-                                                <button class="btn btn-primary w-100">
+                                                <a href="{{ route('exports.account', ['account' => $case->account]) }}" class="btn btn-primary w-100">
                                                     匯出
-                                                </button>
+                                                </a>
                                             </div>
                                         </div>
                                     </td>

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\BloodComponent;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 class BloodComponentsSeeder extends Seeder
@@ -15,6 +15,9 @@ class BloodComponentsSeeder extends Seeder
      */
     public function run()
     {
+//        BloodComponent::factory()
+//            ->count(10)
+//            ->create();
         DB::table('blood_components')->insert([
             'case_id' => '1',
             'wbc' => rand(0, 999),
@@ -25,7 +28,8 @@ class BloodComponentsSeeder extends Seeder
             'cea' => rand(0, 999),
             'ca153' => rand(0, 999),
             'bun' => rand(0, 999),
-            'created_at' => '2022-02-1 00:00:00'
+            'created_at' => '2022-02-1 00:00:00',
+            'updated_at' => '2022-02-1 00:00:00',
         ]);
         DB::table('blood_components')->insert([
             'case_id' => '1',
@@ -37,7 +41,8 @@ class BloodComponentsSeeder extends Seeder
             'cea' => rand(0, 999),
             'ca153' => rand(0, 999),
             'bun' => rand(0, 999),
-            'created_at' => '2022-02-2 00:00:00'
+            'created_at' => '2022-02-2 00:00:00',
+            'updated_at' => '2022-02-2 00:00:00',
         ]);
         DB::table('blood_components')->insert([
             'case_id' => '1',
@@ -49,7 +54,8 @@ class BloodComponentsSeeder extends Seeder
             'cea' => rand(0, 999),
             'ca153' => rand(0, 999),
             'bun' => rand(0, 999),
-            'created_at' => '2022-02-3 00:00:00'
+            'created_at' => '2022-02-3 00:00:00',
+            'updated_at' => '2022-02-3 00:00:00',
         ]);
         DB::table('blood_components')->insert([
             'case_id' => '1',
@@ -61,7 +67,8 @@ class BloodComponentsSeeder extends Seeder
             'cea' => rand(0, 999),
             'ca153' => rand(0, 999),
             'bun' => rand(0, 999),
-            'created_at' => '2022-02-4 00:00:00'
+            'created_at' => '2022-02-4 00:00:00',
+            'updated_at' => '2022-02-4 00:00:00',
         ]);
         DB::table('blood_components')->insert([
             'case_id' => '1',
@@ -73,7 +80,8 @@ class BloodComponentsSeeder extends Seeder
             'cea' => rand(0, 999),
             'ca153' => rand(0, 999),
             'bun' => rand(0, 999),
-            'created_at' => '2022-02-5 00:00:00'
+            'created_at' => '2022-02-5 00:00:00',
+            'updated_at' => '2022-02-5 00:00:00',
         ]);
         DB::table('blood_components')->insert([
             'case_id' => '1',
@@ -85,7 +93,8 @@ class BloodComponentsSeeder extends Seeder
             'cea' => rand(0, 999),
             'ca153' => rand(0, 999),
             'bun' => rand(0, 999),
-            'created_at' => '2022-02-6 00:00:00'
+            'created_at' => '2022-02-6 00:00:00',
+            'updated_at' => '2022-02-6 00:00:00',
         ]);
         DB::table('blood_components')->insert([
             'case_id' => '1',
@@ -97,7 +106,8 @@ class BloodComponentsSeeder extends Seeder
             'cea' => rand(0, 999),
             'ca153' => rand(0, 999),
             'bun' => rand(0, 999),
-            'created_at' => '2022-02-7 00:00:00'
+            'created_at' => '2022-02-7 00:00:00',
+            'updated_at' => '2022-02-7 00:00:00',
         ]);
     }
 }

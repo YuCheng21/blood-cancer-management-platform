@@ -2,16 +2,28 @@
 
 namespace App\Exports;
 
-use App\Models\CaseModel;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class CaseExport implements FromCollection
+class CaseExport implements WithMultipleSheets
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    protected $account;
+
+    public function __construct($account)
     {
-        return CaseModel::all();
+        $this->account = $account;
+    }
+
+    public function sheets(): array
+    {
+        $sheets = [];
+
+        $sheets[] = new CaseInformationExport($this->account);
+        $sheets[] = new CaseBloodExport($this->account);
+        $sheets[] = new CaseTaskExport($this->account);
+        $sheets[] = new CaseMedicineExport($this->account);
+        $sheets[] = new CaseEffectExport($this->account);
+        $sheets[] = new CaseReportExport($this->account);
+
+        return $sheets;
     }
 }
