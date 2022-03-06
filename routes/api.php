@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\SideEffectRecordController;
 use App\Http\Controllers\Api\MedicineRecordController;
 use App\Http\Controllers\Api\BloodComponentController;
 use App\Http\Controllers\Api\CaseModelController;
@@ -32,6 +33,13 @@ Route::middleware('member.auth')->name('api.')->group(function () {
         ->controller(CaseModelController::class)->group(function () {
             Route::get('/{account}', 'show')->name('show');
         });
+    Route::prefix('side-effect')->name('side-effect.')
+        ->controller(SideEffectRecordController::class)->group(function (){
+            Route::get('/account/{account}', 'account')->name('account');
+            Route::post('/', 'store')->name('store');
+            Route::post('/test', 'test')->name('test');
+        });
+
     Route::prefix('medicine')->name('medicine.')
         ->controller(MedicineRecordController::class)->group(function (){
         Route::get('/account/{account}', 'account')->name('account');

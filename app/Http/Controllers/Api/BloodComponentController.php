@@ -35,7 +35,7 @@ class BloodComponentController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if (!Auth::check()) {
-            $case_id = CaseModel::where('account', $request->get('$auth_account'))->first()->toArray()['id'];
+            $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
         } else {
             $case_id = CaseModel::where('account', $validator->validate()['account'])->first()->toArray()['id'];
         }

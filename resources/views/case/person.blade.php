@@ -261,8 +261,8 @@
                                         <ul class="mb-0">
                                             @foreach($value as $side_effect_record)
                                                 @if($side_effect_record->has_image)
-                                                <li onclick="fancybox_show('{{ $side_effect_record->path }}')">
-                                                    <a href="{{ $side_effect_record->path }}" onclick="event.preventDefault();">{{ $side_effect_record->symptom }}</a><span>（嚴重度：{{ $side_effect_record->severity }}）</span>
+                                                <li onclick="fancybox_show('{{ $side_effect_record->path() }}')">
+                                                    <a href="{{ $side_effect_record->path()}}" onclick="event.preventDefault();">{{ $side_effect_record->symptom }}</a><span>（嚴重度：{{ $side_effect_record->severity }}）</span>
                                                 </li>
                                                 @else
                                                 <li>{{ $side_effect_record->symptom }}（嚴重度：{{ $side_effect_record->severity }}）</li>
@@ -328,12 +328,12 @@
                 @if(count($image_records))
                     <div class="d-flex flex-row flex-nowrap overflow-scroll">
                         @foreach($image_records as $image_record)
-                            @if(!is_null($image_record->path))
+                            @if(!is_null($image_record->path()))
                                 <div class="d-flex flex-column align-items-center">
                                     <a data-fancybox="gallery" class="text-center"
                                        data-caption="{{ $image_record->caption }}"
-                                       href="{{ $image_record->path }}">
-                                        <img src="{{ $image_record->path }}" class="m-1" alt=""/>
+                                       href="{{ $image_record->path() }}">
+                                        <img src="{{ $image_record->path() }}" class="m-1" alt=""/>
                                     </a>
                                     <span class="fs-4">{{ $image_record->date }}</span>
                                 </div>

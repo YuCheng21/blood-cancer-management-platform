@@ -18,7 +18,7 @@ class CreateSideEffectRecordsTable extends Migration
             $table->unsignedBigInteger('case_id')->comment('個案編號');
             $table->date('date')->comment('日期');
             $table->string('symptom')->comment('症狀');
-            $table->string('difficulty')->comment('困擾度');
+            $table->string('difficulty')->comment('困擾度')->nullable();
             $table->string('severity')->comment('嚴重度');
             $table->boolean('has_image')->comment('有照片');
             $table->string('path')->comment('路徑')->nullable();
