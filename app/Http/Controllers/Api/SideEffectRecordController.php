@@ -54,6 +54,9 @@ class SideEffectRecordController extends Controller
             );
         }else{
             $path = null;
+            if ($request['has_image'] == 1){
+                return response(null, Response::HTTP_BAD_REQUEST);
+            }
         }
 
         $data = [
