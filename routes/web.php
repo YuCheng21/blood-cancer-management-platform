@@ -97,6 +97,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/', 'index')->name('index');
 
         Route::get('/account/{account}', 'account')->name('account');
+
+        Route::post('/total', 'total')->name('total');
+        Route::post('/information', 'information')->name('information');
+        Route::post('/blood', 'blood')->name('blood');
+        Route::post('/task', 'task')->name('task');
+        Route::post('/effect', 'effect')->name('effect');
+        Route::post('/report', 'report')->name('report');
     });
 
 });

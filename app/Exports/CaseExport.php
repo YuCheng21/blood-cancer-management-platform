@@ -2,28 +2,56 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\WithMultipleSheets;
+use App\Models\CaseModel;
+use Maatwebsite\Excel\Concerns\FromArray;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithTitle;
 
-class CaseExport implements WithMultipleSheets
+class CaseExport implements FromArray, WithTitle, WithHeadings
 {
-    protected $account;
+    protected $accounts;
 
-    public function __construct($account)
+    public function __construct(array $accounts)
     {
-        $this->account = $account;
+        $this->accounts = $accounts;
     }
 
-    public function sheets(): array
+    public function array(): array
     {
-        $sheets = [];
+        $cases = CaseModel::whereIn('id', $this->accounts)->get();
+        $cases = $cases->map(function ($case) {
+            return [
+                $case->account,
+                $case->password,
+                $case->transplant_num,
+                $case->name,
+                $case->gender->name,
+                $case->birthday,
+                $case->date,
+                $case->transplant_type->name,
+                $case->disease_type->name . ' - ' . $case->disease_state->name . ' - ' . $case->disease_class->name,
+            ];
+        });
+        return $cases->toArray();
+    }
 
-        $sheets[] = new CaseInformationExport($this->account);
-        $sheets[] = new CaseBloodExport($this->account);
-        $sheets[] = new CaseTaskExport($this->account);
-        $sheets[] = new CaseMedicineExport($this->account);
-        $sheets[] = new CaseEffectExport($this->account);
-        $sheets[] = new CaseReportExport($this->account);
+    public function headings(): array
+    {
+        return [
+            '帳號',
+            '密碼',
+            '移植編號',
+            '姓名',
+            '性別',
+            '生日',
+            '移植日期',
+            '移植種類',
+            '疾病種類',
+        ];
+    }
 
-        return $sheets;
+    public function title(): string
+    {
+        return '基本資料';
     }
 }

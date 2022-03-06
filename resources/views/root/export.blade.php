@@ -11,26 +11,29 @@
                     <span class="iconify-inline" data-icon="bx:bxs-file-export"></span>
                     <span>個案資料批次匯出</span>
                 </h2>
-                <div class="d-flex flex-column flex-xl-row">
-                    <button class="btn btn-primary me-1 my-1">
-                        <span>匯出總資料</span>
-                    </button>
-                    <button class="btn btn-primary me-1 my-1">
-                        <span>匯出個人資料</span>
-                    </button>
-                    <button class="btn btn-primary me-1 my-1">
-                        <span>匯出抽血數據</span>
-                    </button>
-                    <button class="btn btn-primary me-1 my-1">
-                        <span>匯出每週任務</span>
-                    </button>
-                    <button class="btn btn-primary me-1 my-1">
-                        <span>匯出藥物及副作用</span>
-                    </button>
-                    <button class="btn btn-primary me-1 my-1">
-                        <span>匯出報告個管師</span>
-                    </button>
-                </div>
+                <form action="#" id="exportForm" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="d-flex flex-column flex-xl-row">
+                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="total">
+                            <span>匯出總資料</span>
+                        </button>
+                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="information">
+                            <span>匯出個人資料</span>
+                        </button>
+                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="blood">
+                            <span>匯出抽血數據</span>
+                        </button>
+                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="task">
+                            <span>匯出每週任務</span>
+                        </button>
+                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="effect">
+                            <span>匯出藥物及副作用</span>
+                        </button>
+                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="report">
+                            <span>匯出報告個管師</span>
+                        </button>
+                    </div>
+                </form>
             </div>
             <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
                 <div class="row justify-content-center text-center">
@@ -46,26 +49,29 @@
                                 <th data-width="10" data-width-unit="%" data-checkbox="true"></th>
                                 <th data-width="20" data-width-unit="%" data-sortable="true">帳號</th>
                                 <th data-width="20" data-width-unit="%" data-sortable="true">姓名</th>
-{{--                                <th data-width="20" data-width-unit="%" data-sortable="true">基本資料</th>--}}
+                                {{--                                <th data-width="20" data-width-unit="%" data-sortable="true">基本資料</th>--}}
                                 <th data-width="20" data-width-unit="%" data-sortable="true">課程規劃與進度</th>
                                 <th data-width="10" data-width-unit="%" data-sortable="true">個案匯出</th>
                             </tr>
                             </thead>
                             @foreach($cases as $case)
-                                <tr>
+                                <tr data-case-id="{{ $case->id }}">
                                     <td data-checkbox="true"></td>
                                     <td>{{ $case->account }}</td>
                                     <td>{{ $case->name }}</td>
-{{--                                    <td><span class="iconify-inline text-success" data-icon="akar-icons:check"></span></td>--}}
+                                    {{--                                    <td><span class="iconify-inline text-success" data-icon="akar-icons:check"></span></td>--}}
                                     @if(!empty($case->case_tasks->toArray()))
-                                        <td><span class="iconify-inline text-success" data-icon="akar-icons:check"></span></td>
+                                        <td><span class="iconify-inline text-success"
+                                                  data-icon="akar-icons:check"></span></td>
                                     @else
-                                        <td><span class="iconify-inline text-danger" data-icon="akar-icons:cross"></span></td>
+                                        <td><span class="iconify-inline text-danger"
+                                                  data-icon="akar-icons:cross"></span></td>
                                     @endif
                                     <td class="text-success">
                                         <div class="row g-1">
                                             <div class="col-12">
-                                                <a href="{{ route('exports.account', ['account' => $case->account]) }}" class="btn btn-primary w-100">
+                                                <a href="{{ route('exports.account', ['account' => $case->account]) }}"
+                                                   class="btn btn-primary w-100">
                                                     匯出
                                                 </a>
                                             </div>
@@ -83,4 +89,19 @@
 
 @section('footer')
     @parent
+@endsection
+
+@section('script')
+    @parent
+    {{--  Page Customize Javascript  --}}
+    <script src="{{asset('js/pages/root/export.js')}}"></script>
+
+    <script>
+        const urlTotal = '{{ route('exports.total') }}';
+        const urlInformation = '{{ route('exports.information') }}';
+        const urlBlood = '{{ route('exports.blood') }}';
+        const urlTask = '{{ route('exports.task') }}';
+        const urlEffect = '{{ route('exports.effect') }}';
+        const urlReport = '{{ route('exports.report') }}';
+    </script>
 @endsection
