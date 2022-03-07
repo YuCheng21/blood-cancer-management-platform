@@ -9,28 +9,31 @@
             <div class="card-header justify-content-between d-xl-inline-flex align-items-center ">
                 <h2 class="my-2">
                     <span class="iconify-inline" data-icon="bx:bxs-file-export"></span>
-                    <span>個案資料批次匯出</span>
+                    <span>個案資料匯出</span>
                 </h2>
                 <form action="#" id="exportForm" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="d-flex flex-column flex-xl-row">
                         <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="total">
-                            <span>匯出總資料</span>
+                            <span>總資料</span>
                         </button>
                         <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="information">
-                            <span>匯出個人資料</span>
+                            <span>個人資料</span>
                         </button>
                         <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="blood">
-                            <span>匯出抽血數據</span>
+                            <span>抽血數據</span>
                         </button>
                         <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="task">
-                            <span>匯出每週任務</span>
+                            <span>每週任務</span>
+                        </button>
+                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="medicine">
+                            <span>藥物劑量</span>
                         </button>
                         <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="effect">
-                            <span>匯出藥物及副作用</span>
+                            <span>副作用</span>
                         </button>
                         <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="report">
-                            <span>匯出報告個管師</span>
+                            <span>報告個管師</span>
                         </button>
                     </div>
                 </form>
@@ -101,6 +104,7 @@
         const urlInformation = '{{ route('exports.information') }}';
         const urlBlood = '{{ route('exports.blood') }}';
         const urlTask = '{{ route('exports.task') }}';
+        const urlMedicine = '{{ route('exports.medicine') }}';
         const urlEffect = '{{ route('exports.effect') }}';
         const urlReport = '{{ route('exports.report') }}';
     </script>

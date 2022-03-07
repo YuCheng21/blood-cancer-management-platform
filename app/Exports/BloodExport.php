@@ -2,15 +2,26 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\FromCollection;
+use App\Models\CaseModel;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class BloodExport implements FromCollection
+class BloodExport implements WithMultipleSheets
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    protected $accounts;
+
+    public function __construct($accounts)
     {
-        //
+        $this->accounts = $accounts;
+    }
+
+    public function sheets(): array
+    {
+        $cases = CaseModel::whereIn('id', $this->accounts)->get();
+        $sheets = [];
+        foreach ($cases as $case){
+            $sheets[] = new CaseBloodExport($case->account, true);
+        }
+
+        return $sheets;
     }
 }

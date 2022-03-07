@@ -5,7 +5,7 @@ namespace App\Exports;
 use App\Models\CaseModel;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class TaskExport implements WithMultipleSheets
+class MedicineExport implements WithMultipleSheets
 {
     protected $accounts;
 
@@ -19,7 +19,7 @@ class TaskExport implements WithMultipleSheets
         $cases = CaseModel::whereIn('id', $this->accounts)->get();
         $sheets = [];
         foreach ($cases as $case){
-            $sheets[] = new CaseTaskExport($case->account, true);
+            $sheets[] = new CaseMedicineExport($case->account, true);
         }
 
         return $sheets;

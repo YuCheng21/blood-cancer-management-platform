@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithTitle;
 
-class CaseExport implements FromArray, WithTitle, WithHeadings
+class TotalExport implements FromArray, WithTitle, WithHeadings
 {
     protected $accounts;
 

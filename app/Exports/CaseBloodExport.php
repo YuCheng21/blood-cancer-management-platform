@@ -10,12 +10,13 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 class CaseBloodExport implements FromArray, WithTitle, WithHeadings
 {
     protected $account;
+    protected $title;
 
-    public function __construct($account)
+    public function __construct($account, $has_title=null)
     {
         $this->account = $account;
+        $this->title = is_null($has_title) ? null : ' - ' . $account;
     }
-
 
     public function array(): array
     {
@@ -59,6 +60,6 @@ class CaseBloodExport implements FromArray, WithTitle, WithHeadings
 
     public function title(): string
     {
-        return '抽血數據';
+        return '抽血數據' . $this->title;
     }
 }

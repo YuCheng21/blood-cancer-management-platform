@@ -102,6 +102,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/information', 'information')->name('information');
         Route::post('/blood', 'blood')->name('blood');
         Route::post('/task', 'task')->name('task');
+        Route::post('/medicine', 'medicine')->name('medicine');
         Route::post('/effect', 'effect')->name('effect');
         Route::post('/report', 'report')->name('report');
     });

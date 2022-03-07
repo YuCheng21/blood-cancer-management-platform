@@ -10,12 +10,13 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 class CaseMedicineExport implements FromArray, WithTitle, WithHeadings
 {
     protected $account;
+    protected $title;
 
-    public function __construct($account)
+    public function __construct($account, $has_title=null)
     {
         $this->account = $account;
+        $this->title = is_null($has_title) ? null : ' - ' . $account;
     }
-
 
     public function array(): array
     {
@@ -49,6 +50,6 @@ class CaseMedicineExport implements FromArray, WithTitle, WithHeadings
 
     public function title(): string
     {
-        return '施打藥物紀錄及劑量';
+        return '藥物劑量' . $this->title;
     }
 }

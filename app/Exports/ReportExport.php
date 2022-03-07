@@ -2,15 +2,26 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\FromCollection;
+use App\Models\CaseModel;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class ReportExport implements FromCollection
+class ReportExport implements WithMultipleSheets
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    protected $accounts;
+
+    public function __construct($accounts)
     {
-        //
+        $this->accounts = $accounts;
+    }
+
+    public function sheets(): array
+    {
+        $cases = CaseModel::whereIn('id', $this->accounts)->get();
+        $sheets = [];
+        foreach ($cases as $case){
+            $sheets[] = new CaseReportExport($case->account, true);
+        }
+
+        return $sheets;
     }
 }

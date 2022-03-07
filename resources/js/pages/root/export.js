@@ -5,8 +5,9 @@ $(document).on('click', '.btn-export', function () {
         id === 'information' ? urlInformation :
             id === 'blood' ? urlBlood :
                 id === 'task' ? urlTask :
-                    id === 'effect' ? urlEffect :
-                        id === 'report' ? urlReport : 'except';
+                    id === 'medicine' ? urlMedicine :
+                        id === 'effect' ? urlEffect :
+                            id === 'report' ? urlReport : 'except';
 
     let selected = [];
     $("table input:checkbox:checked").each(function () {

@@ -30,7 +30,7 @@
             <div class="card-header justify-content-between d-inline-flex align-items-center ">
                 <h2 class="my-2">
                     <span class="iconify-inline" data-icon="wpf:faq"></span>
-                    <span>主題</span>
+                    <span>問與答</span>
                 </h2>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createFaqModal">
                     <span class="iconify-inline" data-icon="carbon:add-filled"></span>
@@ -49,7 +49,7 @@
                                data-locale="zh-TW">
                             <thead>
                             <tr>
-                                <th data-width="15" data-width-unit="%" data-sortable="true">主題</th>
+                                <th data-width="15" data-width-unit="%" data-sortable="true">類型</th>
                                 <th data-width="25" data-width-unit="%" data-sortable="true">問題</th>
                                 <th data-width="50" data-width-unit="%" data-sortable="true">解答</th>
                                 <th data-width="10" data-width-unit="%">操作選項</th>

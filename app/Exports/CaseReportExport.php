@@ -11,12 +11,13 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 class CaseReportExport implements FromArray, WithTitle, WithHeadings
 {
     protected $account;
+    protected $title;
 
-    public function __construct($account)
+    public function __construct($account, $has_title=null)
     {
         $this->account = $account;
+        $this->title = is_null($has_title) ? null : ' - ' . $account;
     }
-
 
     public function array(): array
     {
@@ -50,6 +51,6 @@ class CaseReportExport implements FromArray, WithTitle, WithHeadings
 
     public function title(): string
     {
-        return '報告個管師紀錄';
+        return '報告個管師' . $this->title;
     }
 }
