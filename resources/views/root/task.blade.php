@@ -46,7 +46,9 @@
                 <div class="row justify-content-center g-2">
                     <div class="col-sm-12 col-lg-6">
                         <div class="input-group">
-                            <label for="selectSubTemplate" class="input-group-text">副模板</label>
+                            <label for="selectSubTemplate" class="input-group-text"
+                                   data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                   title="選取要顯示的副模板內容">副模板</label>
                             <select name="selectSubTemplate" id="selectSubTemplate" class="form-select">
                                 <option value="" selected>請選擇任務副模板</option>
                                 @foreach($names as $name)
@@ -69,7 +71,9 @@
                             刪除
                         </button>
                     </div>
-                    <div class="col-sm-4 col-lg-2">
+                    <div class="col-sm-4 col-lg-2"
+                         data-bs-toggle="tooltip" data-bs-placement="bottom"
+                         title="套用主模板+副模板至個案">
                         <button class="btn btn-secondary w-100 text-white disabled" data-bs-toggle="modal"
                                 data-bs-target="#applyTaskModal">
                             套用
