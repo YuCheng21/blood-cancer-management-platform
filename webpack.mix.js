@@ -20,3 +20,5 @@ mix.copyDirectory('node_modules/chartjs-adapter-date-fns',
     'public/node_modules/chartjs-adapter-date-fns');
 mix.copyDirectory('node_modules/@fancyapps',
     'public/node_modules/@fancyapps')
+mix.copyDirectory('node_modules/bootstrap-table',
+    'public/node_modules/bootstrap-table')

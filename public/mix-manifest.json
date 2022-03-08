@@ -6,5 +6,15 @@
     "/img/logo.png": "/img/logo.png",
     "/node_modules/chartjs-adapter-date-fns/LICENSE.md": "/node_modules/chartjs-adapter-date-fns/LICENSE.md",
     "/node_modules/chartjs-adapter-date-fns/package.json": "/node_modules/chartjs-adapter-date-fns/package.json",
-    "/node_modules/chartjs-adapter-date-fns/README.md": "/node_modules/chartjs-adapter-date-fns/README.md"
+    "/node_modules/chartjs-adapter-date-fns/README.md": "/node_modules/chartjs-adapter-date-fns/README.md",
+    "/node_modules/bootstrap-table/bootstrap-table.jquery.json": "/node_modules/bootstrap-table/bootstrap-table.jquery.json",
+    "/node_modules/bootstrap-table/bower.json": "/node_modules/bootstrap-table/bower.json",
+    "/node_modules/bootstrap-table/CHANGELOG.md": "/node_modules/bootstrap-table/CHANGELOG.md",
+    "/node_modules/bootstrap-table/composer.json": "/node_modules/bootstrap-table/composer.json",
+    "/node_modules/bootstrap-table/cypress.json": "/node_modules/bootstrap-table/cypress.json",
+    "/node_modules/bootstrap-table/index.d.ts": "/node_modules/bootstrap-table/index.d.ts",
+    "/node_modules/bootstrap-table/LICENSE": "/node_modules/bootstrap-table/LICENSE",
+    "/node_modules/bootstrap-table/package.json": "/node_modules/bootstrap-table/package.json",
+    "/node_modules/bootstrap-table/README.md": "/node_modules/bootstrap-table/README.md",
+    "/node_modules/bootstrap-table/rollup.config.js": "/node_modules/bootstrap-table/rollup.config.js"
 }

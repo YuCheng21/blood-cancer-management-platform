@@ -94,3 +94,12 @@ $('#navbarToggler > ul a > span').each(function (index, value) {
         $(this).addClass('text-active')
     }
 })
+
+/**
+ * Bootstrap-Table checkbox add class (Style).
+ */
+$('table').on('post-body.bs.table', function () {
+    $(':checkbox').each(function () {
+        $(this).addClass('form-check-input')
+    });
+})

@@ -23,6 +23,9 @@
         <script src="{{asset('js/app.js')}}"></script>
         {{--  Customize CSS  --}}
         <link rel="stylesheet" href="{{asset('css/all.css')}}">
+        {{--  Bootstrap-Table  --}}
+        <script src="{{ asset('node_modules/bootstrap-table/dist/bootstrap-table.min.js' )}}">
+        </script>
     @show
 
     @section('style')
