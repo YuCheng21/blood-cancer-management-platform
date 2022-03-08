@@ -49,10 +49,34 @@ class AppHelper
 
     public static function tasks_sort($tasks){
         usort($tasks, function ($a, $b) {
-            if ($a['category_1'] > $b['category_1'] || ($a['category_1'] == $b['category_1'] && $a['category_2'] > $b['category_2'])) {
+            $a1 = $a['category_1'];
+            $b1 = $b['category_1'];
+            $a2_explode = explode('-', $a['category_2']); //  $a2[0]
+            $b2_explode = explode('-', $b['category_2']); //  $b2[0]
+            $a2 = $a2_explode[0] ?? '0';
+            $b2 = $b2_explode[0] ?? '0';
+            $a3 = $a2_explode[1] ?? '0';
+            $b3 = $b2_explode[1] ?? '0';
+            if ($a1 > $b1) {
                 return 1;
-            } elseif ($a['category_1'] < $b['category_1']) {
+            } elseif ($a1 == $b1){
+                if ($a2 > $b2){
+                    return 1;
+                }elseif ($a2 == $b2){
+                    if ($a3 > $b3){
+                        return 1;
+                    }
+                }
+            } elseif ($a1 < $b1) {
                 return -1;
+            } elseif ($a1 == $b1){
+                if ($a2 < $b2){
+                    return -1;
+                }elseif ($a2 == $b2){
+                    if ($a3 < $b3){
+                        return -1;
+                    }
+                }
             } else {
                 return 0;
             }

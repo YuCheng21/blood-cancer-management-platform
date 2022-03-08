@@ -13,7 +13,7 @@
                     <div class="col-12 overflow-auto" style="max-height: 50vh">
                         <form action="#" id="taskListForm" method="POST" enctype="multipart/form-data">
                             <div class="accordion">
-                                @foreach ($categories as $key_category => $value_category)
+                                @foreach (\App\Helpers\AppHelper::reformat_task($tasks) as $key_category => $value_category)
                                     <h2 class="accordion-header">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#accordion{{ $loop->index }}">
@@ -23,12 +23,12 @@
                                     </h2>
                                     <div id="accordion{{ $loop->index }}" class="accordion-collapse collapse show">
                                         <div class="accordion-body">
-                                            @foreach ($value_category as $key_task => $value_task)
+                                            @foreach (\App\Helpers\AppHelper::tasks_sort($value_category) as $key_task => $value_task)
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" name="taskList"
-                                                           id="group{{$value_task->category_1}}-{{$value_task->category_2}}">
+                                                           id="group{{$value_task['category_1']}}-{{$value_task['category_2']}}">
                                                     <label class="form-check-label"
-                                                           for="group{{$value_task->category_1}}-{{$value_task->category_2}}">{{$value_task->category_1}}-{{$value_task->category_2}}. {{$value_task->name}}</label>
+                                                           for="group{{$value_task['category_1']}}-{{$value_task['category_2']}}">{{$value_task['category_1']}}-{{$value_task['category_2']}}. {{$value_task['name']}}</label>
                                                 </div>
                                             @endforeach
                                         </div>

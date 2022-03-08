@@ -34,11 +34,11 @@
                                 </td>
                                 <td>
                                     <ul class="mb-0">
-                                        @foreach($case_tasks as $task)
-                                            @if($task['week'] == $i)
-                                                @php(/* @var $item */ $item =  $task['category_1'] . '-' . $task['category_2'] . '. ' . $task['name'] )
-                                                <li data-category-1="{{ $task['category_1'] }}"
-                                                    data-category-2="{{ $task['category_2'] }}">{{ $item }}</li>
+                                        @foreach(\App\Helpers\AppHelper::tasks_sort($case_tasks->toArray()) as $case_task)
+                                            @if($case_task['week'] == $i)
+                                                @php(/* @var $item */ $item =  $case_task['category_1'] . '-' . $case_task['category_2'] . '. ' . $case_task['name'] )
+                                                <li data-category-1="{{ $case_task['category_1'] }}"
+                                                    data-category-2="{{ $case_task['category_2'] }}">{{ $item }}</li>
                                             @endif
                                         @endforeach
                                     </ul>

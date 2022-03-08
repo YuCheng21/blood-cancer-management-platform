@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\AppHelper;
 use App\Models\CaseModel;
 use App\Models\CaseTask;
 use App\Models\CaseTopic;
@@ -10,7 +9,6 @@ use App\Models\DiseaseClass;
 use App\Models\DiseaseState;
 use App\Models\DiseaseType;
 use App\Models\Gender;
-use App\Models\MedicineRecord;
 use App\Models\Task;
 use App\Models\TransplantType;
 use Carbon\Carbon;
@@ -115,7 +113,6 @@ class CaseModelController extends Controller
             ->orderBy('category_1', 'ASC')
             ->select('case_tasks.*', 'tasks.category_1', 'tasks.category_2', 'tasks.name')
             ->get();
-        $case_tasks = AppHelper::tasks_sort($case_tasks->toArray());
 
         $medicine_records = $case->medicine_records;
         $side_effect_records = $case->side_effect_records;
@@ -199,7 +196,6 @@ class CaseModelController extends Controller
     public function task($account)
     {
         $tasks = Task::orderBy('category_1', 'ASC')->get();
-        $categories = AppHelper::reformat_task($tasks);
 
         $case = CaseModel::where([
             'account' => $account,
@@ -213,9 +209,7 @@ class CaseModelController extends Controller
             ->select('case_tasks.*', 'tasks.category_1', 'tasks.category_2', 'tasks.name')
             ->get();
 
-        $case_tasks = AppHelper::tasks_sort($case_tasks->toArray());
-
-        if (!empty($case_tasks)){
+        if (!empty($case_tasks->toArray())){
             $start_at = Carbon::parse($case_tasks[0]['start_at'])->subDays(1);
         }
 

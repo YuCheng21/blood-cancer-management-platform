@@ -119,33 +119,45 @@
                                 <th data-width="10" data-width-unit="%">進度</th>
                             </tr>
                             </thead>
-                            @foreach(\App\Helpers\AppHelper::reformat_by_key($case_tasks, 'week') as $week => $case_tasks)
-                                @foreach($case_tasks as $case_task)
-                                    <tr>
-                                        @if($loop->first)
-                                            <td rowspan="{{ count($case_tasks) }}">第 {{ $week }} 週</td>
-                                            <td rowspan="{{ count($case_tasks) }}">
-                                                <span>{{ \Carbon\Carbon::parse($case_task['start_at'])->addDays(($case_task['week'] - 1) * 7)->toDateString() }}</span><br>
-                                                <span>~</span><br>
-                                                <span>{{ \Carbon\Carbon::parse($case_task['start_at'])->addDays($case_task['week'] * 7 - 1)->toDateString() }}</span>
-                                            </td>
-                                        @endif
-                                        @php(/* @var $item */ $item =  $case_task['category_1'] . '-' . $case_task['category_2'] . '. ' . $case_task['name'] )
-                                        <td>{{ $item }}</td>
-                                        <td>
-                                            <a href="{{ route('cases.topic', ['account' => $account, 'case_task_id' => $case_task['id']]) }}">
-                                                @if($case_task['state'] == 'completed')
-                                                    <span class="text-success">已完成</span><br>
-                                                @elseif($case_task['state'] == 'uncompleted')
-                                                    <span class="text-primary">未完成</span><br>
-                                                @else
-                                                    <span>未完成</span><br>
+                            @php(/* @var $new_case_tasks */ $new_case_tasks = \App\Helpers\AppHelper::reformat_by_key(\App\Helpers\AppHelper::tasks_sort($case_tasks->toArray()), 'week'))
+                            @if(!empty($new_case_tasks))
+                                @for($i = 1; $i <= max(array_keys($new_case_tasks)); $i++)
+                                    @if(isset($new_case_tasks[$i]))
+                                        @foreach($new_case_tasks[$i] as $case_task)
+                                            <tr>
+                                                @if($loop->first)
+                                                    <td rowspan="{{ count($new_case_tasks[$i]) }}">第 {{ $i }} 週</td>
+                                                    <td rowspan="{{ count($new_case_tasks[$i]) }}">
+                                                        <span>{{ \Carbon\Carbon::parse($case_task['start_at'])->addDays(($case_task['week'] - 1) * 7)->toDateString() }}</span><br>
+                                                        <span>~</span><br>
+                                                        <span>{{ \Carbon\Carbon::parse($case_task['start_at'])->addDays($case_task['week'] * 7 - 1)->toDateString() }}</span>
+                                                    </td>
                                                 @endif
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @endforeach
+                                                @php(/* @var $item */ $item =  $case_task['category_1'] . '-' . $case_task['category_2'] . '. ' . $case_task['name'] )
+                                                <td>{{ $item }}</td>
+                                                <td>
+                                                    <a href="{{ route('cases.topic', ['account' => $account, 'case_task_id' => $case_task['id']]) }}">
+                                                        @if($case_task['state'] == 'completed')
+                                                            <span class="text-success">已完成</span><br>
+                                                        @elseif($case_task['state'] == 'uncompleted')
+                                                            <span class="text-primary">未完成</span><br>
+                                                        @else
+                                                            <span>未完成</span><br>
+                                                        @endif
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td>第 {{ $i }} 週</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    @endif
+                                @endfor
+                            @endif
                         </table>
                     </div>
                 </div>
