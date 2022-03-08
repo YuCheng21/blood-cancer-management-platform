@@ -116,7 +116,7 @@
                                 <th data-width="15" data-width-unit="%" data-sortable="true">週次</th>
                                 <th data-width="15" data-width-unit="%" data-sortable="true">排定日期</th>
                                 <th data-width="60" data-width-unit="%" data-halign="center" data-align="left">每週任務</th>
-                                <th data-width="10" data-width-unit="%" data-sortable="true">進度</th>
+                                <th data-width="10" data-width-unit="%">進度</th>
                             </tr>
                             </thead>
                             @if(count($case_tasks))
@@ -149,9 +149,9 @@
                                                 @if($task->week == $i)
                                                     <a href="{{ route('cases.topic', ['account' => $account, 'case_task_id' => $task->id]) }}">
                                                         @if($task->state == 'completed')
-                                                        <span class="text-success">已完成</span><br>
+                                                            <span class="text-success">已完成</span><br>
                                                         @else
-                                                        <span class="text-primary">未完成</span><br>
+                                                            <span class="text-primary">未完成</span><br>
                                                         @endif
                                                     </a>
                                                 @endif
@@ -207,7 +207,8 @@
                                     <td>{{ $medicine_record->type }}</td>
                                     <td>{{ $medicine_record->dose }}</td>
                                     <td>
-                                        <button class="btn btn-secondary text-white updateMedicineRecordBtn" data-bs-toggle="modal"
+                                        <button class="btn btn-secondary text-white updateMedicineRecordBtn"
+                                                data-bs-toggle="modal"
                                                 data-bs-target="#updateMedicineRecordModal"
                                                 data-update-url="{{route('medicine.update', ['account' => $account, 'id' => $medicine_record->id])}}"
                                                 data-id="{{ $medicine_record->id }}">
@@ -247,28 +248,54 @@
                                data-locale="zh-TW">
                             <thead>
                             <tr>
-                                <th data-width="20" data-width-unit="%" data-sortable="true"  data-field="date">紀錄時間</th>
-                                <th data-width="80" data-width-unit="%" data-sortable="true"
+                                <th data-width="20" data-width-unit="%" data-sortable="true" data-field="date">紀錄時間</th>
+                                <th data-width="70" data-width-unit="%"
                                     data-halign="center" data-align="left">
                                     副作用
                                 </th>
+                                <th data-width="10" data-width-unit="%">嚴重度</th>
                             </tr>
                             </thead>
+                            @php($counter = 1)
                             @foreach(\App\Helpers\AppHelper::reformat_side_effect_record($side_effect_records) as $key => $value)
                                 <tr>
                                     <td>{{ $key }}</td>
                                     <td>
                                         <ul class="mb-0">
                                             @foreach($value as $side_effect_record)
-                                                @if($side_effect_record->has_image)
-                                                <li onclick="fancybox_show('{{ $side_effect_record->path() }}')">
-                                                    <a href="{{ $side_effect_record->path()}}" onclick="event.preventDefault();">{{ $side_effect_record->symptom }}</a><span>（嚴重度：{{ $side_effect_record->severity }}）</span>
-                                                </li>
+                                                @if($counter % 2 == 0)
+                                                    <li class="bg-primary bg-opacity-10">
+                                                        @if($side_effect_record->has_image)
+                                                            <a href="{{ $side_effect_record->path()}}"
+                                                               onclick="event.preventDefault();fancybox_show('{{ $side_effect_record->path() }}');">
+                                                                {{ $side_effect_record->symptom }}
+                                                            </a>
+                                                        @else
+                                                            {{ $side_effect_record->symptom }}
+                                                        @endif
+                                                    </li>
                                                 @else
-                                                <li>{{ $side_effect_record->symptom }}（嚴重度：{{ $side_effect_record->severity }}）</li>
+                                                    <li class="bg-info bg-opacity-10">
+                                                        @if($side_effect_record->has_image)
+                                                            <a href="{{ $side_effect_record->path()}}"
+                                                               onclick="event.preventDefault();fancybox_show('{{ $side_effect_record->path() }}');">
+                                                                {{ $side_effect_record->symptom }}
+                                                            </a>
+                                                        @else
+                                                            {{ $side_effect_record->symptom }}
+                                                        @endif
+                                                    </li>
                                                 @endif
+
+
+                                                @php(/* @var $counter */ $counter++)
                                             @endforeach
                                         </ul>
+                                    </td>
+                                    <td>
+                                        @foreach($value as $side_effect_record)
+                                            <span>{{ $side_effect_record->severity }}</span><br>
+                                        @endforeach
                                     </td>
                                 </tr>
                             @endforeach
