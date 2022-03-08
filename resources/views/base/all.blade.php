@@ -24,8 +24,8 @@
         {{--  Customize CSS  --}}
         <link rel="stylesheet" href="{{asset('css/all.css')}}">
         {{--  Bootstrap-Table  --}}
-        <script src="{{ asset('node_modules/bootstrap-table/dist/bootstrap-table.min.js' )}}">
-        </script>
+        <script src="{{ asset('node_modules/bootstrap-table/dist/bootstrap-table.min.js' )}}"></script>
+        <script src="{{ asset('node_modules/bootstrap-table/dist/locale/bootstrap-table-zh-TW.min.js' )}}"></script>
     @show
 
     @section('style')

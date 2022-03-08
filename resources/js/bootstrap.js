@@ -3,7 +3,7 @@
 window.$ = window.jQuery = require('../../node_modules/jquery/dist/jquery.min');
 window.bootstrap = require('../../node_modules/bootstrap/dist/js/bootstrap.bundle.min');
 // window.bootstrapTable = require('../../node_modules/bootstrap-table/dist/bootstrap-table.min');
-require('../../node_modules/bootstrap-table/dist/locale/bootstrap-table-zh-TW.min');
+// require('../../node_modules/bootstrap-table/dist/locale/bootstrap-table-zh-TW.min');
 window.Swal = require('../../node_modules/sweetalert2/dist/sweetalert2.all.min');
 window.axios  = require('../../node_modules/axios/dist/axios.min');
 window.Chart = require('../../node_modules/chart.js/dist/chart.min');
