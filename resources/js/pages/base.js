@@ -103,3 +103,11 @@ $('table').on('post-body.bs.table', function () {
         $(this).addClass('form-check-input')
     });
 })
+
+/**
+ * Initialize Tooltip
+ */
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+})

@@ -1,8 +1,3 @@
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl)
-})
-
 $(document).on('click', '.btn-export', function () {
     const target = $(this);
     const id = target.data('action');

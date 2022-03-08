@@ -14,7 +14,9 @@
                         <form action="{{ route('faqs.store') }}" id="createFaqForm" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="input-group mb-2">
-                                <label for="createFaqType" class="input-group-text">類型</label>
+                                <label for="createFaqType" class="input-group-text"
+                                       data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                       title="哪個任務類型的 Q&A">類型</label>
                                 <select name="createFaqType" id="createFaqType" class="form-select">
                                     <option value="0" selected>請選擇問題類型</option>
                                     @foreach($categories as $category)

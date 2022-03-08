@@ -81,7 +81,9 @@
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createCaseDiseaseState" class="input-group-text">疾病分期</label>
+                                <label for="createCaseDiseaseState" class="input-group-text"
+                                       data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                       title="若無需選擇則選取「未選擇」">疾病分期</label>
                                 <select name="createCaseDiseaseState" id="createCaseDiseaseState"
                                         class="form-select form-select">
                                     @foreach($disease_states as $disease_state)
@@ -93,7 +95,9 @@
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createCaseDiseaseClass" class="input-group-text">疾病分類</label>
+                                <label for="createCaseDiseaseClass" class="input-group-text"
+                                       data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                       title="若無需選擇則選取「未選擇」">疾病分類</label>
                                 <select name="createCaseDiseaseClass" id="createCaseDiseaseClass"
                                         class="form-select form-select">
                                     @foreach($disease_classes as $disease_class)

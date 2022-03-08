@@ -14,7 +14,9 @@
                         <form action="{{ route('topics.store') }}" id="createTopicForm" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="input-group mb-2">
-                                <label for="createSelectTopicType" class="input-group-text">課程</label>
+                                <label for="createSelectTopicType" class="input-group-text"
+                                       data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                       title="哪個課程的題目">課程</label>
                                 <select name="createSelectTopicType" id="createSelectTopicType" class="form-select">
                                     <option value="0" selected>請選擇內容</option>
                                     @foreach($tasks as $task)
