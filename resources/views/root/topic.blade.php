@@ -67,14 +67,14 @@
                                data-locale="zh-TW">
                             <thead>
                             <tr>
-                                <th data-width="20" data-width-unit="%" data-sortable="true">課程</th>
+                                <th data-width="30" data-width-unit="%" data-sortable="true">課程</th>
                                 <th data-width="35" data-width-unit="%" data-sortable="true" data-halign="center"
                                     data-align="left">題目</th>
-                                <th data-width="10" data-width-unit="%" data-sortable="true">題型</th>
-                                <th data-width="25" data-width-unit="%" data-sortable="true" data-halign="center"
+                                <th data-width="5" data-width-unit="%" data-sortable="true">題型</th>
+                                <th data-width="19" data-width-unit="%" data-sortable="true" data-halign="center"
                                     data-align="left">選項
                                 </th>
-                                <th data-width="10" data-width-unit="%">操作選項</th>
+                                <th data-width="11" data-width-unit="%">操作選項</th>
                             </tr>
                             </thead>
                             @foreach($topics as $topic)
