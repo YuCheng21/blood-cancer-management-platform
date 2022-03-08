@@ -108,58 +108,44 @@
             <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
-                        <table class="table table-striped text-center align-middle fs-5"
+                        <table class="table text-center align-middle fs-5"
                                data-toggle="table"
                                data-locale="zh-TW">
                             <thead>
                             <tr>
-                                <th data-width="15" data-width-unit="%" data-sortable="true">週次</th>
-                                <th data-width="15" data-width-unit="%" data-sortable="true">排定日期</th>
+                                <th data-width="15" data-width-unit="%">週次</th>
+                                <th data-width="15" data-width-unit="%">排定日期</th>
                                 <th data-width="60" data-width-unit="%" data-halign="center" data-align="left">每週任務</th>
                                 <th data-width="10" data-width-unit="%">進度</th>
                             </tr>
                             </thead>
-                            @if(count($case_tasks))
-                                @php($counter = 1)
-                                @for($i = 1; $i <= 12; $i++)
+                            @foreach(\App\Helpers\AppHelper::reformat_by_key($case_tasks, 'week') as $week => $case_tasks)
+                                @foreach($case_tasks as $case_task)
                                     <tr>
-                                        <td>第 {{ $i }} 週</td>
+                                        @if($loop->first)
+                                            <td rowspan="{{ count($case_tasks) }}">第 {{ $week }} 週</td>
+                                            <td rowspan="{{ count($case_tasks) }}">
+                                                <span>{{ \Carbon\Carbon::parse($case_task['start_at'])->addDays(($case_task['week'] - 1) * 7)->toDateString() }}</span><br>
+                                                <span>~</span><br>
+                                                <span>{{ \Carbon\Carbon::parse($case_task['start_at'])->addDays($case_task['week'] * 7 - 1)->toDateString() }}</span>
+                                            </td>
+                                        @endif
+                                        @php(/* @var $item */ $item =  $case_task['category_1'] . '-' . $case_task['category_2'] . '. ' . $case_task['name'] )
+                                        <td>{{ $item }}</td>
                                         <td>
-                                            <span>{{ $start_at->addDay(1)->toDateString() }}</span><br>
-                                            <span>~</span><br>
-                                            <span>{{ $start_at->addDay(6)->toDateString() }}</span><br>
-                                        </td>
-                                        <td>
-                                            <ul class="mb-0">
-                                                @foreach($case_tasks as $task)
-                                                    @if($task->week == $i)
-                                                        @php(/* @var $item */ $item =  $task->category_1 . '-' . $task->category_2 . '. ' . $task->name )
-                                                        @if($counter % 2 == 0)
-                                                            <li class="bg-primary bg-opacity-10">{{ $item }}</li>
-                                                        @else
-                                                            <li class="bg-info bg-opacity-10">{{ $item }}</li>
-                                                        @endif
-                                                        @php(/* @var $counter */ $counter++)
-                                                    @endif
-                                                @endforeach
-                                            </ul>
-                                        </td>
-                                        <td>
-                                            @foreach($case_tasks as $task)
-                                                @if($task->week == $i)
-                                                    <a href="{{ route('cases.topic', ['account' => $account, 'case_task_id' => $task->id]) }}">
-                                                        @if($task->state == 'completed')
-                                                            <span class="text-success">已完成</span><br>
-                                                        @else
-                                                            <span class="text-primary">未完成</span><br>
-                                                        @endif
-                                                    </a>
+                                            <a href="{{ route('cases.topic', ['account' => $account, 'case_task_id' => $case_task['id']]) }}">
+                                                @if($case_task['state'] == 'completed')
+                                                    <span class="text-success">已完成</span><br>
+                                                @elseif($case_task['state'] == 'uncompleted')
+                                                    <span class="text-primary">未完成</span><br>
+                                                @else
+                                                    <span>未完成</span><br>
                                                 @endif
-                                            @endforeach
+                                            </a>
                                         </td>
                                     </tr>
-                                @endfor
-                            @endif
+                                @endforeach
+                            @endforeach
                         </table>
                     </div>
                 </div>
@@ -257,7 +243,7 @@
                             </tr>
                             </thead>
                             @php($counter = 1)
-                            @foreach(\App\Helpers\AppHelper::reformat_side_effect_record($side_effect_records) as $key => $value)
+                            @foreach(\App\Helpers\AppHelper::reformat_by_key($side_effect_records, 'date') as $key => $value)
                                 <tr>
                                     <td>{{ $key }}</td>
                                     <td>

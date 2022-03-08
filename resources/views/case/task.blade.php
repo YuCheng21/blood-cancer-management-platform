@@ -35,10 +35,10 @@
                                 <td>
                                     <ul class="mb-0">
                                         @foreach($case_tasks as $task)
-                                            @if($task->week == $i)
-                                                @php(/* @var $item */ $item =  $task->category_1 . '-' . $task->category_2 . '. ' . $task->name )
-                                                <li data-category-1="{{ $task->category_1 }}"
-                                                    data-category-2="{{ $task->category_2 }}">{{ $item }}</li>
+                                            @if($task['week'] == $i)
+                                                @php(/* @var $item */ $item =  $task['category_1'] . '-' . $task['category_2'] . '. ' . $task['name'] )
+                                                <li data-category-1="{{ $task['category_1'] }}"
+                                                    data-category-2="{{ $task['category_2'] }}">{{ $item }}</li>
                                             @endif
                                         @endforeach
                                     </ul>

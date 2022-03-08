@@ -113,13 +113,9 @@ class CaseModelController extends Controller
             ->join('tasks', 'task_id', '=', 'tasks.id')
             ->orderBy('week', 'ASC')
             ->orderBy('category_1', 'ASC')
-            ->orderBy('category_2', 'ASC')
             ->select('case_tasks.*', 'tasks.category_1', 'tasks.category_2', 'tasks.name')
             ->get();
-
-        if (!empty($case_tasks->toArray())){
-            $start_at = Carbon::parse($case_tasks[0]->start_at)->subDays(1);
-        }
+        $case_tasks = AppHelper::tasks_sort($case_tasks->toArray());
 
         $medicine_records = $case->medicine_records;
         $side_effect_records = $case->side_effect_records;
@@ -214,12 +210,13 @@ class CaseModelController extends Controller
             ->join('tasks', 'task_id', '=', 'tasks.id')
             ->orderBy('week', 'ASC')
             ->orderBy('category_1', 'ASC')
-            ->orderBy('category_2', 'ASC')
             ->select('case_tasks.*', 'tasks.category_1', 'tasks.category_2', 'tasks.name')
             ->get();
 
-        if (!empty($case_tasks->toArray())){
-            $start_at = Carbon::parse($case_tasks[0]->start_at)->subDays(1);
+        $case_tasks = AppHelper::tasks_sort($case_tasks->toArray());
+
+        if (!empty($case_tasks)){
+            $start_at = Carbon::parse($case_tasks[0]['start_at'])->subDays(1);
         }
 
         $csrf_token = csrf_token();

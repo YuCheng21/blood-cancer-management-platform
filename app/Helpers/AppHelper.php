@@ -38,12 +38,25 @@ class AppHelper
         return $categories;
     }
 
-    public static function reformat_side_effect_record($side_effect_record): array
+    public static function reformat_by_key($case_tasks, $key): array
     {
-        $date = array();
-        foreach ($side_effect_record as $key => $value) {
-            $date[$value->date][] = $value;
+        $categories = array();
+        foreach ($case_tasks as $value) {
+            $categories[$value[$key]][] = $value;
         }
-        return $date;
+        return $categories;
+    }
+
+    public static function tasks_sort($tasks){
+        usort($tasks, function ($a, $b) {
+            if ($a['category_1'] > $b['category_1'] || ($a['category_1'] == $b['category_1'] && $a['category_2'] > $b['category_2'])) {
+                return 1;
+            } elseif ($a['category_1'] < $b['category_1']) {
+                return -1;
+            } else {
+                return 0;
+            }
+        });
+        return $tasks;
     }
 }
