@@ -9,38 +9,43 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 
 class CaseMedicineExport implements FromArray, WithTitle, WithHeadings
 {
-    protected $account;
+    protected $accounts;
     protected $title;
 
-    public function __construct($account, $has_title=null)
+    public function __construct($accounts, $has_title=null)
     {
-        $this->account = $account;
-        $this->title = is_null($has_title) ? null : ' - ' . $account;
+        $this->accounts = $accounts;
+        $this->title = is_null($has_title) ? null : ' - ' . $accounts;
     }
 
     public function array(): array
     {
-        $cases = CaseModel::where([
-            'account' => $this->account,
-        ])->first();
-        $medicine_records = $cases
-            ->medicine_records()
-            ->orderBy('date')
-            ->get();
-        $medicine_records = $medicine_records->map(function ($case) {
-            return [
-                $case->date,
-                $case->course,
-                $case->type,
-                $case->dose,
-            ];
+        $cases = CaseModel::whereIn('id', $this->accounts)->get();
+
+        $medicine_records = $cases->map(function ($case){
+            $medicine_records = $case
+                ->medicine_records()
+                ->orderBy('date')
+                ->get();
+            $medicine_records = $medicine_records->map(function ($medicine_record) {
+                return [
+                    $medicine_record->cases->account,
+                    $medicine_record->date,
+                    $medicine_record->course,
+                    $medicine_record->type,
+                    $medicine_record->dose,
+                ];
+            });
+            return $medicine_records;
         });
+
         return $medicine_records->toArray();
     }
 
     public function headings(): array
     {
         return [
+            '帳號',
             '日期',
             '療程',
             '施打藥物種類',

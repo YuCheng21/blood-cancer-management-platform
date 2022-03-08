@@ -9,18 +9,16 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 
 class CaseInformationExport implements FromArray, WithTitle, WithHeadings
 {
-    protected $account;
+    protected $accounts;
 
-    public function __construct($account)
+    public function __construct(array $accounts)
     {
-        $this->account = $account;
+        $this->accounts = $accounts;
     }
 
     public function array(): array
     {
-        $cases = CaseModel::where([
-            'account' => $this->account,
-        ])->get();
+        $cases = CaseModel::whereIn('id', $this->accounts)->get();
         $cases = $cases->map(function ($case) {
             return [
                 $case->account,
@@ -37,11 +35,6 @@ class CaseInformationExport implements FromArray, WithTitle, WithHeadings
         return $cases->toArray();
     }
 
-    public function title(): string
-    {
-        return '個人資料';
-    }
-
     public function headings(): array
     {
         return [
@@ -55,5 +48,10 @@ class CaseInformationExport implements FromArray, WithTitle, WithHeadings
             '移植種類',
             '疾病種類',
         ];
+    }
+
+    public function title(): string
+    {
+        return '個人資料';
     }
 }

@@ -28,4 +28,8 @@ class SideEffectRecord extends Model
             return asset(Storage::disk('public')->url($this['path']));
         }
     }
+
+    public function cases(){
+        return $this->belongsTo(CaseModel::class, 'case_id', 'id');
+    }
 }

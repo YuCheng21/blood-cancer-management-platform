@@ -9,36 +9,39 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 
 class CaseBloodExport implements FromArray, WithTitle, WithHeadings
 {
-    protected $account;
+    protected $accounts;
     protected $title;
 
-    public function __construct($account, $has_title=null)
+    public function __construct($accounts, $has_title=null)
     {
-        $this->account = $account;
-        $this->title = is_null($has_title) ? null : ' - ' . $account;
+        $this->accounts = $accounts;
+        $this->title = is_null($has_title) ? null : ' - ' . $accounts;
     }
 
     public function array(): array
     {
-        $cases = CaseModel::where([
-            'account' => $this->account,
-        ])->first();
-        $blood_components = $cases
-            ->blood_components()
-            ->orderBy('updated_at')
-            ->get();
-        $blood_components = $blood_components->map(function ($case) {
-            return [
-                $case->wbc,
-                $case->hb,
-                $case->plt,
-                $case->got,
-                $case->gpt,
-                $case->cea,
-                $case->ca153,
-                $case->bun,
-                $case->updated_at,
-            ];
+        $cases = CaseModel::whereIn('id', $this->accounts)->get();
+
+        $blood_components = $cases->map(function ($case){
+            $blood_components = $case
+                ->blood_components()
+                ->orderBy('updated_at')
+                ->get();
+            $blood_components = $blood_components->map(function ($blood_component) {
+                return [
+                    $blood_component->cases->account,
+                    $blood_component->wbc,
+                    $blood_component->hb,
+                    $blood_component->plt,
+                    $blood_component->got,
+                    $blood_component->gpt,
+                    $blood_component->cea,
+                    $blood_component->ca153,
+                    $blood_component->bun,
+                    $blood_component->updated_at,
+                ];
+            });
+            return $blood_components;
         });
         return $blood_components->toArray();
     }
@@ -46,6 +49,7 @@ class CaseBloodExport implements FromArray, WithTitle, WithHeadings
     public function headings(): array
     {
         return [
+            '帳號',
             '白血球(WBC)',
             '血紅素(Hb)',
             '血小板(PLT)',

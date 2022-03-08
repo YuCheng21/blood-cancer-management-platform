@@ -20,4 +20,8 @@ class BloodComponent extends Model
         'ca153',
         'bun',
     ];
+
+    public function cases(){
+        return $this->belongsTo(CaseModel::class, 'case_id', 'id');
+    }
 }

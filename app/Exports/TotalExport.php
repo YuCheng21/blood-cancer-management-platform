@@ -2,7 +2,6 @@
 
 namespace App\Exports;
 
-use App\Models\CaseModel;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
 class TotalExport implements WithMultipleSheets
@@ -18,12 +17,12 @@ class TotalExport implements WithMultipleSheets
     {
         $sheets = [];
 
-//        $sheets[] = new CaseInformationExport($this->account);
-//        $sheets[] = new CaseBloodExport($this->account);
-//        $sheets[] = new CaseTaskExport($this->account);
-//        $sheets[] = new CaseMedicineExport($this->account);
-//        $sheets[] = new CaseEffectExport($this->account);
-//        $sheets[] = new CaseReportExport($this->account);
+        $sheets[] = new CaseInformationExport($this->accounts);
+        $sheets[] = new CaseBloodExport($this->accounts);
+        $sheets[] = new CaseTaskExport($this->accounts);
+        $sheets[] = new CaseMedicineExport($this->accounts);
+        $sheets[] = new CaseEffectExport($this->accounts);
+        $sheets[] = new CaseReportExport($this->accounts);
 
         return $sheets;
     }

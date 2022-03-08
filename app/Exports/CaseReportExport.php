@@ -10,31 +10,34 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 
 class CaseReportExport implements FromArray, WithTitle, WithHeadings
 {
-    protected $account;
+    protected $accounts;
     protected $title;
 
-    public function __construct($account, $has_title=null)
+    public function __construct($accounts, $has_title=null)
     {
-        $this->account = $account;
-        $this->title = is_null($has_title) ? null : ' - ' . $account;
+        $this->accounts = $accounts;
+        $this->title = is_null($has_title) ? null : ' - ' . $accounts;
     }
 
     public function array(): array
     {
-        $cases = CaseModel::where([
-            'account' => $this->account,
-        ])->first();
-        $report_records = $cases
-            ->report_records()
-            ->orderBy('date')
-            ->get();
-        $report_records = $report_records->map(function ($case) {
-            return [
-                $case->date,
-                $case->physical_strength,
-                $case->symptom,
-                $case->hospital,
-            ];
+        $cases = CaseModel::whereIn('id', $this->accounts)->get();
+
+        $report_records = $cases->map(function ($case){
+            $report_records = $case
+                ->report_records()
+                ->orderBy('date')
+                ->get();
+            $report_records = $report_records->map(function ($report_record) {
+                return [
+                    $report_record->cases->account,
+                    $report_record->date,
+                    $report_record->physical_strength,
+                    $report_record->symptom,
+                    $report_record->hospital,
+                ];
+            });
+            return $report_records;
         });
         return $report_records->toArray();
     }
@@ -42,6 +45,7 @@ class CaseReportExport implements FromArray, WithTitle, WithHeadings
     public function headings(): array
     {
         return [
+            '帳號',
             '日期',
             '體力狀況',
             '症狀',

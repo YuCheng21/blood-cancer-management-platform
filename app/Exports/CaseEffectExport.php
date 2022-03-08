@@ -9,37 +9,42 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 
 class CaseEffectExport implements FromArray, WithTitle, WithHeadings
 {
-    protected $account;
+    protected $accounts;
     protected $title;
 
-    public function __construct($account, $has_title=null)
+    public function __construct($accounts, $has_title=null)
     {
-        $this->account = $account;
-        $this->title = is_null($has_title) ? null : ' - ' . $account;
+        $this->accounts = $accounts;
+        $this->title = is_null($has_title) ? null : ' - ' . $accounts;
     }
 
     public function array(): array
     {
-        $cases = CaseModel::where([
-            'account' => $this->account,
-        ])->first();
-        $side_effect_records = $cases
-            ->side_effect_records()
-            ->orderBy('date')
-            ->get();
-        $side_effect_records = $side_effect_records->map(function ($case) {
-            return [
-                $case->date,
-                $case->symptom,
-                $case->severity,
-            ];
+        $cases = CaseModel::whereIn('id', $this->accounts)->get();
+
+        $side_effect_records = $cases->map(function ($case){
+            $side_effect_records = $case
+                ->side_effect_records()
+                ->orderBy('date')
+                ->get();
+            $side_effect_records = $side_effect_records->map(function ($side_effect_record) {
+                return [
+                    $side_effect_record->cases->account,
+                    $side_effect_record->date,
+                    $side_effect_record->symptom,
+                    $side_effect_record->severity,
+                ];
+            });
+            return $side_effect_records;
         });
+
         return $side_effect_records->toArray();
     }
 
     public function headings(): array
     {
         return [
+            '帳號',
             '紀錄時間',
             '副作用',
             '嚴重度',

@@ -20,4 +20,8 @@ class CaseTask extends Model
     public function task(){
         return $this->belongsTo(Task::class, 'task_id', 'id');
     }
+
+    public function cases(){
+        return $this->belongsTo(CaseModel::class, 'case_id', 'id');
+    }
 }
