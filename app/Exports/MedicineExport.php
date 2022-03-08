@@ -2,7 +2,6 @@
 
 namespace App\Exports;
 
-use App\Models\CaseModel;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
 class MedicineExport implements WithMultipleSheets
@@ -16,10 +15,9 @@ class MedicineExport implements WithMultipleSheets
 
     public function sheets(): array
     {
-        $cases = CaseModel::whereIn('id', $this->accounts)->get();
         $sheets = [];
-        foreach ($cases as $case){
-            $sheets[] = new CaseMedicineExport($case->account, true);
+        foreach ($this->accounts as $accounts){
+            $sheets[] = new CaseMedicineExport([$accounts], true);
         }
 
         return $sheets;

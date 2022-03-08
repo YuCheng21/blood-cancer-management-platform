@@ -17,7 +17,7 @@ class CaseTaskExport implements FromArray, WithTitle, WithHeadings
     public function __construct($accounts, $has_title=null)
     {
         $this->accounts = $accounts;
-        $this->title = is_null($has_title) ? null : ' - ' . $accounts;
+        $this->title = is_null($has_title) ? null : ' - ' . CaseModel::where('id', $accounts[0])->first()['account'];
     }
 
     public function array(): array

@@ -14,25 +14,39 @@
                 <form action="#" id="exportForm" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="d-flex flex-column flex-xl-row">
-                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="total">
+                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="total"
+                                data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="勾選帳號並匯出「總資料」">
                             <span>總資料</span>
                         </button>
-                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="information">
+                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="information"
+                                data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="勾選帳號並匯出「個人資料」">
                             <span>個人資料</span>
                         </button>
-                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="blood">
+                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="blood"
+                                data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="勾選帳號並匯出「抽血數據」">
                             <span>抽血數據</span>
                         </button>
-                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="task">
+                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="task"
+                                data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="勾選帳號並匯出「每週任務」">
                             <span>每週任務</span>
                         </button>
-                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="medicine">
+                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="medicine"
+                                data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="勾選帳號並匯出「藥物劑量」">
                             <span>藥物劑量</span>
                         </button>
-                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="effect">
+                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="effect"
+                                data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="勾選帳號並匯出「副作用」">
                             <span>副作用</span>
                         </button>
-                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="report">
+                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="report"
+                                data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="勾選帳號並匯出「報告個管師」">
                             <span>報告個管師</span>
                         </button>
                     </div>
