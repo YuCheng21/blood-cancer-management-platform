@@ -29,7 +29,7 @@ class TopicController extends Controller
         $tasks = Task::orderBy('category_1', 'ASC')
             ->orderBy('category_2', 'ASC')->get();
 
-        $title = '題庫管理';
+        $title = '題目管理';
         return response(
             view('root.topic', get_defined_vars()),
             Response::HTTP_OK

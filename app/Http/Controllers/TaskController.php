@@ -53,7 +53,7 @@ class TaskController extends Controller
         })->toArray();
 
         $csrf_token = csrf_token();
-        $title = '任務管理';
+        $title = '模板管理';
         return response(
             view('root.task', get_defined_vars()),
             Response::HTTP_OK

@@ -56,12 +56,12 @@
                             </li>
                             <li class="nav-item hv-scale">
                                 <a href="{{route('tasks.index')}}" class="nav-link text-white hv-color-text">
-                                    <span>任務管理</span>
+                                    <span>模板管理</span>
                                 </a>
                             </li>
                             <li class="nav-item hv-scale">
                                 <a href="{{route('topics.index')}}" class="nav-link text-white hv-color-text">
-                                    <span>題庫管理</span>
+                                    <span>題目管理</span>
                                 </a>
                             </li>
                             <li class="nav-item hv-scale">

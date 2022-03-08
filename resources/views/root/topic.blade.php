@@ -48,7 +48,7 @@
             <div class="card-header justify-content-between d-inline-flex align-items-center ">
                 <h2 class="my-2">
                     <span class="iconify-inline" data-icon="wpf:faq"></span>
-                    <span>題庫</span>
+                    <span>題目</span>
                 </h2>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createTopicModal">
                     <span class="iconify-inline" data-icon="carbon:add-filled"></span>
@@ -58,7 +58,7 @@
             <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
-                        <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
+                        <table class="table table-striped text-center align-middle fs-5"
                                data-toggle="table"
                                data-search="true"
                                data-pagination="true"

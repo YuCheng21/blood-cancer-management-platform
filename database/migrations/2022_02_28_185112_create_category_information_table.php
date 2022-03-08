@@ -16,7 +16,7 @@ class CreateCategoryInformationTable extends Migration
         Schema::create('category_information', function (Blueprint $table) {
             $table->unsignedBigInteger('category_1')->primary()->unique()->comment('類別編號');
             $table->string('name')->comment('類別名稱');
-            $table->string('short')->comment('類別縮寫');
+            $table->string('short')->comment('類別縮寫')->nullable();
             $table->timestamps();
         });
     }
