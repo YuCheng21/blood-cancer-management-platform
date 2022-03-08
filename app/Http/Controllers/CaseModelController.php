@@ -286,7 +286,7 @@ class CaseModelController extends Controller
             'case_task_id' => $case_task_id,
         ])->get();
 
-        $title = '作答結果';
+        $title = '答題結果';
         return response(
             view('case.topic', get_defined_vars()),
             Response::HTTP_OK

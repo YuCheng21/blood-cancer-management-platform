@@ -8,7 +8,7 @@
             <div class="card-header justify-content-between d-inline-flex align-items-center ">
                 <h2 class="my-2">
                     <span class="iconify-inline" data-icon="akar-icons:info-fill"></span>
-                    <span>每週任務作答結果</span>
+                    <span>每週任務答題結果</span>
                 </h2>
             </div>
             <div class="card-body px-2 px-lg-4 px-xl-5 py-4">
@@ -34,16 +34,16 @@
                         <thead>
                         <tr>
                             <th data-width="80" data-width-unit="%">題目</th>
-                            <th data-width="20" data-width-unit="%">狀態</th>
+                            <th data-width="20" data-width-unit="%" data-sortable="true">狀態</th>
                         </tr>
                         </thead>
                             @foreach($case_topics as $case_topic)
                                 <tr>
                                     <td>{{ $case_topic->topic->question }}</td>
                                     @if($case_topic->state == 'correct')
-                                        <td>正確</td>
+                                        <td class="text-success">正確</td>
                                     @elseif($case_topic->state == 'wrong')
-                                        <td>錯誤</td>
+                                        <td class="text-danger">錯誤</td>
                                     @else
                                         <td>{{ $case_topic->state }}</td>
                                     @endif

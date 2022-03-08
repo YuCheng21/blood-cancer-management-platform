@@ -17,7 +17,7 @@ class CreateCaseTopicsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('case_task_id')->comment('個案每週任務編號');
             $table->unsignedBigInteger('topic_id')->comment('題目編號');
-            $table->string('state')->comment('狀態');
+            $table->enum('state', ['correct', 'wrong'])->comment('答題狀態');
             $table->timestamps();
         });
 
