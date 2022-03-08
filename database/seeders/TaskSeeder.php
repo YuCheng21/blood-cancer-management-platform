@@ -17,11 +17,12 @@ class TaskSeeder extends Seeder
 //        Task::factory()
 //            ->count(40)
 //            ->create();
-        Task::create([
-            'category_1' => 1,
-            'category_2' => '0',
-            'name' => '造血幹細胞移植的認識',
-        ]);
+
+//        Task::create([
+//            'category_1' => 1,
+//            'category_2' => '0',
+//            'name' => '造血幹細胞移植的認識',
+//        ]);
         Task::create([
             'category_1' => 1,
             'category_2' => '1',
@@ -37,11 +38,11 @@ class TaskSeeder extends Seeder
             'category_2' => '2-2',
             'name' => '造血幹細胞移植分類-異體造血幹細胞移植',
         ]);
-        Task::create([
-            'category_1' => 2,
-            'category_2' => '0',
-            'name' => '造血幹細胞移植前評估',
-        ]);
+//        Task::create([
+//            'category_1' => 2,
+//            'category_2' => '0',
+//            'name' => '造血幹細胞移植前評估',
+//        ]);
         Task::create([
             'category_1' => 2,
             'category_2' => '1',
@@ -67,16 +68,16 @@ class TaskSeeder extends Seeder
             'category_2' => '5',
             'name' => '各項血液檢驗',
         ]);
-        Task::create([
-            'category_1' => 3,
-            'category_2' => '0',
-            'name' => '移植室的環境介紹',
-        ]);
-        Task::create([
-            'category_1' => 4,
-            'category_2' => '0',
-            'name' => '移植前的自我準備',
-        ]);
+//        Task::create([
+//            'category_1' => 3,
+//            'category_2' => '0',
+//            'name' => '移植室的環境介紹',
+//        ]);
+//        Task::create([
+//            'category_1' => 4,
+//            'category_2' => '0',
+//            'name' => '移植前的自我準備',
+//        ]);
         Task::create([
             'category_1' => 4,
             'category_2' => '1',
@@ -87,11 +88,11 @@ class TaskSeeder extends Seeder
             'category_2' => '2',
             'name' => '用物準備',
         ]);
-        Task::create([
-            'category_1' => 5,
-            'category_2' => '0',
-            'name' => '造血幹細胞移植前的調理治療',
-        ]);
+//        Task::create([
+//            'category_1' => 5,
+//            'category_2' => '0',
+//            'name' => '造血幹細胞移植前的調理治療',
+//        ]);
         Task::create([
             'category_1' => 5,
             'category_2' => '1',
@@ -372,11 +373,11 @@ class TaskSeeder extends Seeder
             'category_2' => '56',
             'name' => '化學藥物種類-高劑量全身性放射線治療-副作用-皮膚反應',
         ]);
-        Task::create([
-            'category_1' => 6,
-            'category_2' => '0',
-            'name' => '輸造血幹細胞日',
-        ]);
+//        Task::create([
+//            'category_1' => 6,
+//            'category_2' => '0',
+//            'name' => '輸造血幹細胞日',
+//        ]);
         Task::create([
             'category_1' => 6,
             'category_2' => '1',
@@ -392,11 +393,11 @@ class TaskSeeder extends Seeder
             'category_2' => '3',
             'name' => '輸注反應',
         ]);
-        Task::create([
-            'category_1' => 7,
-            'category_2' => '0',
-            'name' => '造血幹細胞移植併發症及治療',
-        ]);
+//        Task::create([
+//            'category_1' => 7,
+//            'category_2' => '0',
+//            'name' => '造血幹細胞移植併發症及治療',
+//        ]);
         Task::create([
             'category_1' => 7,
             'category_2' => '1',
@@ -472,6 +473,11 @@ class TaskSeeder extends Seeder
             'category_2' => '15',
             'name' => '移植體抗宿主疾病-對抗『移植體抗宿主疾病』藥物治療-滅殺除癌-(Methotrexate)-掉髮',
         ]);
+//        Task::create([
+//            'category_1' => 8,
+//            'category_2' => '0',
+//            'name' => '自我照護',
+//        ]);
         Task::create([
             'category_1' => 8,
             'category_2' => '1-1',

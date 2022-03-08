@@ -29,7 +29,7 @@ class AppHelper
     {
         $categories = array();
         foreach ($tasks as $key => $value) {
-            $category_name = $value->category_information->name;
+            $category_name = $value->category_information->category_1 . '. ' . $value->category_information->name;
             if (!isset($categories[$category_name])) {
                 $categories[$category_name] = array();
             }

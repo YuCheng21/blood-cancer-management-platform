@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             CategoryInformationSeeder::class,
             TaskSeeder::class,
             TemplateSeeder::class,
+            MainTemplateSeeder::class,
             CaseTaskSeeder::class,
 
             MedicineRecordSeeder::class,

@@ -108,7 +108,7 @@
             <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
-                        <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
+                        <table class="table table-striped text-center align-middle fs-5"
                                data-toggle="table"
                                data-locale="zh-TW">
                             <thead>

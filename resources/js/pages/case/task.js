@@ -30,7 +30,7 @@ $(document).on('click', '#taskListSend', function () {
     $("input:checkbox[name=taskList]:checked").each(function () {
         let number = $(this).attr('id').split('group')[1].split('-');
         let category_1 = number[0];
-        let category_2 = number.slice(1);
+        let category_2 = number.slice(1).join('-');
         let text = $(this).nextAll('label').text();
         checkItem.push({
             'category_1': category_1,

@@ -202,8 +202,7 @@ class CaseModelController extends Controller
 
     public function task($account)
     {
-        $tasks = Task::orderBy('category_1', 'ASC')
-            ->orderBy('category_2', 'ASC')->get();
+        $tasks = Task::orderBy('category_1', 'ASC')->get();
         $categories = AppHelper::reformat_task($tasks);
 
         $case = CaseModel::where([

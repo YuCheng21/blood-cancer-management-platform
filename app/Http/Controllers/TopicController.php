@@ -26,8 +26,7 @@ class TopicController extends Controller
             'question_type' => 'multiple-choice'
         ])->count();
 
-        $tasks = Task::orderBy('category_1', 'ASC')
-            ->orderBy('category_2', 'ASC')->get();
+        $tasks = Task::orderBy('category_1', 'ASC')->get();
 
         $title = '題目管理';
         return response(
