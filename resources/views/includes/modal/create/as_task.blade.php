@@ -10,8 +10,9 @@
             </div>
             <div class="modal-body">
                 <div class="row gy-2">
-                    <div class="col-12">
-                        <span>確定另存新任務副模板嗎？</span>
+                    <div class="col-12 text-center">
+                        <p>確定另存新任務副模板嗎？</p>
+                        <p class="alert alert-primary py-1 fw-bold">※名稱不得重複，請確認已修改模板名稱※</p>
                     </div>
                 </div>
             </div>
