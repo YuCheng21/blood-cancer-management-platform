@@ -14,10 +14,29 @@ use function response;
 class BloodComponentController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return string
+     * @OA\Post (
+     *      path="/api/blood-components",
+     *      tags={"抽血數據"},
+     *      summary="新增抽血數據",
+     *      description="新增抽血數據",
+     *      @OA\RequestBody (
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *              @OA\Schema(required={"wbc","hb","plt","got","gpt","cea","ca153","bun","account"},
+     *                  @OA\Property(property="account", type="string", example=555),
+     *                  @OA\Property(property="wbc", type="integer", example=555),
+     *                  @OA\Property(property="hb", type="integer", example=555),
+     *                  @OA\Property(property="plt", type="integer", example=555),
+     *                  @OA\Property(property="got", type="integer", example=555),
+     *                  @OA\Property(property="gpt", type="integer", example=555),
+     *                  @OA\Property(property="cea", type="integer", example=555),
+     *                  @OA\Property(property="ca153", type="integer", example=555),
+     *                  @OA\Property(property="bun", type="integer", example=555),
+     *              ),
+     *          ),
+     *      ),
+     *      @OA\Response(response=200, description="success")
+     * )
      */
     public function store(Request $request)
     {
@@ -45,24 +64,34 @@ class BloodComponentController extends Controller
         return response(['data' => $blood_component], Response::HTTP_CREATED);
     }
 
-//    /**
-//     * Display the specified resource.
-//     *
-//     * @param int $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function show(Request $request, BloodComponent $bloodComponent)
-//    {
-//        return response(['data' => $bloodComponent], Response::HTTP_OK);
-//    }
-
     /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return string
+     * @OA\Patch (
+     *      path="/api/blood-components/{id}",
+     *     tags={"抽血數據"},
+     *     summary="更新抽血數據",
+     *     description="更新抽血數據",
+     *     @OA\Parameter (name="id", description="抽血數據編號", required=true, in="path", example="1",
+     *          @OA\Schema(type="integer",)
+     *     ),
+     *      @OA\RequestBody (
+     *          @OA\MediaType(
+     *              mediaType="application/x-www-form-urlencoded",
+     *              @OA\Schema(required={"wbc","hb","plt","got","gpt","cea","ca153","bun"},
+     *                  @OA\Property(property="wbc", type="integer", example=555),
+     *                  @OA\Property(property="hb", type="integer", example=555),
+     *                  @OA\Property(property="plt", type="integer", example=555),
+     *                  @OA\Property(property="got", type="integer", example=555),
+     *                  @OA\Property(property="gpt", type="integer", example=555),
+     *                  @OA\Property(property="cea", type="integer", example=555),
+     *                  @OA\Property(property="ca153", type="integer", example=555),
+     *                  @OA\Property(property="bun", type="integer", example=555),
+     *              ),
+     *          ),
+     *      ),
+     *     @OA\Response(response="200", description="success",)
+     * )
      */
+
     public function update(Request $request, $blood_component_id)
     {
         $rules = [
@@ -87,11 +116,23 @@ class BloodComponentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return string
+     * @OA\Delete (
+     *      path="/api/blood-components/{id}",
+     *     tags={"抽血數據"},
+     *     summary="刪除抽血數據",
+     *     description="刪除抽血數據",
+     *     @OA\RequestBody (
+     *          @OA\MediaType(
+     *              mediaType="application/x-www-form-urlencoded",
+     *          )
+     *      ),
+     *     @OA\Parameter (name="id", description="抽血數據編號", required=true, in="path", example="1",
+     *          @OA\Schema(type="integer",)
+     *     ),
+     *     @OA\Response(response="200", description="success",)
+     * )
      */
+
     public function destroy(Request $request, $blood_component_id)
     {
         $blood_component = BloodComponent::where('id', $blood_component_id)->get();
@@ -102,6 +143,19 @@ class BloodComponentController extends Controller
         $blood_component->delete();
         return response(null, Response::HTTP_NO_CONTENT);
     }
+
+    /**
+     * @OA\Get (
+     *     path="/api/blood-components/account/{account}",
+     *     tags={"抽血數據"},
+     *     summary="取得抽血數據",
+     *     description="取得抽血數據",
+     *     @OA\Parameter (name="account", description="個案帳號", required=true, in="path", example="user1",
+     *          @OA\Schema(type="string",)
+     *     ),
+     *     @OA\Response(response="200", description="success",)
+     * )
+     */
 
     public function account(Request $request, $account)
     {

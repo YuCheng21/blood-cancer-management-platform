@@ -5,7 +5,7 @@ return [
     'documentations' => [
         'default' => [
             'api' => [
-                'title' => 'L5 Swagger UI',
+                'title' => 'API Documentation',
             ],
 
             'routes' => [
@@ -198,6 +198,7 @@ return [
                  * Examples of Securities
                 */
                 [
+                    'basicAuth' => []
                     /*
                     'oauth2_security_example' => [
                         'read',

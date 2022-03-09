@@ -5,30 +5,24 @@ $(document).on('click', '.deleteCaseBtn', function (e) {
 })
 
 $(document).on('click', '.updateCaseBtn', function () {
-    const showUrl = $(this).data('show-url');
     const updateUrl = $(this).data('update-url');
+    const updateAccount = $(this).data('account');
+    $.each(cases, function (key, value) {
+        if (value.account === updateAccount) {
+            $('#updateCaseForm').attr('action', updateUrl)
+            $('#updateCaseSend').attr('href', updateUrl)
 
-    axios({
-        url: showUrl,
-        method: 'GET',
-    }).then(function (res) {
-        const cases = res['data']['data'][0]
-        $('#updateCaseForm').attr('action', updateUrl)
-        $('#updateCaseSend').attr('href', updateUrl)
-
-        $('#updateCaseAccount').val(cases['account']);
-        $('#updateCasePassword').val(cases['password']);
-        $('#updateCaseTransplantNum').val(cases['transplant_num']);
-        $('#updateCaseName').val(cases['name']);
-        $('#updateCaseGender').val(cases['gender_id']).change();
-        $('#updateCaseBirth').val(cases['birthday']);
-        $('#updateCaseDate').val(cases['date']);
-        $('#updateCaseTransplantType').val(cases['transplant_type_id']).change();
-        $('#updateCaseDiseaseType').val(cases['disease_type_id']).change();
-        $('#updateCaseDiseaseState').val(cases['disease_state_id']).change();
-        $('#updateCaseDiseaseClass').val(cases['disease_class_id']).change();
-    }).catch(function (err) {
-        console.log(err)
-    }).finally(function () {
+            $('#updateCaseAccount').val(value['account']);
+            $('#updateCasePassword').val(value['password']);
+            $('#updateCaseTransplantNum').val(value['transplant_num']);
+            $('#updateCaseName').val(value['name']);
+            $('#updateCaseGender').val(value['gender_id']).change();
+            $('#updateCaseBirth').val(value['birthday']);
+            $('#updateCaseDate').val(value['date']);
+            $('#updateCaseTransplantType').val(value['transplant_type_id']).change();
+            $('#updateCaseDiseaseType').val(value['disease_type_id']).change();
+            $('#updateCaseDiseaseState').val(value['disease_state_id']).change();
+            $('#updateCaseDiseaseClass').val(value['disease_class_id']).change();
+        }
     })
 })

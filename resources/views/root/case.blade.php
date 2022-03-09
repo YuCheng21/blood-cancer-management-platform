@@ -70,7 +70,6 @@
                                     <td>
                                         <button class="btn btn-primary updateCaseBtn" data-bs-toggle="modal"
                                                 data-bs-target="#updateCaseModal"
-                                                data-show-url="{{route('api.cases.show', ['account' => $case->account])}}"
                                                 data-update-url="{{route('cases.update', ['account' => $case->account])}}"
                                                 data-account="{{ $case->account }}">
                                             <span class="iconify-inline" data-icon="fa-regular:edit"></span>
@@ -106,4 +105,7 @@
     @parent
     {{--  Page Customize Javascript  --}}
     <script src="{{asset('js/pages/root/case.js')}}"></script>
+    <script>
+        const cases = @json($cases);
+    </script>
 @endsection

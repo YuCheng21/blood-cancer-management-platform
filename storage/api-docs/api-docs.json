@@ -1,22 +1,313 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "My First API",
-        "version": "0.1"
+        "title": "血癌照護管理平台",
+        "description": "Application Interface Documentation for Blood Cancer Care Management Platform.",
+        "contact": {
+            "name": "High Performance Distributed Systems Lab",
+            "email": "nkust.ee.hpds@gmail.com"
+        },
+        "version": "1.0"
     },
     "paths": {
-        "/api/resource.json": {
-            "get": {
-                "operationId": "941d1963a9ec93b5b14b768111644110",
+        "/api/blood-components": {
+            "post": {
+                "tags": [
+                    "抽血數據"
+                ],
+                "summary": "新增抽血數據",
+                "description": "新增抽血數據",
+                "operationId": "ea64f5c8eb7e998477cdc2f21aeff61f",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "wbc",
+                                    "hb",
+                                    "plt",
+                                    "got",
+                                    "gpt",
+                                    "cea",
+                                    "ca153",
+                                    "bun",
+                                    "account"
+                                ],
+                                "properties": {
+                                    "account": {
+                                        "type": "string",
+                                        "example": 555
+                                    },
+                                    "wbc": {
+                                        "type": "integer",
+                                        "example": 555
+                                    },
+                                    "hb": {
+                                        "type": "integer",
+                                        "example": 555
+                                    },
+                                    "plt": {
+                                        "type": "integer",
+                                        "example": 555
+                                    },
+                                    "got": {
+                                        "type": "integer",
+                                        "example": 555
+                                    },
+                                    "gpt": {
+                                        "type": "integer",
+                                        "example": 555
+                                    },
+                                    "cea": {
+                                        "type": "integer",
+                                        "example": 555
+                                    },
+                                    "ca153": {
+                                        "type": "integer",
+                                        "example": 555
+                                    },
+                                    "bun": {
+                                        "type": "integer",
+                                        "example": 555
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
-                        "description": "An example resource"
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/blood-components/{id}": {
+            "delete": {
+                "tags": [
+                    "抽血數據"
+                ],
+                "summary": "刪除抽血數據",
+                "description": "刪除抽血數據",
+                "operationId": "7416f250660c61628a7f6835f78a1f36",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "抽血數據編號",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "抽血數據"
+                ],
+                "summary": "更新抽血數據",
+                "description": "更新抽血數據",
+                "operationId": "0079f0491c12a52320ca5a2ea90a04e8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "抽血數據編號",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "wbc",
+                                    "hb",
+                                    "plt",
+                                    "got",
+                                    "gpt",
+                                    "cea",
+                                    "ca153",
+                                    "bun"
+                                ],
+                                "properties": {
+                                    "wbc": {
+                                        "type": "integer",
+                                        "example": 555
+                                    },
+                                    "hb": {
+                                        "type": "integer",
+                                        "example": 555
+                                    },
+                                    "plt": {
+                                        "type": "integer",
+                                        "example": 555
+                                    },
+                                    "got": {
+                                        "type": "integer",
+                                        "example": 555
+                                    },
+                                    "gpt": {
+                                        "type": "integer",
+                                        "example": 555
+                                    },
+                                    "cea": {
+                                        "type": "integer",
+                                        "example": 555
+                                    },
+                                    "ca153": {
+                                        "type": "integer",
+                                        "example": 555
+                                    },
+                                    "bun": {
+                                        "type": "integer",
+                                        "example": 555
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/blood-components/account/{account}": {
+            "get": {
+                "tags": [
+                    "抽血數據"
+                ],
+                "summary": "取得抽血數據",
+                "description": "取得抽血數據",
+                "operationId": "8ee664b6aba87ca2ea6021151282a403",
+                "parameters": [
+                    {
+                        "name": "account",
+                        "in": "path",
+                        "description": "個案帳號",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "user1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/cases/{account}": {
+            "get": {
+                "tags": [
+                    "個案資料"
+                ],
+                "summary": "取得個案資料",
+                "description": "取得個案資料",
+                "operationId": "ee988df769515cc5e3b8ee6e7f983417",
+                "parameters": [
+                    {
+                        "name": "account",
+                        "in": "path",
+                        "description": "個案帳號",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "user1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application\\json": {
+                                "schema": {
+                                    "example": [
+                                        {
+                                            "data": [
+                                                {
+                                                    "id": 1,
+                                                    "account": "user1",
+                                                    "transplant_num": "N0001",
+                                                    "name": "王小明1",
+                                                    "gender": "男性",
+                                                    "birthday": "1999-06-21",
+                                                    "date": "2022-02-17",
+                                                    "transplant_type": "自體移植",
+                                                    "disease_type": "AML- 未選擇- 未選擇"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
     },
+    "components": {
+        "securitySchemes": {
+            "basicAuth": {
+                "type": "http",
+                "scheme": "basic"
+            }
+        }
+    },
     "security": [
-        []
+        {
+            "basicAuth": []
+        }
+    ],
+    "tags": [
+        {
+            "name": "個案資料",
+            "description": "與個案帳號相關的基本資料"
+        },
+        {
+            "name": "抽血數據",
+            "description": "個案定期的抽血數據"
+        },
+        {
+            "name": "每週任務",
+            "description": "個案每週的任務項目"
+        },
+        {
+            "name": "施打藥物紀錄及劑量",
+            "description": "個案的施打藥物紀錄及劑量"
+        },
+        {
+            "name": "副作用紀錄",
+            "description": "個案的副作用紀錄"
+        },
+        {
+            "name": "報告個管師紀錄",
+            "description": "個案回報個管師的回報紀錄"
+        }
     ]
 }
