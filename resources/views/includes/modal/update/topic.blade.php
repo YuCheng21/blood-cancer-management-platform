@@ -18,9 +18,9 @@
                                 <label for="updateSelectTopicType" class="input-group-text">課程</label>
                                 <select name="updateSelectTopicType" id="updateSelectTopicType" class="form-select">
                                     <option value="0" selected>請選擇內容</option>
-                                    @foreach($tasks as $task)
-                                        <option value="{{$task->id}}">
-                                            [{{ $task->category_1 }}-{{ $task->category_2 }}] {{$task->name}}
+                                    @foreach(\App\Helpers\AppHelper::tasks_sort($tasks->toArray()) as $task)
+                                        <option value="{{$task['id']}}">
+                                            [{{ $task['category_1'] }}-{{ $task['category_2'] }}] {{$task['name']}}
                                         </option>
                                     @endforeach
                                 </select>
