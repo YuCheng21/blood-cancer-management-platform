@@ -24,4 +24,8 @@ class CaseTask extends Model
     public function cases(){
         return $this->belongsTo(CaseModel::class, 'case_id', 'id');
     }
+
+    public function case_topics(){
+        return $this->hasMany(CaseTopic::class, 'case_task_id', 'id');
+    }
 }

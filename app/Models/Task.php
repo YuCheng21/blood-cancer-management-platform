@@ -12,4 +12,8 @@ class Task extends Model
     public function category_information(){
         return $this->belongsTo(CategoryInformation::class, 'category_1', 'category_1');
     }
+
+    public function topics(){
+        return $this->hasMany(Topic::class, 'task_id', 'id');
+    }
 }

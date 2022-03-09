@@ -47,6 +47,20 @@ class AppHelper
         return $categories;
     }
 
+    public static function check_completed($case_tasks): array
+    {
+        foreach ($case_tasks as $key => $case_task){
+            $task_topic = $case_task->task->topics;
+            $task_topic_id = array_column($task_topic->toArray(), 'id');
+            $case_topics = $case_task->case_topics;
+            $case_topics_id = array_column($case_topics->toArray(), 'topic_id');
+
+            $is_completed = count(array_intersect($task_topic_id, $case_topics_id)) == count($task_topic_id);
+            $case_tasks[$key]['state'] = $is_completed ? 'completed' : 'uncompleted';
+        }
+        return $case_tasks;
+    }
+
     public static function tasks_sort($tasks){
         usort($tasks, function ($a, $b) {
             $a1 = $a['category_1'];
