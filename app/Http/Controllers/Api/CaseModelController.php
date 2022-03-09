@@ -6,11 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\CaseModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @OA\Info(title="My First API", version="0.1")
+ */
 class CaseModelController extends Controller
 {
+    /**
+     * @OA\Get(
+     *     path="/api/resource.json",
+     *     @OA\Response(response="200", description="An example resource")
+     * )
+     */
     public function show(Request $request, $account)
     {
         $case = CaseModel::where('account', $account)->get();
