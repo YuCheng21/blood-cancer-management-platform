@@ -297,14 +297,14 @@
                 }
             }
         },
-        "/api/side-effect/account/{account}": {
+        "/api/reports/account/{account}": {
             "get": {
                 "tags": [
-                    "副作用紀錄"
+                    "報告個管師紀錄"
                 ],
-                "summary": "取得副作用紀錄",
-                "description": "取得副作用紀錄",
-                "operationId": "8dbc0fa6362c9e86d59fa082df4bdfd0",
+                "summary": "取得報告個管師紀錄",
+                "description": "取得報告個管師紀錄",
+                "operationId": "037cb50b5567f396b8963289edb3059e",
                 "parameters": [
                     {
                         "name": "account",
@@ -324,14 +324,186 @@
                 }
             }
         },
-        "/api/side-effect": {
+        "/api/reports": {
+            "post": {
+                "tags": [
+                    "報告個管師紀錄"
+                ],
+                "summary": "新增報告個管師紀錄",
+                "description": "新增報告個管師紀錄",
+                "operationId": "e54f4d802914b8df012b3d9bc9e4e2d1",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "account",
+                                    "date",
+                                    "physical_strength",
+                                    "symptom",
+                                    "hospital"
+                                ],
+                                "properties": {
+                                    "account": {
+                                        "type": "string",
+                                        "example": "user1"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2022-03-10"
+                                    },
+                                    "physical_strength": {
+                                        "type": "string",
+                                        "example": "很好"
+                                    },
+                                    "symptom": {
+                                        "type": "string",
+                                        "example": "皮疹"
+                                    },
+                                    "hospital": {
+                                        "type": "string",
+                                        "example": "高醫"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/reports/{id}": {
+            "delete": {
+                "tags": [
+                    "報告個管師紀錄"
+                ],
+                "summary": "刪除報告個管師紀錄",
+                "description": "刪除報告個管師紀錄",
+                "operationId": "a0564266d1760daf36eb7397dc9cbc82",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "報告個管師紀錄編號",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "報告個管師紀錄"
+                ],
+                "summary": "更新報告個管師紀錄",
+                "description": "更新報告個管師紀錄",
+                "operationId": "a8e9ce28ae435d96c8e95999c4c88eef",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "報告個管師紀錄編號",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "date",
+                                    "physical_strength",
+                                    "symptom",
+                                    "hospital"
+                                ],
+                                "properties": {
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2022-03-10"
+                                    },
+                                    "physical_strength": {
+                                        "type": "string",
+                                        "example": "很好"
+                                    },
+                                    "symptom": {
+                                        "type": "string",
+                                        "example": "皮疹"
+                                    },
+                                    "hospital": {
+                                        "type": "string",
+                                        "example": "高醫"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/side-effects/account/{account}": {
+            "get": {
+                "tags": [
+                    "副作用紀錄"
+                ],
+                "summary": "取得副作用紀錄",
+                "description": "取得副作用紀錄",
+                "operationId": "d9e7f638ee1c0a998c40ee9c2221bf45",
+                "parameters": [
+                    {
+                        "name": "account",
+                        "in": "path",
+                        "description": "個案帳號",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "user1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/side-effects": {
             "post": {
                 "tags": [
                     "副作用紀錄"
                 ],
                 "summary": "新增副作用紀錄",
                 "description": "新增副作用紀錄",
-                "operationId": "33ad4c4f573924717c0ab24ee20b8121",
+                "operationId": "fd17324a04a937b9c88448afac5fc780",
                 "requestBody": {
                     "content": {
                         "multipart/form-data": {
@@ -362,7 +534,7 @@
                                         "example": "5"
                                     },
                                     "has_image": {
-                                        "type": "tinfyint",
+                                        "type": "integer",
                                         "enum": [
                                             "0",
                                             "1"

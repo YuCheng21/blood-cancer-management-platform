@@ -15,7 +15,7 @@ class SideEffectRecordController extends Controller
 {
     /**
      * @OA\Get (
-     *      path="/api/side-effect/account/{account}",
+     *      path="/api/side-effects/account/{account}",
      *      tags={"副作用紀錄"},
      *      summary="取得副作用紀錄",
      *      description="取得副作用紀錄",
@@ -39,7 +39,7 @@ class SideEffectRecordController extends Controller
     }
     /**
      * @OA\Post (
-     *      path="/api/side-effect",
+     *      path="/api/side-effects",
      *      tags={"副作用紀錄"},
      *      summary="新增副作用紀錄",
      *      description="新增副作用紀錄",
@@ -51,7 +51,7 @@ class SideEffectRecordController extends Controller
      *                  @OA\Property(property="date", type="date", example="2022-3-6"),
      *                  @OA\Property(property="symptom", type="string", example="噁心"),
      *                  @OA\Property(property="severity", type="integer", example="5"),
-     *                  @OA\Property(property="has_image", type="tinfyint", enum={"0", "1"}, example="0"),
+     *                  @OA\Property(property="has_image", type="integer", enum={"0", "1"}, example="0"),
      *                  @OA\Property(property="image", type="string", format="binary"),
      *                  @OA\Property(property="caption", type="string", example="Cation #1"),
      *              ),

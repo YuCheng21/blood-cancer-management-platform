@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ReportRecordController;
 use App\Http\Controllers\Api\SideEffectRecordController;
 use App\Http\Controllers\Api\MedicineRecordController;
 use App\Http\Controllers\Api\BloodComponentController;
@@ -33,7 +34,7 @@ Route::middleware('member.auth')->name('api.')->group(function () {
         ->controller(CaseModelController::class)->group(function () {
             Route::get('/{account}', 'show')->name('show');
         });
-    Route::prefix('side-effect')->name('side-effect.')
+    Route::prefix('side-effects')->name('side-effects.')
         ->controller(SideEffectRecordController::class)->group(function (){
             Route::get('/account/{account}', 'account')->name('account');
             Route::post('/', 'store')->name('store');
@@ -43,4 +44,11 @@ Route::middleware('member.auth')->name('api.')->group(function () {
         ->controller(MedicineRecordController::class)->group(function (){
         Route::get('/account/{account}', 'account')->name('account');
     });
+    Route::prefix('reports')->name('reports.')
+        ->controller(ReportRecordController::class)->group(function (){
+            Route::post('/', 'store')->name('store');
+            Route::patch('/{report_id}', 'update')->name('update');
+            Route::delete('/{report_id}', 'destroy')->name('destroy');
+            Route::get('/account/{account}', 'account')->name('account');
+        });
 });
