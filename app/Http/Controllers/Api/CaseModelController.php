@@ -11,45 +11,29 @@ use Symfony\Component\HttpFoundation\Response;
 class CaseModelController extends Controller
 {
     /**
-     *  @OA\Get(
-     *      path="/api/cases/{account}",
-     *      tags={"個案資料"},
-     *      summary="取得個案資料",
+     *  @OA\Get(path="/api/cases/{account}", tags={"個案資料"}, summary="取得個案資料",
      *      description="取得個案資料",
-     *      @OA\Parameter(
-     *          name="account",
-     *          description="個案帳號",
-     *          required=true,
-     *          in="path",
-     *          example="user1",
-     *          @OA\Schema(
-     *              type="string",
-     *          )
+     *      @OA\Parameter(name="account", description="個案帳號", required=true, in="path", example="user1",
+     *          @OA\Schema(type="string")
      *      ),
-     *      @OA\Response(
-     *          response="200",
-     *          description="success",
-     *          @OA\MediaType(
-     *              mediaType="application\json",
-     *              @OA\Schema (
-     *                  example={{"data": {
-     *                      {
-     *                          "id": 1,
-     *                          "account": "user1",
-     *                          "transplant_num": "N0001",
-     *                          "name": "王小明1",
-     *                          "gender": "男性",
-     *                          "birthday": "1999-06-21",
-     *                          "date": "2022-02-17",
-     *                          "transplant_type": "自體移植",
-     *                          "disease_type": "AML- 未選擇- 未選擇"
-     *                      },
-     *                  },},}
-     *              )
-     *          )
+     *      @OA\Response(response="200", description="success",
+     *          @OA\MediaType(mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(property="id",type="integer",description="個案編號"),
+     *                 @OA\Property(property="account",type="string",description="個案帳號"),
+     *                 @OA\Property(property="transplant_num",type="string",description="個案移植編號"),
+     *                 @OA\Property(property="name",type="string",description="個案姓名"),
+     *                 @OA\Property(property="gender",type="string",description="個案性別"),
+     *                 @OA\Property(property="birthday",type="string",description="個案生日"),
+     *                 @OA\Property(property="date",type="string",description="個案移植日期"),
+     *                 @OA\Property(property="transplant_type",type="string",description="個案移植種類"),
+     *                 @OA\Property(property="disease_type",type="string",description="個案疾病種類"),
+     *             )
+     *         )
      *      )
      *  )
      */
+
     public function show(Request $request, $account)
     {
         $cases = CaseModel::where('account', $account)->get();

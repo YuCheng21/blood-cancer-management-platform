@@ -15,10 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 class TopicController extends Controller
 {
     /**
-     * @OA\Get (
-     *     path="/api/topics/{id}",
-     *     tags={"任務題目"},
-     *     summary="取得任務題目",
+     * @OA\Get (path="/api/topics/{id}", tags={"任務題目"}, summary="取得任務題目",
      *     description="取得任務的題目相關資訊，如：題目 id。",
      *     @OA\Parameter (name="id", description="任務 id", required=true, in="path", example="1",
      *          @OA\Schema(type="integer",)
@@ -35,14 +32,10 @@ class TopicController extends Controller
     }
 
     /**
-     * @OA\Post (
-     *     path="/api/topics/cases",
-     *     tags={"任務題目"},
-     *     summary="新增個案任務題目完成狀態",
+     * @OA\Post (path="/api/topics/cases", tags={"任務題目"}, summary="新增個案任務題目完成狀態",
      *     description="新增個案每週任務題目完成狀態。<p>先 GET 任務 id（每週任務），再 GET 題目 id（任務題目），並以兩組 id 使用此方法設定，完成個案的答題狀態。</p>",
      *     @OA\RequestBody (
-     *          @OA\MediaType(
-     *              mediaType="multipart/form-data",
+     *          @OA\MediaType(mediaType="multipart/form-data",
      *              @OA\Schema(required={"case_task_id", "topic_id", "state"},
      *                  @OA\Property(property="case_task_id", type="integer", example=1),
      *                  @OA\Property(property="topic_id", type="integer", example=1),
@@ -53,6 +46,7 @@ class TopicController extends Controller
      *     @OA\Response(response="200", description="success")
      * )
      */
+
     public function cases(Request $request)
     {
         $rules = [
@@ -63,7 +57,6 @@ class TopicController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if (!Auth::check()) {
-            // check case_task_id is belongs to it.
             $case_task_id = CaseModel::where('account', $request->get('auth_account'))->first()
                 ->case_tasks->map(function ($var){
                     return $var->id;

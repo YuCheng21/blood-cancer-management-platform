@@ -14,30 +14,37 @@ use function response;
 class BloodComponentController extends Controller
 {
     /**
-     * @OA\Post (
-     *      path="/api/blood-components",
-     *      tags={"抽血數據"},
-     *      summary="新增抽血數據",
+     * @OA\Post (path="/api/blood-components", tags={"抽血數據"}, summary="新增抽血數據",
      *      description="新增抽血數據",
      *      @OA\RequestBody (
-     *          @OA\MediaType(
-     *              mediaType="multipart/form-data",
-     *              @OA\Schema(required={"wbc","hb","plt","got","gpt","cea","ca153","bun","account"},
-     *                  @OA\Property(property="account", type="string", example=555),
-     *                  @OA\Property(property="wbc", type="integer", example=555),
-     *                  @OA\Property(property="hb", type="integer", example=555),
-     *                  @OA\Property(property="plt", type="integer", example=555),
-     *                  @OA\Property(property="got", type="integer", example=555),
-     *                  @OA\Property(property="gpt", type="integer", example=555),
-     *                  @OA\Property(property="cea", type="integer", example=555),
-     *                  @OA\Property(property="ca153", type="integer", example=555),
-     *                  @OA\Property(property="bun", type="integer", example=555),
+     *          @OA\MediaType(mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  allOf={
+     *                      @OA\Schema (
+     *                          required={"account"},
+     *                          @OA\Property(property="account", type="string", description="個案帳號", example="user1"),
+     *                      ),
+     *                      @OA\Schema (ref="#/components/schemas/blood"),
+     *                  }
      *              ),
      *          ),
      *      ),
-     *      @OA\Response(response=200, description="success")
+     *      @OA\Response(response=200, description="success",
+     *          @OA\MediaType(mediaType="application/json",
+     *              @OA\Schema (
+     *                  allOf={
+     *                      @OA\Schema (
+     *                          @OA\Property(property="id", type="integer", description="抽血數據編號", example=1),
+     *                          @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
+     *                      ),
+     *                      @OA\Schema (ref="#/components/schemas/blood"),
+     *                  }
+     *              )
+     *          )
+     *      )
      * )
      */
+
     public function store(Request $request)
     {
         $rules = [
@@ -65,30 +72,29 @@ class BloodComponentController extends Controller
     }
 
     /**
-     * @OA\Patch (
-     *      path="/api/blood-components/{id}",
-     *     tags={"抽血數據"},
-     *     summary="更新抽血數據",
+     * @OA\Patch (path="/api/blood-components/{id}", tags={"抽血數據"}, summary="更新抽血數據",
      *     description="更新抽血數據",
      *     @OA\Parameter (name="id", description="抽血數據編號", required=true, in="path", example="1",
      *          @OA\Schema(type="integer",)
      *     ),
      *      @OA\RequestBody (
-     *          @OA\MediaType(
-     *              mediaType="application/x-www-form-urlencoded",
-     *              @OA\Schema(required={"wbc","hb","plt","got","gpt","cea","ca153","bun"},
-     *                  @OA\Property(property="wbc", type="integer", example=555),
-     *                  @OA\Property(property="hb", type="integer", example=555),
-     *                  @OA\Property(property="plt", type="integer", example=555),
-     *                  @OA\Property(property="got", type="integer", example=555),
-     *                  @OA\Property(property="gpt", type="integer", example=555),
-     *                  @OA\Property(property="cea", type="integer", example=555),
-     *                  @OA\Property(property="ca153", type="integer", example=555),
-     *                  @OA\Property(property="bun", type="integer", example=555),
-     *              ),
+     *          @OA\MediaType(mediaType="application/x-www-form-urlencoded",
+     *              @OA\Schema (ref="#/components/schemas/blood"),
      *          ),
      *      ),
-     *     @OA\Response(response="200", description="success",)
+     *      @OA\Response(response=200, description="success",
+     *          @OA\MediaType(mediaType="application/json",
+     *              @OA\Schema (
+     *                  allOf={
+     *                      @OA\Schema (
+     *                          @OA\Property(property="id", type="integer", description="抽血數據編號", example=1),
+     *                          @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
+     *                      ),
+     *                      @OA\Schema (ref="#/components/schemas/blood"),
+     *                  }
+     *              )
+     *          )
+     *      )
      * )
      */
 
@@ -116,20 +122,15 @@ class BloodComponentController extends Controller
     }
 
     /**
-     * @OA\Delete (
-     *      path="/api/blood-components/{id}",
-     *     tags={"抽血數據"},
-     *     summary="刪除抽血數據",
+     * @OA\Delete (path="/api/blood-components/{id}", tags={"抽血數據"}, summary="刪除抽血數據",
      *     description="刪除抽血數據",
      *     @OA\RequestBody (
-     *          @OA\MediaType(
-     *              mediaType="application/x-www-form-urlencoded",
-     *          )
+     *          @OA\MediaType(mediaType="application/x-www-form-urlencoded")
      *      ),
      *     @OA\Parameter (name="id", description="抽血數據編號", required=true, in="path", example="1",
-     *          @OA\Schema(type="integer",)
+     *          @OA\Schema(type="integer")
      *     ),
-     *     @OA\Response(response="200", description="success",)
+     *     @OA\Response(response="200", description="success")
      * )
      */
 
@@ -145,15 +146,24 @@ class BloodComponentController extends Controller
     }
 
     /**
-     * @OA\Get (
-     *     path="/api/blood-components/account/{account}",
-     *     tags={"抽血數據"},
-     *     summary="取得抽血數據",
+     * @OA\Get (path="/api/blood-components/account/{account}", tags={"抽血數據"}, summary="取得抽血數據",
      *     description="取得抽血數據",
      *     @OA\Parameter (name="account", description="個案帳號", required=true, in="path", example="user1",
-     *          @OA\Schema(type="string",)
+     *          @OA\Schema(type="string")
      *     ),
-     *     @OA\Response(response="200", description="success",)
+     *     @OA\Response(response="200", description="success",
+     *          @OA\MediaType(mediaType="application/json",
+     *              @OA\Schema (
+     *                  allOf={
+     *                      @OA\Schema (
+     *                          @OA\Property(property="id", type="integer", description="抽血數據編號", example=1),
+     *                          @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
+     *                      ),
+     *                      @OA\Schema (ref="#/components/schemas/blood"),
+     *                  }
+     *              )
+     *          )
+     *      )
      * )
      */
 

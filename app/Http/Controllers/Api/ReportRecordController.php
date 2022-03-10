@@ -13,15 +13,24 @@ use Symfony\Component\HttpFoundation\Response;
 class ReportRecordController extends Controller
 {
     /**
-     * @OA\Get (
-     *     path="/api/reports/account/{account}",
-     *     tags={"報告個管師紀錄"},
-     *     summary="取得報告個管師紀錄",
+     * @OA\Get (path="/api/reports/account/{account}", tags={"報告個管師紀錄"}, summary="取得報告個管師紀錄",
      *     description="取得報告個管師紀錄",
      *     @OA\Parameter (name="account", description="個案帳號", required=true, in="path", example="user1",
      *          @OA\Schema(type="string",)
      *     ),
-     *     @OA\Response(response="200", description="success",)
+     *     @OA\Response(response="200", description="success",
+     *          @OA\MediaType(mediaType="application/json",
+     *              @OA\Schema (
+     *                  allOf={
+     *                      @OA\Schema (
+     *                          @OA\Property(property="id", type="integer", description="報告各管師編號", example=1),
+     *                          @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
+     *                      ),
+     *                      @OA\Schema (ref="#/components/schemas/report"),
+     *                  }
+     *              )
+     *          )
+     *      )
      * )
      */
 
@@ -37,24 +46,34 @@ class ReportRecordController extends Controller
     }
 
     /**
-     * @OA\Post (
-     *      path="/api/reports",
-     *      tags={"報告個管師紀錄"},
-     *      summary="新增報告個管師紀錄",
+     * @OA\Post (path="/api/reports", tags={"報告個管師紀錄"}, summary="新增報告個管師紀錄",
      *      description="新增報告個管師紀錄",
      *      @OA\RequestBody (
-     *          @OA\MediaType(
-     *              mediaType="multipart/form-data",
-     *              @OA\Schema(required={"account", "date", "physical_strength", "symptom", "hospital"},
-     *                  @OA\Property(property="account", type="string", example="user1"),
-     *                  @OA\Property(property="date", type="date", example="2022-03-10"),
-     *                  @OA\Property(property="physical_strength", type="string", example="很好"),
-     *                  @OA\Property(property="symptom", type="string", example="皮疹"),
-     *                  @OA\Property(property="hospital", type="string", example="高醫"),
+     *          @OA\MediaType( mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  allOf={
+     *                      @OA\Schema (
+     *                          required={"account"},
+     *                          @OA\Property(property="account", type="string", description="個案帳號", example="user1"),
+     *                      ),
+     *                      @OA\Schema (ref="#/components/schemas/report"),
+     *                  }
      *              ),
      *          ),
      *      ),
-     *      @OA\Response(response=200, description="success")
+     *      @OA\Response(response=200, description="success",
+     *          @OA\MediaType(mediaType="application/json",
+     *              @OA\Schema (
+     *                  allOf={
+     *                      @OA\Schema (
+     *                          @OA\Property(property="id", type="integer", description="報告個管師編號", example=1),
+     *                          @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
+     *                      ),
+     *                      @OA\Schema (ref="#/components/schemas/report"),
+     *                  }
+     *              )
+     *          )
+     *      )
      * )
      */
 
@@ -81,26 +100,29 @@ class ReportRecordController extends Controller
     }
 
     /**
-     * @OA\Patch (
-     *      path="/api/reports/{id}",
-     *     tags={"報告個管師紀錄"},
-     *     summary="更新報告個管師紀錄",
+     * @OA\Patch (path="/api/reports/{id}", tags={"報告個管師紀錄"}, summary="更新報告個管師紀錄",
      *     description="更新報告個管師紀錄",
      *     @OA\Parameter (name="id", description="報告個管師紀錄編號", required=true, in="path", example="1",
      *          @OA\Schema(type="integer",)
      *     ),
      *      @OA\RequestBody (
-     *          @OA\MediaType(
-     *              mediaType="application/x-www-form-urlencoded",
-     *              @OA\Schema(required={"date", "physical_strength", "symptom", "hospital"},
-     *                  @OA\Property(property="date", type="date", example="2022-03-10"),
-     *                  @OA\Property(property="physical_strength", type="string", example="很好"),
-     *                  @OA\Property(property="symptom", type="string", example="皮疹"),
-     *                  @OA\Property(property="hospital", type="string", example="高醫"),
-     *              ),
+     *          @OA\MediaType(mediaType="application/x-www-form-urlencoded",
+     *              @OA\Schema (ref="#/components/schemas/report"),
      *          ),
      *      ),
-     *     @OA\Response(response="200", description="success",)
+     *     @OA\Response(response="200", description="success",
+     *          @OA\MediaType(mediaType="application/json",
+     *              @OA\Schema (
+     *                  allOf={
+     *                      @OA\Schema (
+     *                          @OA\Property(property="id", type="integer", description="報告個管師編號", example=1),
+     *                          @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
+     *                      ),
+     *                      @OA\Schema (ref="#/components/schemas/report"),
+     *                  }
+     *              )
+     *          )
+     *      )
      * )
      */
 
@@ -124,20 +146,15 @@ class ReportRecordController extends Controller
     }
 
     /**
-     * @OA\Delete (
-     *      path="/api/reports/{id}",
-     *     tags={"報告個管師紀錄"},
-     *     summary="刪除報告個管師紀錄",
+     * @OA\Delete (path="/api/reports/{id}", tags={"報告個管師紀錄"}, summary="刪除報告個管師紀錄",
      *     description="刪除報告個管師紀錄",
      *     @OA\RequestBody (
-     *          @OA\MediaType(
-     *              mediaType="application/x-www-form-urlencoded",
-     *          )
+     *          @OA\MediaType(mediaType="application/x-www-form-urlencoded",)
      *      ),
      *     @OA\Parameter (name="id", description="報告個管師紀錄編號", required=true, in="path", example="1",
      *          @OA\Schema(type="integer",)
      *     ),
-     *     @OA\Response(response="200", description="success",)
+     *     @OA\Response(response="200", description="success")
      * )
      */
 
