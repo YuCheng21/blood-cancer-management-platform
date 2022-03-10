@@ -561,6 +561,156 @@
                     }
                 }
             }
+        },
+        "/api/tasks/account/{account}": {
+            "get": {
+                "tags": [
+                    "每週任務"
+                ],
+                "summary": "取得每週任務",
+                "description": "取得每週的任務相關資訊，如：週數、任務 id、該資料的獨立 id（在新增個案任務的完成狀態時會用到）",
+                "operationId": "20996f7521f1fa148128a4ca35be0497",
+                "parameters": [
+                    {
+                        "name": "account",
+                        "in": "path",
+                        "description": "個案帳號",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "user1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/tasks/state/{id}": {
+            "patch": {
+                "tags": [
+                    "每週任務"
+                ],
+                "summary": "更新每週任務完成狀態",
+                "description": "更新每週任務完成狀態。<p>先用 GET 該個案的所有任務後，再用任務 id 使用此方法。</p>",
+                "operationId": "95b5c03bdbc7a20d6e5ca554383fa594",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "任務 id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "state"
+                                ],
+                                "properties": {
+                                    "state": {
+                                        "type": "string",
+                                        "enum": [
+                                            "completed",
+                                            "uncompleted"
+                                        ],
+                                        "example": "completed"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/topics/{id}": {
+            "get": {
+                "tags": [
+                    "任務題目"
+                ],
+                "summary": "取得任務題目",
+                "description": "取得任務的題目相關資訊，如：題目 id。",
+                "operationId": "d5f75a5ab8e665745c1ffc6281ed5609",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "任務 id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/topics/cases": {
+            "post": {
+                "tags": [
+                    "任務題目"
+                ],
+                "summary": "新增個案任務題目完成狀態",
+                "description": "新增個案每週任務題目完成狀態。<p>先 GET 任務 id（每週任務），再 GET 題目 id（任務題目），並以兩組 id 使用此方法設定，完成個案的答題狀態。</p>",
+                "operationId": "2d2e284e9474eb54d2e1b0b7bb2466bd",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "case_task_id",
+                                    "topic_id",
+                                    "state"
+                                ],
+                                "properties": {
+                                    "case_task_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "topic_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "state": {
+                                        "type": "string",
+                                        "enum": [
+                                            "correct",
+                                            "wrong"
+                                        ],
+                                        "example": "correct"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -586,10 +736,6 @@
             "description": "個案定期的抽血數據"
         },
         {
-            "name": "每週任務",
-            "description": "個案每週的任務項目"
-        },
-        {
             "name": "施打藥物及劑量紀錄",
             "description": "個案的施打藥物及劑量紀錄"
         },
@@ -600,6 +746,14 @@
         {
             "name": "報告個管師紀錄",
             "description": "個案回報個管師的回報紀錄"
+        },
+        {
+            "name": "每週任務",
+            "description": "個案每週的任務項目"
+        },
+        {
+            "name": "任務題目",
+            "description": "任務項目的題目"
         }
     ]
 }

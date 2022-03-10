@@ -24,6 +24,12 @@ class AppHelper
             'name' => $name,
         ];
     }
+    public static function flatten(array $array): array
+    {
+        $return = array();
+        array_walk_recursive($array, function($a) use (&$return) { $return[] = $a; });
+        return $return;
+    }
 
     public static function reformat_task($tasks): array
     {

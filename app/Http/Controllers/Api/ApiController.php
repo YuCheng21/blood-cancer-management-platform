@@ -33,10 +33,6 @@ use App\Http\Controllers\Controller;
  *      description="個案定期的抽血數據",
  *  )
  *  @OA\Tag (
- *      name="每週任務",
- *      description="個案每週的任務項目",
- *  )
- *  @OA\Tag (
  *      name="施打藥物及劑量紀錄",
  *      description="個案的施打藥物及劑量紀錄",
  *  )
@@ -47,6 +43,15 @@ use App\Http\Controllers\Controller;
  *  @OA\Tag (
  *      name="報告個管師紀錄",
  *      description="個案回報個管師的回報紀錄",
+ *  )
+ *
+ *  @OA\Tag (
+ *      name="每週任務",
+ *      description="個案每週的任務項目",
+ *  )
+ *  @OA\Tag (
+ *      name="任務題目",
+ *      description="任務項目的題目",
  *  )
  */
 

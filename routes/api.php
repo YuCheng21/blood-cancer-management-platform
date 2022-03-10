@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\TopicController;
+use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\ReportRecordController;
 use App\Http\Controllers\Api\SideEffectRecordController;
 use App\Http\Controllers\Api\MedicineRecordController;
@@ -44,11 +46,24 @@ Route::middleware('member.auth')->name('api.')->group(function () {
         ->controller(MedicineRecordController::class)->group(function (){
         Route::get('/account/{account}', 'account')->name('account');
     });
+
     Route::prefix('reports')->name('reports.')
         ->controller(ReportRecordController::class)->group(function (){
             Route::post('/', 'store')->name('store');
             Route::patch('/{report_id}', 'update')->name('update');
             Route::delete('/{report_id}', 'destroy')->name('destroy');
             Route::get('/account/{account}', 'account')->name('account');
+        });
+
+    Route::prefix('tasks')->name('tasks.')
+        ->controller(TaskController::class)->group(function (){
+            Route::get('/account/{account}', 'account')->name('account');
+            Route::patch('/state/{case_task_id}', 'state')->name('state');
+        });
+
+    Route::prefix('topics')->name('topics.')
+        ->controller(TopicController::class)->group(function (){
+            Route::get('/{task_id}', 'account')->name('account');
+            Route::post('/cases', 'cases')->name('cases');
         });
 });
