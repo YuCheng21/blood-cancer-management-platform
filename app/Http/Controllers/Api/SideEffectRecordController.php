@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Storage;
 
 class SideEffectRecordController extends Controller
 {
+    /**
+     * @OA\Get (
+     *      path="/api/side-effect/account/{account}",
+     *      tags={"副作用紀錄"},
+     *      summary="取得副作用紀錄",
+     *      description="取得副作用紀錄",
+     *      @OA\Parameter (name="account", description="個案帳號", required=true, in="path", example="user1",
+     *          @OA\Schema(type="string",)
+     *     ),
+     *     @OA\Response(response="200", description="success",)
+     * )
+     */
     public function account(Request $request, $account){
         $case = CaseModel::where([
             'account' => $account,
@@ -25,7 +37,29 @@ class SideEffectRecordController extends Controller
 
         return response(['data' => $case->side_effect_records], Response::HTTP_OK);
     }
-
+    /**
+     * @OA\Post (
+     *      path="/api/side-effect",
+     *      tags={"副作用紀錄"},
+     *      summary="新增副作用紀錄",
+     *      description="新增副作用紀錄",
+     *      @OA\RequestBody (
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *              @OA\Schema(required={"account", "date", "symptom", "severity", "has_image"},
+     *                  @OA\Property(property="account", type="string", example="user1"),
+     *                  @OA\Property(property="date", type="date", example="2022-3-6"),
+     *                  @OA\Property(property="symptom", type="string", example="噁心"),
+     *                  @OA\Property(property="severity", type="integer", example="5"),
+     *                  @OA\Property(property="has_image", type="tinfyint", enum={"0", "1"}, example="0"),
+     *                  @OA\Property(property="image", type="string", format="binary"),
+     *                  @OA\Property(property="caption", type="string", example="Cation #1"),
+     *              ),
+     *          ),
+     *      ),
+     *      @OA\Response(response=200, description="success")
+     * )
+     */
     public function store(Request $request){
         $rules = [
             'account' => ['required'],

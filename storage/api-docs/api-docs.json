@@ -269,6 +269,126 @@
                     }
                 }
             }
+        },
+        "/api/medicine/account/{account}": {
+            "get": {
+                "tags": [
+                    "施打藥物及劑量紀錄"
+                ],
+                "summary": "取得施打藥物及劑量紀錄",
+                "description": "取得施打藥物及劑量紀錄",
+                "operationId": "ac6ecb5edd4fb6b349ff858b2ccb15bb",
+                "parameters": [
+                    {
+                        "name": "account",
+                        "in": "path",
+                        "description": "個案帳號",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "user1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/side-effect/account/{account}": {
+            "get": {
+                "tags": [
+                    "副作用紀錄"
+                ],
+                "summary": "取得副作用紀錄",
+                "description": "取得副作用紀錄",
+                "operationId": "8dbc0fa6362c9e86d59fa082df4bdfd0",
+                "parameters": [
+                    {
+                        "name": "account",
+                        "in": "path",
+                        "description": "個案帳號",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "user1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/api/side-effect": {
+            "post": {
+                "tags": [
+                    "副作用紀錄"
+                ],
+                "summary": "新增副作用紀錄",
+                "description": "新增副作用紀錄",
+                "operationId": "33ad4c4f573924717c0ab24ee20b8121",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "account",
+                                    "date",
+                                    "symptom",
+                                    "severity",
+                                    "has_image"
+                                ],
+                                "properties": {
+                                    "account": {
+                                        "type": "string",
+                                        "example": "user1"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2022-3-6"
+                                    },
+                                    "symptom": {
+                                        "type": "string",
+                                        "example": "噁心"
+                                    },
+                                    "severity": {
+                                        "type": "integer",
+                                        "example": "5"
+                                    },
+                                    "has_image": {
+                                        "type": "tinfyint",
+                                        "enum": [
+                                            "0",
+                                            "1"
+                                        ],
+                                        "example": "0"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "caption": {
+                                        "type": "string",
+                                        "example": "Cation #1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -298,8 +418,8 @@
             "description": "個案每週的任務項目"
         },
         {
-            "name": "施打藥物紀錄及劑量",
-            "description": "個案的施打藥物紀錄及劑量"
+            "name": "施打藥物及劑量紀錄",
+            "description": "個案的施打藥物及劑量紀錄"
         },
         {
             "name": "副作用紀錄",

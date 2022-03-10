@@ -119,7 +119,7 @@ class CaseModelController extends Controller
         $report_records = $case->report_records;
         $image_records = $case
             ->side_effect_records()
-            ->where('symptom', '拍照')
+            ->where('has_image', '1')
             ->get();
 
         $title = '個人資料';

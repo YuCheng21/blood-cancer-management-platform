@@ -37,8 +37,8 @@ use App\Http\Controllers\Controller;
  *      description="個案每週的任務項目",
  *  )
  *  @OA\Tag (
- *      name="施打藥物紀錄及劑量",
- *      description="個案的施打藥物紀錄及劑量",
+ *      name="施打藥物及劑量紀錄",
+ *      description="個案的施打藥物及劑量紀錄",
  *  )
  *  @OA\Tag (
  *      name="副作用紀錄",
