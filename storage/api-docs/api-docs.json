@@ -10,6 +10,53 @@
         "version": "1.0"
     },
     "paths": {
+        "/api/blood-components/account/{account}": {
+            "get": {
+                "tags": [
+                    "抽血數據"
+                ],
+                "summary": "取得抽血數據",
+                "description": "取得抽血數據",
+                "operationId": "8ee664b6aba87ca2ea6021151282a403",
+                "parameters": [
+                    {
+                        "name": "account",
+                        "in": "path",
+                        "description": "個案帳號",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "user1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "allOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/blood"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/blood-components": {
             "post": {
                 "tags": [
@@ -25,7 +72,15 @@
                                 "allOf": [
                                     {
                                         "required": [
-                                            "account"
+                                            "account",
+                                            "wbc",
+                                            "hb",
+                                            "plt",
+                                            "got",
+                                            "gpt",
+                                            "cea",
+                                            "ca153",
+                                            "bun"
                                         ],
                                         "properties": {
                                             "account": {
@@ -50,26 +105,17 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "allOf": [
-                                        {
-                                            "properties": {
-                                                "id": {
-                                                    "description": "抽血數據編號",
-                                                    "type": "integer",
-                                                    "example": 1
-                                                },
-                                                "case_id": {
-                                                    "description": "個案編號",
-                                                    "type": "integer",
-                                                    "example": 1
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/blood"
                                                 }
-                                            },
-                                            "type": "object"
-                                        },
-                                        {
-                                            "$ref": "#/components/schemas/blood"
+                                            ]
                                         }
-                                    ]
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -131,7 +177,23 @@
                     "content": {
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/blood"
+                                "allOf": [
+                                    {
+                                        "required": [
+                                            "wbc",
+                                            "hb",
+                                            "plt",
+                                            "got",
+                                            "gpt",
+                                            "cea",
+                                            "ca153",
+                                            "bun"
+                                        ]
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/blood"
+                                    }
+                                ]
                             }
                         }
                     }
@@ -142,79 +204,17 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "allOf": [
-                                        {
-                                            "properties": {
-                                                "id": {
-                                                    "description": "抽血數據編號",
-                                                    "type": "integer",
-                                                    "example": 1
-                                                },
-                                                "case_id": {
-                                                    "description": "個案編號",
-                                                    "type": "integer",
-                                                    "example": 1
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/blood"
                                                 }
-                                            },
-                                            "type": "object"
-                                        },
-                                        {
-                                            "$ref": "#/components/schemas/blood"
+                                            ]
                                         }
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/blood-components/account/{account}": {
-            "get": {
-                "tags": [
-                    "抽血數據"
-                ],
-                "summary": "取得抽血數據",
-                "description": "取得抽血數據",
-                "operationId": "8ee664b6aba87ca2ea6021151282a403",
-                "parameters": [
-                    {
-                        "name": "account",
-                        "in": "path",
-                        "description": "個案帳號",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "user1"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "allOf": [
-                                        {
-                                            "properties": {
-                                                "id": {
-                                                    "description": "抽血數據編號",
-                                                    "type": "integer",
-                                                    "example": 1
-                                                },
-                                                "case_id": {
-                                                    "description": "個案編號",
-                                                    "type": "integer",
-                                                    "example": 1
-                                                }
-                                            },
-                                            "type": "object"
-                                        },
-                                        {
-                                            "$ref": "#/components/schemas/blood"
-                                        }
-                                    ]
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -316,50 +316,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "allOf": [
-                                        {
-                                            "properties": {
-                                                "id": {
-                                                    "description": "施打藥物及劑量紀錄編號",
-                                                    "type": "integer",
-                                                    "example": 1
-                                                },
-                                                "case_id": {
-                                                    "description": "個案編號",
-                                                    "type": "integer",
-                                                    "example": 1
-                                                },
-                                                "date": {
-                                                    "description": "施打日期",
-                                                    "type": "integer",
-                                                    "example": 1
-                                                },
-                                                "course": {
-                                                    "description": "週期",
-                                                    "type": "integer",
-                                                    "example": 1
-                                                },
-                                                "type": {
-                                                    "description": "藥物種類",
-                                                    "type": "integer",
-                                                    "example": 1
-                                                },
-                                                "dose": {
-                                                    "description": "劑量",
-                                                    "type": "integer",
-                                                    "example": 1
-                                                }
-                                            },
-                                            "type": "object"
-                                        }
-                                    ]
-                                }
-                            }
-                        }
+                        "description": "success"
                     }
                 }
             }
@@ -390,26 +347,20 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "allOf": [
-                                        {
-                                            "properties": {
-                                                "id": {
-                                                    "description": "報告各管師編號",
-                                                    "type": "integer",
-                                                    "example": 1
-                                                },
-                                                "case_id": {
-                                                    "description": "個案編號",
-                                                    "type": "integer",
-                                                    "example": 1
-                                                }
-                                            },
-                                            "type": "object"
-                                        },
-                                        {
-                                            "$ref": "#/components/schemas/report"
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "allOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/report"
+                                                    }
+                                                ]
+                                            }
                                         }
-                                    ]
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -432,7 +383,11 @@
                                 "allOf": [
                                     {
                                         "required": [
-                                            "account"
+                                            "account",
+                                            "date",
+                                            "physical_strength",
+                                            "symptom",
+                                            "hospital"
                                         ],
                                         "properties": {
                                             "account": {
@@ -457,26 +412,17 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "allOf": [
-                                        {
-                                            "properties": {
-                                                "id": {
-                                                    "description": "報告個管師編號",
-                                                    "type": "integer",
-                                                    "example": 1
-                                                },
-                                                "case_id": {
-                                                    "description": "個案編號",
-                                                    "type": "integer",
-                                                    "example": 1
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/report"
                                                 }
-                                            },
-                                            "type": "object"
-                                        },
-                                        {
-                                            "$ref": "#/components/schemas/report"
+                                            ]
                                         }
-                                    ]
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -538,7 +484,19 @@
                     "content": {
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/report"
+                                "allOf": [
+                                    {
+                                        "required": [
+                                            "date",
+                                            "physical_strength",
+                                            "symptom",
+                                            "hospital"
+                                        ]
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/report"
+                                    }
+                                ]
                             }
                         }
                     }
@@ -549,26 +507,17 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "allOf": [
-                                        {
-                                            "properties": {
-                                                "id": {
-                                                    "description": "報告個管師編號",
-                                                    "type": "integer",
-                                                    "example": 1
-                                                },
-                                                "case_id": {
-                                                    "description": "個案編號",
-                                                    "type": "integer",
-                                                    "example": 1
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/report"
                                                 }
-                                            },
-                                            "type": "object"
-                                        },
-                                        {
-                                            "$ref": "#/components/schemas/report"
+                                            ]
                                         }
-                                    ]
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -602,26 +551,20 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "allOf": [
-                                        {
-                                            "properties": {
-                                                "id": {
-                                                    "description": "副作用紀錄編號",
-                                                    "type": "integer",
-                                                    "example": 1
-                                                },
-                                                "case_id": {
-                                                    "description": "個案編號",
-                                                    "type": "integer",
-                                                    "example": 1
-                                                }
-                                            },
-                                            "type": "object"
-                                        },
-                                        {
-                                            "$ref": "#/components/schemas/effect"
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "allOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/effect"
+                                                    }
+                                                ]
+                                            }
                                         }
-                                    ]
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -644,7 +587,11 @@
                                 "allOf": [
                                     {
                                         "required": [
-                                            "account"
+                                            "account",
+                                            "date",
+                                            "symptom",
+                                            "severity",
+                                            "has_image"
                                         ],
                                         "properties": {
                                             "account": {
@@ -669,26 +616,17 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "allOf": [
-                                        {
-                                            "properties": {
-                                                "id": {
-                                                    "description": "副作用紀錄編號",
-                                                    "type": "integer",
-                                                    "example": 1
-                                                },
-                                                "case_id": {
-                                                    "description": "個案編號",
-                                                    "type": "integer",
-                                                    "example": 1
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/effect"
                                                 }
-                                            },
-                                            "type": "object"
-                                        },
-                                        {
-                                            "$ref": "#/components/schemas/effect"
+                                            ]
                                         }
-                                    ]
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -718,7 +656,40 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "success"
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "allOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/case-task"
+                                                    },
+                                                    {
+                                                        "properties": {
+                                                            "task": {
+                                                                "type": "object",
+                                                                "allOf": [
+                                                                    {
+                                                                        "$ref": "#/components/schemas/task"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -767,7 +738,24 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "success"
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/case-task"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -850,17 +838,17 @@
     "components": {
         "schemas": {
             "blood": {
-                "required": [
-                    "wbc",
-                    "hb",
-                    "plt",
-                    "got",
-                    "gpt",
-                    "cea",
-                    "ca153",
-                    "bun"
-                ],
                 "properties": {
+                    "id": {
+                        "description": "抽血數據編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "case_id": {
+                        "description": "個案編號",
+                        "type": "integer",
+                        "example": 1
+                    },
                     "wbc": {
                         "description": "白血球(WBC)",
                         "type": "integer",
@@ -904,46 +892,18 @@
                 },
                 "type": "object"
             },
-            "report": {
-                "required": [
-                    "date",
-                    "physical_strength",
-                    "symptom",
-                    "hospital"
-                ],
-                "properties": {
-                    "date": {
-                        "description": "回報日期",
-                        "type": "string",
-                        "format": "date",
-                        "example": "2022-03-10"
-                    },
-                    "physical_strength": {
-                        "description": "體力狀況",
-                        "type": "string",
-                        "example": "很好"
-                    },
-                    "symptom": {
-                        "description": "症狀",
-                        "type": "string",
-                        "example": "皮疹"
-                    },
-                    "hospital": {
-                        "description": "固定回診醫院",
-                        "type": "string",
-                        "example": "高醫"
-                    }
-                },
-                "type": "object"
-            },
             "effect": {
-                "required": [
-                    "date",
-                    "symptom",
-                    "severity",
-                    "has_image"
-                ],
                 "properties": {
+                    "id": {
+                        "description": "副作用紀錄編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "case_id": {
+                        "description": "個案編號",
+                        "type": "integer",
+                        "example": 1
+                    },
                     "date": {
                         "type": "string",
                         "format": "date",
@@ -972,6 +932,107 @@
                     "caption": {
                         "type": "string",
                         "example": "Cation #1"
+                    }
+                },
+                "type": "object"
+            },
+            "report": {
+                "properties": {
+                    "id": {
+                        "description": "報告各管師編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "case_id": {
+                        "description": "個案編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "date": {
+                        "description": "回報日期",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2022-03-10"
+                    },
+                    "physical_strength": {
+                        "description": "體力狀況",
+                        "type": "string",
+                        "example": "很好"
+                    },
+                    "symptom": {
+                        "description": "症狀",
+                        "type": "string",
+                        "example": "皮疹"
+                    },
+                    "hospital": {
+                        "description": "固定回診醫院",
+                        "type": "string",
+                        "example": "高醫"
+                    }
+                },
+                "type": "object"
+            },
+            "case-task": {
+                "properties": {
+                    "id": {
+                        "description": "個案任務編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "case_id": {
+                        "description": "個案編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "task_id": {
+                        "description": "任務編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "week": {
+                        "description": "週數",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "start_at": {
+                        "description": "開始日期",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2022-03-11"
+                    },
+                    "state": {
+                        "description": "完成狀態",
+                        "type": "string",
+                        "enum": [
+                            "completed",
+                            "uncompleted"
+                        ],
+                        "example": "completed"
+                    }
+                },
+                "type": "object"
+            },
+            "task": {
+                "properties": {
+                    "id": {
+                        "description": "任務編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "category_1": {
+                        "description": "類別1",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "category_2": {
+                        "description": "類別2",
+                        "type": "string",
+                        "example": "2-2"
+                    },
+                    "name": {
+                        "description": "任務名稱",
+                        "type": "string",
+                        "example": "造血幹細胞移植分類-異體造血幹細胞移植"
                     }
                 },
                 "type": "object"
@@ -1017,6 +1078,14 @@
         {
             "name": "任務題目",
             "description": "任務項目的題目"
+        },
+        {
+            "name": "問與答 (Q&A)",
+            "description": "任務單元的問與答"
+        },
+        {
+            "name": "個案消息",
+            "description": "個案的消息推送"
         }
     ]
 }

@@ -21,17 +21,9 @@ class ReportRecordController extends Controller
      *     @OA\Response(response="200", description="success",
      *          @OA\MediaType(mediaType="application/json",
      *              @OA\Schema (
-     *                  allOf={
-     *                      @OA\Schema (
-     *                          @OA\Property(property="id", type="integer", description="報告各管師編號", example=1),
-     *                          @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
-     *                      ),
-     *                      @OA\Schema (ref="#/components/schemas/report"),
-     *                  }
-     *              )
-     *          )
-     *      )
-     * )
+     *                  @OA\Property(property="data", type="array",
+     *                      @OA\Items(type="object", allOf={
+     *                          @OA\Schema (ref="#/components/schemas/report")}))))))
      */
 
     public function account(Request $request, $account)
@@ -50,31 +42,15 @@ class ReportRecordController extends Controller
      *      description="新增報告個管師紀錄",
      *      @OA\RequestBody (
      *          @OA\MediaType( mediaType="multipart/form-data",
-     *              @OA\Schema(
-     *                  allOf={
-     *                      @OA\Schema (
-     *                          required={"account"},
-     *                          @OA\Property(property="account", type="string", description="個案帳號", example="user1"),
-     *                      ),
-     *                      @OA\Schema (ref="#/components/schemas/report"),
-     *                  }
-     *              ),
-     *          ),
-     *      ),
-     *      @OA\Response(response=200, description="success",
+     *              @OA\Schema(allOf={
+     *                  @OA\Schema (required={"account", "date", "physical_strength", "symptom", "hospital"},
+     *                      @OA\Property(property="account", type="string", description="個案帳號", example="user1"),),
+     *                  @OA\Schema (ref="#/components/schemas/report"),}),),),
+     *      @OA\Response(response="200", description="success",
      *          @OA\MediaType(mediaType="application/json",
      *              @OA\Schema (
-     *                  allOf={
-     *                      @OA\Schema (
-     *                          @OA\Property(property="id", type="integer", description="報告個管師編號", example=1),
-     *                          @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
-     *                      ),
-     *                      @OA\Schema (ref="#/components/schemas/report"),
-     *                  }
-     *              )
-     *          )
-     *      )
-     * )
+     *                  @OA\Property(property="data", type="object", allOf={
+     *                      @OA\Schema (ref="#/components/schemas/report")})))))
      */
 
     public function store(Request $request)
@@ -103,27 +79,17 @@ class ReportRecordController extends Controller
      * @OA\Patch (path="/api/reports/{id}", tags={"報告個管師紀錄"}, summary="更新報告個管師紀錄",
      *     description="更新報告個管師紀錄",
      *     @OA\Parameter (name="id", description="報告個管師紀錄編號", required=true, in="path", example="1",
-     *          @OA\Schema(type="integer",)
-     *     ),
+     *          @OA\Schema(type="integer",)),
      *      @OA\RequestBody (
      *          @OA\MediaType(mediaType="application/x-www-form-urlencoded",
-     *              @OA\Schema (ref="#/components/schemas/report"),
-     *          ),
-     *      ),
+     *              @OA\Schema (allOf={
+     *                  @OA\Schema (required={"date", "physical_strength", "symptom", "hospital"}),
+     *                  @OA\Schema (ref="#/components/schemas/report")}))),
      *     @OA\Response(response="200", description="success",
      *          @OA\MediaType(mediaType="application/json",
      *              @OA\Schema (
-     *                  allOf={
-     *                      @OA\Schema (
-     *                          @OA\Property(property="id", type="integer", description="報告個管師編號", example=1),
-     *                          @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
-     *                      ),
-     *                      @OA\Schema (ref="#/components/schemas/report"),
-     *                  }
-     *              )
-     *          )
-     *      )
-     * )
+     *                  @OA\Property(property="data", type="object", allOf={
+     *                      @OA\Schema (ref="#/components/schemas/report")})))))
      */
 
     public function update(Request $request, $report_id)
@@ -138,7 +104,11 @@ class ReportRecordController extends Controller
         $report_record = ReportRecord::where('id', $report_id)->get();
         if (!Auth::check()) {
             $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $report_record = $report_record->where('case_id', $case_id)->first();
+            $report_record = $report_record->where('case_id', $case_id)->get();
+        }
+        $report_record = $report_record->first();
+        if (is_null($report_record)){
+            return \response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
         $report_record->update($validator->validate());
         $report_record = $report_record->refresh();
@@ -149,22 +119,22 @@ class ReportRecordController extends Controller
      * @OA\Delete (path="/api/reports/{id}", tags={"報告個管師紀錄"}, summary="刪除報告個管師紀錄",
      *     description="刪除報告個管師紀錄",
      *     @OA\RequestBody (
-     *          @OA\MediaType(mediaType="application/x-www-form-urlencoded",)
-     *      ),
+     *          @OA\MediaType(mediaType="application/x-www-form-urlencoded")),
      *     @OA\Parameter (name="id", description="報告個管師紀錄編號", required=true, in="path", example="1",
-     *          @OA\Schema(type="integer",)
-     *     ),
-     *     @OA\Response(response="200", description="success")
-     * )
+     *          @OA\Schema(type="integer")),
+     *     @OA\Response(response="200", description="success"))
      */
 
     public function destroy(Request $request, $report_id)
     {
-
         $report_record = ReportRecord::where('id', $report_id)->get();
         if (!Auth::check()) {
             $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $report_record = $report_record->where('case_id', $case_id)->first();
+            $report_record = $report_record->where('case_id', $case_id)->get();
+        }
+        $report_record = $report_record->first();
+        if (is_null($report_record)){
+            return \response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
         $report_record->delete();
         return response(null, Response::HTTP_NO_CONTENT);

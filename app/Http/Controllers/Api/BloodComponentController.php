@@ -14,35 +14,44 @@ use function response;
 class BloodComponentController extends Controller
 {
     /**
+     * @OA\Get (path="/api/blood-components/account/{account}", tags={"抽血數據"}, summary="取得抽血數據",
+     *     description="取得抽血數據",
+     *     @OA\Parameter (name="account", description="個案帳號", required=true, in="path", example="user1",
+     *          @OA\Schema(type="string")),
+     *     @OA\Response(response="200", description="success",
+     *          @OA\MediaType(mediaType="application/json",
+     *              @OA\Schema (
+     *                  @OA\Property(property="data", type="array",
+     *                      @OA\Items(type="object", allOf={
+     *                          @OA\Schema (ref="#/components/schemas/blood")}))))))
+     */
+
+    public function account(Request $request, $account)
+    {
+        $case = CaseModel::where('account', $account)->first();
+        $blood_component = $case->blood_components;
+        if (!Auth::check()) {
+            $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
+            $blood_component = $blood_component->where('case_id', $case_id);
+        }
+        return response(['data' => $blood_component], Response::HTTP_OK);
+    }
+
+    /**
      * @OA\Post (path="/api/blood-components", tags={"抽血數據"}, summary="新增抽血數據",
      *      description="新增抽血數據",
      *      @OA\RequestBody (
      *          @OA\MediaType(mediaType="multipart/form-data",
-     *              @OA\Schema(
-     *                  allOf={
-     *                      @OA\Schema (
-     *                          required={"account"},
-     *                          @OA\Property(property="account", type="string", description="個案帳號", example="user1"),
-     *                      ),
-     *                      @OA\Schema (ref="#/components/schemas/blood"),
-     *                  }
-     *              ),
-     *          ),
-     *      ),
-     *      @OA\Response(response=200, description="success",
+     *              @OA\Schema(allOf={
+     *                  @OA\Schema (
+     *                      required={"account", "wbc","hb","plt","got","gpt","cea","ca153","bun"},
+     *                      @OA\Property(property="account", type="string", description="個案帳號", example="user1")),
+     *                  @OA\Schema (ref="#/components/schemas/blood")}))),
+     *     @OA\Response(response="200", description="success",
      *          @OA\MediaType(mediaType="application/json",
      *              @OA\Schema (
-     *                  allOf={
-     *                      @OA\Schema (
-     *                          @OA\Property(property="id", type="integer", description="抽血數據編號", example=1),
-     *                          @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
-     *                      ),
-     *                      @OA\Schema (ref="#/components/schemas/blood"),
-     *                  }
-     *              )
-     *          )
-     *      )
-     * )
+     *                  @OA\Property(property="data", type="object", allOf={
+     *                      @OA\Schema (ref="#/components/schemas/blood")})))))
      */
 
     public function store(Request $request)
@@ -75,27 +84,17 @@ class BloodComponentController extends Controller
      * @OA\Patch (path="/api/blood-components/{id}", tags={"抽血數據"}, summary="更新抽血數據",
      *     description="更新抽血數據",
      *     @OA\Parameter (name="id", description="抽血數據編號", required=true, in="path", example="1",
-     *          @OA\Schema(type="integer",)
-     *     ),
+     *          @OA\Schema(type="integer")),
      *      @OA\RequestBody (
      *          @OA\MediaType(mediaType="application/x-www-form-urlencoded",
-     *              @OA\Schema (ref="#/components/schemas/blood"),
-     *          ),
-     *      ),
-     *      @OA\Response(response=200, description="success",
+     *              @OA\Schema (allOf={
+     *                  @OA\Schema (required={"wbc","hb","plt","got","gpt","cea","ca153","bun"}),
+     *                  @OA\Schema (ref="#/components/schemas/blood")}))),
+     *     @OA\Response(response="200", description="success",
      *          @OA\MediaType(mediaType="application/json",
      *              @OA\Schema (
-     *                  allOf={
-     *                      @OA\Schema (
-     *                          @OA\Property(property="id", type="integer", description="抽血數據編號", example=1),
-     *                          @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
-     *                      ),
-     *                      @OA\Schema (ref="#/components/schemas/blood"),
-     *                  }
-     *              )
-     *          )
-     *      )
-     * )
+     *                  @OA\Property(property="data", type="object", allOf={
+     *                      @OA\Schema (ref="#/components/schemas/blood")})))))
      */
 
     public function update(Request $request, $blood_component_id)
@@ -114,7 +113,11 @@ class BloodComponentController extends Controller
         $blood_component = BloodComponent::where('id', $blood_component_id)->get();
         if (!Auth::check()) {
             $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $blood_component = $blood_component->where('case_id', $case_id)->first();
+            $blood_component = $blood_component->where('case_id', $case_id)->get();
+        }
+        $blood_component = $blood_component->first();
+        if (is_null($blood_component)){
+            return \response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
         $blood_component->update($validator->validate());
         $blood_component = $blood_component->refresh();
@@ -125,13 +128,10 @@ class BloodComponentController extends Controller
      * @OA\Delete (path="/api/blood-components/{id}", tags={"抽血數據"}, summary="刪除抽血數據",
      *     description="刪除抽血數據",
      *     @OA\RequestBody (
-     *          @OA\MediaType(mediaType="application/x-www-form-urlencoded")
-     *      ),
+     *          @OA\MediaType(mediaType="application/x-www-form-urlencoded")),
      *     @OA\Parameter (name="id", description="抽血數據編號", required=true, in="path", example="1",
-     *          @OA\Schema(type="integer")
-     *     ),
-     *     @OA\Response(response="200", description="success")
-     * )
+     *          @OA\Schema(type="integer")),
+     *     @OA\Response(response="200", description="success"))
      */
 
     public function destroy(Request $request, $blood_component_id)
@@ -139,42 +139,13 @@ class BloodComponentController extends Controller
         $blood_component = BloodComponent::where('id', $blood_component_id)->get();
         if (!Auth::check()) {
             $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $blood_component = $blood_component->where('case_id', $case_id)->first();
+            $blood_component = $blood_component->where('case_id', $case_id)->get();
+        }
+        $blood_component = $blood_component->first();
+        if (is_null($blood_component)){
+            return \response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
         $blood_component->delete();
         return response(null, Response::HTTP_NO_CONTENT);
-    }
-
-    /**
-     * @OA\Get (path="/api/blood-components/account/{account}", tags={"抽血數據"}, summary="取得抽血數據",
-     *     description="取得抽血數據",
-     *     @OA\Parameter (name="account", description="個案帳號", required=true, in="path", example="user1",
-     *          @OA\Schema(type="string")
-     *     ),
-     *     @OA\Response(response="200", description="success",
-     *          @OA\MediaType(mediaType="application/json",
-     *              @OA\Schema (
-     *                  allOf={
-     *                      @OA\Schema (
-     *                          @OA\Property(property="id", type="integer", description="抽血數據編號", example=1),
-     *                          @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
-     *                      ),
-     *                      @OA\Schema (ref="#/components/schemas/blood"),
-     *                  }
-     *              )
-     *          )
-     *      )
-     * )
-     */
-
-    public function account(Request $request, $account)
-    {
-        $case = CaseModel::where('account', $account)->first();
-        $blood_component = $case->blood_components;
-        if (!Auth::check()) {
-            $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $blood_component = $blood_component->where('case_id', $case_id);
-        }
-        return response(['data' => $blood_component], Response::HTTP_OK);
     }
 }

@@ -27,7 +27,8 @@ use App\Http\Controllers\Controller;
  *          @OA\Schema (
  *              schema="blood",
  *              type="object",
- *              required={"wbc","hb","plt","got","gpt","cea","ca153","bun"},
+ *              @OA\Property(property="id", type="integer", description="抽血數據編號", example=1),
+ *              @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
  *              @OA\Property(property="wbc", type="integer", description="白血球(WBC)", example="555"),
  *              @OA\Property(property="hb", type="integer", description="血紅素(HB)", example="555"),
  *              @OA\Property(property="plt", type="integer", description="血小板(PLT)", example="555"),
@@ -38,24 +39,44 @@ use App\Http\Controllers\Controller;
  *              @OA\Property(property="bun", type="integer", description="尿素氮(BUN)", example="555"),
  *          ),
  *          @OA\Schema(
- *              schema="report",
- *              type="object",
- *              required={"date", "physical_strength", "symptom", "hospital"},
- *              @OA\Property(property="date", type="date", description="回報日期", example="2022-03-10"),
- *              @OA\Property(property="physical_strength", type="string", description="體力狀況", example="很好"),
- *              @OA\Property(property="symptom", type="string", description="症狀", example="皮疹"),
- *              @OA\Property(property="hospital", type="string", description="固定回診醫院", example="高醫"),
- *          ),
- *          @OA\Schema(
  *              schema="effect",
  *              type="object",
- *              required={"date", "symptom", "severity", "has_image"},
+ *              @OA\Property(property="id", type="integer", description="副作用紀錄編號", example=1),
+ *              @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
  *              @OA\Property(property="date", type="date", example="2022-3-6"),
  *              @OA\Property(property="symptom", type="string", example="噁心"),
  *              @OA\Property(property="severity", type="integer", example="5"),
  *              @OA\Property(property="has_image", type="integer", enum={"0", "1"}, example="0"),
  *              @OA\Property(property="image", type="string", format="binary"),
  *              @OA\Property(property="caption", type="string", example="Cation #1"),
+ *          ),
+ *          @OA\Schema(
+ *              schema="report",
+ *              type="object",
+ *              @OA\Property(property="id", type="integer", description="報告各管師編號", example=1),
+ *              @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
+ *              @OA\Property(property="date", type="date", description="回報日期", example="2022-03-10"),
+ *              @OA\Property(property="physical_strength", type="string", description="體力狀況", example="很好"),
+ *              @OA\Property(property="symptom", type="string", description="症狀", example="皮疹"),
+ *              @OA\Property(property="hospital", type="string", description="固定回診醫院", example="高醫"),
+ *          ),
+ *          @OA\Schema(
+ *              schema="case-task",
+ *              type="object",
+ *              @OA\Property(property="id", type="integer", description="個案任務編號", example=1),
+ *              @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
+ *              @OA\Property(property="task_id", type="integer", description="任務編號", example=1),
+ *              @OA\Property(property="week", type="integer", description="週數", example=1),
+ *              @OA\Property(property="start_at", type="date", description="開始日期", example="2022-03-11"),
+ *              @OA\Property(property="state", type="string", enum={"completed","uncompleted"}, description="完成狀態", example="completed"),
+ *          ),
+ *          @OA\Schema(
+ *              schema="task",
+ *              type="object",
+ *              @OA\Property(property="id", type="integer", description="任務編號", example=1),
+ *              @OA\Property(property="category_1", type="integer", description="類別1", example=1),
+ *              @OA\Property(property="category_2", type="string", description="類別2", example="2-2"),
+ *              @OA\Property(property="name", type="string", description="任務名稱", example="造血幹細胞移植分類-異體造血幹細胞移植"),
  *          ),
  *      ),
  *     security={{"basicAuth": {}}},
@@ -88,6 +109,16 @@ use App\Http\Controllers\Controller;
  *  @OA\Tag (
  *      name="任務題目",
  *      description="任務項目的題目",
+ *  )
+ *
+ *  @OA\Tag (
+ *      name="問與答 (Q&A)",
+ *      description="任務單元的問與答",
+ *  )
+ *
+ * @OA\Tag (
+ *      name="個案消息",
+ *      description="個案的消息推送",
  *  )
  */
 

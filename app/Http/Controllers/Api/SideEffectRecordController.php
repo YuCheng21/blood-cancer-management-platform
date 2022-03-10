@@ -17,22 +17,13 @@ class SideEffectRecordController extends Controller
      * @OA\Get (path="/api/side-effects/account/{account}", tags={"副作用紀錄"}, summary="取得副作用紀錄",
      *      description="取得副作用紀錄",
      *      @OA\Parameter (name="account", description="個案帳號", required=true, in="path", example="user1",
-     *          @OA\Schema(type="string",)
-     *     ),
+     *          @OA\Schema(type="string")),
      *     @OA\Response(response="200", description="success",
      *          @OA\MediaType(mediaType="application/json",
      *              @OA\Schema (
-     *                  allOf={
-     *                      @OA\Schema (
-     *                          @OA\Property(property="id", type="integer", description="副作用紀錄編號", example=1),
-     *                          @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
-     *                      ),
-     *                      @OA\Schema (ref="#/components/schemas/effect"),
-     *                  }
-     *              )
-     *          )
-     *      )
-     * )
+     *                  @OA\Property(property="data", type="array",
+     *                      @OA\Items(type="object", allOf={
+     *                          @OA\Schema (ref="#/components/schemas/effect")}))))))
      */
 
     public function account(Request $request, $account){
@@ -53,31 +44,15 @@ class SideEffectRecordController extends Controller
      *      description="新增副作用紀錄",
      *      @OA\RequestBody (
      *          @OA\MediaType(mediaType="multipart/form-data",
-     *              @OA\Schema(
-     *                  allOf={
-     *                      @OA\Schema (
-     *                          required={"account"},
-     *                          @OA\Property(property="account", type="string", description="個案帳號", example="user1"),
-     *                      ),
-     *                      @OA\Schema (ref="#/components/schemas/effect"),
-     *                  }
-     *              ),
-     *          ),
-     *      ),
-     *      @OA\Response(response=200, description="success",
+     *              @OA\Schema(allOf={
+     *                      @OA\Schema (required={"account", "date", "symptom", "severity", "has_image"},
+     *                          @OA\Property(property="account", type="string", description="個案帳號", example="user1")),
+     *                      @OA\Schema (ref="#/components/schemas/effect")}))),
+     *     @OA\Response(response="200", description="success",
      *          @OA\MediaType(mediaType="application/json",
      *              @OA\Schema (
-     *                  allOf={
-     *                      @OA\Schema (
-     *                          @OA\Property(property="id", type="integer", description="副作用紀錄編號", example=1),
-     *                          @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
-     *                      ),
-     *                      @OA\Schema (ref="#/components/schemas/effect"),
-     *                  }
-     *              )
-     *          )
-     *      )
-     * )
+     *                  @OA\Property(property="data", type="object", allOf={
+     *                      @OA\Schema (ref="#/components/schemas/effect")})))))
      */
 
     public function store(Request $request){

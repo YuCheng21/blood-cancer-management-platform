@@ -16,10 +16,16 @@ class TaskController extends Controller
      * @OA\Get (path="/api/tasks/account/{account}", tags={"每週任務"}, summary="取得每週任務",
      *     description="取得每週的任務相關資訊，如：週數、任務 id、該資料的獨立 id（在新增個案任務的完成狀態時會用到）",
      *     @OA\Parameter (name="account", description="個案帳號", required=true, in="path", example="user1",
-     *          @OA\Schema(type="string",)
-     *     ),
-     *     @OA\Response(response="200", description="success",)
-     * )
+     *          @OA\Schema(type="string",)),
+     *     @OA\Response(response="200", description="success",
+     *          @OA\MediaType(mediaType="application/json",
+     *              @OA\Schema (
+     *                  @OA\Property(property="data", type="array",
+     *                      @OA\Items(type="object", allOf={
+     *                          @OA\Schema (ref="#/components/schemas/case-task"),
+     *                          @OA\Schema (
+     *                              @OA\Property(property="task", type="object", allOf={
+     *                                  @OA\Schema (ref="#/components/schemas/task")}))}))))))
      */
 
     public function account(Request $request, $account)
@@ -40,17 +46,16 @@ class TaskController extends Controller
      * @OA\Patch (path="/api/tasks/state/{id}", tags={"每週任務"}, summary="更新每週任務完成狀態",
      *     description="更新每週任務完成狀態。<p>先用 GET 該個案的所有任務後，再用任務 id 使用此方法。</p>",
      *     @OA\Parameter (name="id", description="任務 id", required=true, in="path", example="1",
-     *          @OA\Schema(type="integer",)
-     *     ),
+     *          @OA\Schema(type="integer",)),
      *      @OA\RequestBody (
      *          @OA\MediaType(mediaType="application/x-www-form-urlencoded",
      *              @OA\Schema(required={"state"},
-     *                  @OA\Property(property="state", type="string", enum={"completed","uncompleted"}, example="completed"),
-     *              ),
-     *          ),
-     *      ),
-     *     @OA\Response(response="200", description="success",)
-     * )
+     *                  @OA\Property(property="state", type="string", enum={"completed","uncompleted"}, example="completed"),),),),
+     *     @OA\Response(response="200", description="success",
+     *          @OA\MediaType(mediaType="application/json",
+     *              @OA\Schema (
+     *                  @OA\Property(property="data", type="object", allOf={
+     *                          @OA\Schema (ref="#/components/schemas/case-task")})))))
      */
 
     public function state(Request $request ,$case_task_id){
@@ -61,7 +66,11 @@ class TaskController extends Controller
         $case_task = CaseTask::where('id', $case_task_id)->get();
         if (!Auth::check()) {
             $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $case_task = $case_task->where('case_id', $case_id)->first();
+            $case_task = $case_task->where('case_id', $case_id)->get();
+        }
+        $case_task = $case_task->first();
+        if (is_null($case_task)){
+            return \response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
         $case_task->update($validator->validate());
         $case_task = $case_task->refresh();
