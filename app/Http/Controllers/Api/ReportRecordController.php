@@ -104,7 +104,7 @@ class ReportRecordController extends Controller
         $report_record = ReportRecord::where('id', $report_id)->get();
         if (!Auth::check()) {
             $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $report_record = $report_record->where('case_id', $case_id)->get();
+            $report_record = $report_record->where('case_id', $case_id);
         }
         $report_record = $report_record->first();
         if (is_null($report_record)){
@@ -130,7 +130,7 @@ class ReportRecordController extends Controller
         $report_record = ReportRecord::where('id', $report_id)->get();
         if (!Auth::check()) {
             $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $report_record = $report_record->where('case_id', $case_id)->get();
+            $report_record = $report_record->where('case_id', $case_id);
         }
         $report_record = $report_record->first();
         if (is_null($report_record)){

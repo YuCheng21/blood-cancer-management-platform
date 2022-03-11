@@ -30,12 +30,15 @@ class TaskController extends Controller
 
     public function account(Request $request, $account)
     {
-        $case = CaseModel::where('account', $account)->first();
-        $case_task = $case->case_tasks;
+        $case = CaseModel::where('account', $account)->get();
         if (!Auth::check()) {
-            $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $case_task = $case_task->where('case_id', $case_id);
+            $case = $case->where('account', $request->get('auth_account'));
         }
+        $case = $case->first();
+        if (is_null($case)){
+            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
+        }
+        $case_task = $case->case_tasks;
         foreach ($case_task as $val){
             $_ = $val->task;
         }
@@ -66,7 +69,7 @@ class TaskController extends Controller
         $case_task = CaseTask::where('id', $case_task_id)->get();
         if (!Auth::check()) {
             $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $case_task = $case_task->where('case_id', $case_id)->get();
+            $case_task = $case_task->where('case_id', $case_id);
         }
         $case_task = $case_task->first();
         if (is_null($case_task)){

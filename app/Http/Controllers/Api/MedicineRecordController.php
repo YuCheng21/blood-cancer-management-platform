@@ -20,15 +20,14 @@ class MedicineRecordController extends Controller
      */
 
     public function account(Request $request, $account){
-        $case = CaseModel::where([
-            'account' => $account,
-        ])->first();
-        if (!Auth::check()){
-            $case = CaseModel::where([
-                'account' => $request->get('auth_account'),
-            ])->first();
+        $case = CaseModel::where('account', $account)->get();
+        if (!Auth::check()) {
+            $case = $case->where('account', $request->get('auth_account'));
         }
-
+        $case = $case->first();
+        if (is_null($case)){
+            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
+        }
         return response(['data' => $case->medicine_records], Response::HTTP_OK);
     }
 }

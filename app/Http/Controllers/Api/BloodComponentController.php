@@ -113,7 +113,7 @@ class BloodComponentController extends Controller
         $blood_component = BloodComponent::where('id', $blood_component_id)->get();
         if (!Auth::check()) {
             $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $blood_component = $blood_component->where('case_id', $case_id)->get();
+            $blood_component = $blood_component->where('case_id', $case_id);
         }
         $blood_component = $blood_component->first();
         if (is_null($blood_component)){
@@ -139,7 +139,7 @@ class BloodComponentController extends Controller
         $blood_component = BloodComponent::where('id', $blood_component_id)->get();
         if (!Auth::check()) {
             $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $blood_component = $blood_component->where('case_id', $case_id)->get();
+            $blood_component = $blood_component->where('case_id', $case_id);
         }
         $blood_component = $blood_component->first();
         if (is_null($blood_component)){

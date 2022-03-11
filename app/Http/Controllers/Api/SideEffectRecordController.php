@@ -27,15 +27,14 @@ class SideEffectRecordController extends Controller
      */
 
     public function account(Request $request, $account){
-        $case = CaseModel::where([
-            'account' => $account,
-        ])->first();
-        if (!Auth::check()){
-            $case = CaseModel::where([
-                'account' => $request->get('auth_account'),
-            ])->first();
+        $case = CaseModel::where('account', $account)->get();
+        if (!Auth::check()) {
+            $case = $case->where('account', $request->get('auth_account'));
         }
-
+        $case = $case->first();
+        if (is_null($case)){
+            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
+        }
         return response(['data' => $case->side_effect_records], Response::HTTP_OK);
     }
 
@@ -68,10 +67,13 @@ class SideEffectRecordController extends Controller
         ];
         $validator = Validator::make($request->all(), $rules);
 
+        $case = CaseModel::where('account', $validator->validate()['account'])->get();
         if (!Auth::check()) {
-            $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-        } else {
-            $case_id = CaseModel::where('account', $validator->validate()['account'])->first()->toArray()['id'];
+            $case = $case->where('account', $request->get('auth_account'));
+        }
+        $case = $case->first();
+        if (is_null($case)){
+            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
 
         $file = $request->file('image');
@@ -89,7 +91,7 @@ class SideEffectRecordController extends Controller
         }
 
         $data = [
-            'case_id' => $case_id,
+            'case_id' => $case['id'],
             'date' => $request['date'],
             'symptom' => $request['symptom'],
             'difficulty' => $request['difficulty'],
