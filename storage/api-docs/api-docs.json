@@ -796,6 +796,89 @@
                 }
             }
         },
+        "/api/tasks": {
+            "get": {
+                "tags": [
+                    "任務"
+                ],
+                "summary": "取得所有任務",
+                "description": "取得所有任務",
+                "operationId": "be68905d866e856db6c738172b8d929a",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "allOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/task"
+                                                    },
+                                                    {
+                                                        "properties": {
+                                                            "category_information": {
+                                                                "type": "object",
+                                                                "allOf": [
+                                                                    {
+                                                                        "$ref": "#/components/schemas/category_1"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tasks/category_information": {
+            "get": {
+                "tags": [
+                    "任務"
+                ],
+                "summary": "取得所有任務類別",
+                "description": "取得所有任務類別",
+                "operationId": "99ae8e9cdef04d8c408db784281f92cc",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "allOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/category_1"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/tasks/account/{account}": {
             "get": {
                 "tags": [
@@ -1254,6 +1337,26 @@
                         "description": "固定回診醫院",
                         "type": "string",
                         "example": "高醫"
+                    }
+                },
+                "type": "object"
+            },
+            "category_1": {
+                "properties": {
+                    "category_1": {
+                        "description": "類別編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "description": "類別名稱",
+                        "type": "string",
+                        "example": "移植室的環境介紹"
+                    },
+                    "short": {
+                        "description": "類別縮寫",
+                        "type": "string",
+                        "example": "環境介紹"
                     }
                 },
                 "type": "object"

@@ -59,7 +59,7 @@ Route::middleware('member.auth')->name('api.')->group(function () {
 
     Route::prefix('tasks')->name('tasks.')
         ->controller(TaskController::class)->group(function (){
-            Route::get('/index', 'index')->name('index');
+            Route::get('/', 'index')->name('index');
             Route::get('/category_information', 'category_information')->name('category_information');
             Route::get('/account/{account}', 'account')->name('account');
             Route::patch('/state/{case_task_id}', 'state')->name('state');

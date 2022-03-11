@@ -86,6 +86,13 @@ use App\Http\Controllers\Controller;
  *              @OA\Property(property="hospital", type="string", description="固定回診醫院", example="高醫"),
  *          ),
  *          @OA\Schema(
+ *              schema="category_1",
+ *              type="object",
+ *              @OA\Property(property="category_1", type="integer", description="類別編號", example=1),
+ *              @OA\Property(property="name", type="string", description="類別名稱", example="移植室的環境介紹"),
+ *              @OA\Property(property="short", type="string", description="類別縮寫", example="環境介紹"),
+ *          ),
+ *          @OA\Schema(
  *              schema="task",
  *              type="object",
  *              @OA\Property(property="id", type="integer", description="任務編號", example=1),

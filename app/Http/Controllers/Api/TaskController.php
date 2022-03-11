@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\CaseModel;
 use App\Models\CaseTask;
+use App\Models\CategoryInformation;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -12,6 +14,44 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TaskController extends Controller
 {
+    /**
+     * @OA\Get (path="/api/tasks", tags={"任務"}, summary="取得所有任務",
+     *     description="取得所有任務",
+     *     @OA\Response(response="200", description="success",
+     *          @OA\MediaType(mediaType="application/json",
+     *              @OA\Schema (
+     *                  @OA\Property(property="data", type="array",
+     *                      @OA\Items(type="object", allOf={
+     *                          @OA\Schema (ref="#/components/schemas/task"),
+     *                          @OA\Schema (
+     *                              @OA\Property(property="category_information", type="object", allOf={
+     *                                  @OA\Schema (ref="#/components/schemas/category_1")}))}))))))
+     */
+
+    public function index(){
+        $tasks = Task::all();
+        foreach ($tasks as $task){
+            $_ = $task->category_information;
+        }
+        return response(['data' => $tasks], Response::HTTP_OK);
+    }
+
+    /**
+     * @OA\Get (path="/api/tasks/category_information", tags={"任務"}, summary="取得所有任務類別",
+     *     description="取得所有任務類別",
+     *     @OA\Response(response="200", description="success",
+     *          @OA\MediaType(mediaType="application/json",
+     *              @OA\Schema (
+     *                  @OA\Property(property="data", type="array",
+     *                      @OA\Items(type="object", allOf={
+     *                          @OA\Schema (ref="#/components/schemas/category_1")}))))))
+     */
+
+    public function category_information(){
+        $category_information = CategoryInformation::all();
+        return response(['data' => $category_information], Response::HTTP_OK);
+    }
+
     /**
      * @OA\Get (path="/api/tasks/account/{account}", tags={"每週任務"}, summary="取得每週任務",
      *     description="取得每週的任務相關資訊，如：週數、任務 id、該資料的獨立 id（在新增個案任務的完成狀態時會用到）",
