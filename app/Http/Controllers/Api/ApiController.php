@@ -25,6 +25,21 @@ use App\Http\Controllers\Controller;
  *              scheme="basic",
  *          ),
  *          @OA\Schema (
+ *              schema="case",
+ *              type="object",
+ *              @OA\Property(property="id",type="integer",description="個案編號"),
+ *              @OA\Property(property="account",type="string",description="個案帳號"),
+ *              @OA\Property(property="transplant_num",type="string",description="個案移植編號"),
+ *              @OA\Property(property="name",type="string",description="個案姓名"),
+ *              @OA\Property(property="gender_id",type="integer",description="個案性別"),
+ *              @OA\Property(property="birthday",type="string",description="個案生日"),
+ *              @OA\Property(property="date",type="string",description="個案移植日期"),
+ *              @OA\Property(property="transplant_type_id",type="integer",description="個案移植種類"),
+ *              @OA\Property(property="disease_type_id",type="integer",description="個案疾病種類"),
+ *              @OA\Property(property="disease_state_id",type="integer",description="個案疾病期數"),
+ *              @OA\Property(property="disease_class_id",type="integer",description="個案疾病類別"),
+ *          ),
+ *          @OA\Schema (
  *              schema="blood",
  *              type="object",
  *              @OA\Property(property="id", type="integer", description="抽血數據編號", example=1),
@@ -51,6 +66,16 @@ use App\Http\Controllers\Controller;
  *              @OA\Property(property="caption", type="string", example="Cation #1"),
  *          ),
  *          @OA\Schema(
+ *              schema="medicine",
+ *              type="object",
+ *              @OA\Property(property="id", type="integer", description="施打藥物紀錄編號", example=1),
+ *              @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
+ *              @OA\Property(property="date", type="string", description="日期", example="1993-12-11"),
+ *              @OA\Property(property="course", type="string", description="療程", example="Cycle4"),
+ *              @OA\Property(property="type", type="string", description="施打藥物種類", example="藥物-N"),
+ *              @OA\Property(property="dose", type="string", description="藥物劑量", example="622 mg"),
+ *          ),
+ *          @OA\Schema(
  *              schema="report",
  *              type="object",
  *              @OA\Property(property="id", type="integer", description="報告各管師編號", example=1),
@@ -61,6 +86,14 @@ use App\Http\Controllers\Controller;
  *              @OA\Property(property="hospital", type="string", description="固定回診醫院", example="高醫"),
  *          ),
  *          @OA\Schema(
+ *              schema="task",
+ *              type="object",
+ *              @OA\Property(property="id", type="integer", description="任務編號", example=1),
+ *              @OA\Property(property="category_1", type="integer", description="類別1", example=1),
+ *              @OA\Property(property="category_2", type="string", description="類別2", example="2-2"),
+ *              @OA\Property(property="name", type="string", description="任務名稱", example="造血幹細胞移植分類-異體造血幹細胞移植"),
+ *          ),
+ *          @OA\Schema(
  *              schema="case-task",
  *              type="object",
  *              @OA\Property(property="id", type="integer", description="個案任務編號", example=1),
@@ -69,14 +102,6 @@ use App\Http\Controllers\Controller;
  *              @OA\Property(property="week", type="integer", description="週數", example=1),
  *              @OA\Property(property="start_at", type="date", description="開始日期", example="2022-03-11"),
  *              @OA\Property(property="state", type="string", enum={"completed","uncompleted"}, description="完成狀態", example="completed"),
- *          ),
- *          @OA\Schema(
- *              schema="task",
- *              type="object",
- *              @OA\Property(property="id", type="integer", description="任務編號", example=1),
- *              @OA\Property(property="category_1", type="integer", description="類別1", example=1),
- *              @OA\Property(property="category_2", type="string", description="類別2", example="2-2"),
- *              @OA\Property(property="name", type="string", description="任務名稱", example="造血幹細胞移植分類-異體造血幹細胞移植"),
  *          ),
  *          @OA\Schema(
  *              schema="topic",
@@ -98,6 +123,30 @@ use App\Http\Controllers\Controller;
  *              @OA\Property(property="case_task_id", type="integer", description="個案任務編號", example=1),
  *              @OA\Property(property="topic_id", type="integer", description="題目編號", example=1),
  *              @OA\Property(property="state", type="string", enum={"correct", "wrong"},description="答題結果", example="correct"),
+ *          ),
+ *          @OA\Schema(
+ *              schema="faq",
+ *              type="object",
+ *              @OA\Property(property="category_1", type="integer", description="類型", example=1),
+ *              @OA\Property(property="title", type="string", description="問題", example="Debitis ut."),
+ *              @OA\Property(property="content", type="string", description="解答", example="Ad magnam voluptatem ratione."),
+ *          ),
+ *          @OA\Schema(
+ *              schema="message",
+ *              type="object",
+ *              @OA\Property(property="id", type="integer", description="消息編號", example=1),
+ *              @OA\Property(property="title", type="string", description="標題", example="Debitis ut."),
+ *              @OA\Property(property="content", type="string", description="內容", example="Ad magnam voluptatem ratione."),
+ *              @OA\Property(property="user_id", type="string", description="發布者", example="1"),
+ *              @OA\Property(property="date", type="string", description="建立日期", example="1984-10-05"),
+ *          ),
+ *          @OA\Schema(
+ *              schema="case-message",
+ *              type="object",
+ *              @OA\Property(property="id", type="integer", description="個案消息編號", example=1),
+ *              @OA\Property(property="case_id", type="integer", description="個案編號", example="1"),
+ *              @OA\Property(property="message_id", type="integer", description="消息編號", example="1"),
+ *              @OA\Property(property="state", type="string", description="消息狀態", example="1"),
  *          ),
  *      ),
  *     security={{"basicAuth": {}}},
@@ -124,6 +173,10 @@ use App\Http\Controllers\Controller;
  *  )
  *
  *  @OA\Tag (
+ *      name="任務",
+ *      description="任務項目",
+ *  )
+ *  @OA\Tag (
  *      name="每週任務",
  *      description="個案每週的任務項目",
  *  )
@@ -133,7 +186,7 @@ use App\Http\Controllers\Controller;
  *  )
  *
  *  @OA\Tag (
- *      name="問與答 (Q&A)",
+ *      name="問與答",
  *      description="任務單元的問與答",
  *  )
  *

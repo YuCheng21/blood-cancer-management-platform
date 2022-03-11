@@ -14,8 +14,7 @@ class CaseModelController extends Controller
      *  @OA\Get(path="/api/cases/{account}", tags={"個案資料"}, summary="取得個案資料",
      *      description="取得個案資料",
      *      @OA\Parameter(name="account", description="個案帳號", required=true, in="path", example="user1",
-     *          @OA\Schema(type="string")
-     *      ),
+     *          @OA\Schema(type="string")),
      *      @OA\Response(response="200", description="success",
      *          @OA\MediaType(mediaType="application/json",
      *             @OA\Schema(
@@ -27,11 +26,7 @@ class CaseModelController extends Controller
      *                 @OA\Property(property="birthday",type="string",description="個案生日"),
      *                 @OA\Property(property="date",type="string",description="個案移植日期"),
      *                 @OA\Property(property="transplant_type",type="string",description="個案移植種類"),
-     *                 @OA\Property(property="disease_type",type="string",description="個案疾病種類"),
-     *             )
-     *         )
-     *      )
-     *  )
+     *                 @OA\Property(property="disease_type",type="string",description="個案疾病種類")))))
      */
 
     public function show(Request $request, $account)

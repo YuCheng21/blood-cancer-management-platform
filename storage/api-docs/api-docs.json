@@ -294,6 +294,88 @@
                 }
             }
         },
+        "/api/faqs": {
+            "get": {
+                "tags": [
+                    "問與答"
+                ],
+                "summary": "取得所有類別問與答",
+                "description": "取得所有類別問與答",
+                "operationId": "1cf6a38b9bfb7aa285a9c5c6657be48c",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "allOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/faq"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/faqs/category_1/{category_1}": {
+            "get": {
+                "tags": [
+                    "問與答"
+                ],
+                "summary": "取得單一類別問與答",
+                "description": "取得單一類別問與答",
+                "operationId": "a8c304889ac6f6bc73fb7274f58d5e4b",
+                "parameters": [
+                    {
+                        "name": "category_1",
+                        "in": "path",
+                        "description": "類別編號",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "allOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/faq"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/medicine/account/{account}": {
             "get": {
                 "tags": [
@@ -316,7 +398,87 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "success"
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "allOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/message"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/messages/account/{account}": {
+            "get": {
+                "tags": [
+                    "個案消息"
+                ],
+                "summary": "取得個案消息",
+                "description": "取得個案消息",
+                "operationId": "0c44d4072ff6ea09579b005b0727b29c",
+                "parameters": [
+                    {
+                        "name": "account",
+                        "in": "path",
+                        "description": "個案帳號",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "user1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "allOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/case-message"
+                                                    },
+                                                    {
+                                                        "properties": {
+                                                            "message": {
+                                                                "type": "object",
+                                                                "allOf": [
+                                                                    {
+                                                                        "$ref": "#/components/schemas/message"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -877,6 +1039,55 @@
     },
     "components": {
         "schemas": {
+            "case": {
+                "properties": {
+                    "id": {
+                        "description": "個案編號",
+                        "type": "integer"
+                    },
+                    "account": {
+                        "description": "個案帳號",
+                        "type": "string"
+                    },
+                    "transplant_num": {
+                        "description": "個案移植編號",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "個案姓名",
+                        "type": "string"
+                    },
+                    "gender_id": {
+                        "description": "個案性別",
+                        "type": "integer"
+                    },
+                    "birthday": {
+                        "description": "個案生日",
+                        "type": "string"
+                    },
+                    "date": {
+                        "description": "個案移植日期",
+                        "type": "string"
+                    },
+                    "transplant_type_id": {
+                        "description": "個案移植種類",
+                        "type": "integer"
+                    },
+                    "disease_type_id": {
+                        "description": "個案疾病種類",
+                        "type": "integer"
+                    },
+                    "disease_state_id": {
+                        "description": "個案疾病期數",
+                        "type": "integer"
+                    },
+                    "disease_class_id": {
+                        "description": "個案疾病類別",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
             "blood": {
                 "properties": {
                     "id": {
@@ -976,6 +1187,41 @@
                 },
                 "type": "object"
             },
+            "medicine": {
+                "properties": {
+                    "id": {
+                        "description": "施打藥物紀錄編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "case_id": {
+                        "description": "個案編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "date": {
+                        "description": "日期",
+                        "type": "string",
+                        "example": "1993-12-11"
+                    },
+                    "course": {
+                        "description": "療程",
+                        "type": "string",
+                        "example": "Cycle4"
+                    },
+                    "type": {
+                        "description": "施打藥物種類",
+                        "type": "string",
+                        "example": "藥物-N"
+                    },
+                    "dose": {
+                        "description": "藥物劑量",
+                        "type": "string",
+                        "example": "622 mg"
+                    }
+                },
+                "type": "object"
+            },
             "report": {
                 "properties": {
                     "id": {
@@ -1008,6 +1254,31 @@
                         "description": "固定回診醫院",
                         "type": "string",
                         "example": "高醫"
+                    }
+                },
+                "type": "object"
+            },
+            "task": {
+                "properties": {
+                    "id": {
+                        "description": "任務編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "category_1": {
+                        "description": "類別1",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "category_2": {
+                        "description": "類別2",
+                        "type": "string",
+                        "example": "2-2"
+                    },
+                    "name": {
+                        "description": "任務名稱",
+                        "type": "string",
+                        "example": "造血幹細胞移植分類-異體造血幹細胞移植"
                     }
                 },
                 "type": "object"
@@ -1048,31 +1319,6 @@
                             "uncompleted"
                         ],
                         "example": "completed"
-                    }
-                },
-                "type": "object"
-            },
-            "task": {
-                "properties": {
-                    "id": {
-                        "description": "任務編號",
-                        "type": "integer",
-                        "example": 1
-                    },
-                    "category_1": {
-                        "description": "類別1",
-                        "type": "integer",
-                        "example": 1
-                    },
-                    "category_2": {
-                        "description": "類別2",
-                        "type": "string",
-                        "example": "2-2"
-                    },
-                    "name": {
-                        "description": "任務名稱",
-                        "type": "string",
-                        "example": "造血幹細胞移植分類-異體造血幹細胞移植"
                     }
                 },
                 "type": "object"
@@ -1159,6 +1405,81 @@
                     }
                 },
                 "type": "object"
+            },
+            "faq": {
+                "properties": {
+                    "category_1": {
+                        "description": "類型",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "title": {
+                        "description": "問題",
+                        "type": "string",
+                        "example": "Debitis ut."
+                    },
+                    "content": {
+                        "description": "解答",
+                        "type": "string",
+                        "example": "Ad magnam voluptatem ratione."
+                    }
+                },
+                "type": "object"
+            },
+            "message": {
+                "properties": {
+                    "id": {
+                        "description": "消息編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "title": {
+                        "description": "標題",
+                        "type": "string",
+                        "example": "Debitis ut."
+                    },
+                    "content": {
+                        "description": "內容",
+                        "type": "string",
+                        "example": "Ad magnam voluptatem ratione."
+                    },
+                    "user_id": {
+                        "description": "發布者",
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "date": {
+                        "description": "建立日期",
+                        "type": "string",
+                        "example": "1984-10-05"
+                    }
+                },
+                "type": "object"
+            },
+            "case-message": {
+                "properties": {
+                    "id": {
+                        "description": "個案消息編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "case_id": {
+                        "description": "個案編號",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "message_id": {
+                        "description": "消息編號",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "state": {
+                        "description": "消息狀態",
+                        "type": "string",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
             }
         },
         "securitySchemes": {
@@ -1195,6 +1516,10 @@
             "description": "個案回報個管師的回報紀錄"
         },
         {
+            "name": "任務",
+            "description": "任務項目"
+        },
+        {
             "name": "每週任務",
             "description": "個案每週的任務項目"
         },
@@ -1203,7 +1528,7 @@
             "description": "任務項目的題目"
         },
         {
-            "name": "問與答 (Q&A)",
+            "name": "問與答",
             "description": "任務單元的問與答"
         },
         {

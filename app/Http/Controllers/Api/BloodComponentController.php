@@ -28,13 +28,16 @@ class BloodComponentController extends Controller
 
     public function account(Request $request, $account)
     {
-        $case = CaseModel::where('account', $account)->first();
-        $blood_component = $case->blood_components;
+        $case = CaseModel::where('account', $account)->get();
         if (!Auth::check()) {
-            $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $blood_component = $blood_component->where('case_id', $case_id);
+            $case = $case->where('account', $request->get('auth_account'));
         }
-        return response(['data' => $blood_component], Response::HTTP_OK);
+        $case = $case->first();
+        if (is_null($case)){
+            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
+        }
+        $blood_components = $case->blood_components;
+        return response(['data' => $blood_components], Response::HTTP_OK);
     }
 
     /**
@@ -69,13 +72,18 @@ class BloodComponentController extends Controller
         ];
         $validator = Validator::make($request->all(), $rules);
 
+        $case = CaseModel::where('account', $validator->validate()['account'])->get();
         if (!Auth::check()) {
-            $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-        } else {
-            $case_id = CaseModel::where('account', $validator->validate()['account'])->first()->toArray()['id'];
+            $case = $case->where('account', $request->get('auth_account'));
         }
-        $result = ['case_id' => $case_id] + $validator->validate();
-        $blood_component = BloodComponent::create($result);
+        $case = $case->first();
+        if (is_null($case)){
+            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
+        }
+        $data = [
+            'case_id' => $case->id,
+        ] + $validator->validate();
+        $blood_component = BloodComponent::create($data);
         $blood_component = $blood_component->refresh();
         return response(['data' => $blood_component], Response::HTTP_CREATED);
     }
@@ -110,14 +118,18 @@ class BloodComponentController extends Controller
             'bun' => ['required'],
         ];
         $validator = Validator::make($request->all(), $rules);
-        $blood_component = BloodComponent::where('id', $blood_component_id)->get();
+
+        $case = CaseModel::all();
         if (!Auth::check()) {
-            $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $blood_component = $blood_component->where('case_id', $case_id);
+            $case = $case->where('account', $request->get('auth_account'));
         }
-        $blood_component = $blood_component->first();
+        $case = $case->first();
+        if (is_null($case)){
+            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
+        }
+        $blood_component = $case->blood_components->where('id', $blood_component_id)->first();
         if (is_null($blood_component)){
-            return \response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
+            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
         $blood_component->update($validator->validate());
         $blood_component = $blood_component->refresh();
@@ -136,14 +148,17 @@ class BloodComponentController extends Controller
 
     public function destroy(Request $request, $blood_component_id)
     {
-        $blood_component = BloodComponent::where('id', $blood_component_id)->get();
+        $case = CaseModel::all();
         if (!Auth::check()) {
-            $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $blood_component = $blood_component->where('case_id', $case_id);
+            $case = $case->where('account', $request->get('auth_account'));
         }
-        $blood_component = $blood_component->first();
+        $case = $case->first();
+        if (is_null($case)){
+            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
+        }
+        $blood_component = $case->blood_components->where('id', $blood_component_id)->first();
         if (is_null($blood_component)){
-            return \response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
+            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
         $blood_component->delete();
         return response(null, Response::HTTP_NO_CONTENT);

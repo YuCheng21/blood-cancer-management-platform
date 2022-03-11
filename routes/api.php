@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\MessageController;
+use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\TopicController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\ReportRecordController;
@@ -27,10 +29,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('member.auth')->name('api.')->group(function () {
     Route::prefix('blood-components')->name('blood-components.')
         ->controller(BloodComponentController::class)->group(function () {
+            Route::get('/account/{account}', 'account')->name('account');
             Route::post('/', 'store')->name('store');
             Route::patch('/{blood_component_id}', 'update')->name('update');
             Route::delete('/{blood_component_id}', 'destroy')->name('destroy');
-            Route::get('/account/{account}', 'account')->name('account');
         });
     Route::prefix('cases')->name('cases.')
         ->controller(CaseModelController::class)->group(function () {
@@ -49,14 +51,16 @@ Route::middleware('member.auth')->name('api.')->group(function () {
 
     Route::prefix('reports')->name('reports.')
         ->controller(ReportRecordController::class)->group(function (){
+            Route::get('/account/{account}', 'account')->name('account');
             Route::post('/', 'store')->name('store');
             Route::patch('/{report_id}', 'update')->name('update');
             Route::delete('/{report_id}', 'destroy')->name('destroy');
-            Route::get('/account/{account}', 'account')->name('account');
         });
 
     Route::prefix('tasks')->name('tasks.')
         ->controller(TaskController::class)->group(function (){
+            Route::get('/index', 'index')->name('index');
+            Route::get('/category_information', 'category_information')->name('category_information');
             Route::get('/account/{account}', 'account')->name('account');
             Route::patch('/state/{case_task_id}', 'state')->name('state');
         });
@@ -65,5 +69,16 @@ Route::middleware('member.auth')->name('api.')->group(function () {
         ->controller(TopicController::class)->group(function (){
             Route::get('/{task_id}', 'account')->name('account');
             Route::post('/cases', 'cases')->name('cases');
+        });
+
+    Route::prefix('faqs')->name('faqs.')
+        ->controller(FaqController::class)->group(function (){
+            Route::get('/', 'index')->name('index');
+            Route::get('/category_1/{category_1}', 'show')->name('show');
+        });
+
+    Route::prefix('messages')->name('messages.')
+        ->controller(MessageController::class)->group(function (){
+            Route::get('/account/{account}', 'account')->name('account');
         });
 });

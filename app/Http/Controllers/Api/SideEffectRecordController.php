@@ -35,7 +35,11 @@ class SideEffectRecordController extends Controller
         if (is_null($case)){
             return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
-        return response(['data' => $case->side_effect_records], Response::HTTP_OK);
+        $side_effect_records = $case->side_effect_records->map(function ($var){
+            $var['path'] = $var->path();
+            return $var;
+        });
+        return response(['data' => $side_effect_records], Response::HTTP_OK);
     }
 
     /**
@@ -78,11 +82,7 @@ class SideEffectRecordController extends Controller
 
         $file = $request->file('image');
         if (!is_null($file)) {
-            $path = $file->storeAs(
-                'effect',
-                $file->hashName(),
-                'public'
-            );
+            $path = $file->storeAs('effect', $file->hashName(), 'public');
         }else{
             $path = null;
             if ($request['has_image'] == 1){
@@ -92,14 +92,8 @@ class SideEffectRecordController extends Controller
 
         $data = [
             'case_id' => $case['id'],
-            'date' => $request['date'],
-            'symptom' => $request['symptom'],
-            'difficulty' => $request['difficulty'],
-            'severity' => $request['severity'],
-            'has_image' => $request['has_image'],
-            'caption' => $request['caption'],
             'path' => $path,
-        ];
+        ] + $validator->validate();
         $side_effect_record = SideEffectRecord::create($data);
         $side_effect_record = $side_effect_record->refresh();
         return response(['data' => $side_effect_record], Response::HTTP_CREATED);

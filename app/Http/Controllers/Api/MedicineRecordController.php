@@ -16,7 +16,12 @@ class MedicineRecordController extends Controller
      *      description="取得施打藥物及劑量紀錄",
      *      @OA\Parameter (name="account", description="個案帳號", required=true, in="path", example="user1",
      *          @OA\Schema (type="string")),
-     *      @OA\Response (response="200", description="success"))
+     *     @OA\Response(response="200", description="success",
+     *          @OA\MediaType(mediaType="application/json",
+     *              @OA\Schema (
+     *                  @OA\Property(property="data", type="array",
+     *                      @OA\Items(type="object", allOf={
+     *                          @OA\Schema (ref="#/components/schemas/message")}))))))
      */
 
     public function account(Request $request, $account){

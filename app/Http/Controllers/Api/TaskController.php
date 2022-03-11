@@ -16,7 +16,7 @@ class TaskController extends Controller
      * @OA\Get (path="/api/tasks/account/{account}", tags={"每週任務"}, summary="取得每週任務",
      *     description="取得每週的任務相關資訊，如：週數、任務 id、該資料的獨立 id（在新增個案任務的完成狀態時會用到）",
      *     @OA\Parameter (name="account", description="個案帳號", required=true, in="path", example="user1",
-     *          @OA\Schema(type="string",)),
+     *          @OA\Schema(type="string")),
      *     @OA\Response(response="200", description="success",
      *          @OA\MediaType(mediaType="application/json",
      *              @OA\Schema (

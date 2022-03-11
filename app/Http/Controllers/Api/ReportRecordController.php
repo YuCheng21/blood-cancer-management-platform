@@ -28,12 +28,15 @@ class ReportRecordController extends Controller
 
     public function account(Request $request, $account)
     {
-        $case = CaseModel::where('account', $account)->first();
-        $report_records = $case->report_records;
+        $case = CaseModel::where('account', $account)->get();
         if (!Auth::check()) {
-            $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $report_records = $report_records->where('case_id', $case_id);
+            $case = $case->where('account', $request->get('auth_account'));
         }
+        $case = $case->first();
+        if (is_null($case)){
+            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
+        }
+        $report_records = $case->report_records;
         return response(['data' => $report_records], Response::HTTP_OK);
     }
 
@@ -64,13 +67,19 @@ class ReportRecordController extends Controller
         ];
         $validator = Validator::make($request->all(), $rules);
 
+        $case = CaseModel::where('account', $validator->validate()['account'])->get();
         if (!Auth::check()) {
-            $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-        } else {
-            $case_id = CaseModel::where('account', $validator->validate()['account'])->first()->toArray()['id'];
+            $case = $case->where('account', $request->get('auth_account'));
         }
-        $result = ['case_id' => $case_id] + $validator->validate();
-        $report_record = ReportRecord::create($result);
+        $case = $case->first();
+        if (is_null($case)){
+            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
+        }
+
+        $data = [
+            'case_id' => $case->id,
+        ] + $validator->validate();
+        $report_record = ReportRecord::create($data);
         $report_record = $report_record->refresh();
         return response(['data' => $report_record], Response::HTTP_CREATED);
     }
@@ -101,14 +110,18 @@ class ReportRecordController extends Controller
             'hospital' => ['required'],
         ];
         $validator = Validator::make($request->all(), $rules);
-        $report_record = ReportRecord::where('id', $report_id)->get();
+
+        $case = CaseModel::all();
         if (!Auth::check()) {
-            $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $report_record = $report_record->where('case_id', $case_id);
+            $case = $case->where('account', $request->get('auth_account'));
         }
-        $report_record = $report_record->first();
+        $case = $case->first();
+        if (is_null($case)){
+            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
+        }
+        $report_record = $case->report_records->where('id', $report_id)->first();
         if (is_null($report_record)){
-            return \response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
+            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
         $report_record->update($validator->validate());
         $report_record = $report_record->refresh();
@@ -127,14 +140,17 @@ class ReportRecordController extends Controller
 
     public function destroy(Request $request, $report_id)
     {
-        $report_record = ReportRecord::where('id', $report_id)->get();
+        $case = CaseModel::all();
         if (!Auth::check()) {
-            $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $report_record = $report_record->where('case_id', $case_id);
+            $case = $case->where('account', $request->get('auth_account'));
         }
-        $report_record = $report_record->first();
+        $case = $case->first();
+        if (is_null($case)){
+            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
+        }
+        $report_record = $case->report_records->where('id', $report_id)->first();
         if (is_null($report_record)){
-            return \response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
+            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
         $report_record->delete();
         return response(null, Response::HTTP_NO_CONTENT);
