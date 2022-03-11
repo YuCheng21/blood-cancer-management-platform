@@ -782,7 +782,27 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "success"
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "allOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/topic"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -806,14 +826,17 @@
                                 ],
                                 "properties": {
                                     "case_task_id": {
+                                        "description": "個案案任務編號",
                                         "type": "integer",
                                         "example": 1
                                     },
                                     "topic_id": {
+                                        "description": "題目編號",
                                         "type": "integer",
                                         "example": 1
                                     },
                                     "state": {
+                                        "description": "答題結果",
                                         "type": "string",
                                         "enum": [
                                             "correct",
@@ -829,7 +852,24 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "success"
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/case-topic"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -1033,6 +1073,89 @@
                         "description": "任務名稱",
                         "type": "string",
                         "example": "造血幹細胞移植分類-異體造血幹細胞移植"
+                    }
+                },
+                "type": "object"
+            },
+            "topic": {
+                "properties": {
+                    "id": {
+                        "description": "題目編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "task_id": {
+                        "description": "任務編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "question": {
+                        "description": "題目內容",
+                        "type": "string",
+                        "example": "Aut provident qui eos modi eveniet nostrum animi."
+                    },
+                    "question_type": {
+                        "description": "答案類型",
+                        "type": "string",
+                        "enum": [
+                            "true-false",
+                            "multiple-choice"
+                        ],
+                        "example": "multiple-choice"
+                    },
+                    "answer": {
+                        "description": "題目答案",
+                        "type": "integer",
+                        "example": "3"
+                    },
+                    "option_a": {
+                        "description": "多選題答案A",
+                        "type": "string",
+                        "example": "Et non."
+                    },
+                    "option_b": {
+                        "description": "多選題答案B",
+                        "type": "string",
+                        "example": "Quos."
+                    },
+                    "option_c": {
+                        "description": "多選題答案C",
+                        "type": "string",
+                        "example": "Et."
+                    },
+                    "option_d": {
+                        "description": "多選題答案D",
+                        "type": "string",
+                        "example": "Molestiae."
+                    }
+                },
+                "type": "object"
+            },
+            "case-topic": {
+                "properties": {
+                    "id": {
+                        "description": "個案題目答題結果編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "case_task_id": {
+                        "description": "個案任務編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "topic_id": {
+                        "description": "題目編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "state": {
+                        "description": "答題結果",
+                        "type": "string",
+                        "enum": [
+                            "correct",
+                            "wrong"
+                        ],
+                        "example": "correct"
                     }
                 },
                 "type": "object"

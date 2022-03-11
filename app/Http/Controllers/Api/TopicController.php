@@ -18,10 +18,13 @@ class TopicController extends Controller
      * @OA\Get (path="/api/topics/{id}", tags={"任務題目"}, summary="取得任務題目",
      *     description="取得任務的題目相關資訊，如：題目 id。",
      *     @OA\Parameter (name="id", description="任務 id", required=true, in="path", example="1",
-     *          @OA\Schema(type="integer",)
-     *     ),
-     *     @OA\Response(response="200", description="success",)
-     * )
+     *          @OA\Schema(type="integer",)),
+     *     @OA\Response(response="200", description="success",
+     *          @OA\MediaType(mediaType="application/json",
+     *              @OA\Schema (
+     *                  @OA\Property(property="data", type="array",
+     *                      @OA\Items(type="object", allOf={
+     *                          @OA\Schema (ref="#/components/schemas/topic")}))))))
      */
 
     public function account(Request $request, $task_id)
@@ -37,14 +40,14 @@ class TopicController extends Controller
      *     @OA\RequestBody (
      *          @OA\MediaType(mediaType="multipart/form-data",
      *              @OA\Schema(required={"case_task_id", "topic_id", "state"},
-     *                  @OA\Property(property="case_task_id", type="integer", example=1),
-     *                  @OA\Property(property="topic_id", type="integer", example=1),
-     *                  @OA\Property(property="state", type="string", enum={"correct","wrong"}, example="correct"),
-     *              ),
-     *          ),
-     *      ),
-     *     @OA\Response(response="200", description="success")
-     * )
+     *                  @OA\Property(property="case_task_id", type="integer", description="個案案任務編號", example=1),
+     *                  @OA\Property(property="topic_id", type="integer", description="題目編號", example=1),
+     *                  @OA\Property(property="state", type="string", enum={"correct","wrong"}, description="答題結果", example="correct")))),
+     *     @OA\Response(response="200", description="success",
+     *          @OA\MediaType(mediaType="application/json",
+     *              @OA\Schema (
+     *                  @OA\Property(property="data", type="object", allOf={
+     *                      @OA\Schema (ref="#/components/schemas/case-topic")}))))))
      */
 
     public function cases(Request $request)
