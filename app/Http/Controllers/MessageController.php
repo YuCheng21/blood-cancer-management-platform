@@ -101,7 +101,7 @@ class MessageController extends Controller
             return back()
                 ->with([
                     'type' => 'success-toast',
-                    'msg' => '新增消息成功。'
+                    'msg' => '修改消息成功。'
                 ]);
         } catch (QueryException $queryException) {
             return back()
@@ -147,7 +147,7 @@ class MessageController extends Controller
         return back()
             ->with([
                 'type' => 'success-toast',
-                'msg' => '套用消息成功。'
+                'msg' => '發送消息成功。'
             ]);
     }
 }

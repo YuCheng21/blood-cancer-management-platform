@@ -96,7 +96,7 @@ class FaqController extends Controller
             return back()
                 ->with([
                     'type' => 'success-toast',
-                    'msg' => '新增 QA 成功。'
+                    'msg' => '修改 QA 成功。'
                 ]);
         } catch (QueryException $queryException) {
             return back()

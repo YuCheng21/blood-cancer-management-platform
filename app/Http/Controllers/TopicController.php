@@ -139,7 +139,7 @@ class TopicController extends Controller
             return back()
                 ->with([
                     'type' => 'success-toast',
-                    'msg' => '新增題庫成功。'
+                    'msg' => '修改題庫成功。'
                 ]);
         } catch (QueryException $queryException) {
             return back()
