@@ -1,0 +1,58 @@
+version: '3'
+services:
+    php:
+        image: php:7.4-apache
+        restart: always
+        volumes:
+            - .:/var/www/html
+            - /etc/localtime:/etc/localtime:ro
+            - node_modules:/var/www/html/node_modules
+            - vendor:/var/www/html/vendor
+        working_dir: "/var/www/html"
+        ports:
+            - '20020:80'
+        links:
+            - "database:db"
+        env_file:
+            - ./docker/config.env
+        entrypoint: ["/bin/sh", "-c"]
+        command:
+            - |
+                php artisan migrate:fresh --seed
+                php artisan storage:link
+    nodejs:
+        image: node:16.13.2
+        volumes:
+            - ./package.json:/dir/package.json
+            - node_modules:/dir/node_modules
+        working_dir: '/dir'
+        entrypoint: ["/bin/sh", "-c"]
+        command:
+            - |
+                npm install
+                npm run dev
+    composer:
+        image: composer:2.2.5
+        volumes:
+            - ./composer.json:/dir/composer.json
+            - vendor:/dir/vendor
+        working_dir: '/dir'
+        command: 'composer install'
+    database:
+        image: mariadb:10.5.10
+        restart: always
+        expose:
+            - '3306'
+        volumes:
+            - "./docker/mariadb/ddl.sql:/docker-entrypoint-initdb.d/1.sql"
+            - "./docker/mariadb/mariadb.cnf:/etc/mysql/conf.d/mariadb.cnf"
+            - /etc/localtime:/etc/localtime:ro
+        env_file:
+            - ./docker/config.env
+        command:
+            - mysqld
+            - --character-set-server=utf8
+            - --collation-server=utf8_general_ci
+volumes:
+    node_modules:
+    vendor:
