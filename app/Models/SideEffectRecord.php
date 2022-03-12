@@ -22,7 +22,9 @@ class SideEffectRecord extends Model
 
     public function path()
     {
-        if (strpos($this['path'], "http") === 0) {
+        if (is_null($this['path'])){
+            return null;
+        } elseif (strpos($this['path'], "http") === 0) {
             return $this['path'];
         } else {
             return asset(Storage::disk('public')->url($this['path']));
