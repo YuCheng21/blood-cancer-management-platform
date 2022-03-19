@@ -53,6 +53,15 @@ class AppHelper
         return $categories;
     }
 
+    public static function topic_in_case($case_topics, $topic){
+        foreach ($case_topics as $case_topic){
+            if ($case_topic->topic_id == $topic->id){
+                return $case_topic->state;
+            }
+        }
+        return null;
+    }
+
     public static function check_completed($case_tasks): array
     {
         foreach ($case_tasks as $key => $case_task){

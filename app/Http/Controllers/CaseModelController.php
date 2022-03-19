@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\AppHelper;
 use App\Models\CaseModel;
 use App\Models\CaseTask;
 use App\Models\CaseTopic;
@@ -272,9 +273,11 @@ class CaseModelController extends Controller
     }
 
     public function topic(Request $request, $account, $case_task_id){
-        $case_topics = CaseTopic::where([
-            'case_task_id' => $case_task_id,
-        ])->get();
+        $case_topics = CaseTopic::where('case_task_id', $case_task_id)->get();
+
+        $case_task = CaseTask::where('id', $case_task_id)->first();
+        $task = $case_task->task;
+        $topics = $task->topics;
 
         $title = '答題結果';
         return response(

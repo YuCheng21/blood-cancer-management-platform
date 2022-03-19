@@ -12,21 +12,19 @@
                 </h2>
             </div>
             <div class="card-body px-2 px-lg-4 px-xl-5 py-4">
-                @if(!empty($case_topics->toArray()))
                 <h3 class="pb-2">
                     <ul class="mb-0">
                         <li>
                             <span>週次 :</span>
-                            <span>{{ $case_topics->first()->case_task->week }}</span>
+                            <span>{{ $case_task->week }}</span>
                         </li>
                         <li>
                             <span>任務 :</span>
-                            <span>{{ $case_topics->first()->case_task->task->category_1 }}-{{ $case_topics->first()->case_task->task->category_2 }}.</span>
-                            <span>{{ $case_topics->first()->case_task->task->name }}</span>
+                            <span>{{ $task->category_1 }}-{{ $task->category_2 }}.</span>
+                            <span>{{ $task->name }}</span>
                         </li>
                     </ul>
                 </h3>
-                @endif
                 <div class="table-responsive">
                     <table class="table table-striped text-center align-middle fs-5"
                            data-toggle="table"
@@ -37,15 +35,18 @@
                             <th data-width="20" data-width-unit="%" data-sortable="true">狀態</th>
                         </tr>
                         </thead>
-                            @foreach($case_topics as $case_topic)
+                            @foreach($topics as $topic)
                                 <tr>
-                                    <td>{{ $case_topic->topic->question }}</td>
-                                    @if($case_topic->state == 'correct')
-                                        <td class="text-success">正確</td>
-                                    @elseif($case_topic->state == 'wrong')
-                                        <td class="text-danger">錯誤</td>
+                                    <td>{{ $topic->question }}</td>
+                                    @php($state = \App\Helpers\AppHelper::topic_in_case($case_topics, $topic))
+                                    @if(!is_null($state))
+                                        @if($state == 'correct')
+                                            <td class="text-success">正確</td>
+                                        @else
+                                            <td class="text-danger">錯誤</td>
+                                        @endif
                                     @else
-                                        <td>{{ $case_topic->state }}</td>
+                                        <td>未作答</td>
                                     @endif
                                 </tr>
                             @endforeach
