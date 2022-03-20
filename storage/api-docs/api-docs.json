@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "血癌照護管理平台",
-        "description": "\r\n<h3>Application Interface Documentation for Blood Cancer Care Management Platform.</h3>\r\n<h4><a href='/'>Home Page</a></h4>\r\n                        ",
+        "description": "\n<h3>Application Interface Documentation for Blood Cancer Care Management Platform.</h3>\n<h4><a href='/'>Home Page</a></h4>\n                        ",
         "contact": {
             "name": "High Performance Distributed Systems Lab",
             "email": "nkust.ee.hpds@gmail.com"
@@ -43,7 +43,20 @@
                                                 "type": "object",
                                                 "allOf": [
                                                     {
-                                                        "$ref": "#/components/schemas/blood"
+                                                        "$ref": "#/components/schemas/case-blood"
+                                                    },
+                                                    {
+                                                        "properties": {
+                                                            "blood_component": {
+                                                                "type": "object",
+                                                                "allOf": [
+                                                                    {
+                                                                        "$ref": "#/components/schemas/blood"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "type": "object"
                                                     }
                                                 ]
                                             }
@@ -73,26 +86,27 @@
                                     {
                                         "required": [
                                             "account",
-                                            "wbc",
-                                            "hb",
-                                            "plt",
-                                            "got",
-                                            "gpt",
-                                            "cea",
-                                            "ca153",
-                                            "bun"
+                                            "blood_component_name",
+                                            "value"
                                         ],
                                         "properties": {
                                             "account": {
                                                 "description": "個案帳號",
                                                 "type": "string",
                                                 "example": "user1"
+                                            },
+                                            "blood_component_name": {
+                                                "description": "抽血項目類型名稱",
+                                                "type": "string",
+                                                "example": "new_name"
+                                            },
+                                            "value": {
+                                                "description": "抽血項目類型數值",
+                                                "type": "integer",
+                                                "example": "999"
                                             }
                                         },
                                         "type": "object"
-                                    },
-                                    {
-                                        "$ref": "#/components/schemas/blood"
                                     }
                                 ]
                             }
@@ -107,12 +121,28 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "type": "object",
-                                            "allOf": [
-                                                {
-                                                    "$ref": "#/components/schemas/blood"
-                                                }
-                                            ]
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "allOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/case-blood"
+                                                    },
+                                                    {
+                                                        "properties": {
+                                                            "blood_component": {
+                                                                "type": "object",
+                                                                "allOf": [
+                                                                    {
+                                                                        "$ref": "#/components/schemas/blood"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                ]
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -180,18 +210,16 @@
                                 "allOf": [
                                     {
                                         "required": [
-                                            "wbc",
-                                            "hb",
-                                            "plt",
-                                            "got",
-                                            "gpt",
-                                            "cea",
-                                            "ca153",
-                                            "bun"
-                                        ]
-                                    },
-                                    {
-                                        "$ref": "#/components/schemas/blood"
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "value": {
+                                                "description": "抽血項目類型數值",
+                                                "type": "integer",
+                                                "example": "999"
+                                            }
+                                        },
+                                        "type": "object"
                                     }
                                 ]
                             }
@@ -209,7 +237,7 @@
                                             "type": "object",
                                             "allOf": [
                                                 {
-                                                    "$ref": "#/components/schemas/blood"
+                                                    "$ref": "#/components/schemas/case-blood"
                                                 }
                                             ]
                                         }
@@ -1174,54 +1202,39 @@
             "blood": {
                 "properties": {
                     "id": {
-                        "description": "抽血數據編號",
+                        "description": "抽血項目類型編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "description": "抽血項目類型名稱",
+                        "type": "string",
+                        "example": "wbc"
+                    }
+                },
+                "type": "object"
+            },
+            "case-blood": {
+                "properties": {
+                    "id": {
+                        "description": "個案抽血項目",
                         "type": "integer",
                         "example": 1
                     },
                     "case_id": {
                         "description": "個案編號",
                         "type": "integer",
-                        "example": 1
+                        "example": "1"
                     },
-                    "wbc": {
-                        "description": "白血球(WBC)",
+                    "blood_id": {
+                        "description": "抽血項目類型編號",
                         "type": "integer",
-                        "example": "555"
+                        "example": "1"
                     },
-                    "hb": {
-                        "description": "血紅素(HB)",
+                    "value": {
+                        "description": "抽血項目類型數值",
                         "type": "integer",
-                        "example": "555"
-                    },
-                    "plt": {
-                        "description": "血小板(PLT)",
-                        "type": "integer",
-                        "example": "555"
-                    },
-                    "got": {
-                        "description": "肝指數(GOT)",
-                        "type": "integer",
-                        "example": "555"
-                    },
-                    "gpt": {
-                        "description": "肝指數(GPT)",
-                        "type": "integer",
-                        "example": "555"
-                    },
-                    "cea": {
-                        "description": "癌指數(CEA)",
-                        "type": "integer",
-                        "example": "555"
-                    },
-                    "ca153": {
-                        "description": "癌指數(CA153)",
-                        "type": "integer",
-                        "example": "555"
-                    },
-                    "bun": {
-                        "description": "尿素氮(BUN)",
-                        "type": "integer",
-                        "example": "555"
+                        "example": "999"
                     }
                 },
                 "type": "object"

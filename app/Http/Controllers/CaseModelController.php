@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\AppHelper;
+use App\Models\CaseBloodComponent;
 use App\Models\CaseModel;
 use App\Models\CaseTask;
 use App\Models\CaseTopic;
@@ -105,7 +106,11 @@ class CaseModelController extends Controller
         $disease_states = DiseaseState::all();
         $disease_classes = DiseaseClass::all();
 
-        $blood_components = $case->blood_components;
+        $case_blood_components = $case->case_blood_components;
+        foreach ($case_blood_components as $case_blood_component){
+            $_ = $case_blood_component->blood_component;
+        }
+        $reformat_blood_components = AppHelper::reformat_by_key($case_blood_components->toArray(), 'created_at');
 
         $case_tasks = $case
             ->case_tasks()

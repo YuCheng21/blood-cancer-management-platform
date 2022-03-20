@@ -15,16 +15,21 @@ class CreateBloodComponentsTable extends Migration
     {
         Schema::create('blood_components', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('case_id')->comment('個案編號');
-            $table->double('wbc', 8, 2)->comment('白血球(WBC)')->nullable();
-            $table->double('hb', 8, 2)->comment('血紅素(HB)')->nullable();
-            $table->double('plt', 8, 2)->comment('血小板(PLT)')->nullable();
-            $table->double('got', 8, 2)->comment('肝指數(GOT)')->nullable();
-            $table->double('gpt', 8, 2)->comment('肝指數(GPT)')->nullable();
-            $table->double('cea', 8, 2)->comment('癌指數(CEA)')->nullable();
-            $table->double('ca153', 8, 2)->comment('癌指數(CA153)')->nullable();
-            $table->double('bun', 8, 2)->comment('尿素氮(BUN)')->nullable();
+            $table->string('name')->unique()->comment('名稱');
             $table->timestamps();
+        });
+
+        Schema::create('case_blood_components', function (Blueprint $table){
+            $table->id();
+            $table->unsignedBigInteger('case_id')->comment('個案編號');
+            $table->unsignedBigInteger('blood_id')->comment('項目編號');
+            $table->double('value')->comment('數值');
+            $table->timestamps();
+        });
+
+        Schema::table('case_blood_components', function (Blueprint $table){
+            $table->foreign('case_id')->references('id')->on('cases')->onDelete('cascade');
+            $table->foreign('blood_id')->references('id')->on('blood_components')->onDelete('cascade');
         });
     }
 

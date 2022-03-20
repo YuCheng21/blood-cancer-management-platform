@@ -50,9 +50,9 @@ class CaseModel extends Model
         return $this->belongsTo(DiseaseClass::class);
     }
 
-    public function blood_components(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function case_blood_components(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(BloodComponent::class, 'case_id', 'id');
+        return $this->hasMany(CaseBloodComponent::class, 'case_id', 'id');
     }
 
     public function case_tasks(): \Illuminate\Database\Eloquent\Relations\HasMany

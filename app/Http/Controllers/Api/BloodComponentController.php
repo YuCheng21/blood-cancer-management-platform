@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\BloodComponent;
+use App\Models\CaseBloodComponent;
 use App\Models\CaseModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,10 @@ class BloodComponentController extends Controller
      *              @OA\Schema (
      *                  @OA\Property(property="data", type="array",
      *                      @OA\Items(type="object", allOf={
-     *                          @OA\Schema (ref="#/components/schemas/blood")}))))))
+     *                          @OA\Schema (ref="#/components/schemas/case-blood"),
+     *                          @OA\Schema (
+     *                              @OA\Property(property="blood_component", type="object", allOf={
+     *                                  @OA\Schema (ref="#/components/schemas/blood")}))}))))))
      */
 
     public function account(Request $request, $account)
@@ -36,8 +40,11 @@ class BloodComponentController extends Controller
         if (is_null($case)){
             return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
-        $blood_components = $case->blood_components;
-        return response(['data' => $blood_components], Response::HTTP_OK);
+        $case_blood_components = $case->case_blood_components;
+        foreach ($case_blood_components as $case_blood_component){
+            $_ = $case_blood_component->blood_component;
+        }
+        return response(['data' => $case_blood_components], Response::HTTP_OK);
     }
 
     /**
@@ -46,29 +53,27 @@ class BloodComponentController extends Controller
      *      @OA\RequestBody (
      *          @OA\MediaType(mediaType="multipart/form-data",
      *              @OA\Schema(allOf={
-     *                  @OA\Schema (
-     *                      required={"account", "wbc","hb","plt","got","gpt","cea","ca153","bun"},
-     *                      @OA\Property(property="account", type="string", description="個案帳號", example="user1")),
-     *                  @OA\Schema (ref="#/components/schemas/blood")}))),
+     *                  @OA\Schema (required={"account", "blood_component_name","value"},
+     *                      @OA\Property(property="account", type="string", description="個案帳號", example="user1"),
+     *                      @OA\Property(property="blood_component_name", type="string", description="抽血項目類型名稱", example="new_name"),
+     *                      @OA\Property(property="value", type="integer", description="抽血項目類型數值", example="999"))}))),
      *     @OA\Response(response="200", description="success",
      *          @OA\MediaType(mediaType="application/json",
      *              @OA\Schema (
-     *                  @OA\Property(property="data", type="object", allOf={
-     *                      @OA\Schema (ref="#/components/schemas/blood")})))))
+     *                  @OA\Property(property="data", type="array",
+     *                      @OA\Items(type="object", allOf={
+     *                          @OA\Schema (ref="#/components/schemas/case-blood"),
+     *                          @OA\Schema (
+     *                              @OA\Property(property="blood_component", type="object", allOf={
+     *                                  @OA\Schema (ref="#/components/schemas/blood")}))}))))))
      */
 
     public function store(Request $request)
     {
         $rules = [
             'account' => ['required'],
-            'wbc' => ['required'],
-            'hb' => ['required'],
-            'plt' => ['required'],
-            'got' => ['required'],
-            'gpt' => ['required'],
-            'cea' => ['required'],
-            'ca153' => ['required'],
-            'bun' => ['required'],
+            'blood_component_name' => ['required'],
+            'value' => ['required'],
         ];
         $validator = Validator::make($request->all(), $rules);
 
@@ -80,12 +85,22 @@ class BloodComponentController extends Controller
         if (is_null($case)){
             return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
+
+        $blood_component = BloodComponent::where('name', $validator->validate()['blood_component_name'])->first();
+        if (is_null($blood_component)){
+            $blood_component = BloodComponent::create([
+                'name' => $validator->validate()['blood_component_name'],
+            ]);
+        }
+
         $data = [
             'case_id' => $case->id,
+            'blood_id' => $blood_component->id,
         ] + $validator->validate();
-        $blood_component = BloodComponent::create($data);
-        $blood_component = $blood_component->refresh();
-        return response(['data' => $blood_component], Response::HTTP_CREATED);
+        $case_blood_component = CaseBloodComponent::create($data);
+        $case_blood_component = $case_blood_component->refresh();
+        $case_blood_component['blood_component'] = $blood_component;
+        return response(['data' => $case_blood_component], Response::HTTP_CREATED);
     }
 
     /**
@@ -96,26 +111,19 @@ class BloodComponentController extends Controller
      *      @OA\RequestBody (
      *          @OA\MediaType(mediaType="application/x-www-form-urlencoded",
      *              @OA\Schema (allOf={
-     *                  @OA\Schema (required={"wbc","hb","plt","got","gpt","cea","ca153","bun"}),
-     *                  @OA\Schema (ref="#/components/schemas/blood")}))),
+     *                  @OA\Schema (required={"value"},
+     *                      @OA\Property(property="value", type="integer", description="抽血項目類型數值", example="999"))}))),
      *     @OA\Response(response="200", description="success",
      *          @OA\MediaType(mediaType="application/json",
      *              @OA\Schema (
      *                  @OA\Property(property="data", type="object", allOf={
-     *                      @OA\Schema (ref="#/components/schemas/blood")})))))
+     *                      @OA\Schema (ref="#/components/schemas/case-blood")})))))
      */
 
-    public function update(Request $request, $blood_component_id)
+    public function update(Request $request, $case_blood_component_id)
     {
         $rules = [
-            'wbc' => ['required'],
-            'hb' => ['required'],
-            'plt' => ['required'],
-            'got' => ['required'],
-            'gpt' => ['required'],
-            'cea' => ['required'],
-            'ca153' => ['required'],
-            'bun' => ['required'],
+            'value' => ['required'],
         ];
         $validator = Validator::make($request->all(), $rules);
 
@@ -127,13 +135,13 @@ class BloodComponentController extends Controller
         if (is_null($case)){
             return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
-        $blood_component = $case->blood_components->where('id', $blood_component_id)->first();
-        if (is_null($blood_component)){
+        $case_blood_component = $case->case_blood_components->where('id', $case_blood_component_id)->first();
+        if (is_null($case_blood_component)){
             return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
-        $blood_component->update($validator->validate());
-        $blood_component = $blood_component->refresh();
-        return response(['data' => $blood_component], Response::HTTP_OK);
+        $case_blood_component->update($validator->validate());
+        $case_blood_component = $case_blood_component->refresh();
+        return response(['data' => $case_blood_component], Response::HTTP_OK);
     }
 
     /**
@@ -146,7 +154,7 @@ class BloodComponentController extends Controller
      *     @OA\Response(response="200", description="success"))
      */
 
-    public function destroy(Request $request, $blood_component_id)
+    public function destroy(Request $request, $case_blood_component_id)
     {
         $case = CaseModel::all();
         if (!Auth::check()) {
@@ -156,11 +164,11 @@ class BloodComponentController extends Controller
         if (is_null($case)){
             return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
-        $blood_component = $case->blood_components->where('id', $blood_component_id)->first();
-        if (is_null($blood_component)){
+        $case_blood_component = $case->case_blood_components->where('id', $case_blood_component_id)->first();
+        if (is_null($case_blood_component)){
             return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
-        $blood_component->delete();
+        $case_blood_component->delete();
         return response(null, Response::HTTP_NO_CONTENT);
     }
 }

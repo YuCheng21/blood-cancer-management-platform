@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\BloodComponent;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,99 +16,25 @@ class BloodComponentsSeeder extends Seeder
      */
     public function run()
     {
-//        BloodComponent::factory()
-//            ->count(10)
-//            ->create();
-        DB::table('blood_components')->insert([
-            'case_id' => '1',
-            'wbc' => rand(0, 999),
-            'hb' => rand(0, 999),
-            'plt' => rand(0, 999),
-            'got' => rand(0, 999),
-            'gpt' => rand(0, 999),
-            'cea' => rand(0, 999),
-            'ca153' => rand(0, 999),
-            'bun' => rand(0, 999),
-            'created_at' => '2022-02-1 00:00:00',
-            'updated_at' => '2022-02-1 00:00:00',
-        ]);
-        DB::table('blood_components')->insert([
-            'case_id' => '1',
-            'wbc' => rand(0, 999),
-            'hb' => rand(0, 999),
-            'plt' => rand(0, 999),
-            'got' => rand(0, 999),
-            'gpt' => rand(0, 999),
-            'cea' => rand(0, 999),
-            'ca153' => rand(0, 999),
-            'bun' => rand(0, 999),
-            'created_at' => '2022-02-2 00:00:00',
-            'updated_at' => '2022-02-2 00:00:00',
-        ]);
-        DB::table('blood_components')->insert([
-            'case_id' => '1',
-            'wbc' => rand(0, 999),
-            'hb' => rand(0, 999),
-            'plt' => rand(0, 999),
-            'got' => rand(0, 999),
-            'gpt' => rand(0, 999),
-            'cea' => rand(0, 999),
-            'ca153' => rand(0, 999),
-            'bun' => rand(0, 999),
-            'created_at' => '2022-02-3 00:00:00',
-            'updated_at' => '2022-02-3 00:00:00',
-        ]);
-        DB::table('blood_components')->insert([
-            'case_id' => '1',
-            'wbc' => rand(0, 999),
-            'hb' => rand(0, 999),
-            'plt' => rand(0, 999),
-            'got' => rand(0, 999),
-            'gpt' => rand(0, 999),
-            'cea' => rand(0, 999),
-            'ca153' => rand(0, 999),
-            'bun' => rand(0, 999),
-            'created_at' => '2022-02-4 00:00:00',
-            'updated_at' => '2022-02-4 00:00:00',
-        ]);
-        DB::table('blood_components')->insert([
-            'case_id' => '1',
-            'wbc' => rand(0, 999),
-            'hb' => rand(0, 999),
-            'plt' => rand(0, 999),
-            'got' => rand(0, 999),
-            'gpt' => rand(0, 999),
-            'cea' => rand(0, 999),
-            'ca153' => rand(0, 999),
-            'bun' => rand(0, 999),
-            'created_at' => '2022-02-5 00:00:00',
-            'updated_at' => '2022-02-5 00:00:00',
-        ]);
-        DB::table('blood_components')->insert([
-            'case_id' => '1',
-            'wbc' => rand(0, 999),
-            'hb' => rand(0, 999),
-            'plt' => rand(0, 999),
-            'got' => rand(0, 999),
-            'gpt' => rand(0, 999),
-            'cea' => rand(0, 999),
-            'ca153' => rand(0, 999),
-            'bun' => rand(0, 999),
-            'created_at' => '2022-02-6 00:00:00',
-            'updated_at' => '2022-02-6 00:00:00',
-        ]);
-        DB::table('blood_components')->insert([
-            'case_id' => '1',
-            'wbc' => rand(0, 999),
-            'hb' => rand(0, 999),
-            'plt' => rand(0, 999),
-            'got' => rand(0, 999),
-            'gpt' => rand(0, 999),
-            'cea' => rand(0, 999),
-            'ca153' => rand(0, 999),
-            'bun' => rand(0, 999),
-            'created_at' => '2022-02-7 00:00:00',
-            'updated_at' => '2022-02-7 00:00:00',
-        ]);
+        $now = Carbon::now();
+        $target_case = '1';
+        $items = ['wbc', 'hb', 'plt', 'gpt', 'got', 'cea', 'ca153', 'bun'];
+        foreach ($items as $item){
+            BloodComponent::create([
+                'name' => $item
+            ]);
+        }
+        for ($counter = 1; $counter < 10; $counter++){
+            $now->subDay();
+            foreach ($items as $key => $value){
+                DB::table('case_blood_components')->insert([
+                    'case_id' => $target_case,
+                    'blood_id' => $key + 1,
+                    'value' => rand(0, 999),
+                    'created_at' => $now->toDateTimeString(),
+                    'updated_at' => $now->toDateTimeString(),
+                ]);
+            }
+        }
     }
 }

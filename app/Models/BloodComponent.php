@@ -10,18 +10,11 @@ class BloodComponent extends Model
     use HasFactory;
 
     protected $fillable = [
-        'case_id',
-        'wbc',
-        'hb',
-        'plt',
-        'got',
-        'gpt',
-        'cea',
-        'ca153',
-        'bun',
+        'name',
     ];
 
-    public function cases(){
-        return $this->belongsTo(CaseModel::class, 'case_id', 'id');
+    public function case_blood_components(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(CaseBloodComponent::class, 'blood_id', 'id');
     }
 }

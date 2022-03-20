@@ -53,6 +53,10 @@ $(document).ready(function () {
     $('#updateCaseDiseaseClass').val(cases['disease_class_id']).change();
 })
 
+const randColor = () =>  {
+    return "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0').toUpperCase();
+}
+
 $(document).ready(function () {
     /**
      * Chart.js
@@ -62,136 +66,55 @@ $(document).ready(function () {
      * https://www.chartjs.org/chartjs-plugin-zoom/latest/guide/options.html
      */
 
-        // 折線圖標籤名稱
-    const chartLabel = {
-            'wbc': '白血球（WBC）',
-            'hb': '血紅素（Hb）',
-            'plt': '血小板（PLT）',
-            'gpt': '肝指數（GPT）',
-            'got': '肝指數（GOT）',
-            'cea': '癌指數（CEA）',
-            'ca153': '癌指數（CA153）',
-            'bun': '尿素氮（BUN）',
-        }
+    let color_map = [
+        theme.blue, theme.purple, theme.pink, theme.red, theme.orange, theme.yellow, theme.green, theme.teal,
+        randColor(), randColor(), randColor(), randColor(), randColor(), randColor(),
+    ]
     // 折線圖資料設定
     const lineData = {
         // 資料集設定
-        datasets: [
-            {
-                label: chartLabel['wbc'],
-                // 資料值
-                data: [],
-                borderColor: `${theme.blue}`,
-                pointBackgroundColor: `${theme.blue}20`,
-                pointBorderColor: `${theme.blue}`,
-                pointHoverBackgroundColor: `${theme.blue}80`,
-                pointHoverBorderColor: `${theme.blue}`,
-                pointBorderWidth: 1.5,
-                pointRadius: 5,
-                pointHoverRadius: 10,
-                pointStyle: 'circle',
-                hidden: false
-            },
-            {
-                label: chartLabel['hb'],
-                data: [],
-                borderColor: `${theme.purple}`,
-                pointBackgroundColor: `${theme.purple}20`,
-                pointBorderColor: `${theme.purple}`,
-                pointHoverBackgroundColor: `${theme.purple}80`,
-                pointHoverBorderColor: `${theme.purple}`,
-                pointBorderWidth: 1.5,
-                pointRadius: 5,
-                pointHoverRadius: 10,
-                pointStyle: 'circle',
-                hidden: false
-            },
-            {
-                label: chartLabel['plt'],
-                data: [],
-                borderColor: `${theme.pink}`,
-                pointBackgroundColor: `${theme.pink}20`,
-                pointBorderColor: `${theme.pink}`,
-                pointHoverBackgroundColor: `${theme.pink}80`,
-                pointHoverBorderColor: `${theme.pink}`,
-                pointBorderWidth: 1.5,
-                pointRadius: 5,
-                pointHoverRadius: 10,
-                pointStyle: 'circle',
-                hidden: false
-            },
-            {
-                label: chartLabel['gpt'],
-                data: [],
-                borderColor: `${theme.red}`,
-                pointBackgroundColor: `${theme.red}20`,
-                pointBorderColor: `${theme.red}`,
-                pointHoverBackgroundColor: `${theme.red}80`,
-                pointHoverBorderColor: `${theme.red}`,
-                pointBorderWidth: 1.5,
-                pointRadius: 5,
-                pointHoverRadius: 10,
-                pointStyle: 'circle',
-                hidden: false
-            },
-            {
-                label: chartLabel['got'],
-                data: [],
-                borderColor: `${theme.orange}`,
-                pointBackgroundColor: `${theme.orange}20`,
-                pointBorderColor: `${theme.orange}`,
-                pointHoverBackgroundColor: `${theme.orange}80`,
-                pointHoverBorderColor: `${theme.orange}`,
-                pointBorderWidth: 1.5,
-                pointRadius: 5,
-                pointHoverRadius: 10,
-                pointStyle: 'circle',
-                hidden: false
-            },
-            {
-                label: chartLabel['cea'],
-                data: [],
-                borderColor: `${theme.yellow}`,
-                pointBackgroundColor: `${theme.yellow}20`,
-                pointBorderColor: `${theme.yellow}`,
-                pointHoverBackgroundColor: `${theme.yellow}80`,
-                pointHoverBorderColor: `${theme.yellow}`,
-                pointBorderWidth: 1.5,
-                pointRadius: 5,
-                pointHoverRadius: 10,
-                pointStyle: 'circle',
-                hidden: false
-            },
-            {
-                label: chartLabel['ca153'],
-                data: [],
-                borderColor: `${theme.green}`,
-                pointBackgroundColor: `${theme.green}20`,
-                pointBorderColor: `${theme.green}`,
-                pointHoverBackgroundColor: `${theme.green}80`,
-                pointHoverBorderColor: `${theme.green}`,
-                pointBorderWidth: 1.5,
-                pointRadius: 5,
-                pointHoverRadius: 10,
-                pointStyle: 'circle',
-                hidden: false
-            },
-            {
-                label: chartLabel['bun'],
-                data: [],
-                borderColor: `${theme.teal}`,
-                pointBackgroundColor: `${theme.teal}20`,
-                pointBorderColor: `${theme.teal}`,
-                pointHoverBackgroundColor: `${theme.teal}80`,
-                pointHoverBorderColor: `${theme.teal}`,
-                pointBorderWidth: 1.5,
-                pointRadius: 5,
-                pointHoverRadius: 10,
-                pointStyle: 'circle',
-                hidden: false
-            },
-        ]
+        datasets: []
     };
+    // 寫入資料庫資料
+    $.each(reformat_blood_components, function (key0, value0) {
+        $.each(value0, function (key, value) {
+            const exist = lineData['datasets'].find(element => {
+                if (element.label === value['blood_component']['name']){
+                    return true;
+                }
+            });
+            if (exist === undefined){
+                const color = color_map.shift()
+                lineData['datasets'].push({
+                    label: value['blood_component']['name'],
+                    // 資料值
+                    data: [{
+                        'x': value['created_at'],
+                        'y': value['value'],
+                    }],
+                    borderColor: `${color}`,
+                    pointBackgroundColor: `${color}20`,
+                    pointBorderColor: `${color}`,
+                    pointHoverBackgroundColor: `${color}80`,
+                    pointHoverBorderColor: `${color}`,
+                    pointBorderWidth: 1.5,
+                    pointRadius: 5,
+                    pointHoverRadius: 10,
+                    pointStyle: 'circle',
+                    hidden: false
+                })
+            }else{
+                lineData['datasets'].find(element => {
+                    if (element.label === value['blood_component']['name']){
+                        return true;
+                    }
+                })['data'].push({
+                    'x': value['created_at'],
+                    'y': value['value'],
+                });
+            }
+        })
+    })
     // 折線圖屬性設定
     const lineOptions = {
         responsive: true,
@@ -322,59 +245,6 @@ $(document).ready(function () {
             }
         }
     }
-    // 寫入資料庫資料
-    $.each(cases['blood_components'], function (key, value) {
-        // console.log(value);
-        lineData['datasets']
-            .find(option => option.label === chartLabel['wbc'])['data']
-            .push({
-                'x': value['created_at'],
-                'y': value['wbc'],
-            });
-        lineData['datasets']
-            .find(option => option.label === chartLabel['hb'])['data']
-            .push({
-                'x': value['created_at'],
-                'y': value['hb'],
-            });
-        lineData['datasets']
-            .find(option => option.label === chartLabel['plt'])['data']
-            .push({
-                'x': value['created_at'],
-                'y': value['plt'],
-            });
-        lineData['datasets']
-            .find(option => option.label === chartLabel['gpt'])['data']
-            .push({
-                'x': value['created_at'],
-                'y': value['gpt'],
-            });
-        lineData['datasets']
-            .find(option => option.label === chartLabel['got'])['data']
-            .push({
-                'x': value['created_at'],
-                'y': value['got'],
-            });
-        lineData['datasets']
-            .find(option => option.label === chartLabel['cea'])['data']
-            .push({
-                'x': value['created_at'],
-                'y': value['cea'],
-            });
-        lineData['datasets']
-            .find(option => option.label === chartLabel['ca153'])['data']
-            .push({
-                'x': value['created_at'],
-                'y': value['ca153'],
-            });
-        lineData['datasets']
-            .find(option => option.label === chartLabel['bun'])['data']
-            .push({
-                'x': value['created_at'],
-                'y': value['bun'],
-            });
-    })
-
     // 圖表總資訊
     const chartInfo = {
         type: 'line',

@@ -85,7 +85,7 @@
                 </h2>
             </div>
             <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
-                @if(count($blood_components))
+                @if(count($case_blood_components))
                     <canvas id="bloodChart" style="min-height: 500px;"></canvas>
                 @else
                     <div class="d-flex justify-content-center align-items-center" style="min-height: 100px;">
@@ -388,7 +388,8 @@
     {{--  Page Customize Javascript  --}}
     <script src="{{asset('js/pages/case/person.js')}}"></script>
     <script>
-        const cases = @json($case)
+        const cases = @json($case);
+        const reformat_blood_components = @json($reformat_blood_components);
 
         const updateUrl = '{{route('cases.update', ['account' => $case->account])}}';
     </script>
