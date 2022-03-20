@@ -127,15 +127,17 @@ class BloodComponentController extends Controller
         ];
         $validator = Validator::make($request->all(), $rules);
 
-        $case = CaseModel::all();
+        $condition = [
+            'id' => $case_blood_component_id,
+        ];
         if (!Auth::check()) {
-            $case = $case->where('account', $request->get('auth_account'));
+            $case = CaseModel::where('account', $request->get('auth_account'))->first();
+            $condition += [
+                'case_id' => $case->id,
+            ];
         }
-        $case = $case->first();
-        if (is_null($case)){
-            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
-        }
-        $case_blood_component = $case->case_blood_components->where('id', $case_blood_component_id)->first();
+        $case_blood_component = CaseBloodComponent::where($condition)->first();
+
         if (is_null($case_blood_component)){
             return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
@@ -156,15 +158,16 @@ class BloodComponentController extends Controller
 
     public function destroy(Request $request, $case_blood_component_id)
     {
-        $case = CaseModel::all();
+        $condition = [
+            'id' => $case_blood_component_id
+        ];
         if (!Auth::check()) {
-            $case = $case->where('account', $request->get('auth_account'));
+            $case = CaseModel::where('account', $request->get('auth_account'))->first();
+            $condition += [
+                'case_id' => $case->id,
+            ];
         }
-        $case = $case->first();
-        if (is_null($case)){
-            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
-        }
-        $case_blood_component = $case->case_blood_components->where('id', $case_blood_component_id)->first();
+        $case_blood_component = CaseBloodComponent::where($condition)->first();
         if (is_null($case_blood_component)){
             return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }

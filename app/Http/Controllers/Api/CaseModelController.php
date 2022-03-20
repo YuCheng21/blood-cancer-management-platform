@@ -37,8 +37,8 @@ class CaseModelController extends Controller
         }
         $cases = $cases->map(function ($case){
             $disease_type = $case->disease_type->name;
-            $disease_type = $disease_type . ($case->disease_state->name == 1 ? '' : '- ' . $case->disease_state->name);
-            $disease_type = $disease_type . ($case->disease_class->name == 1 ? '' : '- ' . $case->disease_class->name);
+            $disease_type = $disease_type . ($case->disease_state->name == 1 ? '' : ' - ' . $case->disease_state->name);
+            $disease_type = $disease_type . ($case->disease_class->name == 1 ? '' : ' - ' . $case->disease_class->name);
             return [
                 'id' => $case->id,
                 'account' => $case->account,
