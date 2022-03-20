@@ -22,6 +22,20 @@ class CaseModelFactory extends Factory
             'name' => $this->faker->firstName(),
             'gender_id' => $this->faker->randomElement([2, 3]),
             'birthday' => $this->faker->date('Y_m_d'),
+
+            'hometown_id' => $this->faker->randomElement([2,3,4,5,6]),
+            'hometown_other' => null,
+            'education_id' => $this->faker->randomElement([2,3,4,5,6,7,8]),
+            'marriage_id' => $this->faker->randomElement([2,3,4,5,6,7]),
+            'religion_id' => $this->faker->randomElement([2,3,4,5,6,7,8]),
+            'religion_other' => null,
+            'profession_id' => $this->faker->randomElement([2,3,4]),
+            'profession_detail_id' => $this->faker->randomElement([2,3]),
+            'income_id' => $this->faker->randomElement([2,3,4,5,6,7]),
+            'source_id' => $this->faker->randomElement([2,3,4,5,6,7]),
+
+            'diagnosed' => $this->faker->date('Y_m_d'),
+
             'date' => $this->faker->date('Y_m_d'),
             'transplant_type_id' => $this->faker->randomElement([2, 3]),
             'disease_type_id' => $this->faker->randomElement([2, 3, 4, 5, 6]),

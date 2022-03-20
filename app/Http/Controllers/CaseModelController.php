@@ -10,7 +10,15 @@ use App\Models\CaseTopic;
 use App\Models\DiseaseClass;
 use App\Models\DiseaseState;
 use App\Models\DiseaseType;
+use App\Models\Education;
 use App\Models\Gender;
+use App\Models\Hometown;
+use App\Models\Income;
+use App\Models\Marriage;
+use App\Models\Profession;
+use App\Models\ProfessionDetail;
+use App\Models\Religion;
+use App\Models\Source;
 use App\Models\Task;
 use App\Models\TransplantType;
 use Carbon\Carbon;
@@ -23,7 +31,18 @@ class CaseModelController extends Controller
 {
     public function index(){
         $cases = CaseModel::orderBy('updated_at', 'desc')->get();
+
         $genders = Gender::all();
+
+        $hometowns = Hometown::all();
+        $educations = Education::all();
+        $marriages = Marriage::all();
+        $religions = Religion::all();
+        $professions = Profession::all();
+        $profession_details = ProfessionDetail::all();
+        $incomes = Income::all();
+        $sources = Source::all();
+
         $transplant_types = TransplantType::all();
         $disease_types = DiseaseType::all();
         $disease_states = DiseaseState::all();
@@ -46,6 +65,20 @@ class CaseModelController extends Controller
             'createCaseName' => ['required'],
             'createCaseGender' => ['required', 'numeric', 'gt:1'],
             'createCaseBirth' => ['required'],
+
+            'hometown_id' => ['required'],
+            'hometown_other' => ['nullable'],
+            'education_id' => ['required'],
+            'marriage_id' => ['required'],
+            'religion_id' => ['required'],
+            'religion_other' => ['nullable'],
+            'profession_id' => ['required'],
+            'profession_detail_id' => ['nullable'],
+            'income_id' => ['required'],
+            'source_id' => ['required'],
+
+            'diagnosed' => ['required'],
+
             'createCaseDate' => ['required'],
             'createCaseTransplantType' => ['required', 'numeric', 'gt:1'],
             'createCaseDiseaseType' => ['required', 'numeric', 'gt:1'],
@@ -69,12 +102,13 @@ class CaseModelController extends Controller
             'name' => $request->createCaseName,
             'gender_id' => $request->createCaseGender,
             'birthday' => $request->createCaseBirth,
+
             'date' => $request->createCaseDate,
             'transplant_type_id' => $request->createCaseTransplantType,
             'disease_type_id' => $request->createCaseDiseaseType,
             'disease_state_id' => $request->createCaseDiseaseState,
             'disease_class_id' => $request->createCaseDiseaseClass,
-        ];
+        ] + $validator->validate();
         try {
             CaseModel::create($data);
             return back()
@@ -100,7 +134,18 @@ class CaseModelController extends Controller
 
     public function show($account){
         $case = CaseModel::where('account', $account)->first();
+
         $genders = Gender::all();
+
+        $hometowns = Hometown::all();
+        $educations = Education::all();
+        $marriages = Marriage::all();
+        $religions = Religion::all();
+        $professions = Profession::all();
+        $profession_details = ProfessionDetail::all();
+        $incomes = Income::all();
+        $sources = Source::all();
+
         $transplant_types = TransplantType::all();
         $disease_types = DiseaseType::all();
         $disease_states = DiseaseState::all();
@@ -143,6 +188,20 @@ class CaseModelController extends Controller
             'updateCaseName' => ['required'],
             'updateCaseGender' => ['required', 'numeric', 'gt:1'],
             'updateCaseBirth' => ['required'],
+
+            'hometown_id' => ['required'],
+            'hometown_other' => ['nullable'],
+            'education_id' => ['required'],
+            'marriage_id' => ['required'],
+            'religion_id' => ['required'],
+            'religion_other' => ['nullable'],
+            'profession_id' => ['required'],
+            'profession_detail_id' => ['nullable'],
+            'income_id' => ['required'],
+            'source_id' => ['required'],
+
+            'diagnosed' => ['required'],
+
             'updateCaseDate' => ['required'],
             'updateCaseTransplantType' => ['required', 'numeric', 'gt:1'],
             'updateCaseDiseaseType' => ['required', 'numeric', 'gt:1'],
@@ -177,7 +236,7 @@ class CaseModelController extends Controller
             'disease_type_id' => $request->updateCaseDiseaseType,
             'disease_state_id' => $request->updateCaseDiseaseState,
             'disease_class_id' => $request->updateCaseDiseaseClass,
-        ];
+        ] + $validator->validate();
         $case->update($data);
         return back()
             ->with([

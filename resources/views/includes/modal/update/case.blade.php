@@ -13,7 +13,8 @@
                 @method('patch')
                 <div class="modal-body">
                     <div class="row gy-2">
-                        <div class="col-12">
+                        <div class="col-12 overflow-auto" style="max-height: 50vh">
+                            <p class="text-center fw-bold fs-6">個人資料</p>
                             <div class="input-group mb-2">
                                 <label for="updateCaseAccount" class="input-group-text">帳號</label>
                                 <input name="updateCaseAccount" type="text" id="updateCaseAccount"
@@ -47,6 +48,106 @@
                             <div class="input-group mb-2">
                                 <label for="updateCaseBirth" class="input-group-text">生日</label>
                                 <input name="updateCaseBirth" id="updateCaseBirth" type="date" class="form-control">
+                            </div>
+
+                            <div class="input-group mb-2">
+                                <label for="updateCaseHometown" class="input-group-text">籍貫</label>
+                                <select name="hometown_id" id="updateCaseHometown" class="form-select">
+                                    @foreach($hometowns as $hometown)
+                                        <option value="{{$hometown->id}}"
+                                            {{ old("hometown_id") == $hometown->id ? "selected":"" }}>
+                                            {{$hometown->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <label for="updateCaseHometownOther" class="input-group-text">其他</label>
+                                <input name="hometown_other" type="text" id="updateCaseHometownOther"
+                                       class="form-control" placeholder="其他籍貫" value="{{old('hometown_other')}}">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseEducation" class="input-group-text">教育程度</label>
+                                <select name="education_id" id="updateCaseEducation" class="form-select">
+                                    @foreach($educations as $education)
+                                        <option value="{{$education->id}}"
+                                            {{ old("education_id") == $education->id ? "selected":"" }}>
+                                            {{$education->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseMarriage" class="input-group-text">婚姻狀況</label>
+                                <select name="marriage_id" id="updateCaseMarriage" class="form-select">
+                                    @foreach($marriages as $marriage)
+                                        <option value="{{$marriage->id}}"
+                                            {{ old("marriage_id") == $marriage->id ? "selected":"" }}>
+                                            {{$marriage->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseReligion" class="input-group-text">宗教信仰</label>
+                                <select name="religion_id" id="updateCaseReligion" class="form-select">
+                                    @foreach($religions as $religion)
+                                        <option value="{{$religion->id}}"
+                                            {{ old("religion_id") == $religion->id ? "selected":"" }}>
+                                            {{$religion->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <label for="updateCaseReligionOther" class="input-group-text">其他</label>
+                                <input name="religion_other" type="text" id="updateCaseReligionOther"
+                                       class="form-control" placeholder="其他宗教" value="{{old('religion_other')}}">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseProfession" class="input-group-text">職業</label>
+                                <select name="profession_id" id="updateCaseProfession" class="form-select">
+                                    @foreach($professions as $profession)
+                                        <option value="{{$profession->id}}"
+                                            {{ old("profession_id") == $profession->id ? "selected":"" }}>
+                                            {{$profession->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <label for="updateCaseProfessionDetail" class="input-group-text">職業細項</label>
+                                <select name="profession_detail_id" id="updateCaseProfessionDetail" class="form-select">
+                                    @foreach($profession_details as $profession_detail)
+                                        <option value="{{$profession_detail->id}}"
+                                            {{ old("profession_detail_id") == $profession_detail->id ? "selected":"" }}>
+                                            {{$profession_detail->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseIncome" class="input-group-text">每個月家中總收入</label>
+                                <select name="income_id" id="updateCaseIncome" class="form-select">
+                                    @foreach($incomes as $income)
+                                        <option value="{{$income->id}}"
+                                            {{ old("income_id") == $income->id ? "selected":"" }}>
+                                            {{$income->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseSource" class="input-group-text">收入來自於多少人</label>
+                                <select name="source_id" id="updateCaseSource" class="form-select">
+                                    @foreach($sources as $source)
+                                        <option value="{{$source->id}}"
+                                            {{ old("source_id") == $source->id ? "selected":"" }}>
+                                            {{$source->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <hr>
+                            <p class="text-center fw-bold fs-6">疾病特性</p>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseDiagnosed" class="input-group-text">確診日期</label>
+                                <input name="diagnosed" id="updateCaseDiagnosed" type="date" class="form-control"
+                                       value="{{old('diagnosed')}}">
                             </div>
                             <div class="input-group mb-2">
                                 <label for="updateCaseDate" class="input-group-text">移植日期</label>

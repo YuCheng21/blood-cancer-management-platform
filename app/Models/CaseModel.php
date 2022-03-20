@@ -18,6 +18,19 @@ class CaseModel extends Model
         'name',
         'gender_id',
         'birthday',
+
+        'hometown_id',
+        'hometown_other',
+        'education_id',
+        'marriage_id',
+        'religion_id',
+        'religion_other',
+        'profession_id',
+        'profession_detail_id',
+        'income_id',
+        'source_id',
+
+        'diagnosed',
         'date',
         'transplant_type_id',
         'disease_type_id',
@@ -28,6 +41,40 @@ class CaseModel extends Model
     public function gender(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Gender::class);
+    }
+
+    public function hometown(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Hometown::class);
+    }
+
+    public function education(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Education::class);
+    }
+    public function marriage(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Marriage::class);
+    }
+    public function religion(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Religion::class);
+    }
+    public function profession(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Profession::class);
+    }
+    public function profession_detail(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(ProfessionDetail::class);
+    }
+    public function income(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Income::class);
+    }
+    public function source(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Source::class);
     }
 
     public function transplant_type(): \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -46,6 +46,20 @@ $(document).ready(function () {
     $('#updateCaseName').val(cases['name']);
     $('#updateCaseGender').val(cases['gender_id']).change();
     $('#updateCaseBirth').val(cases['birthday']);
+
+    $('#updateCaseHometown').val(cases['hometown_id']).change();
+    $('#updateCaseHometownOther').val(cases['hometown_other']);
+    $('#updateCaseEducation').val(cases['education_id']).change();
+    $('#updateCaseMarriage').val(cases['marriage_id']).change();
+    $('#updateCaseReligion').val(cases['religion_id']).change();
+    $('#updateCaseReligionOther').val(cases['religion_other']);
+    $('#updateCaseProfession').val(cases['profession_id']).change();
+    $('#updateCaseProfessionDetail').val(cases['profession_detail_id']).change();
+    $('#updateCaseIncome').val(cases['income_id']).change();
+    $('#updateCaseSource').val(cases['source_id']).change();
+
+    $('#updateCaseDiagnosed').val(cases['diagnosed']);
+
     $('#updateCaseDate').val(cases['date']);
     $('#updateCaseTransplantType').val(cases['transplant_type_id']).change();
     $('#updateCaseDiseaseType').val(cases['disease_type_id']).change();

@@ -25,11 +25,27 @@ class CaseInformationExport implements FromArray, WithTitle, WithHeadings
                 $case->password,
                 $case->transplant_num,
                 $case->name,
-                $case->gender->name,
+                $case->gender_id - 1,
                 $case->birthday,
+
+                $case->hometown_id - 1,
+                $case->hometown_other,
+                $case->education_id - 1,
+                $case->marriage_id - 1,
+                $case->religion_id - 1,
+                $case->religion_other,
+                $case->profession_id - 1,
+                $case->profession_detail_id - 1,
+                $case->income_id - 1,
+                $case->source_id - 1,
+
+                $case->diagnosed,
+
                 $case->date,
-                $case->transplant_type->name,
-                $case->disease_type->name . ' - ' . $case->disease_state->name . ' - ' . $case->disease_class->name,
+                $case->transplant_type->id - 1,
+                $case->disease_type->id - 1,
+                $case->disease_state->id - 1,
+                $case->disease_class->id - 1,
             ];
         });
         return $cases->toArray();
@@ -44,9 +60,25 @@ class CaseInformationExport implements FromArray, WithTitle, WithHeadings
             '姓名',
             '性別',
             '生日',
+
+            '籍貫',
+            '籍貫其他',
+            '教育程度',
+            '婚姻',
+            '宗教',
+            '宗教其他',
+            '職業',
+            '職業細節',
+            '收入',
+            '來源人數',
+
+            '確診日期',
+
             '移植日期',
             '移植種類',
             '疾病種類',
+            '疾病分期',
+            '疾病類型',
         ];
     }
 

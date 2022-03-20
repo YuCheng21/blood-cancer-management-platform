@@ -24,6 +24,9 @@ class DiseaseClassSeeder extends Seeder
             'name' => 'T-cell'
         ]);
         DiseaseClass::create([
+            'name' => '濾泡型'
+        ]);
+        DiseaseClass::create([
             'name' => 'Mantle-cell'
         ]);
         DiseaseClass::create([

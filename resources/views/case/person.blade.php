@@ -16,7 +16,7 @@
             <div class="card-header justify-content-between d-inline-flex align-items-center">
                 <h2 class="my-2">
                     <span class="iconify-inline" data-icon="clarity:info-standard-solid"></span>
-                    <span>個人資料</span>
+                    <span>個案</span>
                 </h2>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateCaseModal">
                     <span class="iconify-inline" data-icon="fa-regular:edit"></span>
@@ -25,15 +25,11 @@
             </div>
             <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
                 <div class="row justify-content-between text-center gy-4 fs-5">
+                    <h3>個人資料</h3>
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">帳號</span>
                         <hr class="my-1">
                         <span>{{$case->account}}</span>
-                    </div>
-                    <div class="col-md-6 col-lg-4 flex-column d-flex">
-                        <span class="bg-primary bg-opacity-50">密碼</span>
-                        <hr class="my-1">
-                        <span>{{$case->password}}</span>
                     </div>
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">移植編號</span>
@@ -55,6 +51,49 @@
                         <hr class="my-1">
                         <span>{{$case->birthday}}</span>
                     </div>
+
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">籍貫</span>
+                        <hr class="my-1">
+                        <span>{{$case->hometown->name}}{{$case->hometown_id == 6 ? ' - '.$case->hometown_other :  ''}}</span>
+                    </div>
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">教育程度</span>
+                        <hr class="my-1">
+                        <span>{{$case->education->name}}</span>
+                    </div>
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">婚姻狀況</span>
+                        <hr class="my-1">
+                        <span>{{$case->marriage->name}}</span>
+                    </div>
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">宗教信仰</span>
+                        <hr class="my-1">
+                        <span>{{$case->religion->name}}{{$case->religion_id == 8 ? ' - '.$case->religion_other :  ''}}</span>
+                    </div>
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">職業</span>
+                        <hr class="my-1">
+                        <span>{{$case->profession_detail->name}}</span>
+                    </div>
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">每個月家中總收入</span>
+                        <hr class="my-1">
+                        <span>{{$case->income->name}}</span>
+                    </div>
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">收入來自於多少人</span>
+                        <hr class="my-1">
+                        <span>{{$case->source->name}}</span>
+                    </div>
+                    <hr>
+                    <h3>疾病種類</h3>
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">確診日期</span>
+                        <hr class="my-1">
+                        <span>{{$case->diagnosed}}</span>
+                    </div>
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">移植日期</span>
                         <hr class="my-1">
@@ -68,11 +107,17 @@
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">疾病種類</span>
                         <hr class="my-1">
-                        <span>
-                            {{$case->disease_type->name}}
-                            {{$case->disease_state_id == 1 ? '' : '- '.$case->disease_state->name}}
-                            {{$case->disease_class_id == 1 ? '' : '- '.$case->disease_class->name}}
-                        </span>
+                        <span>{{$case->disease_type->name}}</span>
+                    </div>
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">疾病分期</span>
+                        <hr class="my-1">
+                        <span>{{$case->disease_state->name}}</span>
+                    </div>
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">疾病分類</span>
+                        <hr class="my-1">
+                        <span>{{$case->disease_class->name}}</span>
                     </div>
                 </div>
             </div>

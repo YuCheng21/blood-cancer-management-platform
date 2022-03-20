@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\CaseTask;
+use App\Models\Education;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,6 +25,15 @@ class DatabaseSeeder extends Seeder
             DiseaseTypeSeeder::class,
             DiseaseStateSeeder::class,
             DiseaseClassSeeder::class,
+
+            HometownSeeder::class,
+            EducationSeeder::class,
+            MarriageSeeder::class,
+            ReligionSeeder::class,
+            ProfessionSeeder::class,
+            ProfessionDetailSeeder::class,
+            IncomeSeeder::class,
+            SourceSeeder::class,
 
             CaseModelSeeder::class,
             BloodComponentsSeeder::class,
