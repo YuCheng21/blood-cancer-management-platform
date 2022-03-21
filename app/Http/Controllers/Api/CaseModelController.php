@@ -24,6 +24,20 @@ class CaseModelController extends Controller
      *                 @OA\Property(property="name",type="string",description="個案姓名"),
      *                 @OA\Property(property="gender",type="string",description="個案性別"),
      *                 @OA\Property(property="birthday",type="string",description="個案生日"),
+     *
+     *                 @OA\Property(property="hometown",type="string",description="個案籍貫"),
+     *                 @OA\Property(property="hometown_other",type="string",description="籍貫其他"),
+     *                 @OA\Property(property="education",type="string",description="教育程度"),
+     *                 @OA\Property(property="marriage",type="string",description="婚姻"),
+     *                 @OA\Property(property="religion",type="string",description="宗教"),
+     *                 @OA\Property(property="religion_other",type="string",description="宗教其他"),
+     *                 @OA\Property(property="profession",type="string",description="職業"),
+     *                 @OA\Property(property="profession_detail",type="string",description="職業細節"),
+     *                 @OA\Property(property="income",type="string",description="收入"),
+     *                 @OA\Property(property="source",type="string",description="來源人數"),
+     *
+     *                 @OA\Property(property="diagnosed",type="string",description="確診日期"),
+     *
      *                 @OA\Property(property="date",type="string",description="個案移植日期"),
      *                 @OA\Property(property="transplant_type",type="string",description="個案移植種類"),
      *                 @OA\Property(property="disease_type",type="string",description="個案疾病種類")))))
@@ -36,9 +50,6 @@ class CaseModelController extends Controller
             $cases = $cases->where('account', $request->get('auth_account'));
         }
         $cases = $cases->map(function ($case){
-            $disease_type = $case->disease_type->name;
-            $disease_type = $disease_type . ($case->disease_state->name == 1 ? '' : ' - ' . $case->disease_state->name);
-            $disease_type = $disease_type . ($case->disease_class->name == 1 ? '' : ' - ' . $case->disease_class->name);
             return [
                 'id' => $case->id,
                 'account' => $case->account,
@@ -46,9 +57,25 @@ class CaseModelController extends Controller
                 'name' => $case->name,
                 'gender' => $case->gender->name,
                 'birthday' => $case->birthday,
+
+                'hometown' => $case->hometown->name,
+                'hometown_other' => $case->hometown_other,
+                'education' => $case->education->name,
+                'marriage' => $case->marriage->name,
+                'religion' => $case->religion->name,
+                'religion_other' => $case->religion_other,
+                'profession' => $case->profession->name,
+                'profession_detail' => $case->profession_detail->name,
+                'income' => $case->income->name,
+                'source' => $case->source->name,
+
+                'diagnosed' => $case->diagnosed,
+
                 'date' => $case->date,
                 'transplant_type' => $case->transplant_type->name,
-                'disease_type' => $disease_type,
+                'disease_type' => $case->disease_type->name,
+                'disease_state' => $case->disease_state->name,
+                'disease_class' => $case->disease_class->name,
             ];
         });
         return response(['data' => $cases], Response::HTTP_OK);

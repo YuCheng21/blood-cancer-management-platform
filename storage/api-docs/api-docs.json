@@ -301,6 +301,50 @@
                                             "description": "個案生日",
                                             "type": "string"
                                         },
+                                        "hometown": {
+                                            "description": "個案籍貫",
+                                            "type": "string"
+                                        },
+                                        "hometown_other": {
+                                            "description": "籍貫其他",
+                                            "type": "string"
+                                        },
+                                        "education": {
+                                            "description": "教育程度",
+                                            "type": "string"
+                                        },
+                                        "marriage": {
+                                            "description": "婚姻",
+                                            "type": "string"
+                                        },
+                                        "religion": {
+                                            "description": "宗教",
+                                            "type": "string"
+                                        },
+                                        "religion_other": {
+                                            "description": "宗教其他",
+                                            "type": "string"
+                                        },
+                                        "profession": {
+                                            "description": "職業",
+                                            "type": "string"
+                                        },
+                                        "profession_detail": {
+                                            "description": "職業細節",
+                                            "type": "string"
+                                        },
+                                        "income": {
+                                            "description": "收入",
+                                            "type": "string"
+                                        },
+                                        "source": {
+                                            "description": "來源人數",
+                                            "type": "string"
+                                        },
+                                        "diagnosed": {
+                                            "description": "確診日期",
+                                            "type": "string"
+                                        },
                                         "date": {
                                             "description": "個案移植日期",
                                             "type": "string"
@@ -437,7 +481,7 @@
                                                 "type": "object",
                                                 "allOf": [
                                                     {
-                                                        "$ref": "#/components/schemas/message"
+                                                        "$ref": "#/components/schemas/medicine"
                                                     }
                                                 ]
                                             }
@@ -1176,6 +1220,50 @@
                         "description": "個案生日",
                         "type": "string"
                     },
+                    "hometown_id": {
+                        "description": "個案籍貫（1閩南2外省3客家4原住民5其他）",
+                        "type": "integer"
+                    },
+                    "hometown_other": {
+                        "description": "籍貫其他",
+                        "type": "string"
+                    },
+                    "education_id": {
+                        "description": "教育程度（1不識字2識字，但未上過小學3國小4國中5高中(職)6大專7研究所以上）",
+                        "type": "integer"
+                    },
+                    "marriage_id": {
+                        "description": "婚姻（1未婚2同居3已婚4分居5離婚6喪偶）",
+                        "type": "integer"
+                    },
+                    "religion_id": {
+                        "description": "宗教（1無2佛教3基督教4天主教5回教6道教7其他）",
+                        "type": "integer"
+                    },
+                    "religion_other": {
+                        "description": "宗教其他",
+                        "type": "string"
+                    },
+                    "profession_id": {
+                        "description": "職業（1無2有3退休）",
+                        "type": "integer"
+                    },
+                    "profession_detail_id": {
+                        "description": "職業細節（1全職2兼職）",
+                        "type": "integer"
+                    },
+                    "income_id": {
+                        "description": "收入（1(2萬以下)、2(2萬元-4萬元以下)、3(4萬元-6萬元以下)、4(6萬元- 8萬元以下)、5(8萬元-10萬元以下)、6(10萬元以上)）",
+                        "type": "integer"
+                    },
+                    "source_id": {
+                        "description": "來源人數（1(1人)、2(2人)、3(3人)、4(4人)、5(5人)、6(6人)）",
+                        "type": "integer"
+                    },
+                    "diagnosed": {
+                        "description": "確診日期",
+                        "type": "string"
+                    },
                     "date": {
                         "description": "個案移植日期",
                         "type": "string"
@@ -1295,23 +1383,23 @@
                         "type": "integer",
                         "example": 1
                     },
-                    "date": {
-                        "description": "日期",
-                        "type": "string",
-                        "example": "1993-12-11"
-                    },
-                    "course": {
-                        "description": "療程",
-                        "type": "string",
-                        "example": "Cycle4"
-                    },
                     "type": {
-                        "description": "施打藥物種類",
+                        "description": "藥物名稱",
                         "type": "string",
                         "example": "藥物-N"
                     },
+                    "start_date": {
+                        "description": "施打日期起",
+                        "type": "string",
+                        "example": "1993-12-11"
+                    },
+                    "end_date": {
+                        "description": "施打日期迄",
+                        "type": "string",
+                        "example": "1993-12-11"
+                    },
                     "dose": {
-                        "description": "藥物劑量",
+                        "description": "施打藥物劑量總量",
                         "type": "string",
                         "example": "622 mg"
                     }
@@ -1336,18 +1424,23 @@
                         "format": "date",
                         "example": "2022-03-10"
                     },
-                    "physical_strength": {
-                        "description": "體力狀況",
-                        "type": "string",
-                        "example": "很好"
+                    "physical_strength_id": {
+                        "description": "體力滿意度（5非常好4好3普通2不好1非常不好）",
+                        "type": "integer",
+                        "example": "1"
                     },
                     "symptom": {
                         "description": "症狀",
                         "type": "string",
                         "example": "皮疹"
                     },
-                    "hospital": {
-                        "description": "固定回診醫院",
+                    "hospital_id": {
+                        "description": "固定回診醫院（1高醫2大同3小港4其他）",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "hospital_other": {
+                        "description": "固定回診醫院其他",
                         "type": "string",
                         "example": "高醫"
                     }
@@ -1394,7 +1487,12 @@
                     "name": {
                         "description": "任務名稱",
                         "type": "string",
-                        "example": "造血幹細胞移植分類-異體造血幹細胞移植"
+                        "example": "移植前評估-費用"
+                    },
+                    "short": {
+                        "description": "任務短名稱",
+                        "type": "string",
+                        "example": "費用"
                     }
                 },
                 "type": "object"

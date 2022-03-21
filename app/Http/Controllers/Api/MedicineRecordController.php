@@ -21,7 +21,7 @@ class MedicineRecordController extends Controller
      *              @OA\Schema (
      *                  @OA\Property(property="data", type="array",
      *                      @OA\Items(type="object", allOf={
-     *                          @OA\Schema (ref="#/components/schemas/message")}))))))
+     *                          @OA\Schema (ref="#/components/schemas/medicine")}))))))
      */
 
     public function account(Request $request, $account){
