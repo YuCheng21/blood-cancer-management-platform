@@ -5,7 +5,14 @@ namespace App\Helpers;
 class AppHelper
 {
     /*
-     * array_column, array_unique, array_filter
+     * array_column : 取出 Array 指定 key 的資料
+     * array_unique : 得出 1d array 的獨立 value
+     * array_flip : 翻轉 key value
+     * array_fill_keys : array value 移到 key，並給 value 預設值
+     * array_merge : 參考 key 合併兩個 Array
+     * array_keys : 取出 array 的 key，並放到 value
+     * array_values : 取出 array 的 value，並放到 value
+     * array_filter :
      */
     public static function split_task($task): array
     {
