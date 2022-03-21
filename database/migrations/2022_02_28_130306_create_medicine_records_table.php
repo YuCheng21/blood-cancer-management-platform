@@ -16,10 +16,10 @@ class CreateMedicineRecordsTable extends Migration
         Schema::create('medicine_records', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('case_id')->comment('個案編號');
-            $table->date('date')->comment('日期');
-            $table->string('course')->comment('療程');
             $table->string('type')->comment('施打藥物種類');
-            $table->string('dose')->comment('藥物劑量');
+            $table->date('start_date')->comment('開始日期');
+            $table->date('end_date')->comment('結束日期');
+            $table->string('dose')->comment('施打藥物劑量總量');
             $table->timestamps();
         });
         Schema::table('medicine_records', function (Blueprint $table) {

@@ -15,9 +15,9 @@ class MedicineRecordFactory extends Factory
     {
         return [
             'case_id' => '1',
-            'date' => $this->faker->date('Y_m_d'),
-            'course' => 'Cycle' . $this->faker->numberBetween(1,6),
             'type' => '藥物' . '-' . strtoupper($this->faker->randomLetter()),
+            'start_date' => $this->faker->date('Y_m_d'),
+            'end_date' => $this->faker->date('Y_m_d'),
             'dose' => $this->faker->numerify('### mg'),
         ];
     }

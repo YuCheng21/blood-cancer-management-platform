@@ -235,19 +235,19 @@
                                data-locale="zh-TW">
                             <thead>
                             <tr>
-                                <th data-width="20" data-width-unit="%" data-sortable="true" data-field="date">日期</th>
-                                <th data-width="15" data-width-unit="%" data-sortable="true">療程</th>
-                                <th data-width="40" data-width-unit="%" data-sortable="true">施打藥物種類</th>
-                                <th data-width="15" data-width-unit="%" data-sortable="true">藥物劑量</th>
+                                <th data-width="40" data-width-unit="%" data-sortable="true">藥物名稱</th>
+                                <th data-width="15" data-width-unit="%" data-sortable="true" data-field="date">施打日期起</th>
+                                <th data-width="15" data-width-unit="%" data-sortable="true" data-field="date">施打日期迄</th>
+                                <th data-width="20" data-width-unit="%" data-sortable="true">施打藥物劑量總量</th>
                                 <th data-width="10" data-width-unit="%">操作選項</th>
                             </tr>
                             </thead>
 
                             @foreach($medicine_records as $medicine_record)
                                 <tr>
-                                    <td>{{ $medicine_record->date }}</td>
-                                    <td>{{ $medicine_record->course }}</td>
                                     <td>{{ $medicine_record->type }}</td>
+                                    <td>{{ $medicine_record->start_date }}</td>
+                                    <td>{{ $medicine_record->end_date }}</td>
                                     <td>{{ $medicine_record->dose }}</td>
                                     <td>
                                         <button class="btn btn-secondary text-white updateMedicineRecordBtn"

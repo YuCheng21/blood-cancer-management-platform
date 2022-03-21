@@ -30,9 +30,9 @@ $(document).on('click', '.updateMedicineRecordBtn', function (e) {
         }
     })
 
-    $('#updateMedicineRecordDate').val(selectedMedicine[0]['date']);
-    $('#updateMedicineRecordCourse').val(selectedMedicine[0]['course']);
     $('#updateMedicineRecordType').val(selectedMedicine[0]['type']);
+    $('#updateMedicineRecordStartDate').val(selectedMedicine[0]['start_date']);
+    $('#updateMedicineRecordEndDate').val(selectedMedicine[0]['end_date']);
     $('#updateMedicineRecordDose').val(selectedMedicine[0]['dose']);
 })
 

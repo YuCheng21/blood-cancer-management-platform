@@ -15,22 +15,22 @@
                               enctype="multipart/form-data">
                             @csrf
                             <div class="input-group mb-2">
-                                <label for="createMedicineRecordDate" class="input-group-text">日期</label>
-                                <input name="createMedicineRecordDate" id="createMedicineRecordDate" type="date"
-                                       class="form-control" value="{{old('createMedicineRecordDate')}}">
-                            </div>
-                            <div class="input-group mb-2">
-                                <label for="createMedicineRecordCourse" class="input-group-text">療程</label>
-                                <input name="createMedicineRecordCourse" type="text" id="createMedicineRecordCourse"
-                                       class="form-control" placeholder="請輸入內容" value="{{old('createMedicineRecordCourse')}}">
-                            </div>
-                            <div class="input-group mb-2">
-                                <label for="createMedicineRecordType" class="input-group-text">施打藥物種類</label>
+                                <label for="createMedicineRecordType" class="input-group-text">藥物名稱</label>
                                 <input name="createMedicineRecordType" type="text" id="createMedicineRecordType"
                                        class="form-control" placeholder="請輸入內容" value="{{old('createMedicineRecordType')}}">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createMedicineRecordDose" class="input-group-text">藥物劑量</label>
+                                <label for="createMedicineRecordStartDate" class="input-group-text">施打日期起</label>
+                                <input name="start_date" id="createMedicineRecordStartDate" type="date"
+                                       class="form-control" value="{{old('start_date')}}">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="createMedicineRecordEndDate" class="input-group-text">施打日期迄</label>
+                                <input name="end_date" id="createMedicineRecordEndDate" type="date"
+                                       class="form-control" value="{{old('end_date')}}">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="createMedicineRecordDose" class="input-group-text">施打藥物劑量總量</label>
                                 <input name="createMedicineRecordDose" type="text" id="createMedicineRecordDose"
                                        class="form-control" placeholder="請輸入內容" value="{{old('createMedicineRecordDose')}}">
                             </div>

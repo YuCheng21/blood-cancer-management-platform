@@ -13,9 +13,9 @@ class MedicineRecordController extends Controller
     public function store($account, Request $request)
     {
         $rules = [
-            'createMedicineRecordDate' => ['required'],
-            'createMedicineRecordCourse' => ['required'],
             'createMedicineRecordType' => ['required'],
+            'start_date' => ['required'],
+            'end_date' => ['required'],
             'createMedicineRecordDose' => ['required'],
         ];
         $validator = Validator::make($request->all(), $rules);
@@ -33,9 +33,9 @@ class MedicineRecordController extends Controller
         ])->first();
         $data = [
             'case_id' => $case->id,
-            'date' => $request->createMedicineRecordDate,
-            'course' => $request->createMedicineRecordCourse,
             'type' => $request->createMedicineRecordType,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
             'dose' => $request->createMedicineRecordDose,
         ];
         try {
@@ -59,9 +59,9 @@ class MedicineRecordController extends Controller
     public function update($account, $id, Request $request)
     {
         $rules = [
-            'updateMedicineRecordDate' => ['required'],
-            'updateMedicineRecordCourse' => ['required'],
             'updateMedicineRecordType' => ['required'],
+            'start_date' => ['required'],
+            'end_date' => ['required'],
             'updateMedicineRecordDose' => ['required'],
         ];
         $validator = Validator::make($request->all(), $rules);
@@ -76,9 +76,9 @@ class MedicineRecordController extends Controller
         }
 
         $data = [
-            'date' => $request->updateMedicineRecordDate,
-            'course' => $request->updateMedicineRecordCourse,
             'type' => $request->updateMedicineRecordType,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
             'dose' => $request->updateMedicineRecordDose,
         ];
         $medicine_record = MedicineRecord::where([

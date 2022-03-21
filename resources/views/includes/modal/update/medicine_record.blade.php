@@ -15,18 +15,17 @@
                             @csrf
                             @method('patch')
                             <div class="input-group mb-2">
-                                <label for="updateMedicineRecordDate" class="input-group-text">日期</label>
-                                <input name="updateMedicineRecordDate" id="updateMedicineRecordDate" type="date" class="form-control">
-                            </div>
-                            <div class="input-group mb-2">
-                                <label for="updateMedicineRecordCourse" class="input-group-text">療程</label>
-                                <input name="updateMedicineRecordCourse" type="text" id="updateMedicineRecordCourse"
-                                       class="form-control" placeholder="請輸入內容">
-                            </div>
-                            <div class="input-group mb-2">
-                                <label for="updateMedicineRecordType" class="input-group-text">施打藥物種類</label>
+                                <label for="updateMedicineRecordType" class="input-group-text">藥物名稱</label>
                                 <input name="updateMedicineRecordType" type="text" id="updateMedicineRecordType"
                                        class="form-control" placeholder="請輸入內容">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateMedicineRecordStartDate" class="input-group-text">施打日期起</label>
+                                <input name="start_date" id="updateMedicineRecordStartDate" type="date" class="form-control">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateMedicineRecordEndDate" class="input-group-text">施打日期迄</label>
+                                <input name="end_date" id="updateMedicineRecordEndDate" type="date" class="form-control">
                             </div>
                             <div class="input-group mb-2">
                                 <label for="updateMedicineRecordDose" class="input-group-text">藥物劑量</label>

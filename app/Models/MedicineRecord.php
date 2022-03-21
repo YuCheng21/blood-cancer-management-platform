@@ -11,9 +11,9 @@ class MedicineRecord extends Model
 
     protected $fillable = [
         'case_id',
-        'date',
-        'course',
         'type',
+        'start_date',
+        'end_date',
         'dose',
     ];
 
