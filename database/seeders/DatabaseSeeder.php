@@ -46,6 +46,8 @@ class DatabaseSeeder extends Seeder
 
             MedicineRecordSeeder::class,
             SideEffectRecordSeeder::class,
+            HospitalSeeder::class,
+            PhysicalStrengthSeeder::class,
             ReportRecordSeeder::class,
 
             MessageSeeder::class,

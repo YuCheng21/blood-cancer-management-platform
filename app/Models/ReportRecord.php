@@ -12,12 +12,21 @@ class ReportRecord extends Model
     protected $fillable = [
         'case_id',
         'date',
-        'physical_strength',
+        'physical_strength_id',
         'symptom',
-        'hospital',
+        'hospital_id',
+        'hospital_other',
     ];
 
     public function cases(){
         return $this->belongsTo(CaseModel::class, 'case_id', 'id');
+    }
+
+    public function physical_strength(){
+        return $this->belongsTo(PhysicalStrength::class, 'physical_strength_id', 'id');
+    }
+
+    public function hospital(){
+        return $this->belongsTo(Hospital::class, 'hospital_id', 'id');
     }
 }

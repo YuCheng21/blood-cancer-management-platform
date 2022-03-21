@@ -181,7 +181,7 @@
                                                 @php(/* @var $item */ $item =  $case_task['category_1'] . ($case_task['category_2'] == '0' ? '' : '-' . $case_task['category_2']) . '. ' . $case_task['name'] )
                                                 <td>{{ $item }}</td>
                                                 <td>
-                                                    <a href="{{ route('cases.topic', ['account' => $account, 'case_task_id' => $case_task['id']]) }}">
+{{--                                                    <a href="{{ route('cases.topic', ['account' => $account, 'case_task_id' => $case_task['id']]) }}">--}}
                                                         @if($case_task['state'] == 'completed')
                                                             <span class="text-success">已完成</span><br>
                                                         @elseif($case_task['state'] == 'uncompleted')
@@ -189,7 +189,7 @@
                                                         @else
                                                             <span>未完成</span><br>
                                                         @endif
-                                                    </a>
+{{--                                                    </a>--}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -369,17 +369,21 @@
                             <thead>
                             <tr>
                                 <th data-width="20" data-width-unit="%" data-sortable="true" data-field="date">日期</th>
-                                <th data-width="20" data-width-unit="%" data-sortable="true">體力狀況</th>
-                                <th data-width="40" data-width-unit="%" data-sortable="true">症狀</th>
+                                <th data-width="20" data-width-unit="%" data-sortable="true">體力滿意度</th>
+{{--                                <th data-width="40" data-width-unit="%" data-sortable="true">症狀</th>--}}
                                 <th data-width="20" data-width-unit="%" data-sortable="true">固定回診醫院</th>
                             </tr>
                             </thead>
                             @foreach($report_records as $report_record)
                                 <tr>
                                     <td>{{ $report_record->date }}</td>
-                                    <td>{{ $report_record->physical_strength }}</td>
-                                    <td>{{ $report_record->symptom }}</td>
-                                    <td>{{ $report_record->hospital }}</td>
+                                    <td>{{ $report_record->physical_strength->name }}</td>
+{{--                                    <td>{{ $report_record->symptom }}</td>--}}
+                                    @if($report_record->hospital->name == '其他')
+                                        <td>{{ $report_record->hospital_other }}</td>
+                                    @else
+                                        <td>{{ $report_record->hospital->name }}</td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </table>

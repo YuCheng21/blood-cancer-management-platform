@@ -17,9 +17,10 @@ class CreateReportRecordsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('case_id')->comment('個案編號');
             $table->date('date')->comment('日期');
-            $table->string('physical_strength')->comment('體力狀況');
+            $table->unsignedBigInteger('physical_strength_id')->comment('體力滿意度編號');
             $table->string('symptom')->comment('症狀');
-            $table->string('hospital')->comment('醫院');
+            $table->unsignedBigInteger('hospital_id')->comment('醫院編號');
+            $table->string('hospital_other')->comment('醫院其他')->nullable();
             $table->timestamps();
         });
         Schema::table('report_records', function (Blueprint $table) {
