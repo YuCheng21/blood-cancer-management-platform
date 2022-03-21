@@ -33,7 +33,7 @@ $(document).on('change', '#selectSubTemplate', function (e) {
         let ul = document.createElement('ul');
         taskOfWeek.forEach(function (tasks) {
             let li = document.createElement("li");
-            li.innerText = tasks['task']['category_1'] + '-' + tasks['task']['category_2'] + '. ' + tasks['task']['name'];
+            li.innerText = tasks['task']['category_1'] + (tasks['task']['category_2'] === '0' ? '' : '-' + tasks['task']['category_2']) + '. ' + tasks['task']['name'];
             ul.appendChild(li);
         })
         ul.classList.add('mb-0')

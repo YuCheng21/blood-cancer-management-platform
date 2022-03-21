@@ -18,6 +18,7 @@ class CreateTasksTable extends Migration
             $table->unsignedBigInteger('category_1')->comment('類別1');
             $table->string('category_2')->comment('類別2');
             $table->string('name')->comment('名稱');
+            $table->string('short')->comment('短名稱');
             $table->timestamps();
         });
     }

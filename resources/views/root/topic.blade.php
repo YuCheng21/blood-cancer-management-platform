@@ -81,7 +81,7 @@
                                 <tr data-delete-url="{{ route('topics.destroy', ['id' => $topic->id]) }}"
                                     data-update-url="{{ route('topics.update', ['id' => $topic->id]) }}"
                                     data-id="{{ $topic->id }}">
-                                    <td>[{{ $topic->task->category_1 }}-{{ $topic->task->category_2 }}] {{ $topic->task->name }}</td>
+                                    <td>[{{ $topic->task->category_1 }}{{ $topic->task->category_2 == '0' ? '' : '-' . $topic->task->category_2 }}] {{ $topic->task->name }}</td>
                                     <td class="ws-normal">{{ $topic->question }}</td>
                                     <td>{{ $topic->question_type == 'multiple-choice' ? '選擇題' : ($topic->question_type == 'true-false' ? '是非題' : '')}}</td>
                                     <td>

@@ -30,7 +30,7 @@
                                     <ul class="mb-0">
                                         @foreach($main_templates as $template)
                                             @if($template->week == $i)
-                                                @php(/* @var $item */ $item =  $template->task->category_1 . '-' . $template->task->category_2 . '. ' . $template->task->name )
+                                                @php(/* @var $item */ $item =  $template->task->category_1 . ($template->task->category_2 == 0 ? '' : '-' . $template->task->category_2) . '. ' . $template->task->name )
                                                 <li data-category-1="{{ $template->task->category_1 }}"
                                                     data-category-2="{{ $template->task->category_2 }}">{{ $item }}</li>
                                             @endif

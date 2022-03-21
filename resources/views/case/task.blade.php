@@ -36,7 +36,7 @@
                                     <ul class="mb-0">
                                         @foreach(\App\Helpers\AppHelper::tasks_sort($case_tasks->toArray()) as $case_task)
                                             @if($case_task['week'] == $i)
-                                                @php(/* @var $item */ $item =  $case_task['category_1'] . '-' . $case_task['category_2'] . '. ' . $case_task['name'] )
+                                                @php(/* @var $item */ $item =  $case_task['category_1'] . ($case_task['category_2'] == '0' ? '' : '-' . $case_task['category_2']) . '. ' . $case_task['name'] )
                                                 <li data-category-1="{{ $case_task['category_1'] }}"
                                                     data-category-2="{{ $case_task['category_2'] }}">{{ $item }}</li>
                                             @endif

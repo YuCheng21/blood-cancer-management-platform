@@ -20,7 +20,7 @@
                         </li>
                         <li>
                             <span>任務 :</span>
-                            <span>{{ $task->category_1 }}-{{ $task->category_2 }}.</span>
+                            <span>{{ $task->category_1 }}{{ $task->category_2 == '0' ? '' : '-' . $task->category_2 }}.</span>
                             <span>{{ $task->name }}</span>
                         </li>
                     </ul>

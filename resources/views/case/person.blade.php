@@ -178,7 +178,7 @@
                                                         <span>{{ \Carbon\Carbon::parse($case_task['start_at'])->addDays($case_task['week'] * 7 - 1)->toDateString() }}</span>
                                                     </td>
                                                 @endif
-                                                @php(/* @var $item */ $item =  $case_task['category_1'] . '-' . $case_task['category_2'] . '. ' . $case_task['name'] )
+                                                @php(/* @var $item */ $item =  $case_task['category_1'] . ($case_task['category_2'] == '0' ? '' : '-' . $case_task['category_2']) . '. ' . $case_task['name'] )
                                                 <td>{{ $item }}</td>
                                                 <td>
                                                     <a href="{{ route('cases.topic', ['account' => $account, 'case_task_id' => $case_task['id']]) }}">
