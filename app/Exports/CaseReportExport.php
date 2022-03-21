@@ -32,9 +32,9 @@ class CaseReportExport implements FromArray, WithTitle, WithHeadings
                 return [
                     $report_record->cases->account,
                     $report_record->date,
-                    $report_record->physical_strength,
-                    $report_record->symptom,
-                    $report_record->hospital,
+                    $report_record->physical_strength->id - 1,
+                    $report_record->hospital->id - 1,
+                    $report_record->hospital_other,
                 ];
             });
             return $report_records;
@@ -47,9 +47,9 @@ class CaseReportExport implements FromArray, WithTitle, WithHeadings
         return [
             '帳號',
             '日期',
-            '體力狀況',
-            '症狀',
-            '固定回診醫院',
+            '體力狀況（5非常好4好3普通2不好1非常不好）',
+            '固定回診醫院（1高醫2大同3小港4其他）',
+            '固定回診醫院其他',
         ];
     }
 

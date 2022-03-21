@@ -25,14 +25,14 @@ class CaseMedicineExport implements FromArray, WithTitle, WithHeadings
         $medicine_records = $cases->map(function ($case){
             $medicine_records = $case
                 ->medicine_records()
-                ->orderBy('date')
+                ->orderBy('start_date')
                 ->get();
             $medicine_records = $medicine_records->map(function ($medicine_record) {
                 return [
                     $medicine_record->cases->account,
-                    $medicine_record->date,
-                    $medicine_record->course,
                     $medicine_record->type,
+                    $medicine_record->start_date,
+                    $medicine_record->end_date,
                     $medicine_record->dose,
                 ];
             });
@@ -46,10 +46,10 @@ class CaseMedicineExport implements FromArray, WithTitle, WithHeadings
     {
         return [
             '帳號',
-            '日期',
-            '療程',
-            '施打藥物種類',
-            '藥物劑量',
+            '藥物名稱',
+            '施打日期起',
+            '施打日期迄',
+            '施打藥物劑量總量',
         ];
     }
 
