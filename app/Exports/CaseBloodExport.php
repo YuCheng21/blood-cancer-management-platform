@@ -23,25 +23,19 @@ class CaseBloodExport implements FromArray, WithTitle, WithHeadings
         $cases = CaseModel::whereIn('id', $this->accounts)->get();
 
         $blood_components = $cases->map(function ($case){
-            $blood_components = $case
-                ->blood_components()
+            $case_blood_components = $case
+                ->case_blood_components()
                 ->orderBy('updated_at')
                 ->get();
-            $blood_components = $blood_components->map(function ($blood_component) {
+            $case_blood_components = $case_blood_components->map(function ($case_blood_component) {
                 return [
-                    $blood_component->cases->account,
-                    $blood_component->wbc,
-                    $blood_component->hb,
-                    $blood_component->plt,
-                    $blood_component->got,
-                    $blood_component->gpt,
-                    $blood_component->cea,
-                    $blood_component->ca153,
-                    $blood_component->bun,
-                    $blood_component->updated_at,
+                    $case_blood_component->case->account,
+                    $case_blood_component->blood_component->created_at,
+                    $case_blood_component->blood_component->name,
+                    $case_blood_component->value,
                 ];
             });
-            return $blood_components;
+            return $case_blood_components;
         });
         return $blood_components->toArray();
     }
@@ -50,15 +44,9 @@ class CaseBloodExport implements FromArray, WithTitle, WithHeadings
     {
         return [
             '帳號',
-            '白血球(WBC)',
-            '血紅素(Hb)',
-            '血小板(PLT)',
-            '肝指數(GOT)',
-            '肝指數(GPT)',
-            '癌指數(CEA)',
-            '癌指數(CA153)',
-            '尿素氮(BUN)',
-            '新增日期',
+            '時間',
+            '類型',
+            '數值',
         ];
     }
 
