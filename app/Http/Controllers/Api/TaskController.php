@@ -93,30 +93,35 @@ class TaskController extends Controller
      *      @OA\RequestBody (
      *          @OA\MediaType(mediaType="application/x-www-form-urlencoded",
      *              @OA\Schema(required={"state"},
-     *                  @OA\Property(property="state", type="string", enum={"completed","uncompleted"}, example="completed"),),),),
+     *                  @OA\Property(property="state", type="string", description="任務完成狀態", enum={"completed","uncompleted"}, example="completed"),
+     *                  @OA\Property(property="case_id", type="integer", description="個案編號", example="1")))),
      *     @OA\Response(response="200", description="success",
      *          @OA\MediaType(mediaType="application/json",
      *              @OA\Schema (
-     *                  @OA\Property(property="data", type="object", allOf={
-     *                          @OA\Schema (ref="#/components/schemas/case-task")})))))
+     *                  @OA\Property(property="data", type="integer", example="1")))))
      */
 
-    public function state(Request $request ,$case_task_id){
+    public function state(Request $request, $task_id){
         $rules = [
             'state' => ['required'],
+            'case_id' => ['required'],
         ];
         $validator = Validator::make($request->all(), $rules);
-        $case_task = CaseTask::where('id', $case_task_id)->get();
+        $task = Task::where('id', $task_id)->first();
+        $condition = [
+            'task_id' => $task->id,
+            'case_id' => (int)$validator->validate()['case_id'],
+        ];
         if (!Auth::check()) {
-            $case_id = CaseModel::where('account', $request->get('auth_account'))->first()->toArray()['id'];
-            $case_task = $case_task->where('case_id', $case_id);
+            $case = CaseModel::where('account', $request->get('auth_account'))->first();
+            $condition = array_merge($condition, ['case_id' => $case->id]);
         }
-        $case_task = $case_task->first();
-        if (is_null($case_task)){
-            return \response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
+        // maybe change two-row state in one time
+        $case_tasks = CaseTask::where($condition);
+        if (is_null($case_tasks->get())){
+            return response(['data' => 'id not exist'], Response::HTTP_NOT_FOUND);
         }
-        $case_task->update($validator->validate());
-        $case_task = $case_task->refresh();
-        return response(['data' => $case_task], Response::HTTP_OK);
+        $case_tasks = $case_tasks->update($validator->validate());
+        return response(['data' => $case_tasks], Response::HTTP_OK);
     }
 }

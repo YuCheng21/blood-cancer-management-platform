@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "血癌照護管理平台",
-        "description": "\n<h3>Application Interface Documentation for Blood Cancer Care Management Platform.</h3>\n<h4><a href='/'>Home Page</a></h4>\n                        ",
+        "description": "\r\n<h3>Application Interface Documentation for Blood Cancer Care Management Platform.</h3>\r\n<h4><a href='/'>Home Page</a></h4>\r\n                        ",
         "contact": {
             "name": "High Performance Distributed Systems Lab",
             "email": "nkust.ee.hpds@gmail.com"
@@ -1040,12 +1040,18 @@
                                 ],
                                 "properties": {
                                     "state": {
+                                        "description": "任務完成狀態",
                                         "type": "string",
                                         "enum": [
                                             "completed",
                                             "uncompleted"
                                         ],
                                         "example": "completed"
+                                    },
+                                    "case_id": {
+                                        "description": "個案編號",
+                                        "type": "integer",
+                                        "example": "1"
                                     }
                                 },
                                 "type": "object"
@@ -1061,12 +1067,8 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "type": "object",
-                                            "allOf": [
-                                                {
-                                                    "$ref": "#/components/schemas/case-task"
-                                                }
-                                            ]
+                                            "type": "integer",
+                                            "example": "1"
                                         }
                                     },
                                     "type": "object"
