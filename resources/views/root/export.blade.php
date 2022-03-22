@@ -11,50 +11,62 @@
                     <span class="iconify-inline" data-icon="bx:bxs-file-export"></span>
                     <span>個案資料匯出</span>
                 </h2>
-                <form action="#" id="exportForm" method="POST" enctype="multipart/form-data">
+            </div>
+            <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
+                <form action="#" id="exportForm" method="POST" enctype="multipart/form-data" class="row g-1">
                     @csrf
-                    <div class="d-flex flex-column flex-xl-row">
-                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="total"
+                    <div class="col-12">
+                        <button type="button" class="btn btn-primary btn-export w-100" data-action="total"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 title="勾選帳號並匯出「總資料」">
                             <span>總資料</span>
                         </button>
-                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="information"
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <button type="button" class="btn btn-primary btn-export w-100" data-action="information"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 title="勾選帳號並匯出「個人資料」">
                             <span>個人資料</span>
                         </button>
-                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="blood"
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <button type="button" class="btn btn-primary btn-export w-100" data-action="blood"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 title="勾選帳號並匯出「抽血數據」">
                             <span>抽血數據</span>
                         </button>
-                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="task"
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <button type="button" class="btn btn-primary btn-export w-100" data-action="task"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 title="勾選帳號並匯出「每週任務」">
                             <span>每週任務</span>
                         </button>
-                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="medicine"
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <button type="button" class="btn btn-primary btn-export w-100" data-action="medicine"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 title="勾選帳號並匯出「藥物劑量」">
                             <span>藥物劑量</span>
                         </button>
-                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="effect"
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <button type="button" class="btn btn-primary btn-export w-100" data-action="effect"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 title="勾選帳號並匯出「副作用」">
                             <span>副作用</span>
                         </button>
-                        <button type="button" class="btn btn-primary me-1 my-1 btn-export" data-action="report"
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <button type="button" class="btn btn-primary btn-export w-100" data-action="report"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 title="勾選帳號並匯出「報告個管師」">
                             <span>報告個管師</span>
                         </button>
                     </div>
                 </form>
-            </div>
-            <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
                 <div class="row justify-content-center text-center">
-                    <div class="table-responsive">
+                    <div class="table-responsive col-12">
                         <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
                                data-toggle="table"
                                data-search="true"
