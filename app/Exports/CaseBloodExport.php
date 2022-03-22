@@ -24,10 +24,7 @@ class CaseBloodExport implements FromArray, WithTitle, WithHeadings
     {
         $cases = CaseModel::whereIn('id', $this->accounts)->get();
 
-        $blood_components = BloodComponent::all();
-        $blood_components_name = $blood_components->map(function ($blood_component){
-            return $blood_component->name;
-        });
+        $blood_components_name = $this->get_blood_components_name();
 
         $blood_components = $cases->map(function ($case) use ($blood_components_name) {
             $case_blood_components = $case
@@ -48,8 +45,8 @@ class CaseBloodExport implements FromArray, WithTitle, WithHeadings
                 foreach ($value as $index => $item){
                     $buffer[$item['blood_component']['name']] = $item['value'];
                 }
-                $sortable = array_merge(array('account', 'created_at'), $blood_components_name->toArray());
-                $result = array_merge(array_fill_keys($sortable, null), $buffer);
+                $sorted = array_merge(array('account', 'created_at'), $blood_components_name->toArray());
+                $result = array_merge(array_fill_keys($sorted, null), $buffer);
                 $rows[] = $result;
             }
             return $rows;
@@ -59,15 +56,24 @@ class CaseBloodExport implements FromArray, WithTitle, WithHeadings
 
     public function headings(): array
     {
-        $blood_components = BloodComponent::all();
-        $blood_components_name = $blood_components->map(function ($blood_component){
-            return $blood_component->name;
-        });
+        $blood_components_name = $this->get_blood_components_name();
         return array_merge(array('帳號', '時間'), $blood_components_name->toArray());
     }
 
     public function title(): string
     {
         return '抽血數據' . $this->title;
+    }
+
+    /**
+     * @return BloodComponent[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
+     */
+    public function get_blood_components_name()
+    {
+        $blood_components = BloodComponent::all();
+        $blood_components_name = $blood_components->map(function ($blood_component) {
+            return $blood_component->name;
+        });
+        return $blood_components_name;
     }
 }
