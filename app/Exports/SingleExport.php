@@ -20,7 +20,9 @@ class SingleExport implements WithMultipleSheets
 
         $sheets = [];
 
-        $sheets[] = new CaseInformationExport([$case_id]);
+//        $sheets[] = new CaseInformationOneExport([$case_id]);
+        $sheets[] = new CaseInformationOneExport([$case_id]);
+        $sheets[] = new CaseInformationTwoExport([$case_id]);
         $sheets[] = new CaseBloodExport([$case_id]);
         $sheets[] = new CaseTaskExport([$case_id]);
         $sheets[] = new CaseMedicineExport([$case_id]);

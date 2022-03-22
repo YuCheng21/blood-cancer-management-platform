@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\BloodExport;
 use App\Exports\CaseInformationExport;
+use App\Exports\CaseInformationOneAndTwoExport;
 use App\Exports\EffectExport;
 use App\Exports\MedicineExport;
 use App\Exports\ReportExport;
@@ -58,7 +59,8 @@ class ExportController extends Controller
                     'msg' => '尚未勾選資料'
                 ]);
         }
-        return Excel::download(new CaseInformationExport($selected), '個案資料.xlsx');
+//        return Excel::download(new CaseInformationExport($selected), '個案資料.xlsx');
+        return Excel::download(new CaseInformationOneAndTwoExport($selected), '個案資料.xlsx');
     }
 
     public function blood(Request $request){
