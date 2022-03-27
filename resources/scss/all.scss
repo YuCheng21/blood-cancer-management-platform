@@ -22,3 +22,8 @@
 @import "./utilities/white_space";
 // Customized
 @import "./pages/case/person";
+
+.required:after {
+    content:" *";
+    color: $danger;
+}

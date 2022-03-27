@@ -16,15 +16,21 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                    <span class="iconify-inline" data-icon="websymbol:cancel"></span>
-                    <span>關閉</span>
-                </button>
-                <button type="button" class="btn btn-primary" id="updateCaseTaskSend">
-                    <span class="iconify-inline" data-icon="subway:tick"></span>
-                    <span>確認</span>
-                </button>
+            <div class="modal-footer justify-content-between">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="confirm" id="confirm">
+                    <label class="form-check-label" for="confirm">我確認修改個案任務</label>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span class="iconify-inline" data-icon="websymbol:cancel"></span>
+                        <span>關閉</span>
+                    </button>
+                    <button type="button" class="btn btn-primary" id="updateCaseTaskSend" disabled>
+                        <span class="iconify-inline" data-icon="subway:tick"></span>
+                        <span>確認</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

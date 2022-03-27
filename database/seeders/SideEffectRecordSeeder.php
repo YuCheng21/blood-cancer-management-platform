@@ -15,7 +15,7 @@ class SideEffectRecordSeeder extends Seeder
     public function run()
     {
         SideEffectRecord::factory()
-            ->count(5)
+            ->count(15)
             ->create();
     }
 }

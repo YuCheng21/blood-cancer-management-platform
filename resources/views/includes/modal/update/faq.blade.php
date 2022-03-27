@@ -20,7 +20,7 @@
                                     <option value="0" selected>請選擇問題類型</option>
                                     @foreach($categories as $category)
                                         <option value="{{$category->category_1}}">
-                                            {{$category->name}}
+                                            {{$category->short}}
                                         </option>
                                     @endforeach
                                 </select>

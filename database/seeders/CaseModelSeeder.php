@@ -22,16 +22,16 @@ class CaseModelSeeder extends Seeder
             'gender_id' => 2,
             'birthday' => '1999-06-21',
 
-            'hometown_id' => 1,
+            'hometown_id' => 2,
             'hometown_other' => null,
-            'education_id' => 1,
-            'marriage_id' => 1,
-            'religion_id' => 1,
+            'education_id' => 2,
+            'marriage_id' => 2,
+            'religion_id' => 2,
             'religion_other' => null,
-            'profession_id' => 1,
-            'profession_detail_id' => 1,
-            'income_id' => 1,
-            'source_id' => 1,
+            'profession_id' => 2,
+            'profession_detail_id' => 2,
+            'income_id' => 2,
+            'source_id' => 2,
 
             'diagnosed' => '2022-02-17',
 
@@ -49,16 +49,16 @@ class CaseModelSeeder extends Seeder
             'gender_id' => 2,
             'birthday' => '1999-06-21',
 
-            'hometown_id' => 1,
+            'hometown_id' => 2,
             'hometown_other' => null,
-            'education_id' => 1,
-            'marriage_id' => 1,
-            'religion_id' => 1,
+            'education_id' => 2,
+            'marriage_id' => 2,
+            'religion_id' => 2,
             'religion_other' => null,
-            'profession_id' => 1,
-            'profession_detail_id' => 1,
-            'income_id' => 1,
-            'source_id' => 1,
+            'profession_id' => 2,
+            'profession_detail_id' => 2,
+            'income_id' => 2,
+            'source_id' => 2,
 
             'diagnosed' => '2022-02-17',
 
@@ -69,7 +69,7 @@ class CaseModelSeeder extends Seeder
             'disease_class_id' => 1,
         ]);
         CaseModel::factory()
-            ->count(5)
+            ->count(2)
             ->create();
     }
 }

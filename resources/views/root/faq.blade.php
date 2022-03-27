@@ -40,7 +40,7 @@
             <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
-                        <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
+                        <table class="table table-striped text-center align-middle fs-5"
                                data-toggle="table"
                                data-search="true"
                                data-pagination="true"
@@ -51,7 +51,7 @@
                             <tr>
                                 <th data-width="15" data-width-unit="%" data-sortable="true">類型</th>
                                 <th data-width="25" data-width-unit="%" data-sortable="true">問題</th>
-                                <th data-width="50" data-width-unit="%" data-sortable="true">解答</th>
+                                <th data-width="50" data-width-unit="%" data-sortable="true" data-halign="center" data-align="left">解答</th>
                                 <th data-width="10" data-width-unit="%">操作選項</th>
                             </tr>
                             </thead>
@@ -59,7 +59,7 @@
                                 <tr data-delete-url="{{ route('faqs.destroy', ['id' => $faq->id]) }}"
                                     data-update-url="{{ route('faqs.update', ['id' => $faq->id]) }}"
                                     data-id="{{ $faq->id }}">
-                                    <td>{{ $faq->category_information->name }}</td>
+                                    <td>{{ $faq->category_information->short }}</td>
                                     <td>{{ $faq->title }}</td>
                                     <td>{{ $faq->content }}</td>
                                     <td>

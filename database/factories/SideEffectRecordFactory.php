@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class SideEffectRecordFactory extends Factory
 {
     private static $counter = 1;
+    private static $counter2 = 1;
+    private static $date;
     /**
      * Define the model's default state.
      *
@@ -14,6 +16,10 @@ class SideEffectRecordFactory extends Factory
      */
     public function definition()
     {
+        if (self::$counter2 % 3 == 1){
+            self::$date = $this->faker->date('Y-m-d');
+        }
+        self::$counter2++;
         $symptom = $this->faker->randomElement(['皮疹', '掉髮', '腹瀉', '疲倦', '拍照']);
         if ($symptom == '拍照'){
             $has_image = true;
@@ -26,7 +32,7 @@ class SideEffectRecordFactory extends Factory
         }
         return [
             'case_id' => '1',
-            'date' => $this->faker->date('Y-m-d'),
+            'date' => self::$date,
             'symptom' => $symptom,
             'difficulty' => $this->faker->numberBetween(0, 10),
             'severity' => $this->faker->numberBetween(0, 10),

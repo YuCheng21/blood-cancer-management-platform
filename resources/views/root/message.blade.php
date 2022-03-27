@@ -40,7 +40,7 @@
             <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
-                        <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
+                        <table class="table table-striped text-center align-middle fs-5"
                                data-toggle="table"
                                data-search="true"
                                data-pagination="true"
@@ -51,7 +51,7 @@
                             <tr>
                                 <th data-width="5" data-width-unit="%" data-sortable="true">訊息編號</th>
                                 <th data-width="20" data-width-unit="%" data-sortable="true">標題</th>
-                                <th data-width="30" data-width-unit="%" data-sortable="true">內容</th>
+                                <th data-width="30" data-width-unit="%" data-sortable="true" data-halign="center" data-align="left">內容</th>
                                 <th data-width="10" data-width-unit="%" data-sortable="true">發布者</th>
                                 <th data-width="10" data-width-unit="%" data-sortable="true">建立日期</th>
                                 <th data-width="15" data-width-unit="%">操作選項</th>

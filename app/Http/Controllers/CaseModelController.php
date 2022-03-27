@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\AppHelper;
-use App\Models\CaseBloodComponent;
 use App\Models\CaseModel;
 use App\Models\CaseTask;
 use App\Models\CaseTopic;
@@ -63,25 +62,25 @@ class CaseModelController extends Controller
             'createCasePassword' => ['required'],
             'createCaseTransplantNum' => ['required'],
             'createCaseName' => ['required'],
-            'createCaseGender' => ['required', 'numeric', 'gt:1'],
+            'createCaseGender' => ['required', 'numeric', 'gt:0'],
             'createCaseBirth' => ['required'],
 
-            'hometown_id' => ['required'],
+            'hometown_id' => ['required', 'numeric', 'gt:0'],
             'hometown_other' => ['nullable'],
-            'education_id' => ['required'],
-            'marriage_id' => ['required'],
-            'religion_id' => ['required'],
+            'education_id' => ['required', 'numeric', 'gt:0'],
+            'marriage_id' => ['required', 'numeric', 'gt:0'],
+            'religion_id' => ['required', 'numeric', 'gt:0'],
             'religion_other' => ['nullable'],
-            'profession_id' => ['required'],
-            'profession_detail_id' => ['nullable'],
-            'income_id' => ['required'],
-            'source_id' => ['required'],
+            'profession_id' => ['required', 'numeric', 'gt:0'],
+            'profession_detail_id' => ['nullable', 'numeric'],
+            'income_id' => ['required', 'numeric', 'gt:0'],
+            'source_id' => ['required', 'numeric', 'gt:0'],
 
             'diagnosed' => ['required'],
 
             'createCaseDate' => ['required'],
-            'createCaseTransplantType' => ['required', 'numeric', 'gt:1'],
-            'createCaseDiseaseType' => ['required', 'numeric', 'gt:1'],
+            'createCaseTransplantType' => ['required', 'numeric', 'gt:0'],
+            'createCaseDiseaseType' => ['required', 'numeric', 'gt:0'],
             'createCaseDiseaseState' => ['required'],
             'createCaseDiseaseClass' => ['required'],
         ];
@@ -186,25 +185,25 @@ class CaseModelController extends Controller
             'updateCasePassword' => ['required'],
             'updateCaseTransplantNum' => ['required'],
             'updateCaseName' => ['required'],
-            'updateCaseGender' => ['required', 'numeric', 'gt:1'],
+            'updateCaseGender' => ['required', 'numeric', 'gt:0'],
             'updateCaseBirth' => ['required'],
 
-            'hometown_id' => ['required'],
+            'hometown_id' => ['required', 'numeric', 'gt:0'],
             'hometown_other' => ['nullable'],
-            'education_id' => ['required'],
-            'marriage_id' => ['required'],
-            'religion_id' => ['required'],
+            'education_id' => ['required', 'numeric', 'gt:0'],
+            'marriage_id' => ['required', 'numeric', 'gt:0'],
+            'religion_id' => ['required', 'numeric', 'gt:0'],
             'religion_other' => ['nullable'],
-            'profession_id' => ['required'],
+            'profession_id' => ['required', 'numeric', 'gt:0'],
             'profession_detail_id' => ['nullable'],
-            'income_id' => ['required'],
-            'source_id' => ['required'],
+            'income_id' => ['required', 'numeric', 'gt:0'],
+            'source_id' => ['required', 'numeric', 'gt:0'],
 
             'diagnosed' => ['required'],
 
             'updateCaseDate' => ['required'],
-            'updateCaseTransplantType' => ['required', 'numeric', 'gt:1'],
-            'updateCaseDiseaseType' => ['required', 'numeric', 'gt:1'],
+            'updateCaseTransplantType' => ['required', 'numeric', 'gt:0'],
+            'updateCaseDiseaseType' => ['required', 'numeric', 'gt:0'],
             'updateCaseDiseaseState' => ['required'],
             'updateCaseDiseaseClass' => ['required'],
         ];

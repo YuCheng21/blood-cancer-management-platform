@@ -94,3 +94,7 @@ $('#updateCaseTaskSend').on('click', function () {
 
     document.body.appendChild(form).submit();
 })
+
+$('#confirm').on('change', function () {
+    $('#updateCaseTaskSend').attr('disabled', !$(this).prop('checked'))
+})

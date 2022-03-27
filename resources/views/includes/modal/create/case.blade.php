@@ -16,28 +16,28 @@
                             @csrf
                             <p class="text-center fw-bold fs-6">個人資料</p>
                             <div class="input-group mb-2">
-                                <label for="createCaseAccount" class="input-group-text">帳號</label>
+                                <label for="createCaseAccount" class="input-group-text required">帳號</label>
                                 <input name="createCaseAccount" type="text" id="createCaseAccount"
                                        class="form-control" placeholder="請輸入個案帳號" value="{{old('createCaseAccount')}}">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createCasePassword" class="input-group-text">密碼</label>
+                                <label for="createCasePassword" class="input-group-text required">密碼</label>
                                 <input name="createCasePassword" type="password" id="createCasePassword"
                                        class="form-control" placeholder="請輸入個案密碼" value="{{old('createCasePassword')}}">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createCaseTransplantNum" class="input-group-text">移植編號</label>
+                                <label for="createCaseTransplantNum" class="input-group-text required">移植編號</label>
                                 <input name="createCaseTransplantNum" type="text" id="createCaseTransplantNum"
                                        class="form-control" placeholder="請輸入個案移植編號"
                                        value="{{old('createCaseTransplantNum')}}">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createCaseName" class="input-group-text">姓名</label>
+                                <label for="createCaseName" class="input-group-text required">姓名</label>
                                 <input name="createCaseName" type="text" id="createCaseName"
                                        class="form-control" placeholder="請輸入個案姓名" value="{{old('createCaseName')}}">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createCaseGender" class="input-group-text">性別</label>
+                                <label for="createCaseGender" class="input-group-text required">性別</label>
                                 <select name="createCaseGender" id="createCaseGender" class="form-select">
                                     @foreach($genders as $gender)
                                         <option value="{{$gender->id}}"
@@ -48,12 +48,12 @@
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createCaseBirth" class="input-group-text">生日</label>
+                                <label for="createCaseBirth" class="input-group-text required">生日</label>
                                 <input name="createCaseBirth" id="createCaseBirth" type="date" class="form-control"
                                        value="{{old('createCaseBirth')}}">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createCaseHometown" class="input-group-text">籍貫</label>
+                                <label for="createCaseHometown" class="input-group-text required">籍貫</label>
                                 <select name="hometown_id" id="createCaseHometown" class="form-select">
                                     @foreach($hometowns as $hometown)
                                         <option value="{{$hometown->id}}"
@@ -67,7 +67,7 @@
                                        class="form-control" placeholder="其他籍貫" value="{{old('hometown_other')}}">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createCaseEducation" class="input-group-text">教育程度</label>
+                                <label for="createCaseEducation" class="input-group-text required">教育程度</label>
                                 <select name="education_id" id="createCaseEducation" class="form-select">
                                     @foreach($educations as $education)
                                         <option value="{{$education->id}}"
@@ -78,7 +78,7 @@
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createCaseMarriage" class="input-group-text">婚姻狀況</label>
+                                <label for="createCaseMarriage" class="input-group-text required">婚姻狀況</label>
                                 <select name="marriage_id" id="createCaseMarriage" class="form-select">
                                     @foreach($marriages as $marriage)
                                         <option value="{{$marriage->id}}"
@@ -89,7 +89,7 @@
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createCaseReligion" class="input-group-text">宗教信仰</label>
+                                <label for="createCaseReligion" class="input-group-text required">宗教信仰</label>
                                 <select name="religion_id" id="createCaseReligion" class="form-select">
                                     @foreach($religions as $religion)
                                         <option value="{{$religion->id}}"
@@ -103,7 +103,7 @@
                                        class="form-control" placeholder="其他宗教" value="{{old('religion_other')}}">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createCaseProfession" class="input-group-text">職業</label>
+                                <label for="createCaseProfession" class="input-group-text required">職業</label>
                                 <select name="profession_id" id="createCaseProfession" class="form-select">
                                     @foreach($professions as $profession)
                                         <option value="{{$profession->id}}"
@@ -123,7 +123,7 @@
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createCaseIncome" class="input-group-text">每個月家中總收入</label>
+                                <label for="createCaseIncome" class="input-group-text required">每個月家中總收入</label>
                                 <select name="income_id" id="createCaseIncome" class="form-select">
                                     @foreach($incomes as $income)
                                         <option value="{{$income->id}}"
@@ -134,7 +134,7 @@
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createCaseSource" class="input-group-text">收入來自於多少人</label>
+                                <label for="createCaseSource" class="input-group-text required">收入來自於多少人</label>
                                 <select name="source_id" id="createCaseSource" class="form-select">
                                     @foreach($sources as $source)
                                         <option value="{{$source->id}}"
@@ -147,17 +147,17 @@
                             <hr>
                             <p class="text-center fw-bold fs-6">疾病特性</p>
                             <div class="input-group mb-2">
-                                <label for="createCaseDiagnosed" class="input-group-text">確診日期</label>
+                                <label for="createCaseDiagnosed" class="input-group-text required">確診日期</label>
                                 <input name="diagnosed" id="createCaseDiagnosed" type="date" class="form-control"
                                        value="{{old('diagnosed')}}">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createCaseDate" class="input-group-text">移植日期</label>
+                                <label for="createCaseDate" class="input-group-text required">移植日期</label>
                                 <input name="createCaseDate" id="createCaseDate" type="date" class="form-control"
                                        value="{{old('createCaseDate')}}">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createCaseTransplantType" class="input-group-text">移植種類</label>
+                                <label for="createCaseTransplantType" class="input-group-text required">移植種類</label>
                                 <select name="createCaseTransplantType" id="createCaseTransplantType"
                                         class="form-select">
                                     @foreach($transplant_types as $transplant_type)
@@ -169,7 +169,7 @@
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="createCaseDiseaseType" class="input-group-text">疾病種類</label>
+                                <label for="createCaseDiseaseType" class="input-group-text required">疾病種類</label>
                                 <select name="createCaseDiseaseType" id="createCaseDiseaseType"
                                         class="form-select form-select">
                                     @foreach($disease_types as $disease_type)
@@ -212,16 +212,21 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                    <span class="iconify-inline" data-icon="websymbol:cancel"></span>
-                    <span>關閉</span>
-                </button>
-                <a href="{{route('cases.store')}}" class="btn btn-primary" id="createCaseSend"
-                   onclick="event.preventDefault();$('#createCaseForm').submit();">
-                    <span class="iconify-inline" data-icon="subway:tick"></span>
-                    <span>確認</span>
-                </a>
+            <div class="modal-footer justify-content-between">
+                <div>
+                    <p class="mb-0"><span class="text-danger">*</span>欄位為必要項目</p>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span class="iconify-inline" data-icon="websymbol:cancel"></span>
+                        <span>關閉</span>
+                    </button>
+                    <a href="{{route('cases.store')}}" class="btn btn-primary" id="createCaseSend"
+                       onclick="event.preventDefault();$('#createCaseForm').submit();">
+                        <span class="iconify-inline" data-icon="subway:tick"></span>
+                        <span>確認</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

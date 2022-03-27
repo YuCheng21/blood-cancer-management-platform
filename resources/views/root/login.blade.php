@@ -41,7 +41,7 @@
                                 <input name="account" type="text" id="account"
                                        class="form-control form-control-lg
                                        {{ $errors->first('account') ? 'is-invalid' : '' }}"
-                                       placeholder="請輸入帳號" value="{{ old('account') }}">
+                                       placeholder="請輸入帳號" value="{{ old('account') }}" autofocus>
                                 <div class="invalid-feedback">
                                     {{ $errors->first('account') }}
                                 </div>

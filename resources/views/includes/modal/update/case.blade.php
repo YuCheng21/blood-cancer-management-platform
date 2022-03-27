@@ -21,22 +21,22 @@
                                        class="form-control" placeholder="請輸入個案帳號" disabled>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="updateCasePassword" class="input-group-text">密碼</label>
+                                <label for="updateCasePassword" class="input-group-text required">密碼</label>
                                 <input name="updateCasePassword" type="password" id="updateCasePassword"
                                        class="form-control" placeholder="請輸入個案密碼">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="updateCaseTransplantNum" class="input-group-text">移植編號</label>
+                                <label for="updateCaseTransplantNum" class="input-group-text required">移植編號</label>
                                 <input name="updateCaseTransplantNum" type="text" id="updateCaseTransplantNum"
                                        class="form-control" placeholder="請輸入個案移植編號">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="updateCaseName" class="input-group-text">姓名</label>
+                                <label for="updateCaseName" class="input-group-text required">姓名</label>
                                 <input name="updateCaseName" type="text" id="updateCaseName"
                                        class="form-control" placeholder="請輸入個案姓名">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="updateCaseGender" class="input-group-text">性別</label>
+                                <label for="updateCaseGender" class="input-group-text required">性別</label>
                                 <select name="updateCaseGender" id="updateCaseGender" class="form-select">
                                     @foreach($genders as $gender)
                                         <option value="{{$gender->id}}">
@@ -46,12 +46,12 @@
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="updateCaseBirth" class="input-group-text">生日</label>
+                                <label for="updateCaseBirth" class="input-group-text required">生日</label>
                                 <input name="updateCaseBirth" id="updateCaseBirth" type="date" class="form-control">
                             </div>
 
                             <div class="input-group mb-2">
-                                <label for="updateCaseHometown" class="input-group-text">籍貫</label>
+                                <label for="updateCaseHometown" class="input-group-text required">籍貫</label>
                                 <select name="hometown_id" id="updateCaseHometown" class="form-select">
                                     @foreach($hometowns as $hometown)
                                         <option value="{{$hometown->id}}"
@@ -65,7 +65,7 @@
                                        class="form-control" placeholder="其他籍貫" value="{{old('hometown_other')}}">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="updateCaseEducation" class="input-group-text">教育程度</label>
+                                <label for="updateCaseEducation" class="input-group-text required">教育程度</label>
                                 <select name="education_id" id="updateCaseEducation" class="form-select">
                                     @foreach($educations as $education)
                                         <option value="{{$education->id}}"
@@ -76,7 +76,7 @@
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="updateCaseMarriage" class="input-group-text">婚姻狀況</label>
+                                <label for="updateCaseMarriage" class="input-group-text required">婚姻狀況</label>
                                 <select name="marriage_id" id="updateCaseMarriage" class="form-select">
                                     @foreach($marriages as $marriage)
                                         <option value="{{$marriage->id}}"
@@ -87,7 +87,7 @@
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="updateCaseReligion" class="input-group-text">宗教信仰</label>
+                                <label for="updateCaseReligion" class="input-group-text required">宗教信仰</label>
                                 <select name="religion_id" id="updateCaseReligion" class="form-select">
                                     @foreach($religions as $religion)
                                         <option value="{{$religion->id}}"
@@ -101,7 +101,7 @@
                                        class="form-control" placeholder="其他宗教" value="{{old('religion_other')}}">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="updateCaseProfession" class="input-group-text">職業</label>
+                                <label for="updateCaseProfession" class="input-group-text required">職業</label>
                                 <select name="profession_id" id="updateCaseProfession" class="form-select">
                                     @foreach($professions as $profession)
                                         <option value="{{$profession->id}}"
@@ -121,7 +121,7 @@
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="updateCaseIncome" class="input-group-text">每個月家中總收入</label>
+                                <label for="updateCaseIncome" class="input-group-text required">每個月家中總收入</label>
                                 <select name="income_id" id="updateCaseIncome" class="form-select">
                                     @foreach($incomes as $income)
                                         <option value="{{$income->id}}"
@@ -132,7 +132,7 @@
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="updateCaseSource" class="input-group-text">收入來自於多少人</label>
+                                <label for="updateCaseSource" class="input-group-text required">收入來自於多少人</label>
                                 <select name="source_id" id="updateCaseSource" class="form-select">
                                     @foreach($sources as $source)
                                         <option value="{{$source->id}}"
@@ -145,16 +145,16 @@
                             <hr>
                             <p class="text-center fw-bold fs-6">疾病特性</p>
                             <div class="input-group mb-2">
-                                <label for="updateCaseDiagnosed" class="input-group-text">確診日期</label>
+                                <label for="updateCaseDiagnosed" class="input-group-text required">確診日期</label>
                                 <input name="diagnosed" id="updateCaseDiagnosed" type="date" class="form-control"
                                        value="{{old('diagnosed')}}">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="updateCaseDate" class="input-group-text">移植日期</label>
+                                <label for="updateCaseDate" class="input-group-text required">移植日期</label>
                                 <input name="updateCaseDate" id="updateCaseDate" type="date" class="form-control">
                             </div>
                             <div class="input-group mb-2">
-                                <label for="updateCaseTransplantType" class="input-group-text">移植種類</label>
+                                <label for="updateCaseTransplantType" class="input-group-text required">移植種類</label>
                                 <select name="updateCaseTransplantType" id="updateCaseTransplantType"
                                         class="form-select">
                                     @foreach($transplant_types as $transplant_type)
@@ -165,7 +165,7 @@
                                 </select>
                             </div>
                             <div class="input-group mb-2">
-                                <label for="updateCaseDiseaseType" class="input-group-text">疾病種類</label>
+                                <label for="updateCaseDiseaseType" class="input-group-text required">疾病種類</label>
                                 <select name="updateCaseDiseaseType" id="updateCaseDiseaseType"
                                         class="form-select form-select">
                                     @foreach($disease_types as $disease_type)
@@ -200,16 +200,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                        <span class="iconify-inline" data-icon="websymbol:cancel"></span>
-                        <span>關閉</span>
-                    </button>
-                    <a href="#" class="btn btn-primary" id="updateCaseSend"
-                       onclick="event.preventDefault();this.closest('form').submit();">
-                        <span class="iconify-inline" data-icon="subway:tick"></span>
-                        <span>確認</span>
-                    </a>
+                <div class="modal-footer justify-content-between">
+                    <div>
+                        <p class="mb-0"><span class="text-danger">*</span>欄位為必要項目</p>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                            <span class="iconify-inline" data-icon="websymbol:cancel"></span>
+                            <span>關閉</span>
+                        </button>
+                        <a href="#" class="btn btn-primary" id="updateCaseSend"
+                           onclick="event.preventDefault();this.closest('form').submit();">
+                            <span class="iconify-inline" data-icon="subway:tick"></span>
+                            <span>確認</span>
+                        </a>
+                    </div>
                 </div>
             </form>
         </div>

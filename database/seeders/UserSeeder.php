@@ -18,8 +18,8 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name' => '管理員',
-            'account' => 'admin',
-            'password' => Hash::make('test'),
+            'account' => 'hsct',
+            'password' => Hash::make('yechoo'),
         ]);
 //        User::factory()
 //            ->count(3)
