@@ -87,6 +87,7 @@
                                         "required": [
                                             "account",
                                             "blood_component_name",
+                                            "created_at",
                                             "value"
                                         ],
                                         "properties": {
@@ -99,6 +100,11 @@
                                                 "description": "抽血項目類型名稱",
                                                 "type": "string",
                                                 "example": "new_name"
+                                            },
+                                            "created_at": {
+                                                "description": "日期",
+                                                "type": "string",
+                                                "example": "2022-03-28 17:32:25"
                                             },
                                             "value": {
                                                 "description": "抽血項目類型數值",

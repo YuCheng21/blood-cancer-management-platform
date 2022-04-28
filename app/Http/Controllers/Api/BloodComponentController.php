@@ -53,9 +53,10 @@ class BloodComponentController extends Controller
      *      @OA\RequestBody (
      *          @OA\MediaType(mediaType="multipart/form-data",
      *              @OA\Schema(allOf={
-     *                  @OA\Schema (required={"account", "blood_component_name","value"},
+     *                  @OA\Schema (required={"account", "blood_component_name","created_at","value"},
      *                      @OA\Property(property="account", type="string", description="個案帳號", example="user1"),
      *                      @OA\Property(property="blood_component_name", type="string", description="抽血項目類型名稱", example="new_name"),
+     *                      @OA\Property(property="created_at", type="string", description="日期", example="2022-03-28 17:32:25"),
      *                      @OA\Property(property="value", type="integer", description="抽血項目類型數值", example="999"))}))),
      *     @OA\Response(response="200", description="success",
      *          @OA\MediaType(mediaType="application/json",
@@ -74,6 +75,7 @@ class BloodComponentController extends Controller
             'account' => ['required'],
             'blood_component_name' => ['required'],
             'value' => ['required'],
+            'created_at' => ['required'],
         ];
         $validator = Validator::make($request->all(), $rules);
 
