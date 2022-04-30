@@ -163,6 +163,9 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                <label for="updateCaseTransplantTypeOther" class="input-group-text">其他</label>
+                                <input name="transplant_type_other" type="text" id="updateCaseTransplantTypeOther"
+                                       class="form-control" placeholder="其他" value="{{old('transplant_type_other')}}">
                             </div>
                             <div class="input-group mb-2">
                                 <label for="updateCaseDiseaseType" class="input-group-text required">疾病種類</label>
@@ -174,6 +177,9 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                <label for="updateCaseDiseaseTypeOther" class="input-group-text">其他</label>
+                                <input name="disease_type_other" type="text" id="updateCaseDiseaseTypeOther"
+                                       class="form-control" placeholder="其他" value="{{old('disease_type_other')}}">
                             </div>
                             <div class="input-group mb-2">
                                 <label for="updateCaseDiseaseState" class="input-group-text">疾病分期</label>

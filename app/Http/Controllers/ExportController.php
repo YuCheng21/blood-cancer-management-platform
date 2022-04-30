@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Exports\BloodExport;
-use App\Exports\CaseInformationExport;
 use App\Exports\CaseInformationOneAndTwoExport;
 use App\Exports\EffectExport;
 use App\Exports\MedicineExport;

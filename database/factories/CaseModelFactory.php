@@ -38,7 +38,9 @@ class CaseModelFactory extends Factory
 
             'date' => $this->faker->date('Y_m_d'),
             'transplant_type_id' => $this->faker->randomElement([2, 3]),
+            'transplant_type_other' => null,
             'disease_type_id' => $this->faker->randomElement([2, 3, 4, 5, 6]),
+            'disease_type_other' => null,
             'disease_state_id' => $this->faker->randomElement([1, 2, 3, 4]),
             'disease_class_id' => $this->faker->randomElement([1, 2, 3, 4, 5, 6]),
         ];

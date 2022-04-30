@@ -80,7 +80,9 @@ class CaseModelController extends Controller
 
             'createCaseDate' => ['required'],
             'createCaseTransplantType' => ['required', 'numeric', 'gt:0'],
+            'transplant_type_other' => ['nullable'],
             'createCaseDiseaseType' => ['required', 'numeric', 'gt:0'],
+            'disease_type_other' => ['nullable'],
             'createCaseDiseaseState' => ['required'],
             'createCaseDiseaseClass' => ['required'],
         ];
@@ -203,7 +205,9 @@ class CaseModelController extends Controller
 
             'updateCaseDate' => ['required'],
             'updateCaseTransplantType' => ['required', 'numeric', 'gt:0'],
+            'transplant_type_other' => ['nullable'],
             'updateCaseDiseaseType' => ['required', 'numeric', 'gt:0'],
+            'disease_type_other' => ['nullable'],
             'updateCaseDiseaseState' => ['required'],
             'updateCaseDiseaseClass' => ['required'],
         ];

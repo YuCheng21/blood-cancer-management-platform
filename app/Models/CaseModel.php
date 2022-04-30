@@ -33,7 +33,9 @@ class CaseModel extends Model
         'diagnosed',
         'date',
         'transplant_type_id',
+        'transplant_type_other',
         'disease_type_id',
+        'disease_type_other',
         'disease_state_id',
         'disease_class_id',
     ];

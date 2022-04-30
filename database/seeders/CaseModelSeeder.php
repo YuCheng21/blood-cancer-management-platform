@@ -37,7 +37,9 @@ class CaseModelSeeder extends Seeder
 
             'date' => '2022-02-17',
             'transplant_type_id' => 2,
+            'transplant_type_other' => null,
             'disease_type_id' => 2,
+            'disease_type_other' => null,
             'disease_state_id' => 1,
             'disease_class_id' => 1,
         ]);
@@ -64,7 +66,9 @@ class CaseModelSeeder extends Seeder
 
             'date' => '2022-02-17',
             'transplant_type_id' => 2,
+            'transplant_type_other' => null,
             'disease_type_id' => 2,
+            'disease_type_other' => null,
             'disease_state_id' => 1,
             'disease_class_id' => 1,
         ]);

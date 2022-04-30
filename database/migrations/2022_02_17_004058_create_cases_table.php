@@ -37,7 +37,9 @@ class CreateCasesTable extends Migration
 
             $table->date('date')->comment('個案移植日期');
             $table->unsignedBigInteger('transplant_type_id')->comment('個案移植種類編號');
+            $table->string('transplant_type_other')->comment('個案移植種類其他')->nullable();
             $table->unsignedBigInteger('disease_type_id')->comment('個案疾病種類編號');
+            $table->string('disease_type_other')->comment('個案疾病種類其他')->nullable();
             $table->unsignedBigInteger('disease_state_id')->comment('個案疾病分期編號');
             $table->unsignedBigInteger('disease_class_id')->comment('個案疾病分類編號');
             $table->timestamps();

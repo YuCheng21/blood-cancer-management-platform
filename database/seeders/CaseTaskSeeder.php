@@ -27,7 +27,7 @@ class CaseTaskSeeder extends Seeder
 
         $apply_cases = ['user1'];
         $templates = Template::where([
-            'name' => 'A1+B1'
+            'name' => 'A1+B1+C'
         ])->get()->map(function ($template) {
             return [
                 'task_id' => $template->task_id,

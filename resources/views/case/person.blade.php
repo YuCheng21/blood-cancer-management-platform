@@ -102,12 +102,12 @@
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">移植種類</span>
                         <hr class="my-1">
-                        <span>{{$case->transplant_type->name}}</span>
+                        <span>{{$case->transplant_type->name}}{{$case->transplant_type->id == 6 ? ' - '.$case->transplant_type_other : ''}}</span>
                     </div>
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">疾病種類</span>
                         <hr class="my-1">
-                        <span>{{$case->disease_type->name}}</span>
+                        <span>{{$case->disease_type->name}}{{$case->disease_type->id == 7 ? ' - '.$case->disease_type_other : ''}}</span>
                     </div>
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">疾病分期</span>

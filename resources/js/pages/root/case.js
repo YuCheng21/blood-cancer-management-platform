@@ -34,7 +34,9 @@ $(document).on('click', '.updateCaseBtn', function () {
 
             $('#updateCaseDate').val(value['date']);
             $('#updateCaseTransplantType').val(value['transplant_type_id']).change();
+            $('#updateCaseTransplantTypeOther').val(value['transplant_type_other']);
             $('#updateCaseDiseaseType').val(value['disease_type_id']).change();
+            $('#updateCaseDiseaseTypeOther').val(value['disease_type_other']);
             $('#updateCaseDiseaseState').val(value['disease_state_id']).change();
             $('#updateCaseDiseaseClass').val(value['disease_class_id']).change();
         }

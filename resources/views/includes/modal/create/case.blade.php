@@ -167,6 +167,9 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                <label for="createCaseTransplantTypeOther" class="input-group-text">其他</label>
+                                <input name="transplant_type_other" type="text" id="createCaseTransplantTypeOther"
+                                       class="form-control" placeholder="其他" value="{{old('transplant_type_other')}}">
                             </div>
                             <div class="input-group mb-2">
                                 <label for="createCaseDiseaseType" class="input-group-text required">疾病種類</label>
@@ -179,6 +182,9 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                <label for="createCaseDiseaseTypeOther" class="input-group-text">其他</label>
+                                <input name="disease_type_other" type="text" id="createCaseDiseaseTypeOther"
+                                       class="form-control" placeholder="其他" value="{{old('disease_type_other')}}">
                             </div>
                             <div class="input-group mb-2">
                                 <label for="createCaseDiseaseState" class="input-group-text"

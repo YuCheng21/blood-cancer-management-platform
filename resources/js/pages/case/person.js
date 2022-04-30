@@ -62,7 +62,9 @@ $(document).ready(function () {
 
     $('#updateCaseDate').val(cases['date']);
     $('#updateCaseTransplantType').val(cases['transplant_type_id']).change();
+    $('#updateCaseTransplantTypeOther').val(cases['transplant_type_other']);
     $('#updateCaseDiseaseType').val(cases['disease_type_id']).change();
+    $('#updateCaseDiseaseTypeOther').val(cases['disease_type_other']);
     $('#updateCaseDiseaseState').val(cases['disease_state_id']).change();
     $('#updateCaseDiseaseClass').val(cases['disease_class_id']).change();
 })

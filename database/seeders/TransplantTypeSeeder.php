@@ -21,7 +21,16 @@ class TransplantTypeSeeder extends Seeder
             'name' => '自體移植'
         ]);
         TransplantType::create([
-            'name' => '異體移植'
+            'name' => '異體移植-親屬'
+        ]);
+        TransplantType::create([
+            'name' => '異體移植-非親屬'
+        ]);
+        TransplantType::create([
+            'name' => '異體移植-半相合'
+        ]);
+        TransplantType::create([
+            'name' => '其他'
         ]);
     }
 }

@@ -32,5 +32,8 @@ class DiseaseTypeSeeder extends Seeder
         DiseaseType::create([
             'name' => '非何杰金氏淋巴癌'
         ]);
+        DiseaseType::create([
+            'name' => '其他'
+        ]);
     }
 }
