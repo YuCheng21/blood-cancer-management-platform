@@ -131,6 +131,11 @@ $(document).ready(function () {
             }
         })
     })
+    $.each(lineData['datasets'], function (key, value) {
+        value['data'].sort(function (x, y) {
+            return Date.parse(x.x) - Date.parse(y.x);
+        })
+    })
     // 折線圖屬性設定
     const lineOptions = {
         responsive: true,
