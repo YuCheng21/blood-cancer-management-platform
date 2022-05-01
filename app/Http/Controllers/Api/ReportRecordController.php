@@ -61,9 +61,9 @@ class ReportRecordController extends Controller
         $rules = [
             'account' => ['required'],
             'date' => ['required'],
-            'physical_strength' => ['required'],
+            'physical_strength_id' => ['required'],
             'symptom' => ['required'],
-            'hospital' => ['required'],
+            'hospital_id' => ['required'],
         ];
         $validator = Validator::make($request->all(), $rules);
 
