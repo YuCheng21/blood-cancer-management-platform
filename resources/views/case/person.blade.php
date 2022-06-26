@@ -337,7 +337,15 @@
                                     </td>
                                     <td>
                                         @foreach($value as $side_effect_record)
-                                            <span>{{ $side_effect_record->severity }}</span><br>
+                                            @if($side_effect_record->symptom == "發燒")
+                                                @if($side_effect_record->severity > 0)
+                                                    <span>有</span><br>
+                                                @else
+                                                    <span>無</span><br>
+                                                @endif
+                                            @else
+                                                <span>{{ $side_effect_record->severity }}</span><br>
+                                            @endif
                                         @endforeach
                                     </td>
                                 </tr>

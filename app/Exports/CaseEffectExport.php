@@ -39,7 +39,15 @@ class CaseEffectExport implements FromArray, WithTitle, WithHeadings
                 $buffer['account'] = $case->account;
                 $buffer['date'] = $key;
                 foreach($value as $index => $item){
-                    $buffer[$item['symptom']] = $item['difficulty'];
+                    if ($item['symptom'] == '發燒'){
+                        if (intval($item['severity']) > 0){
+                            $buffer[$item['symptom']] = '有';
+                        }else{
+                            $buffer[$item['symptom']] = '無';
+                        }
+                    }else{
+                        $buffer[$item['symptom']] = $item['severity'];
+                    }
                 }
                 $sorted = array_merge(array('account', 'date'), $effect_item_sorted);
                 $result = array_merge(array_fill_keys($sorted, '0'), $buffer);
@@ -66,7 +74,7 @@ class CaseEffectExport implements FromArray, WithTitle, WithHeadings
      */
     public function get_effect_item_sorted(): array
     {
-        $effect_item = ['白血球', '血小板', '血紅素', '口腔黏膜炎', '噁心嘔吐', '腹瀉', '掉髮', '癲癇', '出血性膀胱炎', '心跳偏快', '臉部潮紅'];
+        $effect_item = ['白血球低下', '血小板低下', '血紅素低下', '口腔黏膜炎', '噁心嘔吐', '腹瀉', '掉髮', '癲癇', '出血性膀胱炎', '心跳偏快', '臉部潮紅'];
         $effect_unique = DB::table('side_effect_records')->select('symptom')->distinct()->get();
         $effect_unique = array_column($effect_unique->toArray(), 'symptom');
         $effect_item_sorted = array_keys(array_merge(array_fill_keys($effect_item, null), array_flip($effect_unique)));
