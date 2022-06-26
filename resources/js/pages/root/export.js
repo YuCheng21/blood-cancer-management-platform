@@ -10,7 +10,7 @@ $(document).on('click', '.btn-export', function () {
                             id === 'report' ? urlReport : 'except';
 
     let selected = [];
-    $("table input:checkbox:checked").each(function () {
+    $("table tbody input:checkbox:checked").each(function () {
         selected.push($(this).closest('tr').data('case-id'));
     });
 
