@@ -53,6 +53,9 @@ class CaseEffectExport implements FromArray, WithTitle, WithHeadings
                 $result = array_fill_keys($sorted, '0');
                 foreach($result as $index => $item){
                     foreach ($buffer as $inner_index => $inner_item){
+                        if ($index == '發燒'){
+                            $result[$index] = '無';
+                        }
                         if ($inner_index == $index){
                             $result[$index] = $inner_item;
                         }
