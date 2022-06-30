@@ -50,7 +50,14 @@ class CaseEffectExport implements FromArray, WithTitle, WithHeadings
                     }
                 }
                 $sorted = array_merge(array('account', 'date'), $effect_item_sorted);
-                $result = array_merge(array_fill_keys($sorted, '0'), $buffer);
+                $result = array_fill_keys($sorted, '0');
+                foreach($result as $index => $item){
+                    foreach ($buffer as $inner_index => $inner_item){
+                        if ($inner_index == $index){
+                            $result[$index] = $inner_item;
+                        }
+                    }
+                }
                 $rows[] = $result;
             }
             return $rows;
@@ -77,7 +84,7 @@ class CaseEffectExport implements FromArray, WithTitle, WithHeadings
         $effect_item = ['白血球低下', '血小板低下', '血紅素低下', '口腔黏膜炎', '噁心嘔吐', '腹瀉', '掉髮', '癲癇', '出血性膀胱炎', '心跳偏快', '臉部潮紅'];
         $effect_unique = DB::table('side_effect_records')->select('symptom')->distinct()->get();
         $effect_unique = array_column($effect_unique->toArray(), 'symptom');
-        $effect_item_sorted = array_keys(array_merge(array_fill_keys($effect_item, null), array_flip($effect_unique)));
+        $effect_item_sorted = array_keys(array_fill_keys($effect_item, null) + array_flip($effect_unique));
         return $effect_item_sorted;
     }
 }
