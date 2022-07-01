@@ -110,7 +110,8 @@
                                         </option>
                                     @endforeach
                                 </select>
-                                <label for="updateCaseProfessionDetail" class="input-group-text d-block">
+                                <label for="updateCaseProfessionDetail" class="input-group-text d-block"
+                                       style="font-size: 0.8em">
                                     職業細項
                                     <br>
                                     <span class="text-danger">（有職業才填）</span>
