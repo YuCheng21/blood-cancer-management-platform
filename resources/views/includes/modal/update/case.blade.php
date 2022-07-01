@@ -110,7 +110,11 @@
                                         </option>
                                     @endforeach
                                 </select>
-                                <label for="updateCaseProfessionDetail" class="input-group-text">職業細項</label>
+                                <label for="updateCaseProfessionDetail" class="input-group-text d-block">
+                                    職業細項
+                                    <br>
+                                    <span class="text-danger">（有職業才填）</span>
+                                </label>
                                 <select name="profession_detail_id" id="updateCaseProfessionDetail" class="form-select">
                                     @foreach($profession_details as $profession_detail)
                                         <option value="{{$profession_detail->id}}"
