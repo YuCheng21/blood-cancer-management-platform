@@ -57,6 +57,27 @@ class CaseBloodExport implements FromArray, WithTitle, WithHeadings
     public function headings(): array
     {
         $blood_components_name = $this->get_blood_components_name();
+        foreach ($blood_components_name as $key => $value){
+            if ($value == 'wbc'){
+                $blood_components_name[$key] = 'WBC(單位10e3/ul)';
+            }elseif ($value == 'hb'){
+                $blood_components_name[$key] = 'Hb(g/dl)';
+            }elseif ($value == 'plt'){
+                $blood_components_name[$key] = 'PLT( 10e3/ul)';
+            }elseif ($value == 'gpt'){
+                $blood_components_name[$key] = 'GPT(IU/ul)';
+            }elseif ($value == 'got'){
+                $blood_components_name[$key] = 'GOT(IU/ul)';
+            }elseif ($value == 'cea'){
+                $blood_components_name[$key] = 'CEA(ng/ml)';
+            }elseif ($value == 'ca153'){
+                $blood_components_name[$key] = 'CA153(U/mL)';
+            }elseif ($value == 'bun'){
+                $blood_components_name[$key] = 'BUN(mg/dl)';
+            }else{
+                $blood_components_name[$key] = $value . '(ug/L)';
+            }
+        }
         return array_merge(array('帳號', '時間'), $blood_components_name->toArray());
     }
 
