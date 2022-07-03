@@ -34,15 +34,26 @@ class CaseModelFactory extends Factory
             'income_id' => $this->faker->randomElement([2,3,4,5,6,7]),
             'source_id' => $this->faker->randomElement([2,3,4,5,6,7]),
 
+            'end_date' => $this->faker->date('Y_m_d'),
+            'experimental_id' => $this->faker->randomElement([2,3]),
+
             'diagnosed' => $this->faker->date('Y_m_d'),
 
             'date' => $this->faker->date('Y_m_d'),
             'transplant_type_id' => $this->faker->randomElement([2, 3]),
             'transplant_type_other' => null,
+
+            'hla_type_id' => $this->faker->randomElement([2,3]),
+
             'disease_type_id' => $this->faker->randomElement([2, 3, 4, 5, 6]),
             'disease_type_other' => null,
             'disease_state_id' => $this->faker->randomElement([1, 2, 3, 4]),
             'disease_class_id' => $this->faker->randomElement([1, 2, 3, 4, 5, 6]),
+
+            'transplant_state_id' => $this->faker->randomElement([2,3,4,5,6]),
+            'before_blood_type_id' => $this->faker->randomElement([2,3,4,5]),
+            'donor_blood_type_id' => $this->faker->randomElement([2,3,4,5,6]),
+            'after_blood_type_id' => $this->faker->randomElement([2,3,4,5]),
         ];
     }
 }

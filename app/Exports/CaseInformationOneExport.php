@@ -38,6 +38,9 @@ class CaseInformationOneExport implements FromArray, WithTitle, WithHeadings
                 $case->profession_detail_id - 1,
                 $case->income_id - 1,
                 $case->source_id - 1,
+
+                $case->end_date,
+                $case->experimental_id - 1,
             ];
         });
         return $cases->toArray();
@@ -63,6 +66,8 @@ class CaseInformationOneExport implements FromArray, WithTitle, WithHeadings
             '職業細節（1全職2兼職）',
             '收入（1(2萬以下)、2(2萬元-4萬元以下)、3(4萬元-6萬元以下)、4(6萬元- 8萬元以下)、5(8萬元-10萬元以下)、6(10萬元以上)）',
             '來源人數（1(1人)、2(2人)、3(3人)、4(4人)、5(5人)、6(6人)）',
+            '收案日期(西元年月日)',
+            '分組(1實驗組2對照組)',
         ];
     }
 
