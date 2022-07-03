@@ -147,6 +147,22 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseEndDate" class="input-group-text required">收案日期</label>
+                                <input name="end_date" id="updateCaseEndDate" type="date" class="form-control"
+                                       value="{{old('end_date')}}">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseExperimental" class="input-group-text required">分組</label>
+                                <select name="experimental_id" id="updateCaseExperimental" class="form-select">
+                                    @foreach($experimental as $experiment)
+                                        <option value="{{$experiment->id}}"
+                                            {{ old("experimental_id") == $experiment->id ? "selected":"" }}>
+                                            {{$experiment->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <hr>
                             <p class="text-center fw-bold fs-6">疾病特性</p>
                             <div class="input-group mb-2">
@@ -172,6 +188,115 @@
                                 <input name="transplant_type_other" type="text" id="updateCaseTransplantTypeOther"
                                        class="form-control" placeholder="其他" value="{{old('transplant_type_other')}}">
                             </div>
+
+                            <div class="input-group mb-2">
+                                <label for="updateCaseHlaType" class="input-group-text required">異體移植 HLA type</label>
+                                <select name="hla_type_id" id="updateCaseHlaType" class="form-select">
+                                    @foreach($hla_types as $hla_type)
+                                        <option value="{{$hla_type->id}}"
+                                            {{ old("hla_type_id") == $hla_type->id ? "selected":"" }}>
+                                            {{$hla_type->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <p class="text-center fw-bold fs-6">病人HLA</p>
+                            <div class="input-group mb-2">
+                                <label for="updateCasePatientHlaA1" class="input-group-text">A1</label>
+                                <input name="patient_hla_a1" type="text" id="updateCasePatientHlaA1"
+                                       class="form-control" value="{{old('patient_hla_a1')}}">
+                                <label for="updateCasePatientHlaA2" class="input-group-text">A2</label>
+                                <input name="patient_hla_a2" type="text" id="updateCasePatientHlaA2"
+                                       class="form-control" value="{{old('patient_hla_a2')}}">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCasePatientHlaB1" class="input-group-text">B1</label>
+                                <input name="patient_hla_b1" type="text" id="updateCasePatientHlaB1"
+                                       class="form-control" value="{{old('patient_hla_b1')}}">
+                                <label for="updateCasePatientHlaB2" class="input-group-text">B2</label>
+                                <input name="patient_hla_b2" type="text" id="updateCasePatientHlaB2"
+                                       class="form-control" value="{{old('patient_hla_b2')}}">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCasePatientHlaC1" class="input-group-text">C1</label>
+                                <input name="patient_hla_c1" type="text" id="updateCasePatientHlaC1"
+                                       class="form-control" value="{{old('patient_hla_c1')}}">
+                                <label for="updateCasePatientHlaC2" class="input-group-text">C2</label>
+                                <input name="patient_hla_c2" type="text" id="updateCasePatientHlaC2"
+                                       class="form-control" value="{{old('patient_hla_c2')}}">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCasePatientHlaDR1" class="input-group-text">DR1</label>
+                                <input name="patient_hla_dr1" type="text" id="updateCasePatientHlaDR1"
+                                       class="form-control" value="{{old('patient_hla_dr1')}}">
+                                <label for="updateCasePatientHlaDR2" class="input-group-text">DR2</label>
+                                <input name="patient_hla_dr2" type="text" id="updateCasePatientHlaDR2"
+                                       class="form-control" value="{{old('patient_hla_dr2')}}">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCasePatientHlaDQ1" class="input-group-text">DQ1</label>
+                                <input name="patient_hla_dq1" type="text" id="updateCasePatientHlaDQ1"
+                                       class="form-control" value="{{old('patient_hla_dq1')}}">
+                                <label for="updateCasePatientHlaDQ2" class="input-group-text">DQ2</label>
+                                <input name="patient_hla_dq2" type="text" id="updateCasePatientHlaDQ2"
+                                       class="form-control" value="{{old('patient_hla_dq2')}}">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCasePatientHlaMatch" class="input-group-text">Match</label>
+                                <input name="patient_hla_match" type="text" id="updateCasePatientHlaMatch"
+                                       class="form-control" value="{{old('patient_hla_match')}}">
+                                <label class="input-group-text">/10</label>
+                            </div>
+                            <hr>
+                            <p class="text-center fw-bold fs-6">捐贈者HLA</p>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseDonorHlaA1" class="input-group-text">A1</label>
+                                <input name="donor_hla_a1" type="text" id="updateCaseDonorHlaA1"
+                                       class="form-control" value="{{old('donor_hla_a1')}}">
+                                <label for="updateCaseDonorHlaA2" class="input-group-text">A2</label>
+                                <input name="donor_hla_a2" type="text" id="updateCaseDonorHlaA2"
+                                       class="form-control" value="{{old('donor_hla_a2')}}">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseDonorHlaB1" class="input-group-text">B1</label>
+                                <input name="donor_hla_b1" type="text" id="updateCaseDonorHlaB1"
+                                       class="form-control" value="{{old('donor_hla_b1')}}">
+                                <label for="updateCaseDonorHlaB2" class="input-group-text">B2</label>
+                                <input name="donor_hla_b2" type="text" id="updateCaseDonorHlaB2"
+                                       class="form-control" value="{{old('donor_hla_b2')}}">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseDonorHlaC1" class="input-group-text">C1</label>
+                                <input name="donor_hla_c1" type="text" id="updateCaseDonorHlaC1"
+                                       class="form-control" value="{{old('donor_hla_c1')}}">
+                                <label for="updateCaseDonorHlaC2" class="input-group-text">C2</label>
+                                <input name="donor_hla_c2" type="text" id="updateCaseDonorHlaC2"
+                                       class="form-control" value="{{old('donor_hla_c2')}}">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseDonorHlaDR1" class="input-group-text">DR1</label>
+                                <input name="donor_hla_dr1" type="text" id="updateCaseDonorHlaDR1"
+                                       class="form-control" value="{{old('donor_hla_dr1')}}">
+                                <label for="updateCaseDonorHlaDR2" class="input-group-text">DR2</label>
+                                <input name="donor_hla_dr2" type="text" id="updateCaseDonorHlaDR2"
+                                       class="form-control" value="{{old('donor_hla_dr2')}}">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseDonorHlaDQ1" class="input-group-text">DQ1</label>
+                                <input name="donor_hla_dq1" type="text" id="updateCaseDonorHlaDQ1"
+                                       class="form-control" value="{{old('donor_hla_dq1')}}">
+                                <label for="updateCaseDonorHlaDQ2" class="input-group-text">DQ2</label>
+                                <input name="donor_hla_dq2" type="text" id="updateCaseDonorHlaDQ2"
+                                       class="form-control" value="{{old('donor_hla_dq2')}}">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseDonorHlaMatch" class="input-group-text">Match</label>
+                                <input name="donor_hla_match" type="text" id="updateCaseDonorHlaMatch"
+                                       class="form-control" value="{{old('donor_hla_match')}}">
+                                <label class="input-group-text">/10</label>
+                            </div>
+                            <hr>
+
                             <div class="input-group mb-2">
                                 <label for="updateCaseDiseaseType" class="input-group-text required">疾病種類</label>
                                 <select name="updateCaseDiseaseType" id="updateCaseDiseaseType"
@@ -204,6 +329,51 @@
                                     @foreach($disease_classes as $disease_class)
                                         <option value="{{$disease_class->id}}">
                                             {{$disease_class->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="input-group mb-2">
+                                <label for="updateCaseTransplantState" class="input-group-text">移植時的疾病狀態</label>
+                                <select name="transplant_state_id" id="updateCaseTransplantState" class="form-select">
+                                    @foreach($transplant_states as $transplant_state)
+                                        <option value="{{$transplant_state->id}}"
+                                            {{ old("transplant_state_id") == $transplant_state->id ? "selected":"" }}>
+                                            {{$transplant_state->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseBeforeBloodType" class="input-group-text">病人移植前血型</label>
+                                <select name="before_blood_type_id" id="updateCaseBeforeBloodType" class="form-select">
+                                    @foreach($before_blood_types as $before_blood_type)
+                                        <option value="{{$before_blood_type->id}}"
+                                            {{ old("before_blood_type_id") == $before_blood_type->id ? "selected":"" }}>
+                                            {{$before_blood_type->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseDonorBloodType" class="input-group-text">捐贈者血型</label>
+                                <select name="donor_blood_type_id" id="updateCaseDonorBloodType" class="form-select">
+                                    @foreach($donor_blood_types as $donor_blood_type)
+                                        <option value="{{$donor_blood_type->id}}"
+                                            {{ old("donor_blood_type_id") == $donor_blood_type->id ? "selected":"" }}>
+                                            {{$donor_blood_type->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="updateCaseAfterBloodType" class="input-group-text">病人移植後血型</label>
+                                <select name="after_blood_type_id" id="updateCaseAfterBloodType" class="form-select">
+                                    @foreach($after_blood_types as $after_blood_type)
+                                        <option value="{{$after_blood_type->id}}"
+                                            {{ old("after_blood_type_id") == $after_blood_type->id ? "selected":"" }}>
+                                            {{$after_blood_type->name}}
                                         </option>
                                     @endforeach
                                 </select>

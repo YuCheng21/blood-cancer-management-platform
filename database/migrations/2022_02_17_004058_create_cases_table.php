@@ -44,6 +44,29 @@ class CreateCasesTable extends Migration
 
             $table->unsignedBigInteger('hla_type_id')->comment('異體移植 HLA Type 編號')->nullable();
 
+            $table->string('patient_hla_a1')->comment('病人HLA_A1')->nullable();
+            $table->string('patient_hla_a2')->comment('病人HLA_A2')->nullable();
+            $table->string('patient_hla_b1')->comment('病人HLA_B1')->nullable();
+            $table->string('patient_hla_b2')->comment('病人HLA_B2')->nullable();
+            $table->string('patient_hla_c1')->comment('病人HLA_C1')->nullable();
+            $table->string('patient_hla_c2')->comment('病人HLA_C2')->nullable();
+            $table->string('patient_hla_dr1')->comment('病人HLA_DR1')->nullable();
+            $table->string('patient_hla_dr2')->comment('病人HLA_DR2')->nullable();
+            $table->string('patient_hla_dq1')->comment('病人HLA_DQ1')->nullable();
+            $table->string('patient_hla_dq2')->comment('病人HLA_DQ2')->nullable();
+            $table->string('patient_hla_match')->comment('病人HLA_match')->nullable();
+            $table->string('donor_hla_a1')->comment('捐贈者HLA_A1')->nullable();
+            $table->string('donor_hla_a2')->comment('捐贈者HLA_A2')->nullable();
+            $table->string('donor_hla_b1')->comment('捐贈者HLA_B1')->nullable();
+            $table->string('donor_hla_b2')->comment('捐贈者HLA_B2')->nullable();
+            $table->string('donor_hla_c1')->comment('捐贈者HLA_C1')->nullable();
+            $table->string('donor_hla_c2')->comment('捐贈者HLA_C2')->nullable();
+            $table->string('donor_hla_dr1')->comment('捐贈者HLA_DR1')->nullable();
+            $table->string('donor_hla_dr2')->comment('捐贈者HLA_DR2')->nullable();
+            $table->string('donor_hla_dq1')->comment('捐贈者HLA_DQ1')->nullable();
+            $table->string('donor_hla_dq2')->comment('捐贈者HLA_DQ2')->nullable();
+            $table->string('donor_hla_match')->comment('捐贈者HLA_match')->nullable();
+
             $table->unsignedBigInteger('disease_type_id')->comment('個案疾病種類編號');
 
             $table->unsignedBigInteger('transplant_state_id')->comment('移植時的疾病狀態編號')->nullable();

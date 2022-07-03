@@ -87,6 +87,16 @@
                         <hr class="my-1">
                         <span>{{$case->source->name}}</span>
                     </div>
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">收案日期</span>
+                        <hr class="my-1">
+                        <span>{{$case->end_date}}</span>
+                    </div>
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">分組</span>
+                        <hr class="my-1">
+                        <span>{{$case->experimental->name}}</span>
+                    </div>
                     <hr>
                     <h3>疾病種類</h3>
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
@@ -104,6 +114,13 @@
                         <hr class="my-1">
                         <span>{{$case->transplant_type->name}}{{$case->transplant_type->id == 6 ? ' - '.$case->transplant_type_other : ''}}</span>
                     </div>
+
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">異體移植 HLA type</span>
+                        <hr class="my-1">
+                        <span>{{$case->hla_type->name}}</span>
+                    </div>
+
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">疾病種類</span>
                         <hr class="my-1">
@@ -118,6 +135,27 @@
                         <span class="bg-primary bg-opacity-50">疾病分類</span>
                         <hr class="my-1">
                         <span>{{$case->disease_class->name}}</span>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">移植時的疾病狀態</span>
+                        <hr class="my-1">
+                        <span>{{$case->transplant_state->name}}</span>
+                    </div>
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">病人移植前血型</span>
+                        <hr class="my-1">
+                        <span>{{$case->before_blood_type->name}}</span>
+                    </div>
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">捐贈者血型</span>
+                        <hr class="my-1">
+                        <span>{{$case->donor_blood_type->name}}</span>
+                    </div>
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">病人移植後血型</span>
+                        <hr class="my-1">
+                        <span>{{$case->after_blood_type->name}}</span>
                     </div>
                 </div>
             </div>

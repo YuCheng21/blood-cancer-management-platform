@@ -30,14 +30,48 @@ class CaseModel extends Model
         'income_id',
         'source_id',
 
+        'end_date',
+        'experimental_id',
+
         'diagnosed',
         'date',
         'transplant_type_id',
         'transplant_type_other',
+
+        'hla_type_id',
+
+        'patient_hla_a1',
+        'patient_hla_a2',
+        'patient_hla_b1',
+        'patient_hla_b2',
+        'patient_hla_c1',
+        'patient_hla_c2',
+        'patient_hla_dr1',
+        'patient_hla_dr2',
+        'patient_hla_dq1',
+        'patient_hla_dq2',
+        'patient_hla_match',
+        'donor_hla_a1',
+        'donor_hla_a2',
+        'donor_hla_b1',
+        'donor_hla_b2',
+        'donor_hla_c1',
+        'donor_hla_c2',
+        'donor_hla_dr1',
+        'donor_hla_dr2',
+        'donor_hla_dq1',
+        'donor_hla_dq2',
+        'donor_hla_match',
+
         'disease_type_id',
         'disease_type_other',
         'disease_state_id',
         'disease_class_id',
+
+        'transplant_state_id',
+        'before_blood_type_id',
+        'donor_blood_type_id',
+        'after_blood_type_id',
     ];
 
     public function gender(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -79,9 +113,19 @@ class CaseModel extends Model
         return $this->belongsTo(Source::class);
     }
 
+    public function experimental(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Experimental::class);
+    }
+
     public function transplant_type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(TransplantType::class);
+    }
+
+    public function hla_type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(HlaType::class);
     }
 
     public function disease_type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -97,6 +141,23 @@ class CaseModel extends Model
     public function disease_class(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(DiseaseClass::class);
+    }
+
+    public function transplant_state(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(TransplantState::class);
+    }
+    public function before_blood_type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(BeforeBloodType::class);
+    }
+    public function donor_blood_type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(DonorBloodType::class);
+    }
+    public function after_blood_type(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(AfterBloodType::class);
     }
 
     public function case_blood_components(): \Illuminate\Database\Eloquent\Relations\HasMany

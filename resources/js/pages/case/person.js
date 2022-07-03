@@ -58,15 +58,49 @@ $(document).ready(function () {
     $('#updateCaseIncome').val(cases['income_id']).change();
     $('#updateCaseSource').val(cases['source_id']).change();
 
+    $('#updateCaseEndDate').val(cases['end_date']);
+    $('#updateCaseExperimental').val(cases['experimental_id']).change();
+
     $('#updateCaseDiagnosed').val(cases['diagnosed']);
 
     $('#updateCaseDate').val(cases['date']);
     $('#updateCaseTransplantType').val(cases['transplant_type_id']).change();
     $('#updateCaseTransplantTypeOther').val(cases['transplant_type_other']);
+
+    $('#updateCaseHlaType').val(cases['hla_type_id']).change();
+    $('#updateCasePatientHlaA1').val(cases['patient_hla_a1']);
+    $('#updateCasePatientHlaA2').val(cases['patient_hla_a2']);
+    $('#updateCasePatientHlaB1').val(cases['patient_hla_b1']);
+    $('#updateCasePatientHlaB2').val(cases['patient_hla_b2']);
+    $('#updateCasePatientHlaC1').val(cases['patient_hla_c1']);
+    $('#updateCasePatientHlaC2').val(cases['patient_hla_c2']);
+    $('#updateCasePatientHlaDR1').val(cases['patient_hla_dr1']);
+    $('#updateCasePatientHlaDR2').val(cases['patient_hla_dr2']);
+    $('#updateCasePatientHlaDQ1').val(cases['patient_hla_dq1']);
+    $('#updateCasePatientHlaDQ2').val(cases['patient_hla_dq2']);
+    $('#updateCasePatientHlaMatch').val(cases['patient_hla_match']);
+    $('#updateCaseDonorHlaA1').val(cases['donor_hla_a1']);
+    $('#updateCaseDonorHlaA2').val(cases['donor_hla_a2']);
+    $('#updateCaseDonorHlaB1').val(cases['donor_hla_b1']);
+    $('#updateCaseDonorHlaB2').val(cases['donor_hla_b2']);
+    $('#updateCaseDonorHlaC1').val(cases['donor_hla_c1']);
+    $('#updateCaseDonorHlaC2').val(cases['donor_hla_c2']);
+    $('#updateCaseDonorHlaDR1').val(cases['donor_hla_dr1']);
+    $('#updateCaseDonorHlaDR2').val(cases['donor_hla_dr2']);
+    $('#updateCaseDonorHlaDQ1').val(cases['donor_hla_dq1']);
+    $('#updateCaseDonorHlaDQ2').val(cases['donor_hla_dq2']);
+    $('#updateCaseDonorHlaMatch').val(cases['donor_hla_match']);
+
     $('#updateCaseDiseaseType').val(cases['disease_type_id']).change();
     $('#updateCaseDiseaseTypeOther').val(cases['disease_type_other']);
     $('#updateCaseDiseaseState').val(cases['disease_state_id']).change();
     $('#updateCaseDiseaseClass').val(cases['disease_class_id']).change();
+
+
+    $('#updateCaseTransplantState').val(cases['transplant_state_id']).change();
+    $('#updateCaseBeforeBloodType').val(cases['before_blood_type_id']).change();
+    $('#updateCaseDonorBloodType').val(cases['donor_blood_type_id']).change();
+    $('#updateCaseAfterBloodType').val(cases['after_blood_type_id']).change();
 })
 
 const randColor = () =>  {

@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\AppHelper;
+use App\Models\AfterBloodType;
+use App\Models\BeforeBloodType;
 use App\Models\CaseModel;
 use App\Models\CaseTask;
 use App\Models\CaseTopic;
 use App\Models\DiseaseClass;
 use App\Models\DiseaseState;
 use App\Models\DiseaseType;
+use App\Models\DonorBloodType;
 use App\Models\Education;
+use App\Models\Experimental;
 use App\Models\Gender;
+use App\Models\HlaType;
 use App\Models\Hometown;
 use App\Models\Income;
 use App\Models\Marriage;
@@ -19,6 +24,7 @@ use App\Models\ProfessionDetail;
 use App\Models\Religion;
 use App\Models\Source;
 use App\Models\Task;
+use App\Models\TransplantState;
 use App\Models\TransplantType;
 use Carbon\Carbon;
 use Illuminate\Database\QueryException;
@@ -42,10 +48,20 @@ class CaseModelController extends Controller
         $incomes = Income::all();
         $sources = Source::all();
 
+        $experimental = Experimental::all();
+
         $transplant_types = TransplantType::all();
+
+        $hla_types = HlaType::all();
+
         $disease_types = DiseaseType::all();
         $disease_states = DiseaseState::all();
         $disease_classes = DiseaseClass::all();
+
+        $transplant_states = TransplantState::all();
+        $before_blood_types = BeforeBloodType::all();
+        $donor_blood_types = DonorBloodType::all();
+        $after_blood_types = AfterBloodType::all();
 
         $today = Carbon::now();
         $title = '個案管理';
@@ -76,15 +92,49 @@ class CaseModelController extends Controller
             'income_id' => ['required', 'numeric', 'gt:0'],
             'source_id' => ['required', 'numeric', 'gt:0'],
 
+            'end_date' => ['required'],
+            'experimental_id' => ['required', 'numeric', 'gt:0'],
+
             'diagnosed' => ['required'],
 
             'createCaseDate' => ['required'],
             'createCaseTransplantType' => ['required', 'numeric', 'gt:0'],
+
+            'hla_type_id' => ['required', 'numeric', 'gt:0'],
+            'patient_hla_a1' => ['nullable'],
+            'patient_hla_a2' => ['nullable'],
+            'patient_hla_b1' => ['nullable'],
+            'patient_hla_b2' => ['nullable'],
+            'patient_hla_c1' => ['nullable'],
+            'patient_hla_c2' => ['nullable'],
+            'patient_hla_dr1' => ['nullable'],
+            'patient_hla_dr2' => ['nullable'],
+            'patient_hla_dq1' => ['nullable'],
+            'patient_hla_dq2' => ['nullable'],
+            'patient_hla_match' => ['nullable'],
+            'donor_hla_a1' => ['nullable'],
+            'donor_hla_a2' => ['nullable'],
+            'donor_hla_b1' => ['nullable'],
+            'donor_hla_b2' => ['nullable'],
+            'donor_hla_c1' => ['nullable'],
+            'donor_hla_c2' => ['nullable'],
+            'donor_hla_dr1' => ['nullable'],
+            'donor_hla_dr2' => ['nullable'],
+            'donor_hla_dq1' => ['nullable'],
+            'donor_hla_dq2' => ['nullable'],
+            'donor_hla_match' => ['nullable'],
+
             'transplant_type_other' => ['nullable'],
             'createCaseDiseaseType' => ['required', 'numeric', 'gt:0'],
             'disease_type_other' => ['nullable'],
             'createCaseDiseaseState' => ['required'],
             'createCaseDiseaseClass' => ['required'],
+
+            'transplant_state_id' => ['nullable', 'numeric', 'gt:0'],
+            'before_blood_type_id' => ['nullable', 'numeric', 'gt:0'],
+            'donor_blood_type_id' => ['nullable', 'numeric', 'gt:0'],
+            'after_blood_type_id' => ['nullable', 'numeric', 'gt:0'],
+
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
@@ -147,10 +197,20 @@ class CaseModelController extends Controller
         $incomes = Income::all();
         $sources = Source::all();
 
+        $experimental = Experimental::all();
+
         $transplant_types = TransplantType::all();
+
+        $hla_types = HlaType::all();
+
         $disease_types = DiseaseType::all();
         $disease_states = DiseaseState::all();
         $disease_classes = DiseaseClass::all();
+
+        $transplant_states = TransplantState::all();
+        $before_blood_types = BeforeBloodType::all();
+        $donor_blood_types = DonorBloodType::all();
+        $after_blood_types = AfterBloodType::all();
 
         $case_blood_components = $case->case_blood_components;
         foreach ($case_blood_components as $case_blood_component){
@@ -201,15 +261,48 @@ class CaseModelController extends Controller
             'income_id' => ['required', 'numeric', 'gt:0'],
             'source_id' => ['required', 'numeric', 'gt:0'],
 
+            'end_date' => ['required'],
+            'experimental_id' => ['required', 'numeric', 'gt:0'],
+
             'diagnosed' => ['required'],
 
             'updateCaseDate' => ['required'],
             'updateCaseTransplantType' => ['required', 'numeric', 'gt:0'],
+
+            'hla_type_id' => ['required', 'numeric', 'gt:0'],
+            'patient_hla_a1' => ['nullable'],
+            'patient_hla_a2' => ['nullable'],
+            'patient_hla_b1' => ['nullable'],
+            'patient_hla_b2' => ['nullable'],
+            'patient_hla_c1' => ['nullable'],
+            'patient_hla_c2' => ['nullable'],
+            'patient_hla_dr1' => ['nullable'],
+            'patient_hla_dr2' => ['nullable'],
+            'patient_hla_dq1' => ['nullable'],
+            'patient_hla_dq2' => ['nullable'],
+            'patient_hla_match' => ['nullable'],
+            'donor_hla_a1' => ['nullable'],
+            'donor_hla_a2' => ['nullable'],
+            'donor_hla_b1' => ['nullable'],
+            'donor_hla_b2' => ['nullable'],
+            'donor_hla_c1' => ['nullable'],
+            'donor_hla_c2' => ['nullable'],
+            'donor_hla_dr1' => ['nullable'],
+            'donor_hla_dr2' => ['nullable'],
+            'donor_hla_dq1' => ['nullable'],
+            'donor_hla_dq2' => ['nullable'],
+            'donor_hla_match' => ['nullable'],
+
             'transplant_type_other' => ['nullable'],
             'updateCaseDiseaseType' => ['required', 'numeric', 'gt:0'],
             'disease_type_other' => ['nullable'],
             'updateCaseDiseaseState' => ['required'],
             'updateCaseDiseaseClass' => ['required'],
+
+            'transplant_state_id' => ['nullable', 'numeric', 'gt:0'],
+            'before_blood_type_id' => ['nullable', 'numeric', 'gt:0'],
+            'donor_blood_type_id' => ['nullable', 'numeric', 'gt:0'],
+            'after_blood_type_id' => ['nullable', 'numeric', 'gt:0'],
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
