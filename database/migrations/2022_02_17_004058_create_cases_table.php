@@ -33,12 +33,24 @@ class CreateCasesTable extends Migration
             $table->unsignedBigInteger('income_id')->comment('收入編號');
             $table->unsignedBigInteger('source_id')->comment('來源人數編號');
 
+            $table->date('end_date')->comment('收案日期')->nullable();
+            $table->unsignedBigInteger('experimental_id')->comment('分組編號')->nullable();
+
             $table->date('diagnosed')->comment('確診日期');
 
             $table->date('date')->comment('個案移植日期');
             $table->unsignedBigInteger('transplant_type_id')->comment('個案移植種類編號');
             $table->string('transplant_type_other')->comment('個案移植種類其他')->nullable();
+
+            $table->unsignedBigInteger('hla_type_id')->comment('異體移植 HLA Type 編號')->nullable();
+
             $table->unsignedBigInteger('disease_type_id')->comment('個案疾病種類編號');
+
+            $table->unsignedBigInteger('transplant_state_id')->comment('移植時的疾病狀態編號')->nullable();
+            $table->unsignedBigInteger('before_blood_type_id')->comment('病人移植前血型編號')->nullable();
+            $table->unsignedBigInteger('donor_blood_type_id')->comment('捐贈者血型')->nullable();
+            $table->unsignedBigInteger('after_blood_type_id')->comment('病人移植後血型編號')->nullable();
+
             $table->string('disease_type_other')->comment('個案疾病種類其他')->nullable();
             $table->unsignedBigInteger('disease_state_id')->comment('個案疾病分期編號');
             $table->unsignedBigInteger('disease_class_id')->comment('個案疾病分類編號');

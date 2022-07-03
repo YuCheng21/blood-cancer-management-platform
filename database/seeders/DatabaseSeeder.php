@@ -35,6 +35,13 @@ class DatabaseSeeder extends Seeder
             IncomeSeeder::class,
             SourceSeeder::class,
 
+            ExperimentalSeeder::class,
+            HlaTypeSeeder::class,
+            TransplantStateSeeder::class,
+            BeforeBloodTypeSeeder::class,
+            DonorBloodTypeSeeder::class,
+            AfterBloodTypeSeeder::class,
+
             CaseModelSeeder::class,
             BloodComponentsSeeder::class,
 
