@@ -122,6 +122,31 @@
                     </div>
 
                     <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">病人 HLA</span>
+                        <hr class="my-1">
+                        <span>
+                            A{{$case->patient_hla_a1}};{{$case->patient_hla_a2}},
+                            B{{$case->patient_hla_b1}};{{$case->patient_hla_b2}},
+                            C{{$case->patient_hla_c1}};{{$case->patient_hla_c2}},
+                            DR{{$case->patient_hla_dr1}};{{$case->patient_hla_dr2}},
+                            DQ{{$case->patient_hla_dq1}};{{$case->patient_hla_dq2}}
+                            ({{$case->patient_hla_match}}/10 match)
+                        </span>
+                    </div>
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
+                        <span class="bg-primary bg-opacity-50">捐贈者 HLA</span>
+                        <hr class="my-1">
+                        <span>
+                            A{{$case->donor_hla_a1}};{{$case->donor_hla_a2}},
+                            B{{$case->donor_hla_b1}};{{$case->donor_hla_b2}},
+                            C{{$case->donor_hla_c1}};{{$case->donor_hla_c2}},
+                            DR{{$case->donor_hla_dr1}};{{$case->donor_hla_dr2}},
+                            DQ{{$case->donor_hla_dq1}};{{$case->donor_hla_dq2}}
+                            ({{$case->donor_hla_match}}/10 match)
+                        </span>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 flex-column d-flex">
                         <span class="bg-primary bg-opacity-50">疾病種類</span>
                         <hr class="my-1">
                         <span>{{$case->disease_type->name}}{{$case->disease_type->id == 7 ? ' - '.$case->disease_type_other : ''}}</span>
