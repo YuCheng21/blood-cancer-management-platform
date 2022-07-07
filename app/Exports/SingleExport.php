@@ -28,6 +28,7 @@ class SingleExport implements WithMultipleSheets
         $sheets[] = new CaseMedicineExport([$case_id]);
         $sheets[] = new CaseEffectExport([$case_id]);
         $sheets[] = new CaseReportExport([$case_id]);
+        $sheets[] = new CaseVideoExport([$case_id]);
 
         return $sheets;
     }

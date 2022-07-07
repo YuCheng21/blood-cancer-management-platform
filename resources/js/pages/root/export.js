@@ -7,7 +7,8 @@ $(document).on('click', '.btn-export', function () {
                 id === 'task' ? urlTask :
                     id === 'medicine' ? urlMedicine :
                         id === 'effect' ? urlEffect :
-                            id === 'report' ? urlReport : 'except';
+                            id === 'report' ? urlReport :
+                                id === 'video' ? urlVideo : 'except';
 
     let selected = [];
     $("table tbody input:checkbox:checked").each(function () {

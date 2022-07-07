@@ -105,6 +105,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/medicine', 'medicine')->name('medicine');
         Route::post('/effect', 'effect')->name('effect');
         Route::post('/report', 'report')->name('report');
+        Route::post('/video', 'video')->name('video');
     });
 
 });

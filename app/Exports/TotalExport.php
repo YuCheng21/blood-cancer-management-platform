@@ -25,6 +25,7 @@ class TotalExport implements WithMultipleSheets
         $sheets[] = new CaseMedicineExport($this->accounts);
         $sheets[] = new CaseEffectExport($this->accounts);
         $sheets[] = new CaseReportExport($this->accounts);
+        $sheets[] = new CaseVideoExport($this->accounts);
 
         return $sheets;
     }

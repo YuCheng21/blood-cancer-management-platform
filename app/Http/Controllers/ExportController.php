@@ -7,6 +7,7 @@ use App\Exports\CaseInformationOneAndTwoExport;
 use App\Exports\EffectExport;
 use App\Exports\MedicineExport;
 use App\Exports\ReportExport;
+use App\Exports\VideoExport;
 use App\Exports\SingleExport;
 use App\Exports\TaskExport;
 use App\Exports\TotalExport;
@@ -120,5 +121,17 @@ class ExportController extends Controller
                 ]);
         }
         return Excel::download(new ReportExport($selected), '報告個管師.xlsx');
+    }
+
+    public function video(Request $request){
+        $selected = json_decode($request->selected);
+        if (empty($selected)){
+            return back()
+                ->with([
+                    'type' => 'error',
+                    'msg' => '尚未勾選資料'
+                ]);
+        }
+        return Excel::download(new VideoExport($selected), '觀影紀錄.xlsx');
     }
 }

@@ -22,46 +22,53 @@
                             <span>總資料</span>
                         </button>
                     </div>
-                    <div class="col-4 col-md-2">
+                    <div class="col-4 col-md-3">
                         <button type="button" class="btn btn-primary btn-export w-100" data-action="information"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 title="勾選帳號並匯出「個人資料」">
                             <span>個人資料</span>
                         </button>
                     </div>
-                    <div class="col-4 col-md-2">
+                    <div class="col-4 col-md-3">
                         <button type="button" class="btn btn-primary btn-export w-100" data-action="blood"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 title="勾選帳號並匯出「抽血數據」">
                             <span>抽血數據</span>
                         </button>
                     </div>
-                    <div class="col-4 col-md-2">
+                    <div class="col-4 col-md-3">
                         <button type="button" class="btn btn-primary btn-export w-100" data-action="task"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 title="勾選帳號並匯出「每週任務」">
                             <span>每週任務</span>
                         </button>
                     </div>
-                    <div class="col-4 col-md-2">
+                    <div class="col-4 col-md-3">
                         <button type="button" class="btn btn-primary btn-export w-100" data-action="medicine"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 title="勾選帳號並匯出「藥物劑量」">
                             <span>藥物劑量</span>
                         </button>
                     </div>
-                    <div class="col-4 col-md-2">
+                    <div class="col-4 col-md-3">
                         <button type="button" class="btn btn-primary btn-export w-100" data-action="effect"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 title="勾選帳號並匯出「副作用」">
                             <span>副作用</span>
                         </button>
                     </div>
-                    <div class="col-4 col-md-2">
+                    <div class="col-4 col-md-3">
                         <button type="button" class="btn btn-primary btn-export w-100" data-action="report"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 title="勾選帳號並匯出「報告個管師」">
                             <span>報告個管師</span>
+                        </button>
+                    </div>
+                    <div class="col-4 col-md-3">
+                        <button type="button" class="btn btn-primary btn-export w-100" data-action="video"
+                                data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="勾選帳號並匯出「觀影紀錄」">
+                            <span>觀影紀錄</span>
                         </button>
                     </div>
                 </form>
@@ -133,5 +140,6 @@
         const urlMedicine = '{{ route('exports.medicine') }}';
         const urlEffect = '{{ route('exports.effect') }}';
         const urlReport = '{{ route('exports.report') }}';
+        const urlVideo = '{{ route('exports.video') }}';
     </script>
 @endsection
