@@ -233,6 +233,7 @@ class CaseModelController extends Controller
             ->side_effect_records()
             ->where('has_image', '1')
             ->get();
+        $video_records = $case->video_records;
 
         $title = '個人資料';
         return response(

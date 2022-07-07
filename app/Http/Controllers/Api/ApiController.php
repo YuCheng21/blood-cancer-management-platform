@@ -101,6 +101,15 @@ use App\Http\Controllers\Controller;
  *              @OA\Property(property="hospital_other", type="string", description="固定回診醫院其他", example="高醫"),
  *          ),
  *          @OA\Schema(
+ *              schema="video",
+ *              type="object",
+ *              @OA\Property(property="id", type="integer", description="影片觀看紀錄編號", example=1),
+ *              @OA\Property(property="case_id", type="integer", description="個案編號", example=1),
+ *              @OA\Property(property="date", type="date", description="影片觀看日期&時間", example="2016-01-02 12:26:06"),
+ *              @OA\Property(property="name", type="string", description="影片名稱", example="彈力帶運動(國語版)"),
+ *              @OA\Property(property="end", type="integer", description="影片觀看時間（秒）", example=85),
+ *          ),
+ *          @OA\Schema(
  *              schema="category_1",
  *              type="object",
  *              @OA\Property(property="category_1", type="integer", description="類別編號", example=1),
@@ -193,6 +202,10 @@ use App\Http\Controllers\Controller;
  *  @OA\Tag (
  *      name="報告個管師紀錄",
  *      description="個案回報個管師的回報紀錄",
+ *  )
+ *  @OA\Tag (
+ *      name="影片觀看紀錄",
+ *      description="個案的影片觀看紀錄",
  *  )
  *
  *  @OA\Tag (

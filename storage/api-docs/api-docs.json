@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "血癌照護管理平台",
-        "description": "\r\n<h3>Application Interface Documentation for Blood Cancer Care Management Platform.</h3>\r\n<h4><a href='/'>Home Page</a></h4>\r\n                        ",
+        "description": "\n<h3>Application Interface Documentation for Blood Cancer Care Management Platform.</h3>\n<h4><a href='/'>Home Page</a></h4>\n                        ",
         "contact": {
             "name": "High Performance Distributed Systems Lab",
             "email": "nkust.ee.hpds@gmail.com"
@@ -1198,6 +1198,67 @@
                     }
                 }
             }
+        },
+        "/api/video": {
+            "post": {
+                "tags": [
+                    "影片觀看紀錄"
+                ],
+                "summary": "新增影片觀看紀錄",
+                "description": "新增影片觀看紀錄",
+                "operationId": "f15c4a371394276e14bb1eb0601be901",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "required": [
+                                            "account",
+                                            "date",
+                                            "name",
+                                            "end"
+                                        ],
+                                        "properties": {
+                                            "account": {
+                                                "description": "個案帳號",
+                                                "type": "string",
+                                                "example": "user1"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    {
+                                        "$ref": "#/components/schemas/video"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/video"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -1451,6 +1512,37 @@
                         "description": "固定回診醫院其他",
                         "type": "string",
                         "example": "高醫"
+                    }
+                },
+                "type": "object"
+            },
+            "video": {
+                "properties": {
+                    "id": {
+                        "description": "影片觀看紀錄編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "case_id": {
+                        "description": "個案編號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "date": {
+                        "description": "影片觀看日期&時間",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2016-01-02 12:26:06"
+                    },
+                    "name": {
+                        "description": "影片名稱",
+                        "type": "string",
+                        "example": "彈力帶運動(國語版)"
+                    },
+                    "end": {
+                        "description": "影片觀看時間（秒）",
+                        "type": "integer",
+                        "example": 85
                     }
                 },
                 "type": "object"
@@ -1736,6 +1828,10 @@
         {
             "name": "報告個管師紀錄",
             "description": "個案回報個管師的回報紀錄"
+        },
+        {
+            "name": "影片觀看紀錄",
+            "description": "個案的影片觀看紀錄"
         },
         {
             "name": "任務",

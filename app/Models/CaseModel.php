@@ -194,4 +194,9 @@ class CaseModel extends Model
     {
         return $this->hasMany(ImageRecord::class, 'case_id', 'id');
     }
+
+    public function video_records(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(VideoRecord::class, 'case_id', 'id');
+    }
 }

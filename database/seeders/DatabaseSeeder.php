@@ -56,6 +56,7 @@ class DatabaseSeeder extends Seeder
             HospitalSeeder::class,
             PhysicalStrengthSeeder::class,
             ReportRecordSeeder::class,
+            VideoRecordSeeder::class,
 
             MessageSeeder::class,
 

@@ -492,6 +492,44 @@
                 @endif
             </div>
         </div>
+        <div class="card border hv-shadow mb-4">
+            <div class="card-header justify-content-between d-inline-flex align-items-center">
+                <h2 class="my-2">
+                    <span class="iconify-inline" data-icon="dashicons:video-alt3"></span>
+                    <span>影片觀看紀錄</span>
+                </h2>
+            </div>
+            <div class="card-body py-2 px-2 px-lg-4 px-xl-5">
+                <div class="row justify-content-center text-center">
+                    <div class="table-responsive">
+                        <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
+                               data-toggle="table"
+                               data-search="true"
+                               data-sort-name="date"
+                               data-sort-order="desc"
+                               data-pagination="true"
+                               data-page-size="5"
+                               data-page-list="[ 5, 10, 15, 20, All]"
+                               data-locale="zh-TW">
+                            <thead>
+                            <tr>
+                                <th data-width="20" data-width-unit="%" data-sortable="true" data-field="date">日期</th>
+                                <th data-width="20" data-width-unit="%" data-sortable="true">影片名稱</th>
+                                <th data-width="20" data-width-unit="%" data-sortable="true">觀看時間</th>
+                            </tr>
+                            </thead>
+                            @foreach($video_records as $video_record)
+                                <tr>
+                                    <td>{{ $video_record->date }}</td>
+                                    <td>{{ $video_record->name }}</td>
+                                    <td>{{ floor($video_record->end / 60) }} 分 {{ $video_record->end % 60 }} 秒</td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 

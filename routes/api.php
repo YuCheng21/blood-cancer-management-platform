@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\TopicController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\ReportRecordController;
+use App\Http\Controllers\Api\VideoRecordController;
 use App\Http\Controllers\Api\SideEffectRecordController;
 use App\Http\Controllers\Api\MedicineRecordController;
 use App\Http\Controllers\Api\BloodComponentController;
@@ -55,6 +56,11 @@ Route::middleware('member.auth')->name('api.')->group(function () {
             Route::post('/', 'store')->name('store');
             Route::patch('/{report_id}', 'update')->name('update');
             Route::delete('/{report_id}', 'destroy')->name('destroy');
+        });
+
+    Route::prefix('video')->name('video.')
+        ->controller(VideoRecordController::class)->group(function (){
+            Route::post('/', 'store')->name('store');
         });
 
     Route::prefix('tasks')->name('tasks.')
