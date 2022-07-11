@@ -39,7 +39,7 @@ class CaseEffectExport implements FromArray, WithTitle, WithHeadings
                 $buffer['account'] = $case->account;
                 $buffer['date'] = $key;
                 foreach($value as $index => $item){
-                    if ($item['symptom'] == '發燒'){
+                    if ($item['symptom'] == '發燒' || $item['symptom'] == '白血球低下' || $item['symptom'] == '血小板低下' || $item['symptom'] == '血紅素低下'){
                         if (intval($item['severity']) > 0){
                             $buffer[$item['symptom']] = '有';
                         }else{
@@ -53,7 +53,7 @@ class CaseEffectExport implements FromArray, WithTitle, WithHeadings
                 $result = array_fill_keys($sorted, '0');
                 foreach($result as $index => $item){
                     foreach ($buffer as $inner_index => $inner_item){
-                        if ($index == '發燒'){
+                        if ($index == '發燒' || $index == '白血球低下' || $index == '血小板低下' || $index == '血紅素低下'){
                             $result[$index] = '無';
                         }
                         if ($inner_index == $index){

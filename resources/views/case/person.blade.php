@@ -400,7 +400,7 @@
                                     </td>
                                     <td>
                                         @foreach($value as $side_effect_record)
-                                            @if($side_effect_record->symptom == "發燒")
+                                            @if($side_effect_record->symptom == "發燒" || $side_effect_record->symptom == "白血球低下" || $side_effect_record->symptom == "血小板低下" || $side_effect_record->symptom == "血紅素低下")
                                                 @if($side_effect_record->severity > 0)
                                                     <span>有</span><br>
                                                 @else
