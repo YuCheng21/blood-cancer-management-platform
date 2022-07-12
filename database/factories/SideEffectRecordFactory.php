@@ -17,7 +17,7 @@ class SideEffectRecordFactory extends Factory
     public function definition()
     {
         if (self::$counter2 % 3 == 1){
-            self::$date = $this->faker->date('Y-m-d');
+            self::$date = $this->faker->date('Y-m-d') . ' ' . $this->faker->time('H:i:s');
         }
         self::$counter2++;
         $symptom = $this->faker->randomElement(['皮疹', '掉髮', '腹瀉', '疲倦', '拍照']);
