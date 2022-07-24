@@ -68,7 +68,7 @@ Route::middleware('member.auth')->name('api.')->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/category_information', 'category_information')->name('category_information');
             Route::get('/account/{account}', 'account')->name('account');
-            Route::patch('/state/{case_task_id}', 'state')->name('state');
+            Route::post('/state/{case_task_id}', 'state')->name('state');
         });
 
     Route::prefix('topics')->name('topics.')
