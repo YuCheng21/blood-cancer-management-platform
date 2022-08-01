@@ -53,7 +53,7 @@ $(document).on('click', '.applyMessageBtn', function () {
 
 $(document).on('click', '#applyMessageSend', function () {
     let selectedCase = [];
-    $("#applyMessageModal input:checkbox:checked").each(function () {
+    $("#applyMessageModal tbody input:checkbox:checked").each(function () {
         selectedCase.push($(this).closest('tr').data('case-id'));
     });
     var input1 = document.createElement('input');

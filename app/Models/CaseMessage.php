@@ -13,6 +13,7 @@ class CaseMessage extends Model
         'case_id',
         'message_id',
         'state',
+        'limit',
     ];
 
     public function message(){

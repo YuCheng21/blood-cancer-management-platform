@@ -18,6 +18,7 @@ class CreateCaseMessagesTable extends Migration
             $table->unsignedBigInteger('case_id')->comment('個案編號');
             $table->unsignedBigInteger('message_id')->comment('消息編號');
             $table->unsignedBigInteger('state')->comment('消息狀態');
+            $table->unsignedBigInteger('limit')->comment('消息期限');
             $table->timestamps();
         });
         Schema::table('case_messages', function (Blueprint $table){

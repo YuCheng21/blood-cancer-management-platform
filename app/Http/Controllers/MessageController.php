@@ -131,6 +131,7 @@ class MessageController extends Controller
     public function apply(Request $request, $id)
     {
         $selected_case = json_decode($request->selectedCase);
+        $message_limit = $request->messageLimit;
 
         foreach (array_filter($selected_case) as $key => $value){
             try {
@@ -138,6 +139,7 @@ class MessageController extends Controller
                     'case_id' => $value,
                     'message_id' => $id,
                     'state' => 0,
+                    'limit' => $message_limit
                 ]);
             }catch (QueryException $queryException){
 

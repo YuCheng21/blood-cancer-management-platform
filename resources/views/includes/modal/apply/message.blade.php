@@ -13,6 +13,11 @@
                     <div class="col-12 overflow-auto" style="max-height: 50vh">
                         <form action="#" id="applyMessageForm" method="POST" enctype="multipart/form-data">
                             @csrf
+                            <div class="input-group mb-2">
+                                <label for="messageLimit" class="input-group-text">消息期限</label>
+                                <input name="messageLimit" id="messageLimit" type="number" value="4"
+                                       class="form-control" placeholder="請輸入消息期限">
+                            </div>
                             <div class="row justify-content-center text-center">
                                 <div class="table-responsive">
                                     <table class="table table-striped text-center align-middle fs-6"

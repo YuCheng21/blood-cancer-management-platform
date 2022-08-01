@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\CaseModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -38,8 +39,14 @@ class MessageController extends Controller
         }
 
         $case_messages = $case->case_messages;
-        foreach ($case_messages as $case_message){
-            $_ = $case_message->message;
+        foreach ($case_messages as $key => $case_message){
+            $limit = Carbon::createFromTimeString($case_message->created_at)->addDays($case_message->limit);
+            $now = Carbon::now();
+            if ($now->gt($limit)){
+                unset($case_messages[$key]);
+            }else{
+                $_ = $case_message->message;
+            }
         }
         return response(['data' => $case_messages], Response::HTTP_OK);
     }
