@@ -42,9 +42,7 @@ class MessageController extends Controller
         foreach ($case_messages as $key => $case_message){
             $limit = Carbon::createFromTimeString($case_message->created_at)->addDays($case_message->limit);
             $now = Carbon::now();
-            if ($now->gt($limit)){
-                unset($case_messages[$key]);
-            }else{
+            if ($now->lt($limit)){
                 $_ = $case_message->message;
             }
         }
