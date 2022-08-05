@@ -414,7 +414,7 @@
                                     </td>
                                     <td>
                                         @foreach($value as $side_effect_record)
-                                            <button class="btn-danger deleteEffectRecordBtn" data-bs-toggle="modal"
+                                            <button class="btn-danger deleteEffectRecordBtn fs-6" data-bs-toggle="modal"
                                                     data-bs-target="#deleteEffectRecordModal"
                                                     data-url="{{route('effect.destroy', ['account' => $account, 'id' => $side_effect_record->id])}}">
                                                 <span class="iconify-inline" data-icon="ion:trash"></span>
