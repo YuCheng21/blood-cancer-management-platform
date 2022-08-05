@@ -142,7 +142,7 @@
                             C{{$case->donor_hla_c1}};{{$case->donor_hla_c2}},
                             DR{{$case->donor_hla_dr1}};{{$case->donor_hla_dr2}},
                             DQ{{$case->donor_hla_dq1}};{{$case->donor_hla_dq2}}
-                            ({{$case->donor_hla_match}}/10 match)
+{{--                            ({{$case->donor_hla_match}}/10 match)--}}
                         </span>
                     </div>
 
@@ -333,7 +333,7 @@
                 </div>
             </div>
         </div>
-        <div class="card border hv-shadow mb-4">
+        <div class="card border hv-shadow mb-4" id="effectRecord">
             <div class="card-header justify-content-between d-inline-flex align-items-center">
                 <h2 class="my-2">
                     <span class="iconify-inline" data-icon="icon-park-outline:application-effect"></span>
@@ -355,11 +355,12 @@
                             <thead>
                             <tr>
                                 <th data-width="20" data-width-unit="%" data-sortable="true" data-field="date">紀錄時間</th>
-                                <th data-width="70" data-width-unit="%"
+                                <th data-width="60" data-width-unit="%"
                                     data-halign="center" data-align="left">
                                     副作用
                                 </th>
                                 <th data-width="10" data-width-unit="%">嚴重度</th>
+                                <th data-width="10" data-width-unit="%">操作</th>
                             </tr>
                             </thead>
                             @php($counter = 1)
@@ -409,6 +410,16 @@
                                             @else
                                                 <span>{{ $side_effect_record->severity }}</span><br>
                                             @endif
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        @foreach($value as $side_effect_record)
+                                            <button class="btn-danger deleteEffectRecordBtn" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteEffectRecordModal"
+                                                    data-url="{{route('effect.destroy', ['account' => $account, 'id' => $side_effect_record->id])}}">
+                                                <span class="iconify-inline" data-icon="ion:trash"></span>
+                                            </button>
+                                            <br>
                                         @endforeach
                                     </td>
                                 </tr>
@@ -539,6 +550,7 @@
     @include('includes.modal.create.medicine_record')
     @include('includes.modal.update.medicine_record')
     @include('includes.modal.delete.medicine_record')
+    @include('includes.modal.delete.effect_record')
 @endsection
 
 @section('script')

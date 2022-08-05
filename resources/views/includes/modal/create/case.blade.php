@@ -293,12 +293,12 @@
                                 <input name="donor_hla_dq2" type="text" id="createCaseDonorHlaDQ2"
                                        class="form-control" value="{{old('donor_hla_dq2')}}">
                             </div>
-                            <div class="input-group mb-2">
-                                <label for="createCaseDonorHlaMatch" class="input-group-text">Match</label>
-                                <input name="donor_hla_match" type="text" id="createCaseDonorHlaMatch"
-                                       class="form-control" value="{{old('donor_hla_match')}}">
-                                <label class="input-group-text">/10</label>
-                            </div>
+{{--                            <div class="input-group mb-2">--}}
+{{--                                <label for="createCaseDonorHlaMatch" class="input-group-text">Match</label>--}}
+{{--                                <input name="donor_hla_match" type="text" id="createCaseDonorHlaMatch"--}}
+{{--                                       class="form-control" value="{{old('donor_hla_match')}}">--}}
+{{--                                <label class="input-group-text">/10</label>--}}
+{{--                            </div>--}}
                             <hr>
                             <div class="input-group mb-2">
                                 <label for="createCaseDiseaseType" class="input-group-text required">疾病種類</label>

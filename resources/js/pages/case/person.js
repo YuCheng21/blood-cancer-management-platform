@@ -10,6 +10,12 @@ function fancybox_show(url){
     ]);
 }
 
+$(document).on('click', '.deleteEffectRecordBtn', function (e) {
+    const deleteUrl = $(this).data('url');
+    $('#deleteEffectRecordForm').attr('action', deleteUrl)
+    $('#deleteEffectRecordSend').attr('href', deleteUrl)
+})
+
 $(document).on('click', '.deleteMedicineRecordBtn', function (e) {
     const deleteUrl = $(this).data('url');
     $('#deleteMedicineRecordForm').attr('action', deleteUrl)

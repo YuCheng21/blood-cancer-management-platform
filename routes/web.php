@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MedicineRecordController;
+use App\Http\Controllers\EffectRecordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CaseModelController;
@@ -46,6 +47,9 @@ Route::middleware('auth')->group(function () {
     Route::prefix('medicine')->name('medicine.')->controller(MedicineRecordController::class)->group(function (){
         Route::post('/{account}/medicine', 'store')->name('store');
         Route::patch('/{account}/{id}', 'update')->name('update');
+        Route::delete('/{account}/{id}', 'destroy')->name('destroy');
+    });
+    Route::prefix('effect')->name('effect.')->controller(EffectRecordController::class)->group(function (){
         Route::delete('/{account}/{id}', 'destroy')->name('destroy');
     });
 
