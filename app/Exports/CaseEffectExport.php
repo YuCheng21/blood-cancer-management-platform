@@ -86,7 +86,8 @@ class CaseEffectExport implements FromArray, WithTitle, WithHeadings
     {
 //        $effect_item = ['白血球低下', '血小板低下', '血紅素低下', '口腔黏膜炎', '噁心嘔吐', '腹瀉', '掉髮', '癲癇', '出血性膀胱炎', '心跳偏快', '臉部潮紅'];
         $effect_item = ['白血球低下', '血小板低下', '血紅素低下', '發燒', '口腔黏膜炎', '掉髮','噁心嘔吐', '腹瀉',  '血尿', '黃疸', '紅色丘疹'];
-        $effect_unique = DB::table('side_effect_records')->select('symptom')->distinct()->get();
+//        $effect_unique = DB::table('side_effect_records')->select('symptom')->distinct()->get();
+        $effect_unique = SideEffectRecord::whereIn('case_id', $this->accounts)->select('symptom')->distinct()->get();
         $effect_unique = array_column($effect_unique->toArray(), 'symptom');
         $effect_item_sorted = array_keys(array_fill_keys($effect_item, null) + array_flip($effect_unique));
         return $effect_item_sorted;
