@@ -52,10 +52,10 @@ class CaseEffectExport implements FromArray, WithTitle, WithHeadings
                 $sorted = array_merge(array('account', 'date'), $effect_item_sorted);
                 $result = array_fill_keys($sorted, '0');
                 foreach($result as $index => $item){
+                    if ($index == '發燒' || $index == '白血球低下' || $index == '血小板低下' || $index == '血紅素低下'){
+                        $result[$index] = '無';
+                    }
                     foreach ($buffer as $inner_index => $inner_item){
-                        if ($index == '發燒' || $index == '白血球低下' || $index == '血小板低下' || $index == '血紅素低下'){
-                            $result[$index] = '無';
-                        }
                         if ($inner_index == $index){
                             $result[$index] = $inner_item;
                         }
