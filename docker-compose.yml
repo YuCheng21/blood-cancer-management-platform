@@ -39,6 +39,7 @@ services:
         volumes:
             - .:/code
         working_dir: '/code'
+        entrypoint: ["/bin/sh", "-c"]
         command:
             - |
                 composer install --ignore-platform-reqs
