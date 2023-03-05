@@ -3,6 +3,9 @@ services:
     php:
         image: php:7.4-apache
         restart: always
+        depends_on:
+            database:
+                condition: service_healthy
         volumes:
             - /etc/localtime:/etc/localtime:ro
             - .:/var/www/html
@@ -13,23 +16,23 @@ services:
             - "database:db"
         env_file:
             - ./docker/config.env
-        entrypoint: ["/bin/sh", "-c"]
+        entrypoint: [ "/bin/sh", "-c" ]
         command:
             - |
-                docker-php-ext-configure pdo_mysql
-                docker-php-ext-install -j$(nproc) pdo_mysql
-                sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-                sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+                docker-php-ext-configure pdo_mysql && docker-php-ext-install pdo_mysql
                 ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
+                sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/*.conf
+                sed -ri -e 's!/var/www/!/var/www/html/public!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+                sed -i '/<Directory \/var\/www\/html\/public>/,/<\/Directory>/ s/AllowOverride None/AllowOverride all/' /etc/apache2/apache2.conf
                 php artisan migrate:fresh --seed
                 php artisan storage:link
                 apachectl -D FOREGROUND
     nodejs:
         image: node:16.13.2
         volumes:
-            - .:/code
-        working_dir: '/code'
-        entrypoint: ["/bin/sh", "-c"]
+            - .:/blood-cancer-management-platform
+        working_dir: '/blood-cancer-management-platform'
+        entrypoint: [ "/bin/sh", "-c" ]
         command:
             - |
                 npm install
@@ -39,7 +42,7 @@ services:
         volumes:
             - .:/code
         working_dir: '/code'
-        entrypoint: ["/bin/sh", "-c"]
+        entrypoint: [ "/bin/sh", "-c" ]
         command:
             - |
                 composer install --ignore-platform-reqs
@@ -58,3 +61,5 @@ services:
             - mysqld
             - --character-set-server=utf8
             - --collation-server=utf8_general_ci
+        healthcheck:
+            test: "exit 0"
