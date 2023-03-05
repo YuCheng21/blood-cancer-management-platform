@@ -16,12 +16,18 @@ services:
         entrypoint: ["/bin/sh", "-c"]
         command:
             - |
+                docker-php-ext-configure pdo_mysql
+                docker-php-ext-install -j$(nproc) pdo_mysql
+                sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+                sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+                ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
                 php artisan migrate:fresh --seed
                 php artisan storage:link
+                apachectl -D FOREGROUND
     nodejs:
         image: node:16.13.2
         volumes:
-            - .:/dir/code
+            - .:/code
         working_dir: '/code'
         entrypoint: ["/bin/sh", "-c"]
         command:
@@ -33,7 +39,9 @@ services:
         volumes:
             - .:/code
         working_dir: '/code'
-        command: 'composer install'
+        command:
+            - |
+                composer install --ignore-platform-reqs
     database:
         image: mariadb:10.5.10
         restart: always
