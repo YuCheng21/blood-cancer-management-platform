@@ -4,10 +4,8 @@ services:
         image: php:7.4-apache
         restart: always
         volumes:
-            - .:/var/www/html
             - /etc/localtime:/etc/localtime:ro
-            - node_modules:/var/www/html/node_modules
-            - vendor:/var/www/html/vendor
+            - .:/var/www/html
         working_dir: "/var/www/html"
         ports:
             - '20020:80'
@@ -23,9 +21,8 @@ services:
     nodejs:
         image: node:16.13.2
         volumes:
-            - ./package.json:/dir/package.json
-            - node_modules:/dir/node_modules
-        working_dir: '/dir'
+            - .:/dir/code
+        working_dir: '/code'
         entrypoint: ["/bin/sh", "-c"]
         command:
             - |
@@ -34,9 +31,8 @@ services:
     composer:
         image: composer:2.2.5
         volumes:
-            - ./composer.json:/dir/composer.json
-            - vendor:/dir/vendor
-        working_dir: '/dir'
+            - .:/code
+        working_dir: '/code'
         command: 'composer install'
     database:
         image: mariadb:10.5.10
@@ -53,6 +49,3 @@ services:
             - mysqld
             - --character-set-server=utf8
             - --collation-server=utf8_general_ci
-volumes:
-    node_modules:
-    vendor:
