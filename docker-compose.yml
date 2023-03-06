@@ -24,6 +24,7 @@ services:
                 sed -i '/<Directory \/var\/www\/html\/public>/,/<\/Directory>/ s/AllowOverride None/AllowOverride all/' /etc/apache2/apache2.conf
                 php artisan migrate:fresh --seed
                 php artisan storage:link
+                chmod o+w ./storage/ -R
                 apachectl -D FOREGROUND
     nodejs:
         image: node:16.13.2
@@ -47,6 +48,8 @@ services:
     database:
         image: mariadb:10.5.10
         restart: always
+        environment:
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         expose:
             - '3306'
         volumes:
