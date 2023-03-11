@@ -9,6 +9,8 @@ services:
         volumes:
             - /etc/localtime:/etc/localtime:ro
             - .:${APACHE_DOCUMENT_ROOT}
+        environment:
+            - APACHE_DOCUMENT_ROOT=${APACHE_DOCUMENT_ROOT}
         working_dir: "${APACHE_DOCUMENT_ROOT}"
         ports:
             - '${APACHE_PORT}:80'
@@ -17,7 +19,7 @@ services:
         entrypoint: [ "/bin/sh", "-c" ]
         command:
             - |
-                source ./docker/php/init.sh
+                ./docker/php/init.sh
                 php artisan migrate:fresh --seed
                 php artisan storage:link
                 chmod o+w ./storage/ -R
