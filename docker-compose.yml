@@ -19,7 +19,7 @@ services:
         entrypoint: [ "/bin/sh", "-c" ]
         command:
             - |
-                ./docker/php/init.sh
+                /bin/sh ./docker/php/init.sh
                 php artisan migrate:fresh --seed
                 php artisan storage:link
                 chmod o+w ./storage/ -R
