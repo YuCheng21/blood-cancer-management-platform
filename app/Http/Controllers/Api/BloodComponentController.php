@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\BloodComponent;
 use App\Models\CaseBloodComponent;
+use Illuminate\Database\QueryException;
 use App\Models\CaseModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,64 @@ use function response;
 
 class BloodComponentController extends Controller
 {
+    public function add($account, Request $request)
+    {
+        $rules = [
+            'createBloodComponentName' => ['required'],
+            'createBloodComponentValue' => ['required'],
+            'createBloodComponentDate' => ['required'],
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()
+                ->route('cases.show', ['account' => $account, '#BloodComponent'])
+                ->withInput()
+                ->with([
+                    'type' => 'error',
+                    'msg' => '表單填寫未完成。'
+                ]);
+        }
+        $case = CaseModel::where([
+            'account' => $account,
+        ])->first();
+
+        $blood_component = BloodComponent::where('name', $validator->validate()['createBloodComponentName'])->first();
+        if (is_null($blood_component)){
+            $blood_component = BloodComponent::create([
+                'name' => $validator->validate()['createBloodComponentName'],
+            ]);
+        }
+
+        $data = [
+                'case_id' => $case->id,
+                'blood_id' => $blood_component->id,
+                'value' => $request->createBloodComponentValue,
+                'created_at' => $request->createBloodComponentDate,
+            ] + $validator->validate();
+
+        $case_blood_component = CaseBloodComponent::create($data);
+        $case_blood_component = $case_blood_component->refresh();
+        $case_blood_component['blood_component'] = $blood_component;
+
+        try {
+            $case_blood_component = CaseBloodComponent::create($data);
+            $case_blood_component = $case_blood_component->refresh();
+            $case_blood_component['blood_component'] = $blood_component;
+            return redirect()
+                ->route('cases.show', ['account' => $account, '#BloodComponent'])
+                ->with([
+                    'type' => 'success-toast',
+                    'msg' => '新增抽血數據成功。'
+                ]);
+        }catch (QueryException $queryException){
+            return back()
+                ->withInput()
+                ->with([
+                    'type' => 'error',
+                    'msg' => 'SQLState: ' . $queryException->errorInfo[0]
+                ]);
+        }
+    }
     /**
      * @OA\Get (path="/api/blood-components/account/{account}", tags={"抽血數據"}, summary="取得抽血數據",
      *     description="取得抽血數據",

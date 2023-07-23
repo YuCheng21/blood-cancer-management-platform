@@ -142,7 +142,7 @@
                             C{{$case->donor_hla_c1}};{{$case->donor_hla_c2}},
                             DR{{$case->donor_hla_dr1}};{{$case->donor_hla_dr2}},
                             DQ{{$case->donor_hla_dq1}};{{$case->donor_hla_dq2}}
-{{--                            ({{$case->donor_hla_match}}/10 match)--}}
+                            {{--                            ({{$case->donor_hla_match}}/10 match)--}}
                         </span>
                     </div>
 
@@ -185,12 +185,19 @@
                 </div>
             </div>
         </div>
-        <div class="card border hv-shadow mb-4">
+        <div class="card border hv-shadow mb-4" id="BloodComponent">
             <div class="card-header justify-content-between d-inline-flex align-items-center">
                 <h2 class="my-2">
                     <span class="iconify-inline" data-icon="bi:droplet-half"></span>
                     <span>抽血數據</span>
                 </h2>
+                <div class="d-flex flex-column flex-sm-row">
+                    <button class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#createBloodComponentModal">
+                        <span class="iconify-inline" data-icon="carbon:add-filled"></span>
+                        <span>新增資料</span>
+                    </button>
+                </div>
             </div>
             <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
                 @if(count($case_blood_components))
@@ -244,15 +251,15 @@
                                                 @php(/* @var $item */ $item =  $case_task['category_1'] . ($case_task['category_2'] == '0' ? '' : '-' . $case_task['category_2']) . '. ' . $case_task['name'] )
                                                 <td>{{ $item }}</td>
                                                 <td>
-{{--                                                    <a href="{{ route('cases.topic', ['account' => $account, 'case_task_id' => $case_task['id']]) }}">--}}
-                                                        @if($case_task['state'] == 'completed')
-                                                            <span class="text-success">已完成</span><br>
-                                                        @elseif($case_task['state'] == 'uncompleted')
-                                                            <span class="text-primary">未完成</span><br>
-                                                        @else
-                                                            <span>未完成</span><br>
-                                                        @endif
-{{--                                                    </a>--}}
+                                                    {{--                                                    <a href="{{ route('cases.topic', ['account' => $account, 'case_task_id' => $case_task['id']]) }}">--}}
+                                                    @if($case_task['state'] == 'completed')
+                                                        <span class="text-success">已完成</span><br>
+                                                    @elseif($case_task['state'] == 'uncompleted')
+                                                        <span class="text-primary">未完成</span><br>
+                                                    @else
+                                                        <span>未完成</span><br>
+                                                    @endif
+                                                    {{--                                                    </a>--}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -299,8 +306,10 @@
                             <thead>
                             <tr>
                                 <th data-width="40" data-width-unit="%" data-sortable="true">藥物名稱</th>
-                                <th data-width="15" data-width-unit="%" data-sortable="true" data-field="date">施打日期起</th>
-                                <th data-width="15" data-width-unit="%" data-sortable="true" data-field="date">施打日期迄</th>
+                                <th data-width="15" data-width-unit="%" data-sortable="true" data-field="date">施打日期起
+                                </th>
+                                <th data-width="15" data-width-unit="%" data-sortable="true" data-field="date">施打日期迄
+                                </th>
                                 <th data-width="20" data-width-unit="%" data-sortable="true">施打藥物劑量總量</th>
                                 <th data-width="10" data-width-unit="%">操作選項</th>
                             </tr>
@@ -339,6 +348,13 @@
                     <span class="iconify-inline" data-icon="icon-park-outline:application-effect"></span>
                     <span>副作用紀錄</span>
                 </h2>
+                <div class="d-flex flex-column flex-sm-row">
+                    <button class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#createEffectRecordModal">
+                        <span class="iconify-inline" data-icon="carbon:add-filled"></span>
+                        <span>新增資料</span>
+                    </button>
+                </div>
             </div>
             <div class="card-body py-2 px-2 px-lg-4 px-xl-5">
                 <div class="row justify-content-center text-center">
@@ -452,7 +468,7 @@
                             <tr>
                                 <th data-width="20" data-width-unit="%" data-sortable="true" data-field="date">日期</th>
                                 <th data-width="20" data-width-unit="%" data-sortable="true">體力滿意度</th>
-{{--                                <th data-width="40" data-width-unit="%" data-sortable="true">症狀</th>--}}
+                                {{--                                <th data-width="40" data-width-unit="%" data-sortable="true">症狀</th>--}}
                                 <th data-width="20" data-width-unit="%" data-sortable="true">固定回診醫院</th>
                             </tr>
                             </thead>
@@ -460,7 +476,7 @@
                                 <tr>
                                     <td>{{ $report_record->date }}</td>
                                     <td>{{ $report_record->physical_strength->name }}</td>
-{{--                                    <td>{{ $report_record->symptom }}</td>--}}
+                                    {{--                                    <td>{{ $report_record->symptom }}</td>--}}
                                     @if($report_record->hospital->name == '其他')
                                         <td>{{ $report_record->hospital_other }}</td>
                                     @else
@@ -547,9 +563,11 @@
 @section('footer')
     @parent
     @include('includes.modal.update.case')
+    @include('includes.modal.create.blood_component')
     @include('includes.modal.create.medicine_record')
     @include('includes.modal.update.medicine_record')
     @include('includes.modal.delete.medicine_record')
+    @include('includes.modal.create.effect_record')
     @include('includes.modal.delete.effect_record')
 @endsection
 
