@@ -50,10 +50,6 @@ class BloodComponentController extends Controller
                 'created_at' => $request->createBloodComponentDate,
             ] + $validator->validate();
 
-        $case_blood_component = CaseBloodComponent::create($data);
-        $case_blood_component = $case_blood_component->refresh();
-        $case_blood_component['blood_component'] = $blood_component;
-
         try {
             $case_blood_component = CaseBloodComponent::create($data);
             $case_blood_component = $case_blood_component->refresh();
